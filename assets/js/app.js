@@ -1,13 +1,15 @@
 /**
  * HADI EDUCATION SYSTEM (HES) — GLOBAL APPLICATION LOGIC
- * Manages theme switching, bilingual toggle (RTL), sticky navbar,
- * animated stats, mobile drawer, interactive AI assistant, and form validation.
+ * Manages the English/light presentation, sticky navbar, animated stats,
+ * mobile drawer, interactive AI assistant, and form validation.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initLanguage();
+  initHeroTyping();
   initNavbar();
+  initLearningPathwayHover();
   initMobileDrawer();
   initCounters();
   initAccordion();
@@ -18,65 +20,58 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ==========================================================================
-   1. THEME SWITCHER (Dark & Light Mode)
+   1. DEFAULT PRESENTATION (English & Light Mode)
    ========================================================================== */
 function initTheme() {
-  const savedTheme = localStorage.getItem("hes_theme") || "light";
-  document.documentElement.setAttribute("data-theme", savedTheme);
-  updateThemeIcon(savedTheme);
-
-  const themeToggleBtns = document.querySelectorAll(".theme-toggle-btn");
-  themeToggleBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", newTheme);
-      localStorage.setItem("hes_theme", newTheme);
-      updateThemeIcon(newTheme);
-    });
-  });
-}
-
-function updateThemeIcon(theme) {
-  const icons = document.querySelectorAll(".theme-toggle-icon");
-  icons.forEach(icon => {
-    icon.textContent = theme === "dark" ? "☀️" : "🌙";
-  });
+  document.documentElement.setAttribute("data-theme", "light");
 }
 
 /* ==========================================================================
-   2. LANGUAGE SWITCHER (English / Urdu with RTL)
+   2. ENGLISH LANGUAGE
    ========================================================================== */
 function initLanguage() {
-  const savedLang = localStorage.getItem("hes_lang") || "en";
-  setLanguage(savedLang);
+  document.documentElement.setAttribute("lang", "en");
+  document.documentElement.setAttribute("dir", "ltr");
 
-  const langToggleBtns = document.querySelectorAll(".lang-toggle-btn");
-  langToggleBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const currentLang = document.documentElement.getAttribute("lang") || "en";
-      const nextLang = currentLang === "en" ? "ur" : "en";
-      setLanguage(nextLang);
-    });
+  const englishElements = document.querySelectorAll("[data-en][data-ur]");
+  englishElements.forEach(el => {
+    el.innerHTML = el.getAttribute("data-en");
   });
 }
 
-function setLanguage(lang) {
-  document.documentElement.setAttribute("lang", lang);
-  document.documentElement.setAttribute("dir", lang === "ur" ? "rtl" : "ltr");
-  localStorage.setItem("hes_lang", lang);
+function initHeroTyping() {
+  const heading = document.querySelector("#hero-typing-title");
+  if (!heading) return;
 
-  // Update button label
-  const labelSpans = document.querySelectorAll(".lang-label");
-  labelSpans.forEach(span => {
-    span.textContent = lang === "ur" ? "English" : "اردو";
-  });
+  const text = heading.textContent.trim();
+  heading.setAttribute("aria-label", text);
 
-  // Apply translations for nodes with data-i18n attributes
-  const translatableElements = document.querySelectorAll("[data-en][data-ur]");
-  translatableElements.forEach(el => {
-    el.innerHTML = lang === "ur" ? el.getAttribute("data-ur") : el.getAttribute("data-en");
-  });
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const typeText = (element, value, characterInterval, onComplete) => {
+    element.textContent = "";
+    element.classList.add("is-typing");
+
+    const startTime = performance.now();
+    const typeNextCharacter = () => {
+      const characterCount = Math.min(
+        value.length,
+        Math.floor((performance.now() - startTime) / characterInterval) + 1
+      );
+      element.textContent = value.slice(0, characterCount);
+
+      if (characterCount < value.length) {
+        window.setTimeout(typeNextCharacter, 30);
+      } else {
+        element.classList.remove("is-typing");
+        if (onComplete) onComplete();
+      }
+    };
+
+    typeNextCharacter();
+  };
+
+  typeText(heading, text, 65);
 }
 
 /* ==========================================================================
@@ -96,6 +91,46 @@ function initNavbar() {
 
   window.addEventListener("scroll", handleScroll, { passive: true });
   handleScroll();
+}
+
+function initLearningPathwayHover() {
+  const cards = document.querySelectorAll(".timeline-stepper-pair .timeline-step");
+  cards.forEach(card => {
+    const oval = document.createElement("span");
+    oval.setAttribute("aria-hidden", "true");
+    oval.style.cssText = [
+      "position:absolute",
+      "z-index:0",
+      "top:50%",
+      "left:50%",
+      "width:110%",
+      "height:72%",
+      "border-radius:50%",
+      "background:radial-gradient(ellipse, rgba(255,255,255,.98) 0%, rgba(255,255,255,.84) 52%, rgba(255,255,255,0) 78%)",
+      "opacity:0",
+      "transform:translate(-50%,-50%) scale(.78)",
+      "pointer-events:none",
+      "transition:opacity 350ms ease, transform 400ms ease"
+    ].join(";");
+    card.prepend(oval);
+
+    const textElements = card.querySelectorAll(".timeline-grades, .timeline-title, .timeline-desc");
+    textElements.forEach(element => {
+      element.style.transition = "color 350ms ease";
+    });
+
+    card.addEventListener("pointerenter", () => {
+      oval.style.opacity = "1";
+      oval.style.transform = "translate(-50%,-50%) scale(1)";
+      textElements.forEach(element => element.style.setProperty("color", "#000", "important"));
+    });
+
+    card.addEventListener("pointerleave", () => {
+      oval.style.opacity = "0";
+      oval.style.transform = "translate(-50%,-50%) scale(.78)";
+      textElements.forEach(element => element.style.removeProperty("color"));
+    });
+  });
 }
 
 /* ==========================================================================

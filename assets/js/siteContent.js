@@ -13,7 +13,7 @@ const siteContent = {
     shortName: "HES",
     taglineEn: "Where the Holy Quran Meets Modern Academic Excellence",
     taglineUr: "جہاں قرآنِ پاک کی تعلیم اور جدید عصری علوم کا حسین سنگم ہے",
-    establishedYear: 2005,
+    establishedYear: 2017,
     campus: {
       addressEn: "Pipli Road, Balkasar, District Chakwal, Punjab, Pakistan",
       addressUr: "پپلی روڈ، بلکسر، ضلع چکوال، پنجاب، پاکستان",
@@ -43,28 +43,28 @@ const siteContent = {
   stats: [
     {
       id: "stat-years",
-      value: 21,
+      value: 9,
       suffix: "+",
       labelEn: "Years of Excellence",
       labelUr: "سالہ تعلیمی خدمات"
     },
     {
       id: "stat-students",
-      value: 1250,
+      value: 150,
       suffix: "+",
       labelEn: "Active Students",
       labelUr: "زیرِ تعلیم طلباء"
     },
     {
       id: "stat-teachers",
-      value: 45,
+      value: 20,
       suffix: "+",
       labelEn: "Expert Educators",
       labelUr: "ماہر و شفیق اساتذہ"
     },
     {
       id: "stat-huffaz",
-      value: 350,
+      value: 200,
       suffix: "+",
       labelEn: "Hafiz-e-Quran Alumni",
       labelUr: "حفاظِ کرام فارغ التحصیل"

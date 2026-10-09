@@ -1,8 +1,8 @@
 # Hadi Education System (HES) — Redesigned Website
 
-A complete, production-ready, modern-classic redesign for **Hadi Education System (HES)**, located in Pipli Road Balkasar, District Chakwal, Punjab, Pakistan.
+A complete, production-ready website for **Hadi Education System (HES)**, established in 2017 and located on Pipli Road in Balkasar, District Chakwal, Punjab, Pakistan.
 
-The design embodies **"Modern Classic with a Futuristic Edge"**: combining subtle Islamic geometric star patterns, deep emerald green (`#0B3D2E`), imperial warm gold (`#C9A24B`), sacred ivory (`#FAF7F0`), glassmorphism cards, and responsive micro-interactions.
+The visual identity uses the supplied neutral palette: white (`#FFFFFF`), light gray (`#E5E5E5`), navy (`#14213D`), and black (`#000000`). These colors are shared across page backgrounds, navigation, buttons, cards, and forms. The current website presentation is English and light mode, with responsive navigation.
 
 ---
 
@@ -16,13 +16,12 @@ HES/
 ├── facilities.html         # Facilities (Interactive Lightbox, Classrooms, Science & IT Labs, Library, Mosque, Sports)
 ├── admission.html          # Admissions 2026 (Roadmap, Documents Checklist, Fee Table, Online Form, FAQs)
 ├── contact.html            # Contact (Inquiry Form, Map Embed, Direct WhatsApp, Phone, Address, Hours)
-├── design-system.html      # Interactive Design System (Tokens, Typography, Component Library)
 ├── assets/
 │   ├── css/
 │   │   └── main.css        # Unified Design System, Variables, Dark/Light Mode, RTL, Animations
 │   ├── js/
 │   │   ├── siteContent.js  # SINGLE Centralized Editable Content Store (English & Urdu)
-│   │   └── app.js          # Global Logic (Theme Toggle, RTL/Urdu Toggle, Drawer, Counters, AI Bot, Forms)
+│   │   └── app.js          # Global Logic (English/Light Defaults, Drawer, Counters, AI Bot, Forms)
 │   └── images/             # Vector Logos, SVG Geometries, and Drop-in Photo Slots
 └── README.md               # Setup, Customization, Image Swapping & Deployment Guide
 ```
@@ -33,13 +32,14 @@ HES/
 
 | Role | Color Name | Hex Code | Purpose |
 | :--- | :--- | :--- | :--- |
-| **Primary** | Deep Emerald Green | `#0B3D2E` | Headers, brand authority, borders, primary surfaces |
-| **Accent** | Imperial Warm Gold | `#C9A24B` | Highlights, badges, primary CTA buttons, stars |
-| **Accent Glow** | Radiant Gold | `#E5C365` | Hover glows, gradients, interactive accents |
-| **Base Light** | Sacred Ivory | `#FAF7F0` | Warm paper-like background in Light Mode |
-| **Base Tint** | Soft Mint Glass | `#EBF5F0` | Card backgrounds, alternating sections, subtle tags |
-| **Base Dark** | Deep Emerald Black | `#051610` | Dark Mode background |
-| **Dark Card** | Obsidian Green | `#092218` | Dark Mode glass card backgrounds |
+| **Primary** | Navy | `#14213D` | Brand, headings, navigation, and primary surfaces |
+| **Accent** | Navy | `#14213D` | Calls to action, highlights, and active states |
+| **Light Surface** | White | `#FFFFFF` | Cards, forms, and content surfaces |
+| **Base Light** | Light Gray | `#E5E5E5` | Light-mode page and section backgrounds |
+| **Base Dark** | Black | `#000000` | Dark-mode page background and footer |
+| **Dark Surface** | Navy | `#14213D` | Dark-mode cards, controls, and sections |
+
+Display headings use **Lora** and interface text uses **DM Sans**. Arabic and Urdu use **Amiri** and **Noto Nastaliq Urdu**.
 
 ---
 
@@ -61,11 +61,15 @@ You can change:
 
 ## 🖼️ How to Swap Image Placeholders with Real Photos
 
-Every image slot on the site has dedicated dashed framing and exact dimensions displayed on screen. To replace them with real school photos:
+Image placeholders identify where to add real campus photos and show the recommended dimensions. To replace them:
 
 1. Copy your photos into `assets/images/`.
 2. Open the respective HTML file (e.g. `facilities.html` or `about.html`).
 3. Replace the `.image-slot` div with an `<img>` tag pointing to your photo.
+
+The school logo is saved as `assets/images/hadi-education-logo.jpg` and is used in the header, mobile navigation, and footer across all website pages. A school representative portrait is included at `assets/images/school-representative.jpg` and displayed in the homepage hero banner.
+
+The home-page hero uses the school portrait as a full banner background. Interior page headers currently use remote Unsplash sample images, which can be replaced by updating their page-specific `.hero::before` URLs in `assets/css/main.css`.
 
 ### Image Dimensions Reference:
 - **Campus Documentary Video (Home Page):** `1920x1080` (16:9 ratio) MP4
@@ -114,7 +118,7 @@ Then visit: `http://localhost:3000` in your web browser.
 
 ## 📋 Assumptions & Items for You to Provide
 
-1. **Real School Photos:** We created stylized placeholder slots with dimensions. When ready, drop your photos into `assets/images/`.
+1. **Real School Photos:** We created stylized placeholder slots with dimensions. When ready, drop campus photos into `assets/images/`. The school logo is already included there.
 2. **Official Video File:** Replace the video slot on `index.html` with your official school video in MP4 format.
 3. **Contact Details & WhatsApp:** We configured phone `+92 300 1234567` and address `Pipli Road, Balkasar, District Chakwal`. Update these with your real SIM numbers in `assets/js/siteContent.js`.
 4. **Fee Table Adjustments:** Editable in `assets/js/siteContent.js` and `admission.html`.
