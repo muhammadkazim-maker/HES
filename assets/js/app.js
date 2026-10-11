@@ -5,11 +5,13 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  initScrollReveal();
   initTheme();
   initLanguage();
   initHeroTyping();
   initNavbar();
-  initLearningPathwayHover();
+  initNavigationHover();
+  initLearningPathwayCarousel();
   initMobileDrawer();
   initCounters();
   initAccordion();
@@ -18,6 +20,91 @@ document.addEventListener("DOMContentLoaded", () => {
   initChatbot();
   initForms();
 });
+
+/* ==========================================================================
+   0. SCROLL-TRIGGERED REVEALS
+   ========================================================================== */
+function initScrollReveal() {
+  const revealElements = Array.from(document.querySelectorAll(
+    "main section, main h1, main h2, main h3, main h4, main h5, main h6, " +
+    "main p, main ul, main ol, main li, main button, main img, main article, " +
+    "main [class*='card'], main [class*='step'], main [class*='item'], " +
+    "footer h1, footer h2, footer h3, footer h4, footer h5, footer h6, " +
+    "footer p, footer ul, footer ol, footer li, footer img, footer article, " +
+    "footer [class*='card'], footer [class*='item']"
+  )).filter(element =>
+    !element.matches(".timeline-stepper-pair .timeline-step, .footer-copyright")
+  );
+  if (!revealElements.length) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (!("IntersectionObserver" in window) && !reducedMotion.matches) return;
+
+  const cardElements = revealElements.filter(element =>
+    element.matches("img, article, [class*='card'], [class*='step'], [class*='item']")
+  );
+  const cardPositions = new Map();
+
+  cardElements.forEach(element => {
+    const siblings = cardElements.filter(sibling => sibling.parentElement === element.parentElement);
+    const position = siblings.indexOf(element);
+    cardPositions.set(element, position);
+  });
+
+  const staggerCounts = new Map();
+  revealElements.forEach(element => {
+    const parent = element.parentElement;
+    if (!parent) return;
+
+    const count = staggerCounts.get(parent) || 0;
+    if (element.matches("p, ul, ol, li, button")) {
+      if (!element.hasAttribute("data-delay")) {
+        element.setAttribute("data-delay", String(Math.min(count * 100, 600)));
+      }
+      staggerCounts.set(parent, count + 1);
+    }
+
+    if (element.hasAttribute("data-delay")) {
+      const delay = Number.parseInt(element.getAttribute("data-delay"), 10);
+      if (Number.isFinite(delay) && delay > 0) {
+        element.style.setProperty("--reveal-delay", `${Math.min(delay, 1000)}ms`);
+      }
+    }
+
+    if (element.matches("img")) {
+      element.classList.add("reveal-zoom");
+    } else if (cardPositions.has(element)) {
+      const index = cardPositions.get(element);
+      element.classList.add(index % 2 === 0 ? "reveal-left" : "reveal-right");
+    } else {
+      element.classList.add("reveal");
+    }
+  });
+
+  document.documentElement.classList.add("js", "reveal-pending");
+
+  if (reducedMotion.matches) {
+    revealElements.forEach(element => element.classList.add("is-visible"));
+    document.documentElement.classList.remove("reveal-pending");
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, activeObserver) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      activeObserver.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  });
+
+  window.requestAnimationFrame(() => {
+    document.documentElement.classList.remove("reveal-pending");
+    revealElements.forEach(element => observer.observe(element));
+  });
+}
 
 /* ==========================================================================
    1. DEFAULT PRESENTATION (English & Light Mode)
@@ -93,43 +180,108 @@ function initNavbar() {
   handleScroll();
 }
 
-function initLearningPathwayHover() {
-  const cards = document.querySelectorAll(".timeline-stepper-pair .timeline-step");
-  cards.forEach(card => {
-    const oval = document.createElement("span");
-    oval.setAttribute("aria-hidden", "true");
-    oval.style.cssText = [
+function initNavigationHover() {
+  const links = document.querySelectorAll(".navbar .nav-link");
+
+  links.forEach(link => {
+    const highlightShape = document.createElement("span");
+    highlightShape.setAttribute("aria-hidden", "true");
+    highlightShape.style.cssText = [
       "position:absolute",
-      "z-index:0",
+      "z-index:-1",
       "top:50%",
       "left:50%",
-      "width:110%",
-      "height:72%",
-      "border-radius:50%",
-      "background:radial-gradient(ellipse, rgba(255,255,255,.98) 0%, rgba(255,255,255,.84) 52%, rgba(255,255,255,0) 78%)",
+      "width:130%",
+      "height:150%",
+      "border-radius:12px",
+      "background:linear-gradient(145deg, rgba(255,255,255,.98), rgba(255,255,255,.84))",
       "opacity:0",
-      "transform:translate(-50%,-50%) scale(.78)",
-      "pointer-events:none",
-      "transition:opacity 350ms ease, transform 400ms ease"
+      "transform:translate(-50%,-50%) scale(.82)",
+      "transition:opacity 260ms ease, transform 320ms ease",
+      "pointer-events:none"
     ].join(";");
-    card.prepend(oval);
+    link.prepend(highlightShape);
 
-    const textElements = card.querySelectorAll(".timeline-grades, .timeline-title, .timeline-desc");
-    textElements.forEach(element => {
-      element.style.transition = "color 350ms ease";
+    const highlight = () => {
+      highlightShape.style.opacity = "1";
+      highlightShape.style.transform = "translate(-50%,-50%) scale(1)";
+      link.style.setProperty("color", "#000000", "important");
+    };
+
+    const restore = () => {
+      highlightShape.style.opacity = "0";
+      highlightShape.style.transform = "translate(-50%,-50%) scale(.82)";
+      link.style.removeProperty("color");
+    };
+
+    link.addEventListener("pointerenter", () => {
+      highlight();
     });
 
-    card.addEventListener("pointerenter", () => {
-      oval.style.opacity = "1";
-      oval.style.transform = "translate(-50%,-50%) scale(1)";
-      textElements.forEach(element => element.style.setProperty("color", "#000", "important"));
+    link.addEventListener("pointerleave", () => {
+      if (!link.matches(":focus-visible")) {
+        restore();
+      }
     });
 
-    card.addEventListener("pointerleave", () => {
-      oval.style.opacity = "0";
-      oval.style.transform = "translate(-50%,-50%) scale(.78)";
-      textElements.forEach(element => element.style.removeProperty("color"));
+    link.addEventListener("focus", () => {
+      highlight();
     });
+
+    link.addEventListener("blur", () => {
+      if (!link.matches(":hover")) {
+        restore();
+      }
+    });
+  });
+}
+
+function initLearningPathwayCarousel() {
+  const stage = document.querySelector(".timeline-stepper-pair");
+  if (!stage) return;
+
+  const cards = Array.from(stage.querySelectorAll(".timeline-step"));
+  if (cards.length !== 3) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let activeIndex = 0;
+  let intervalId;
+
+  const updatePositions = () => {
+    cards.forEach((card, index) => {
+      const position = (index - activeIndex + cards.length) % cards.length;
+      card.dataset.carouselPosition = ["front", "right", "left"][position];
+      card.setAttribute("aria-current", position === 0 ? "true" : "false");
+    });
+  };
+
+  const stopCarousel = () => {
+    if (intervalId !== undefined) {
+      window.clearInterval(intervalId);
+      intervalId = undefined;
+    }
+  };
+
+  const startCarousel = () => {
+    if (reducedMotion.matches || intervalId !== undefined) return;
+
+    intervalId = window.setInterval(() => {
+      activeIndex = (activeIndex + 1) % cards.length;
+      updatePositions();
+    }, 2200);
+  };
+
+  stage.classList.add("is-carousel-ready");
+  updatePositions();
+  startCarousel();
+
+  reducedMotion.addEventListener("change", () => {
+    if (reducedMotion.matches) {
+      stopCarousel();
+      return;
+    }
+
+    startCarousel();
   });
 }
 
