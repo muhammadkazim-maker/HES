@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initNavbar();
   initNavigationHover();
   initLearningPathwayCarousel();
+  initCampusVideo();
   initMobileDrawer();
   initCounters();
   initAccordion();
@@ -244,6 +245,7 @@ function initLearningPathwayCarousel() {
   if (cards.length !== 3) return;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const compactViewport = window.matchMedia("(max-width: 768px)");
   let activeIndex = 0;
   let intervalId;
 
@@ -262,26 +264,112 @@ function initLearningPathwayCarousel() {
     }
   };
 
+  const rotationDelay = () => (compactViewport.matches ? 1300 : 2200);
+
   const startCarousel = () => {
     if (reducedMotion.matches || intervalId !== undefined) return;
 
     intervalId = window.setInterval(() => {
       activeIndex = (activeIndex + 1) % cards.length;
       updatePositions();
-    }, 2200);
+    }, rotationDelay());
   };
 
   stage.classList.add("is-carousel-ready");
   updatePositions();
   startCarousel();
 
-  reducedMotion.addEventListener("change", () => {
-    if (reducedMotion.matches) {
-      stopCarousel();
+  const restartCarousel = () => {
+    stopCarousel();
+    startCarousel();
+  };
+
+  reducedMotion.addEventListener("change", restartCarousel);
+  compactViewport.addEventListener("change", restartCarousel);
+}
+
+function initCampusVideo() {
+  const iframe = document.querySelector(".video-wrapper iframe");
+  if (!iframe) return;
+
+  if (!iframe.id) {
+    iframe.id = "hes-campus-video";
+  }
+
+  const embedUrl = new URL(iframe.getAttribute("src"), window.location.href);
+  embedUrl.searchParams.set("enablejsapi", "1");
+  embedUrl.searchParams.set("origin", window.location.origin);
+  iframe.setAttribute("src", embedUrl.toString());
+
+  let player = null;
+
+  const sendPlayerCommand = (func) => {
+    if (!iframe.contentWindow) return;
+    iframe.contentWindow.postMessage(JSON.stringify({
+      event: "command",
+      func,
+      args: []
+    }), "*");
+  };
+
+  const stopVideo = () => {
+    if (player && typeof player.stopVideo === "function") {
+      player.stopVideo();
       return;
     }
+    sendPlayerCommand("pauseVideo");
+    sendPlayerCommand("stopVideo");
+  };
 
-    startCarousel();
+  const bindPlayer = () => {
+    if (!window.YT || typeof window.YT.Player !== "function") return;
+    player = new window.YT.Player(iframe.id);
+  };
+
+  if (window.YT && window.YT.Player) {
+    bindPlayer();
+  } else {
+    const previousReady = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      if (typeof previousReady === "function") previousReady();
+      bindPlayer();
+    };
+    if (!document.querySelector("script[src='https://www.youtube.com/iframe_api']")) {
+      const script = document.createElement("script");
+      script.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(script);
+    }
+  }
+
+  let lastScrollY = window.scrollY;
+  let visibleRatio = 1;
+
+  window.addEventListener("scroll", () => {
+    const currentY = window.scrollY;
+    const scrollingUp = currentY < lastScrollY - 4;
+    lastScrollY = currentY;
+    if (scrollingUp && visibleRatio < 0.7) {
+      stopVideo();
+    }
+  }, { passive: true });
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        visibleRatio = entry.intersectionRatio;
+        if (!entry.isIntersecting || visibleRatio < 0.4) {
+          stopVideo();
+        }
+      });
+    }, { threshold: [0, 0.25, 0.4, 0.7, 1] });
+
+    observer.observe(iframe);
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopVideo();
+    }
   });
 }
 

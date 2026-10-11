@@ -2052,6 +2052,15 @@ h1, h2, h3, h4, .serif-heading {
   background: #000;
 }
 
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
 .video-play-overlay {
   position: absolute;
   inset: 0;
@@ -2913,7 +2922,7 @@ p {
 
 .video-wrapper {
   border: 0;
-  border-radius: 46% 12px 12px 12px;
+  border-radius: var(--radius-lg);
   background: var(--primary-emerald-dark);
 }
 
@@ -3152,7 +3161,7 @@ p {
   }
 
   .video-wrapper {
-    border-radius: 30% 10px 10px 10px;
+    border-radius: var(--radius-lg);
   }
 }
 
@@ -3881,6 +3890,31 @@ body::before {
 .timeline-stepper-pair.is-carousel-ready .timeline-step[data-carousel-position] {
   transform: translate3d(calc(-50% + var(--carousel-x)), -50%, var(--carousel-depth))
     rotateY(var(--carousel-rotation)) scale(var(--carousel-scale));
+}
+
+@media (max-width: 768px) {
+  .timeline-stepper-pair.is-carousel-ready .timeline-step {
+    transition:
+      transform 0.62s cubic-bezier(0.22, 0.8, 0.22, 1),
+      opacity 0.45s ease,
+      box-shadow 0.45s ease,
+      border-color 0.45s ease;
+    filter: none;
+    will-change: transform, opacity;
+  }
+
+  .timeline-stepper-pair.is-carousel-ready .timeline-step[data-carousel-position="right"],
+  .timeline-stepper-pair.is-carousel-ready .timeline-step[data-carousel-position="left"] {
+    filter: none;
+    opacity: 0.78;
+    --carousel-rotation: 8deg;
+    --carousel-depth: -70px;
+    --carousel-scale: 0.86;
+  }
+
+  .timeline-stepper-pair.is-carousel-ready .timeline-step[data-carousel-position="right"] {
+    --carousel-rotation: -8deg;
+  }
 }
 
 @media (max-width: 640px) {
