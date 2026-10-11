@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us — Hadi Education System (HES)</title>
   <meta name="description" content="Discover our history since 2017, our vision, mission, core values, leadership, and dedicated faculty in Balkasar, Chakwal.">
-  <link rel="stylesheet" href="assets/css/main.css?v=51">
+  <link rel="stylesheet" href="assets/css/main.css?v=60">
 </head>
 <body class="page-about">
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
@@ -65,8 +65,18 @@
   <!-- Main Content -->
   <main id="main-content">
     <!-- PAGE HERO -->
-    <section class="hero" style="padding: 70px 0 80px;">
+    <section class="hero page-about-hero">
       <div class="container hero-content">
+        <!-- Student Photo on Mobile View (Featured on Top) -->
+        <div class="hero-mobile-image-wrap" aria-hidden="true">
+          <img src="assets/images/student-exam-mirrored.jpg"
+               alt="Hadi Education System student during examination"
+               class="hero-mobile-image"
+               loading="eager"
+               decoding="async"
+               width="600"
+               height="400">
+        </div>
         <span class="section-tag" data-en="Our Story &amp; Leadership" data-ur="ہماری تاریخ و قیادت">Our Story &amp; Leadership</span>
         <h1 class="hero-title" data-en="Nurturing Minds, Enriching <span class='gold-gradient-text'>Souls</span>" data-ur="دینی و دنیاوی تربیت کا <span class='gold-gradient-text'>روشن مرکز</span>">
           Nurturing Minds, Enriching <span class="gold-gradient-text">Souls</span>
@@ -78,31 +88,207 @@
       </div>
     </section>
 
-    <!-- VISION, MISSION & VALUES -->
-    <section class="section" style="padding-top: 20px;">
-      <div class="container">
-        <!-- Vision & Mission Side by Side -->
-        <div class="grid-2" style="margin-bottom: 60px;">
-          <div class="glass-card shade-pulse-card" style="border-top: 4px solid var(--accent-gold);">
-            <div style="font-size: 2.5rem; margin-bottom: 16px;">🎯</div>
-            <h2 style="font-size: 1.8rem; margin-bottom: 14px;" data-en="Our Vision" data-ur="ہمارا وژن">Our Vision</h2>
-            <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.8;"
-               data-en="To be Pakistan's leading educational institution that inspires students to achieve their utmost potential in both spiritual and worldly realms, cultivating visionary leaders anchored in Islamic integrity."
-               data-ur="ایک ایسا مثالی تعلیمی ادارہ بننا جو طلباء کو دینی اور دنیاوی دونوں شعبوں میں اعلیٰ ترین مقام تک پہنچائے اور اخلاقی قیادت تیار کرے۔">
-              To be Pakistan's leading educational institution that inspires students to achieve their utmost potential in both spiritual and worldly realms, cultivating visionary leaders anchored in Islamic integrity.
-            </p>
+    <!-- VISION & MISSION SHOWCASE (Vehicle & Destination Architecture) -->
+    <section class="section vision-mission-showcase" id="vision-mission" aria-label="Vision and Mission">
+      <!-- Mobile Slim Sticky Progress Header (<= 768px only) -->
+      <div class="vm-mobile-sticky-bar" id="vmMobileStickyBar" aria-hidden="true">
+        <div class="vm-mobile-bar-inner">
+          <div class="vm-mobile-bar-labels">
+            <span class="vm-mobile-bar-title" data-en="JOURNEY TO OUR VISION" data-ur="ہمارے وژن کا سفر">JOURNEY TO OUR VISION</span>
+            <span class="vm-mobile-bar-counter"><span id="vmMobileStepCount">1</span> / 3</span>
           </div>
-
-          <div class="glass-card shade-pulse-card" style="border-top: 4px solid var(--primary-emerald);">
-            <div style="font-size: 2.5rem; margin-bottom: 16px;">🌱</div>
-            <h2 style="font-size: 1.8rem; margin-bottom: 14px;" data-en="Our Mission" data-ur="ہمارا مشن">Our Mission</h2>
-            <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.8;"
-               data-en="To provide a holistic, accessible education that integrates authentic Holy Quran recitation, memorization, and moral ethics with rigorous mathematics, sciences, and English language proficiency."
-               data-ur="تجوید و حفظِ قرآن اور اسلامی اخلاقیات کو جدید ریاضی، سائنس اور کمپیوٹر کی تعلیم کے ساتھ ہم آہنگ کر کے طلباء کی ہمہ جہت تربیت کرنا۔">
-              To provide a holistic, accessible education that integrates authentic Holy Quran recitation, memorization, and moral ethics with rigorous mathematics, sciences, and English language proficiency.
-            </p>
+          <div class="vm-mobile-bar-track" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" aria-label="Journey progress">
+            <div class="vm-mobile-bar-fill" id="vmMobileBarFill"></div>
+            <div class="vm-mobile-bar-vehicle" id="vmMobileBarVehicle">
+              <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#E0B95F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div class="container vm-layout-container">
+        <!-- Two Column Layout on Desktop (Left: Mission Journey, Right: Sticky Vision Destination) -->
+        <div class="vm-grid-desktop">
+
+          <!-- LEFT COLUMN: THE MISSION JOURNEY -->
+          <div class="vm-journey-col">
+            <!-- Section Header -->
+            <header class="vm-section-header">
+              <span class="section-tag vm-section-tag" data-en="Purpose &amp; Trajectory" data-ur="مقصد و راہِ عمل">Purpose &amp; Trajectory</span>
+              <h2 class="section-title vm-section-title" data-en="Our Mission &amp; Vision" data-ur="ہمارا مشن اور وژن">Our Mission &amp; Vision</h2>
+              <p class="vm-mission-intro"
+                 data-en="To provide a holistic, accessible education that integrates authentic Holy Quran recitation, memorization, and moral ethics with rigorous mathematics, sciences, and English language proficiency."
+                 data-ur="تجوید و حفظِ قرآن اور اسلامی اخلاقیات کو جدید ریاضی، سائنس اور کمپیوٹر کی تعلیم کے ساتھ ہم آہنگ کر کے طلباء کی ہمہ جہت تربیت کرنا۔">
+                To provide a holistic, accessible education that integrates authentic Holy Quran recitation, memorization, and moral ethics with rigorous mathematics, sciences, and English language proficiency.
+              </p>
+            </header>
+
+            <!-- Vertical Timeline Path -->
+            <div class="vm-timeline-wrapper">
+              <!-- Background Vertical Path Line Track -->
+              <div class="vm-path-track" aria-hidden="true">
+                <div class="vm-path-solid" id="vmPathSolid"></div>
+              </div>
+
+              <!-- Semantic Steps Ordered List -->
+              <ol class="vm-steps-list" id="vmStepsList">
+                <!-- Step 1 -->
+                <li class="vm-step-item active" id="vmStep1" data-step="1" aria-current="step">
+                  <div class="vm-node-col" aria-hidden="true">
+                    <div class="vm-node-marker">
+                      <div class="vm-node-vehicle">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#C9A24B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                      </div>
+                      <div class="vm-node-check">
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#14213D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      </div>
+                      <span class="vm-node-num">01</span>
+                    </div>
+                  </div>
+                  <div class="vm-step-card">
+                    <div class="vm-step-meta">
+                      <span class="vm-step-badge" data-en="STEP 01" data-ur="مرحلہ 01">STEP 01</span>
+                      <span class="vm-step-active-pill" data-en="YOU ARE HERE" data-ur="آپ یہاں ہیں">YOU ARE HERE</span>
+                    </div>
+                    <div class="vm-step-heading-row">
+                      <div class="vm-step-icon-wrap" aria-hidden="true">
+                        <!-- Sprout / Leaf SVG -->
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c0-7 3-9 8-9-1 4-3 7-8 7"/><path d="M14 20c0-5-2-7-5-7-1 3-1 5 1 7"/><path d="M12 20v-8"/></svg>
+                      </div>
+                      <h3 class="vm-step-title" data-en="Holistic Education" data-ur="ہمہ جہت تعلیم">Holistic Education</h3>
+                    </div>
+                    <p class="vm-step-desc"
+                       data-en="Providing accessible, well-rounded foundational education for every student."
+                       data-ur="ہر طالب علم کے لیے ہمہ جہت، جامع اور باوقار تعلیم کے مواقع۔">
+                      Providing accessible, well-rounded foundational education for every student.
+                    </p>
+                  </div>
+                </li>
+
+                <!-- Step 2 -->
+                <li class="vm-step-item upcoming" id="vmStep2" data-step="2">
+                  <div class="vm-node-col" aria-hidden="true">
+                    <div class="vm-node-marker">
+                      <div class="vm-node-vehicle">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#C9A24B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                      </div>
+                      <div class="vm-node-check">
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#14213D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      </div>
+                      <span class="vm-node-num">02</span>
+                    </div>
+                  </div>
+                  <div class="vm-step-card">
+                    <div class="vm-step-meta">
+                      <span class="vm-step-badge" data-en="STEP 02" data-ur="مرحلہ 02">STEP 02</span>
+                      <span class="vm-step-active-pill" data-en="YOU ARE HERE" data-ur="آپ یہاں ہیں">YOU ARE HERE</span>
+                    </div>
+                    <div class="vm-step-heading-row">
+                      <div class="vm-step-icon-wrap" aria-hidden="true">
+                        <!-- Open Book / Quran SVG -->
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                      </div>
+                      <h3 class="vm-step-title" data-en="Sacred Quran &amp; Moral Ethics" data-ur="قرآنی تعلیمات و اخلاقیات">Sacred Quran &amp; Moral Ethics</h3>
+                    </div>
+                    <p class="vm-step-desc"
+                       data-en="Integrating authentic Tajweed, Quran memorization, and Islamic values."
+                       data-ur="مستند تجوید، حفظِ قرآن اور اسلامی اخلاقیات کو نصاب کا حصہ بنانا۔">
+                      Integrating authentic Tajweed, Quran memorization, and Islamic values.
+                    </p>
+                  </div>
+                </li>
+
+                <!-- Step 3 -->
+                <li class="vm-step-item upcoming" id="vmStep3" data-step="3">
+                  <div class="vm-node-col" aria-hidden="true">
+                    <div class="vm-node-marker">
+                      <div class="vm-node-vehicle">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#C9A24B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                      </div>
+                      <div class="vm-node-check">
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#14213D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      </div>
+                      <span class="vm-node-num">03</span>
+                    </div>
+                  </div>
+                  <div class="vm-step-card">
+                    <div class="vm-step-meta">
+                      <span class="vm-step-badge" data-en="STEP 03" data-ur="مرحلہ 03">STEP 03</span>
+                      <span class="vm-step-active-pill" data-en="YOU ARE HERE" data-ur="آپ یہاں ہیں">YOU ARE HERE</span>
+                    </div>
+                    <div class="vm-step-heading-row">
+                      <div class="vm-step-icon-wrap" aria-hidden="true">
+                        <!-- Science Flask SVG -->
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.5L4.5 19.5A2 2 0 0 0 6.2 22h11.6a2 2 0 0 0 1.7-2.5L14 9.5V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
+                      </div>
+                      <h3 class="vm-step-title" data-en="Modern Academic Proficiency" data-ur="جدید سائنسی مہارت">Modern Academic Proficiency</h3>
+                    </div>
+                    <p class="vm-step-desc"
+                       data-en="Rigorous training in mathematics, modern sciences, and English language."
+                       data-ur="جدید ریاضی، سائنس اور انگریزی بول چال میں اعلیٰ تعلیمی معیار۔">
+                      Rigorous training in mathematics, modern sciences, and English language.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: THE VISION PANEL (DESTINATION) -->
+          <aside class="vm-vision-col">
+            <div class="vm-vision-panel" id="vmVisionPanel">
+              <!-- Subtle Islamic Geometric Star Pattern in corner -->
+              <div class="vm-vision-star-pattern" aria-hidden="true">
+                <svg viewBox="0 0 200 200" width="200" height="200" fill="none" stroke="#E0B95F" stroke-width="1.2">
+                  <polygon points="100,10 120,60 170,40 150,90 200,100 150,110 170,160 120,140 100,190 80,140 30,160 50,110 0,100 50,90 30,40 80,60" opacity="0.6"/>
+                  <polygon points="100,30 115,70 155,55 140,95 180,100 140,105 155,145 115,130 100,170 85,130 45,145 60,105 20,100 60,95 45,55 85,70" opacity="0.4"/>
+                  <circle cx="100" cy="100" r="45" opacity="0.35"/>
+                  <circle cx="100" cy="100" r="70" opacity="0.25"/>
+                </svg>
+              </div>
+
+              <!-- Cropped School Logo Watermark (Inside Panel Only) -->
+              <div class="vm-vision-watermark" aria-hidden="true">
+                <img src="assets/logo.png" alt="" loading="lazy" decoding="async" width="280" height="280">
+              </div>
+
+              <!-- Vision Header -->
+              <div class="vm-vision-header">
+                <div class="vm-flag-ring" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#E0B95F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                </div>
+                <span class="vm-dest-label" data-en="THE DESTINATION" data-ur="منزلِ مقصود">THE DESTINATION</span>
+              </div>
+
+              <h3 class="vm-vision-title" data-en="Our Vision" data-ur="ہمارا وژن">Our Vision</h3>
+
+              <!-- Vision Statement in Large Serif with Gold Highlights -->
+              <p class="vm-vision-statement"
+                 data-en="To be <span class='vm-gold-highlight'>Pakistan's leading educational institution</span> that inspires students to achieve their utmost potential in both <span class='vm-gold-highlight'>spiritual and worldly realms</span>, cultivating visionary leaders anchored in <span class='vm-gold-highlight'>Islamic integrity</span>."
+                 data-ur="ایک ایسا <span class='vm-gold-highlight'>پاکستان کا مثالی تعلیمی ادارہ</span> بننا جو طلباء کو <span class='vm-gold-highlight'>دینی اور دنیاوی دونوں شعبوں</span> میں اعلیٰ ترین مقام تک پہنچائے اور <span class='vm-gold-highlight'>اسلامی اخلاقی قیادت</span> تیار کرے۔">
+                To be <span class="vm-gold-highlight">Pakistan's leading educational institution</span> that inspires students to achieve their utmost potential in both <span class="vm-gold-highlight">spiritual and worldly realms</span>, cultivating visionary leaders anchored in <span class="vm-gold-highlight">Islamic integrity</span>.
+              </p>
+
+              <!-- Desktop Journey Progress Bar at Bottom of Panel -->
+              <div class="vm-vision-footer">
+                <div class="vm-progress-meta">
+                  <span class="vm-progress-title" data-en="JOURNEY PROGRESS" data-ur="سفر کی پیش رفت">JOURNEY PROGRESS</span>
+                  <span class="vm-progress-count"><span id="vmProgressCur">1</span> OF 3</span>
+                </div>
+                <div class="vm-progress-track" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" aria-label="Journey progress to vision">
+                  <div class="vm-progress-fill" id="vmProgressFill"></div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE VALUES -->
+    <section class="section" style="padding-top: 20px;">
+      <div class="container">
 
         <!-- Core Values Grid -->
         <div style="text-align: center; max-width: 680px; margin: 0 auto 40px;">
@@ -380,6 +566,6 @@
   </div>
 
   <script src="assets/js/siteContent.js"></script>
-  <script src="assets/js/app.js?v=15"></script>
+  <script src="assets/js/app.js?v=20"></script>
 </body>
 </html>

@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initLightbox();
   initChatbot();
   initForms();
+  initVisionMissionParallax();
+  initVehicleDestinationJourney();
 });
 
 /* ==========================================================================
@@ -34,7 +36,7 @@ function initScrollReveal() {
     "footer p, footer ul, footer ol, footer li, footer img, footer article, " +
     "footer [class*='card'], footer [class*='item']"
   )).filter(element =>
-    !element.matches(".timeline-stepper-pair .timeline-step, .footer-copyright")
+    !element.matches(".timeline-stepper-pair .timeline-step, .footer-copyright, .vm-bg-img, .vm-bg-logo, .principal-bg-img")
   );
   if (!revealElements.length) return;
 
@@ -674,3 +676,160 @@ function initForms() {
     });
   });
 }
+
+/* ==========================================================================
+   11. VISION & MISSION PARALLAX (Desktop Only)
+   ========================================================================== */
+function initVisionMissionParallax() {
+  const sections = document.querySelectorAll(".vision-mission-showcase, .academic-journey-section");
+  if (!sections.length) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const desktopQuery = window.matchMedia("(min-width: 769px)");
+  if (reducedMotion.matches || !desktopQuery.matches) return;
+
+  sections.forEach(section => {
+    const bgImg = section.querySelector(".vm-bg-img, .vm-bg-logo");
+    if (!bgImg) return;
+
+    const isLogo = bgImg.classList.contains("vm-bg-logo");
+    let isIntersecting = false;
+    let ticking = false;
+
+    const updateParallax = () => {
+      ticking = false;
+      if (!isIntersecting || !desktopQuery.matches || reducedMotion.matches) {
+        bgImg.style.transform = isLogo ? "translate(-50%, -50%)" : "none";
+        return;
+      }
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      // Calculate relative scroll position through section (-1 to 1)
+      const relativeY = (rect.top + rect.height / 2 - viewportHeight / 2) / (viewportHeight + rect.height);
+      // Subtle parallax offset
+      const offset = Math.max(-25, Math.min(25, relativeY * 40));
+      if (isLogo) {
+        bgImg.style.transform = `translate3d(-50%, calc(-50% + ${offset.toFixed(1)}px), 0)`;
+      } else {
+        bgImg.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
+      }
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateParallax);
+      }
+    };
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isIntersecting = entry.isIntersecting;
+          if (isIntersecting && desktopQuery.matches && !reducedMotion.matches) {
+            window.addEventListener("scroll", onScroll, { passive: true });
+            window.addEventListener("resize", onScroll, { passive: true });
+            updateParallax();
+          } else {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+            bgImg.style.transform = isLogo ? "translate(-50%, -50%)" : "none";
+          }
+        });
+      }, {
+        threshold: 0,
+        rootMargin: "50px 0px 50px 0px"
+      });
+
+      observer.observe(section);
+    }
+  });
+}
+
+/* ==========================================================================
+   12. VISION & MISSION VEHICLE & DESTINATION JOURNEY
+   ========================================================================== */
+function initVehicleDestinationJourney() {
+  const stepsList = document.getElementById("vmStepsList");
+  if (!stepsList) return;
+
+  const stepItems = Array.from(stepsList.querySelectorAll(".vm-step-item"));
+  if (!stepItems.length) return;
+
+  const pathSolid = document.getElementById("vmPathSolid");
+  const progressCur = document.getElementById("vmProgressCur");
+  const progressFill = document.getElementById("vmProgressFill");
+  const mobileCount = document.getElementById("vmMobileStepCount");
+  const mobileFill = document.getElementById("vmMobileBarFill");
+  const mobileVehicle = document.getElementById("vmMobileBarVehicle");
+  const desktopTrack = document.querySelector(".vm-progress-track");
+  const mobileTrack = document.querySelector(".vm-mobile-bar-track");
+
+  let activeIndex = 0;
+
+  const updateJourneyState = (index) => {
+    activeIndex = Math.max(0, Math.min(index, stepItems.length - 1));
+    const stepNumber = activeIndex + 1;
+    const progressPercent = ((stepNumber / stepItems.length) * 100).toFixed(1);
+    const pathPercent = activeIndex === 0 ? "0%" : activeIndex === 1 ? "50%" : "100%";
+
+    stepItems.forEach((item, idx) => {
+      item.classList.remove("completed", "active", "upcoming");
+      if (idx < activeIndex) {
+        item.classList.add("completed");
+        item.removeAttribute("aria-current");
+      } else if (idx === activeIndex) {
+        item.classList.add("active");
+        item.setAttribute("aria-current", "step");
+      } else {
+        item.classList.add("upcoming");
+        item.removeAttribute("aria-current");
+      }
+    });
+
+    if (pathSolid) {
+      pathSolid.style.height = pathPercent;
+    }
+
+    if (progressCur) progressCur.textContent = String(stepNumber);
+    if (progressFill) progressFill.style.width = `${progressPercent}%`;
+    if (desktopTrack) desktopTrack.setAttribute("aria-valuenow", String(stepNumber));
+
+    if (mobileCount) mobileCount.textContent = String(stepNumber);
+    if (mobileFill) mobileFill.style.width = `${progressPercent}%`;
+    if (mobileVehicle) {
+      mobileVehicle.style.left = `calc(${progressPercent}% - 7px)`;
+    }
+    if (mobileTrack) mobileTrack.setAttribute("aria-valuenow", String(stepNumber));
+  };
+
+  // IntersectionObserver to sync active step on scroll
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const stepNum = parseInt(entry.target.getAttribute("data-step"), 10) || 1;
+          updateJourneyState(stepNum - 1);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.35,
+      rootMargin: "-15% 0px -35% 0px"
+    });
+
+    stepItems.forEach(item => observer.observe(item));
+  }
+
+  // Click on step item or node smoothly activates that step
+  stepItems.forEach((item, idx) => {
+    item.addEventListener("click", () => {
+      updateJourneyState(idx);
+    });
+  });
+
+  // Initial step setup
+  updateJourneyState(0);
+}
+
+
