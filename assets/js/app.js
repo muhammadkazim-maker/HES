@@ -36,6 +36,7 @@ function initScrollReveal() {
     "footer p, footer ul, footer ol, footer li, footer img, footer article, " +
     "footer [class*='card'], footer [class*='item']"
   )).filter(element =>
+    !element.closest(".vision-mission-showcase") &&
     !element.matches(".timeline-stepper-pair .timeline-step, .footer-copyright, .vm-bg-img, .vm-bg-logo, .principal-bg-img")
   );
   if (!revealElements.length) return;
