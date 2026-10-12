@@ -11,7 +11,7 @@ The visual identity uses the supplied neutral palette: white (`#FFFFFF`), light 
 ```
 HES/
 ├── index.html              # Home Page (Hero, Trust Bar, Why Choose Us, Timeline, Video, Testimonials, CTA)
-├── about.html              # About Us (Story, Vision & Mission, Core Values, Principal Message, Faculty, Milestones)
+├── about.html              # About Us (Story, Vision & Mission, Principal Message, Faculty, Milestones)
 ├── academics.html          # Academics (Dual-Track, Grade Tabs, Global Online LMS, Daily Schedule, Assessment)
 ├── facilities.html         # Facilities (Interactive Lightbox, Classrooms, Science & IT Labs, Library, Mosque, Sports)
 ├── admission.html          # Admissions 2026 (Roadmap, Documents Checklist, Fee Table, Online Form, FAQs)

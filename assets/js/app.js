@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initChatbot();
   initForms();
   initVisionMissionParallax();
-  initVehicleDestinationJourney();
+  initMissionVisionSection();
+  initAdmissionRoadmap();
 });
 
 /* ==========================================================================
@@ -36,7 +37,8 @@ function initScrollReveal() {
     "footer p, footer ul, footer ol, footer li, footer img, footer article, " +
     "footer [class*='card'], footer [class*='item']"
   )).filter(element =>
-    !element.closest(".vision-mission-showcase") &&
+    !element.closest(".mv-section") &&
+    !element.closest(".admission-roadmap-section") &&
     !element.matches(".timeline-stepper-pair .timeline-step, .footer-copyright, .vm-bg-img, .vm-bg-logo, .principal-bg-img")
   );
   if (!revealElements.length) return;
@@ -682,7 +684,7 @@ function initForms() {
    11. VISION & MISSION PARALLAX (Desktop Only)
    ========================================================================== */
 function initVisionMissionParallax() {
-  const sections = document.querySelectorAll(".vision-mission-showcase, .academic-journey-section");
+  const sections = document.querySelectorAll(".academic-journey-section");
   if (!sections.length) return;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -748,89 +750,430 @@ function initVisionMissionParallax() {
 }
 
 /* ==========================================================================
-   12. VISION & MISSION VEHICLE & DESTINATION JOURNEY
+   12. OUR MISSION & VISION (ARCH MOTIF & SCROLL TEXT FILL)
    ========================================================================== */
-function initVehicleDestinationJourney() {
-  const stepsList = document.getElementById("vmStepsList");
-  if (!stepsList) return;
+function initMissionVisionSection() {
+  const mvSection = document.getElementById("mission-vision");
+  if (!mvSection) return;
 
-  const stepItems = Array.from(stepsList.querySelectorAll(".vm-step-item"));
-  if (!stepItems.length) return;
+  const statementEl = document.getElementById("mvVisionStatement");
+  const cardsWrapper = document.getElementById("mvCardsWrapper");
+  const cards = Array.from(mvSection.querySelectorAll(".mv-card"));
+  const dots = Array.from(mvSection.querySelectorAll(".mv-dot"));
+  const words = statementEl ? Array.from(statementEl.querySelectorAll(".mv-word")) : [];
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const pathSolid = document.getElementById("vmPathSolid");
-  const progressCur = document.getElementById("vmProgressCur");
-  const progressFill = document.getElementById("vmProgressFill");
-  const mobileCount = document.getElementById("vmMobileStepCount");
-  const mobileFill = document.getElementById("vmMobileBarFill");
-  const mobileVehicle = document.getElementById("vmMobileBarVehicle");
-  const desktopTrack = document.querySelector(".vm-progress-track");
-  const mobileTrack = document.querySelector(".vm-mobile-bar-track");
+  // Reduced motion: show all words fully white and all cards visible immediately
+  if (reducedMotion) {
+    words.forEach(w => { w.style.opacity = "1"; });
+    cards.forEach(c => c.classList.add("is-visible"));
+    return;
+  }
 
-  let activeIndex = 0;
+  // --- A. SCROLL TEXT FILL ANIMATION ---
+  if (statementEl && words.length) {
+    statementEl.classList.add("mv-text-fill-active");
+    const numWords = words.length;
+    let isIntersecting = false;
+    let ticking = false;
 
-  const updateJourneyState = (index) => {
-    activeIndex = Math.max(0, Math.min(index, stepItems.length - 1));
-    const stepNumber = activeIndex + 1;
-    const progressPercent = ((stepNumber / stepItems.length) * 100).toFixed(1);
-    const pathPercent = activeIndex === 0 ? "0%" : activeIndex === 1 ? "50%" : "100%";
+    const updateScrollFill = () => {
+      ticking = false;
+      const rect = statementEl.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
 
-    stepItems.forEach((item, idx) => {
-      item.classList.remove("completed", "active", "upcoming");
-      if (idx < activeIndex) {
-        item.classList.add("completed");
-        item.removeAttribute("aria-current");
-      } else if (idx === activeIndex) {
-        item.classList.add("active");
-        item.setAttribute("aria-current", "step");
+      // Start filling when statement enters comfortable view (bottom <= 90% vh)
+      // Fully white when statement bottom reaches 40% of viewport height (bottom <= 40% vh)
+      const startPoint = vh * 0.90;
+      const endPoint = vh * 0.40;
+
+      let progress = 0;
+      if (rect.bottom <= endPoint) {
+        progress = 1;
+      } else if (rect.bottom >= startPoint) {
+        progress = 0;
       } else {
-        item.classList.add("upcoming");
-        item.removeAttribute("aria-current");
+        const totalDistance = startPoint - endPoint;
+        const currentDistance = startPoint - rect.bottom;
+        progress = Math.max(0, Math.min(1, currentDistance / totalDistance));
       }
+
+      // Smoothly update opacity of words sequentially (works in both directions)
+      for (let i = 0; i < numWords; i++) {
+        const wordStart = i / numWords;
+        const wordEnd = (i + 1) / numWords;
+        let wordProgress = 0;
+        if (progress >= wordEnd) {
+          wordProgress = 1;
+        } else if (progress <= wordStart) {
+          wordProgress = 0;
+        } else {
+          wordProgress = (progress - wordStart) / (wordEnd - wordStart);
+        }
+        const opacity = (0.35 + 0.65 * wordProgress).toFixed(2);
+        words[i].style.opacity = opacity;
+      }
+    };
+
+    const onScroll = () => {
+      if (!ticking && isIntersecting) {
+        ticking = true;
+        window.requestAnimationFrame(updateScrollFill);
+      }
+    };
+
+    if ("IntersectionObserver" in window) {
+      const fillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isIntersecting = entry.isIntersecting;
+          if (isIntersecting) {
+            updateScrollFill();
+          }
+        });
+      }, {
+        threshold: 0,
+        rootMargin: "100px 0px 100px 0px"
+      });
+      fillObserver.observe(mvSection);
+    } else {
+      isIntersecting = true;
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", () => {
+      if (isIntersecting) updateScrollFill();
+    }, { passive: true });
+
+    // Initial calculation on page load
+    updateScrollFill();
+  }
+
+  // --- B. ARCH CARDS FADE-UP STAGGER (120ms stagger) ---
+  if (cards.length) {
+    if ("IntersectionObserver" in window) {
+      const cardsObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            cards.forEach((card, idx) => {
+              window.setTimeout(() => {
+                card.classList.add("is-visible");
+              }, idx * 120);
+            });
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: "0px 0px -40px 0px"
+      });
+
+      if (cardsWrapper) {
+        cardsObserver.observe(cardsWrapper);
+      } else {
+        cards.forEach(c => cardsObserver.observe(c));
+      }
+    } else {
+      cards.forEach(c => c.classList.add("is-visible"));
+    }
+  }
+
+  // --- C. MOBILE SWIPE & PAGINATION DOTS ---
+  if (cardsWrapper && dots.length && cards.length) {
+    let scrollTicking = false;
+
+    const updateActiveDot = () => {
+      scrollTicking = false;
+      const scrollLeft = cardsWrapper.scrollLeft;
+      let closestIdx = 0;
+      let minDiff = Infinity;
+
+      cards.forEach((card, idx) => {
+        const cardLeft = card.offsetLeft - cardsWrapper.offsetLeft - 24;
+        const diff = Math.abs(scrollLeft - cardLeft);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIdx = idx;
+        }
+      });
+
+      dots.forEach((dot, idx) => {
+        const isActive = idx === closestIdx;
+        dot.classList.toggle("is-active", isActive);
+        dot.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+    };
+
+    cardsWrapper.addEventListener("scroll", () => {
+      if (!scrollTicking) {
+        scrollTicking = true;
+        window.requestAnimationFrame(updateActiveDot);
+      }
+    }, { passive: true });
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener("click", () => {
+        const targetCard = cards[idx];
+        if (targetCard) {
+          const targetOffset = targetCard.offsetLeft - cardsWrapper.offsetLeft - 24;
+          cardsWrapper.scrollTo({
+            left: targetOffset,
+            behavior: "smooth"
+          });
+        }
+      });
     });
+  }
+}
 
-    if (pathSolid) {
-      pathSolid.style.height = pathPercent;
-    }
+/* ==========================================================================
+   ADMISSION ROADMAP — ANIMATED WINDING PATH & STATIONS
+   ========================================================================== */
+function initAdmissionRoadmap() {
+  const roadmapSection = document.getElementById("admission-roadmap");
+  if (!roadmapSection) return;
 
-    if (progressCur) progressCur.textContent = String(stepNumber);
-    if (progressFill) progressFill.style.width = `${progressPercent}%`;
-    if (desktopTrack) desktopTrack.setAttribute("aria-valuenow", String(stepNumber));
+  const stage = document.getElementById("ar-stage");
+  const desktopSvg = document.getElementById("ar-desktop-svg");
+  const trackPath = document.getElementById("ar-svg-track");
+  const fillPath = document.getElementById("ar-svg-fill");
+  const marker = document.getElementById("ar-svg-marker");
+  const mobileRail = document.querySelector(".ar-mobile-rail");
+  const mobileFill = document.getElementById("ar-mobile-rail-fill");
+  const mobileMarker = document.getElementById("ar-mobile-rail-marker");
+  const stations = Array.from(roadmapSection.querySelectorAll(".ar-station"));
+  const cards = Array.from(roadmapSection.querySelectorAll(".ar-card"));
+  const ctaBlock = document.getElementById("ar-cta-block");
+  const ctaBtn = document.getElementById("ar-cta-btn");
 
-    if (mobileCount) mobileCount.textContent = String(stepNumber);
-    if (mobileFill) mobileFill.style.width = `${progressPercent}%`;
-    if (mobileVehicle) {
-      mobileVehicle.style.left = `calc(${progressPercent}% - 7px)`;
-    }
-    if (mobileTrack) mobileTrack.setAttribute("aria-valuenow", String(stepNumber));
-  };
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // IntersectionObserver to sync active step on scroll
+  // Reduced motion: show complete path and all elements immediately
+  if (reducedMotion) {
+    if (fillPath) fillPath.style.strokeDashoffset = "0";
+    if (marker) marker.style.display = "none";
+    if (mobileFill) mobileFill.style.height = "100%";
+    if (mobileMarker) mobileMarker.style.display = "none";
+    cards.forEach(card => card.classList.add("is-visible"));
+    if (ctaBlock) ctaBlock.classList.add("is-visible");
+    stations.forEach((st, idx) => {
+      st.classList.remove("is-upcoming", "is-active");
+      st.classList.add("is-completed");
+      if (idx === stations.length - 1) st.setAttribute("aria-current", "step");
+    });
+    return;
+  }
+
+  // 1. IntersectionObserver for Cards fade-up and CTA block reveal
   if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver((entries) => {
+    const cardObserver = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const stepNum = parseInt(entry.target.getAttribute("data-step"), 10) || 1;
-          updateJourneyState(stepNum - 1);
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
         }
       });
     }, {
       root: null,
-      threshold: 0.35,
-      rootMargin: "-15% 0px -35% 0px"
+      threshold: 0.15,
+      rootMargin: "0px 0px -40px 0px"
     });
 
-    stepItems.forEach(item => observer.observe(item));
+    cards.forEach(card => cardObserver.observe(card));
+
+    if (ctaBlock) {
+      const ctaObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            if (ctaBtn) {
+              ctaBtn.classList.add("shine-triggered");
+            }
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0.18
+      });
+      ctaObserver.observe(ctaBlock);
+    }
+  } else {
+    cards.forEach(card => card.classList.add("is-visible"));
+    if (ctaBlock) ctaBlock.classList.add("is-visible");
   }
 
-  // Click on step item or node smoothly activates that step
-  stepItems.forEach((item, idx) => {
-    item.addEventListener("click", () => {
-      updateJourneyState(idx);
-    });
-  });
+  // 2. Desktop Path Calculation linking through exact node centers
+  let pathTotalLength = 0;
 
-  // Initial step setup
-  updateJourneyState(0);
+  function updateDesktopPathGeometry() {
+    if (window.innerWidth <= 768 || !stage || !trackPath || !fillPath || !desktopSvg) return;
+
+    const stageRect = stage.getBoundingClientRect();
+    if (stageRect.width <= 0 || stageRect.height <= 0) return;
+
+    const nodeCoords = [];
+    for (let i = 1; i <= 4; i++) {
+      const nodeEl = document.getElementById(`ar-node-${i}`);
+      if (nodeEl) {
+        const nr = nodeEl.getBoundingClientRect();
+        const cx = nr.left + nr.width / 2 - stageRect.left;
+        const cy = nr.top + nr.height / 2 - stageRect.top;
+        nodeCoords.push({ x: cx, y: cy });
+      }
+    }
+
+    if (nodeCoords.length < 4) return;
+
+    const w = stageRect.width;
+    const h = stageRect.height;
+    desktopSvg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+
+    const [n1, n2, n3, n4] = nodeCoords;
+
+    const startY = Math.max(10, n1.y - 45);
+    const endX = w * 0.5;
+    const endY = h;
+
+    const d = [
+      `M ${n1.x} ${startY}`,
+      `L ${n1.x} ${n1.y}`,
+      `C ${n1.x} ${n1.y + (n2.y - n1.y) * 0.52}, ${n2.x} ${n2.y - (n2.y - n1.y) * 0.52}, ${n2.x} ${n2.y}`,
+      `C ${n2.x} ${n2.y + (n3.y - n2.y) * 0.52}, ${n3.x} ${n3.y - (n3.y - n2.y) * 0.52}, ${n3.x} ${n3.y}`,
+      `C ${n3.x} ${n3.y + (n4.y - n3.y) * 0.52}, ${n4.x} ${n4.y - (n4.y - n3.y) * 0.52}, ${n4.x} ${n4.y}`,
+      `C ${n4.x} ${n4.y + Math.min(60, (endY - n4.y) * 0.4)}, ${endX} ${endY - 30}, ${endX} ${endY}`
+    ].join(" ");
+
+    trackPath.setAttribute("d", d);
+    fillPath.setAttribute("d", d);
+
+    pathTotalLength = fillPath.getTotalLength();
+    fillPath.style.strokeDasharray = `${pathTotalLength} ${pathTotalLength}`;
+  }
+
+  // Initial calculation after layout render
+  setTimeout(updateDesktopPathGeometry, 60);
+
+  // Debounced ResizeObserver
+  let resizeTimer = null;
+  if ("ResizeObserver" in window) {
+    const ro = new ResizeObserver(() => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        updateDesktopPathGeometry();
+        onScroll();
+      }, 75);
+    });
+    ro.observe(stage);
+  } else {
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        updateDesktopPathGeometry();
+        onScroll();
+      }, 75);
+    });
+  }
+
+  // 3. Scroll Progress and Station States via requestAnimationFrame
+  let ticking = false;
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(updateScrollProgress);
+      ticking = true;
+    }
+  }
+
+  function updateScrollProgress() {
+    ticking = false;
+    if (!stage) return;
+
+    const stageRect = stage.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+
+    // Progress begins when stage top enters 70% of viewport
+    const startY = vh * 0.70;
+    // Progress completes when stage bottom approaches 40% of viewport
+    const endY = vh * 0.40;
+    const scrollTravel = stageRect.height + (startY - endY);
+    const current = startY - stageRect.top;
+
+    let progress = scrollTravel > 0 ? current / scrollTravel : 0;
+    progress = Math.max(0, Math.min(1, progress));
+
+    const isMobile = window.innerWidth <= 768;
+
+    if (!isMobile) {
+      // Desktop SVG Fill and Marker
+      if (pathTotalLength <= 0 && fillPath) {
+        pathTotalLength = fillPath.getTotalLength();
+        fillPath.style.strokeDasharray = `${pathTotalLength} ${pathTotalLength}`;
+      }
+
+      if (fillPath && pathTotalLength > 0) {
+        const drawLen = pathTotalLength * progress;
+        fillPath.style.strokeDashoffset = `${pathTotalLength - drawLen}`;
+
+        if (marker) {
+          if (progress > 0.01) {
+            marker.style.display = "block";
+            const pt = fillPath.getPointAtLength(drawLen);
+            const ptAhead = fillPath.getPointAtLength(Math.min(pathTotalLength, drawLen + 3));
+            const angle = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * (180 / Math.PI);
+            marker.setAttribute("transform", `translate(${pt.x}, ${pt.y}) rotate(${angle})`);
+          } else {
+            const pt0 = fillPath.getPointAtLength(0);
+            marker.setAttribute("transform", `translate(${pt0.x}, ${pt0.y})`);
+          }
+        }
+      }
+    } else {
+      // Mobile Vertical Rail
+      if (mobileFill && mobileMarker) {
+        const pPercent = progress * 100;
+        mobileFill.style.height = `${pPercent}%`;
+        mobileMarker.style.top = `${pPercent}%`;
+      }
+    }
+
+    // Station States: Completed, Active, Upcoming
+    const thresholds = [
+      { start: 0.04, done: 0.28 },
+      { start: 0.28, done: 0.54 },
+      { start: 0.54, done: 0.78 },
+      { start: 0.78, done: 0.96 }
+    ];
+
+    stations.forEach((st, idx) => {
+      const th = thresholds[idx];
+      const card = st.querySelector(".ar-card");
+
+      if (progress < th.start) {
+        // Upcoming
+        st.classList.add("is-upcoming");
+        st.classList.remove("is-active", "is-completed");
+        st.removeAttribute("aria-current");
+      } else if (progress >= th.start && progress < th.done) {
+        // Active
+        st.classList.add("is-active");
+        st.classList.remove("is-upcoming", "is-completed");
+        st.setAttribute("aria-current", "step");
+        if (card) card.classList.add("is-visible");
+      } else {
+        // Completed
+        st.classList.add("is-completed");
+        st.classList.remove("is-upcoming", "is-active");
+        st.removeAttribute("aria-current");
+        if (card) card.classList.add("is-visible");
+      }
+    });
+  }
+
+  // Bind passive scroll listener
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // Initial trigger
+  onScroll();
 }
 
 
