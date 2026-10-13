@@ -76,10 +76,104 @@ const siteContent = {
     { id: "nav-home", href: "index.html", titleEn: "Home", titleUr: "صفحہ اول" },
     { id: "nav-about", href: "about.html", titleEn: "About Us", titleUr: "ہمارے بارے میں" },
     { id: "nav-academics", href: "academics.html", titleEn: "Academics", titleUr: "تعلیمی شعبہ" },
-    { id: "nav-facilities", href: "facilities.html", titleEn: "Facilities", titleUr: "سہولیات" },
+    { id: "nav-campus-life", href: "campus-life.html", titleEn: "Campus Life", titleUr: "کیمپس لائف" },
     { id: "nav-admission", href: "admission.html", titleEn: "Admission", titleUr: "داخلہ" },
     { id: "nav-contact", href: "contact.html", titleEn: "Contact", titleUr: "رابطہ" }
   ],
+
+  // --- Daily School Schedule & Clock Configuration (Campus Life & Academics) ---
+  schedule: {
+    // Configurable School Days: array of weekday numbers (0 = Sunday, 1 = Monday, ..., 6 = Saturday).
+    // Default: [0, 1, 2, 3, 4, 5, 6] (all 7 days active; does not assume weekends or holidays are off).
+    // To restrict to Monday - Saturday, change to: [1, 2, 3, 4, 5, 6]
+    // To restrict to Monday - Friday, change to: [1, 2, 3, 4, 5]
+    operatingDays: [0, 1, 2, 3, 4, 5, 6],
+
+    // Outside-hours prompt message displayed before 07:45 AM or after dismissal
+    outsideHoursMessage: "School day starts at 07:45 AM",
+
+    // Schedule Periods (Used by School Clock on Campus Life & The Balanced Day Bar on Academics)
+    periods: [
+      {
+        time: "07:45 AM",
+        startHour: 7,
+        startMinute: 45,
+        endHour: 8,
+        endMinute: 15,
+        title: "Morning Assembly & Quran Recitation",
+        titleUr: "صبح کی اسمبلی اور تلاوتِ قرآن",
+        location: "Assembly Hall",
+        locationUr: "اسمبلی ہال",
+        category: "Faith & Quran",
+        durationMinutes: 30
+      },
+      {
+        time: "08:15 AM",
+        startHour: 8,
+        startMinute: 15,
+        endHour: 9,
+        endMinute: 45,
+        title: "Quranic Immersion & Hifz Period",
+        titleUr: "قرآنی تعلیم و حفظ کا پیریڈ",
+        location: "Hifz Sanctuary",
+        locationUr: "حفظ ہال",
+        category: "Faith & Quran",
+        durationMinutes: 90
+      },
+      {
+        time: "09:45 AM",
+        startHour: 9,
+        startMinute: 45,
+        endHour: 11,
+        endMinute: 15,
+        title: "Mathematics & Science Labs",
+        titleUr: "ریاضی اور سائنسی لیبز",
+        location: "Science Lab",
+        locationUr: "سائنس لیب",
+        category: "Academics",
+        durationMinutes: 90
+      },
+      {
+        time: "11:15 AM",
+        startHour: 11,
+        startMinute: 15,
+        endHour: 11,
+        endMinute: 45,
+        title: "Nutritional Break & Outdoor Social Play",
+        titleUr: "غذائی وقفہ اور ہم جماعتوں کے ساتھ کھیل",
+        location: "Campus Grounds",
+        locationUr: "کیمپس گراؤنڈ",
+        category: "Break",
+        durationMinutes: 30
+      },
+      {
+        time: "11:45 AM",
+        startHour: 11,
+        startMinute: 45,
+        endHour: 13,
+        endMinute: 30,
+        title: "English, Computer Science & Arts",
+        titleUr: "انگریزی، کمپیوٹر سائنس اور خطاطی",
+        location: "Computer Lab",
+        locationUr: "کمپیوٹر لیب",
+        category: "Academics",
+        durationMinutes: 105
+      },
+      {
+        time: "01:30 PM",
+        startHour: 13,
+        startMinute: 30,
+        endHour: 14,
+        endMinute: 0,
+        title: "Congregational Zuhr Prayer & Dismissal",
+        titleUr: "نمازِ ظہر باجماعت اور چھٹی",
+        location: "School Mosque",
+        locationUr: "اسکول مسجد",
+        category: "Faith & Quran",
+        durationMinutes: 30
+      }
+    ]
+  },
 
   // --- Why Choose Us Pillars ---
   whyChooseUs: [

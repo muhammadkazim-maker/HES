@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Life — Hadi Education System (HES)</title>
+  <meta name="description"
+    content="Experience Campus Life at Hadi Education System in Balkasar, Chakwal: a balanced day integrating sacred Quranic study with modern sciences, athletics, vibrant community events, and state-of-the-art facilities.">
+  <link rel="canonical" href="https://www.hes.com.pk/campus-life.html">
+  <link rel="preload" as="image" href="media/campus-hero-poster.jpg">
+  <link rel="stylesheet" href="assets/css/main.css?v=103">
+</head>
+
+<body class="page-campus-life">
+  <!-- Arch Gateway Entrance Overlay (Plays on every page visit) -->
+  <div class="cl-gateway-overlay cl-gateway-drawing" id="clGatewayOverlay" role="presentation" aria-hidden="true">
+    <svg class="cl-gateway-arch-svg" viewBox="0 0 240 280" fill="none" aria-hidden="true">
+      <path class="cl-gateway-arch-path" pathLength="1" d="M 20 280 V 110 A 100 100 0 0 1 220 110 V 280" />
+    </svg>
+    <button type="button" class="cl-gateway-skip" id="clGatewaySkip" aria-label="Skip gateway entrance">
+      Skip
+    </button>
+  </div>
+  <noscript>
+    <style>
+      .cl-gateway-overlay { display: none !important; }
+    </style>
+  </noscript>
+
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+  <!-- Floating Pill Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
+        <div class="brand-title-wrap">
+          <span class="brand-name">HADI EDUCATION</span>
+          <span class="brand-tag">SYSTEM • CHAKWAL</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link" data-en="Home" data-ur="صفحہ اول">Home</a>
+        <a href="about.html" class="nav-link" data-en="About Us" data-ur="تعارف">About Us</a>
+        <a href="academics.html" class="nav-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
+        <a href="campus-life.html" class="nav-link active" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+        <a href="admission.html" class="nav-link" data-en="Admission" data-ur="داخلہ">Admission</a>
+        <a href="contact.html" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Admissions Status Pill Badge -->
+        <a href="admission.html" class="nav-status-badge" aria-label="Admissions Status">
+          <span class="nav-pulse-dot" aria-hidden="true"></span>
+          <span data-en="Admissions Open" data-ur="داخلے جاری ہیں">Admissions Open</span>
+        </a>
+
+        <!-- Apply CTA -->
+        <a href="admission.html" class="btn header-cta" data-en="Apply Now →" data-ur="آن لائن داخلہ لیں →">
+          Apply Now <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <button class="menu-toggle-btn" aria-label="Open Navigation Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay"></div>
+  <aside class="mobile-drawer">
+    <div class="drawer-header">
+      <div class="brand-logo">
+        <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
+        <div class="brand-title-wrap">
+          <span class="brand-name">HES BALKASSAR</span>
+          <span class="brand-tag">EST. 2017</span>
+        </div>
+      </div>
+      <button class="drawer-close" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+    <div class="drawer-links">
+      <a href="index.html" class="drawer-link" data-en="Home" data-ur="صفحہ اول">Home</a>
+      <a href="about.html" class="drawer-link" data-en="About Us" data-ur="تعارف">About Us</a>
+      <a href="academics.html" class="drawer-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
+      <a href="campus-life.html" class="drawer-link active" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+      <a href="admission.html" class="drawer-link" data-en="Admission" data-ur="داخلہ">Admission</a>
+      <a href="contact.html" class="drawer-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+    </div>
+    <a href="admission.html" class="btn btn-gold" style="width: 100%; text-align: center;" data-en="Apply for Admission"
+      data-ur="داخلہ فارم">
+      Apply for Admission
+    </a>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="main-content">
+
+    <!-- =========================================================================
+         SECTION 1: VIDEO HERO (full-bleed, 100svh, min-height 560px)
+         ========================================================================= -->
+    <section class="cl-hero" id="campus-hero" aria-label="Campus Life Overview">
+      <!-- Background Video -->
+      <video id="clHeroVideo" class="cl-hero-video" autoplay loop muted playsinline preload="metadata"
+        poster="media/campus-hero-poster.jpg" aria-hidden="true">
+        <source src="media/campus-hero-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
+        <source src="media/campus-hero.webm" type="video/webm">
+        <source src="media/campus-hero.mp4" type="video/mp4">
+        <!-- No-video / image fallback -->
+        <img src="media/campus-hero-poster.jpg" alt="Hadi Education System Campus" class="cl-hero-fallback-img">
+      </video>
+
+      <!-- Video Overlays -->
+      <div class="cl-hero-tint" aria-hidden="true"></div>
+      <div class="cl-hero-gradient" aria-hidden="true"></div>
+
+      <!-- Hero Main Content -->
+      <div class="container cl-hero-container">
+        <!-- Left: Text Block -->
+        <div class="cl-hero-text">
+          <span class="cl-hero-tag cl-fade-elem">CAMPUS LIFE</span>
+          <h1 class="cl-hero-title cl-fade-elem">
+            <span class="cl-hero-title-solid">Campus</span>
+            <span class="cl-hero-title-outline">Life</span>
+          </h1>
+          <p class="cl-hero-desc cl-fade-elem">
+            A day at Hadi Education System, from morning assembly to Zuhr prayer.
+          </p>
+          <div class="cl-hero-actions cl-fade-elem">
+            <button type="button" class="btn cl-btn-white" id="clWatchFilmBtn" aria-haspopup="dialog"
+              aria-controls="clFilmLightbox">
+              Watch the film
+            </button>
+            <a href="admission.html" class="btn cl-btn-outline">
+              Book a visit
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Concentric Arches Decoration & Play Button -->
+        <div class="cl-hero-visual cl-fade-elem">
+          <div class="cl-hero-arches-wrap">
+            <svg class="cl-hero-arches-svg" viewBox="0 0 360 440" fill="none" aria-hidden="true">
+              <!-- Outer arch: 36% opacity -->
+              <path d="M 20 440 V 180 A 160 160 0 0 1 340 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.36" vector-effect="non-scaling-stroke" />
+              <!-- Middle arch: 22% opacity -->
+              <path d="M 60 440 V 180 A 120 120 0 0 1 300 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.22" vector-effect="non-scaling-stroke" />
+              <!-- Inner arch: 12% opacity -->
+              <path d="M 100 440 V 180 A 80 80 0 0 1 260 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.12" vector-effect="non-scaling-stroke" />
+            </svg>
+
+            <!-- 88px Circular Play Button -->
+            <button type="button" class="cl-hero-play-circle" id="clHeroPlayCircle"
+              aria-label="Watch the campus film" aria-haspopup="dialog" aria-controls="clFilmLightbox">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="#FFFFFF" aria-hidden="true">
+                <polygon points="7 4 20 12 7 20 7 4"></polygon>
+              </svg>
+            </button>
+
+            <!-- Caption inside arches -->
+            <span class="cl-hero-arch-caption">VIDEO • MUTED LOOP • WATCH THE FILM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small background video pause / play button -->
+      <button type="button" class="cl-video-toggle" id="clVideoToggle" aria-label="Pause background video"
+        title="Pause/Play background video">
+        <svg class="cl-icon-pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+          <rect x="6" y="4" width="4" height="16"></rect>
+          <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+        <svg class="cl-icon-play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" style="display: none;">
+          <polygon points="6 4 19 12 6 20 6 4"></polygon>
+        </svg>
+      </button>
+
+      <!-- Bottom Edge: Marquee Strip -->
+      <div class="cl-marquee-strip" aria-hidden="true">
+        <div class="cl-marquee-track">
+          <span class="cl-marquee-item">ASSEMBLY HALL</span>
+          <span class="cl-marquee-dot">•</span>
+          <span class="cl-marquee-item">HIFZ SANCTUARY</span>
+          <span class="cl-marquee-dot">•</span>
+          <span class="cl-marquee-item">SCIENCE LAB</span>
+          <span class="cl-marquee-dot">•</span>
+          <span class="cl-marquee-item">COMPUTER LAB</span>
+          <span class="cl-marquee-dot">•</span>
+          <span class="cl-marquee-item">CAMPUS GROUNDS</span>
+          <span class="cl-marquee-dot">•</span>
+          <span class="cl-marquee-item">SCHOOL MOSQUE</span>
+          <span class="cl-marquee-dot">•</span>
+
+          <!-- Duplicated track for seamless infinite scroll -->
+          <span class="cl-marquee-item">ASSEMBLY HALL</span>
+          <span class="cl-marquee-dot">•</span>
+          <span class="cl-marquee-item">HIFZ SANCTUARY</span>
+          <span class="cl-marquee-dot">•</span>
+          <span class="cl-marquee-item">SCIENCE LAB</span>
+          <span class="cl-marquee-dot">•</span>
+          <span class="cl-marquee-item">COMPUTER LAB</span>
+          <span class="cl-marquee-dot">•</span>
+          <span class="cl-marquee-item">CAMPUS GROUNDS</span>
+          <span class="cl-marquee-dot">•</span>
+          <span class="cl-marquee-item">SCHOOL MOSQUE</span>
+          <span class="cl-marquee-dot">•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 2: STATEMENT AND FACTS (white background)
+         ========================================================================= -->
+    <section class="section cl-statement-section" id="campus-statement">
+      <div class="container cl-statement-container">
+        <span class="cl-sub-tag reveal">OUR CAMPUS</span>
+        
+        <p class="cl-statement-text" id="clStatementText">
+          A school day here begins with the Quran and ends with prayer, with mathematics, science labs, play and friendship in between.
+        </p>
+
+        <div class="cl-facts-grid reveal">
+          <div class="cl-fact-card">
+            <span class="cl-fact-value">2017</span>
+            <span class="cl-fact-label">Established</span>
+          </div>
+          <div class="cl-fact-card">
+            <span class="cl-fact-value">Chakwal</span>
+            <span class="cl-fact-label">Balkasar, District Chakwal</span>
+          </div>
+          <div class="cl-fact-card">
+            <span class="cl-fact-value">Two paths</span>
+            <span class="cl-fact-label">Quran and modern academics, together</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 3: OUR SPACES (light gray background)
+         ========================================================================= -->
+    <section class="section cl-spaces-section" id="campus-spaces">
+      <div class="cl-spaces-sticky-wrap" id="clSpacesStickyWrap">
+        <div class="container cl-spaces-header-container">
+          <div class="cl-spaces-header-row">
+            <div>
+              <span class="cl-sub-tag">OUR SPACES</span>
+              <h2 class="cl-section-title">Where the day happens</h2>
+            </div>
+
+            <!-- Desktop Controls: Progress bar, Counter & Arrow Buttons -->
+            <div class="cl-spaces-controls" aria-label="Spaces carousel controls">
+              <div class="cl-spaces-progress-bar">
+                <div class="cl-spaces-progress-fill" id="clSpacesProgress"></div>
+              </div>
+              <span class="cl-spaces-counter" id="clSpacesCounter" aria-live="polite">01 / 06</span>
+              <div class="cl-spaces-btn-group">
+                <button type="button" class="cl-spaces-arrow cl-spaces-prev" id="clSpacesPrev"
+                  aria-label="Previous space">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="cl-spaces-arrow cl-spaces-next" id="clSpacesNext"
+                  aria-label="Next space">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arch Cards Track (Desktop Sticky Horizontal / Mobile Native Scroll-Snap) -->
+        <div class="cl-spaces-track-viewport" id="clSpacesViewport">
+          <div class="cl-spaces-track" id="clSpacesTrack" role="region" aria-label="Campus spaces gallery">
+
+            <!-- Space 1: Assembly Hall -->
+            <article class="cl-arch-card" data-index="0">
+              <div class="cl-arch-frame">
+                <img src="assets/images/building.jpg" alt="Assembly Hall" class="cl-arch-img" loading="lazy">
+                <div class="cl-arch-tint" aria-hidden="true"></div>
+              </div>
+              <div class="cl-arch-meta">
+                <h3 class="cl-arch-name">Assembly Hall</h3>
+                <span class="cl-arch-time">07:45 AM</span>
+              </div>
+            </article>
+
+            <!-- Space 2: Hifz Sanctuary -->
+            <article class="cl-arch-card" data-index="1">
+              <div class="cl-arch-frame">
+                <div class="cl-photo-placeholder" aria-label="Photo coming soon">
+                  <svg viewBox="0 0 24 24" class="cl-camera-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="cl-arch-tint" aria-hidden="true"></div>
+              </div>
+              <div class="cl-arch-meta">
+                <h3 class="cl-arch-name">Hifz Sanctuary</h3>
+                <span class="cl-arch-time">08:15 AM</span>
+              </div>
+            </article>
+
+            <!-- Space 3: Science Lab -->
+            <article class="cl-arch-card" data-index="2">
+              <div class="cl-arch-frame">
+                <div class="cl-photo-placeholder" aria-label="Photo coming soon">
+                  <svg viewBox="0 0 24 24" class="cl-camera-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="cl-arch-tint" aria-hidden="true"></div>
+              </div>
+              <div class="cl-arch-meta">
+                <h3 class="cl-arch-name">Science Lab</h3>
+                <span class="cl-arch-time">09:45 AM</span>
+              </div>
+            </article>
+
+            <!-- Space 4: Computer Lab -->
+            <article class="cl-arch-card" data-index="3">
+              <div class="cl-arch-frame">
+                <div class="cl-photo-placeholder" aria-label="Photo coming soon">
+                  <svg viewBox="0 0 24 24" class="cl-camera-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="cl-arch-tint" aria-hidden="true"></div>
+              </div>
+              <div class="cl-arch-meta">
+                <h3 class="cl-arch-name">Computer Lab</h3>
+                <span class="cl-arch-time">11:45 AM</span>
+              </div>
+            </article>
+
+            <!-- Space 5: Campus Grounds -->
+            <article class="cl-arch-card" data-index="4">
+              <div class="cl-arch-frame">
+                <img src="assets/images/boys.jpg" alt="Campus Grounds & Athletic Activities" class="cl-arch-img" loading="lazy">
+                <div class="cl-arch-tint" aria-hidden="true"></div>
+              </div>
+              <div class="cl-arch-meta">
+                <h3 class="cl-arch-name">Campus Grounds</h3>
+                <span class="cl-arch-time">11:15 AM</span>
+              </div>
+            </article>
+
+            <!-- Space 6: School Mosque -->
+            <article class="cl-arch-card" data-index="5">
+              <div class="cl-arch-frame">
+                <div class="cl-photo-placeholder" aria-label="Photo coming soon">
+                  <svg viewBox="0 0 24 24" class="cl-camera-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="cl-arch-tint" aria-hidden="true"></div>
+              </div>
+              <div class="cl-arch-meta">
+                <h3 class="cl-arch-name">School Mosque</h3>
+                <span class="cl-arch-time">01:30 PM</span>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Mobile Indicator Dots -->
+        <div class="cl-spaces-mobile-dots" id="clSpacesDots" aria-hidden="true">
+          <span class="cl-spaces-dot is-active"></span>
+          <span class="cl-spaces-dot"></span>
+          <span class="cl-spaces-dot"></span>
+          <span class="cl-spaces-dot"></span>
+          <span class="cl-spaces-dot"></span>
+          <span class="cl-spaces-dot"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 4: MOMENTS FROM PAST EVENTS (white background)
+         ========================================================================= -->
+    <section class="section cl-events-section" id="campus-events">
+      <div class="container">
+        <div class="cl-events-header">
+          <span class="cl-sub-tag">EVENTS &amp; MOMENTS</span>
+          <h2 class="cl-section-title">Moments from past events</h2>
+
+          <!-- Filter Chips -->
+          <div class="cl-filter-chips" role="toolbar" aria-label="Filter events by category">
+            <button type="button" class="cl-filter-chip is-active" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="cl-filter-chip" data-filter="quran" aria-pressed="false">Quran</button>
+            <button type="button" class="cl-filter-chip" data-filter="academics" aria-pressed="false">Academics</button>
+            <button type="button" class="cl-filter-chip" data-filter="sports" aria-pressed="false">Sports</button>
+            <button type="button" class="cl-filter-chip" data-filter="celebrations" aria-pressed="false">Celebrations</button>
+          </div>
+        </div>
+
+        <!-- Bento Grid Container -->
+        <div class="cl-bento-grid" id="clBentoGrid">
+
+          <!-- Tile 1: Large (2x2) -->
+          <article class="cl-bento-tile cl-tile-large" data-category="quran" data-title="Annual Hifz Completion & Tajweed Assembly"
+            data-date="October 2026" data-img="pictures/487208474_1096380759171686_11917749176188102_n.jpg" tabindex="0">
+            <div class="cl-tile-media">
+              <img src="pictures/487208474_1096380759171686_11917749176188102_n.jpg" alt="Annual Hifz Completion Assembly" class="cl-tile-img" loading="lazy">
+              <div class="cl-tile-tint" aria-hidden="true"></div>
+            </div>
+            <div class="cl-tile-caption">
+              <h3 class="cl-tile-title">Annual Hifz Completion &amp; Tajweed Assembly</h3>
+              <span class="cl-tile-date">October 2026</span>
+            </div>
+          </article>
+
+          <!-- Tile 2: 1x1 -->
+          <article class="cl-bento-tile" data-category="academics" data-title="Science Exhibition & Lab Demonstrations"
+            data-date="September 2026" data-img="assets/images/student-exam-mirrored.jpg" tabindex="0">
+            <div class="cl-tile-media">
+              <img src="assets/images/student-exam-mirrored.jpg" alt="Science Exhibition Demonstrations" class="cl-tile-img" loading="lazy">
+              <div class="cl-tile-tint" aria-hidden="true"></div>
+            </div>
+            <div class="cl-tile-caption">
+              <h3 class="cl-tile-title">Science Exhibition &amp; Practical Demonstrations</h3>
+              <span class="cl-tile-date">September 2026</span>
+            </div>
+          </article>
+
+          <!-- Tile 3: 1x1 -->
+          <article class="cl-bento-tile" data-category="sports" data-title="Inter-House Cricket League Tournament"
+            data-date="August 2026" data-img="pictures/487511930_1099958022147293_2998034888938625822_n.jpg" tabindex="0">
+            <div class="cl-tile-media">
+              <img src="pictures/487511930_1099958022147293_2998034888938625822_n.jpg" alt="Inter-House Cricket Tournament" class="cl-tile-img" loading="lazy">
+              <div class="cl-tile-tint" aria-hidden="true"></div>
+            </div>
+            <div class="cl-tile-caption">
+              <h3 class="cl-tile-title">Inter-House Cricket League Tournament</h3>
+              <span class="cl-tile-date">August 2026</span>
+            </div>
+          </article>
+
+          <!-- Tile 4: 1x1 -->
+          <article class="cl-bento-tile" data-category="celebrations" data-title="Independence Day Flag Hoisting & National Songs"
+            data-date="August 2026" data-img="" tabindex="0">
+            <div class="cl-tile-media">
+              <div class="cl-photo-placeholder" aria-label="Photo coming soon">
+                <svg viewBox="0 0 24 24" class="cl-camera-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </div>
+              <div class="cl-tile-tint" aria-hidden="true"></div>
+            </div>
+            <div class="cl-tile-caption">
+              <h3 class="cl-tile-title">Independence Day Commemoration</h3>
+              <span class="cl-tile-date">August 2026</span>
+            </div>
+          </article>
+
+          <!-- Tile 5: 1x1 -->
+          <article class="cl-bento-tile" data-category="quran" data-title="Husn-e-Qira'at & Tajweed Competition"
+            data-date="July 2026" data-img="" tabindex="0">
+            <div class="cl-tile-media">
+              <div class="cl-photo-placeholder" aria-label="Photo coming soon">
+                <svg viewBox="0 0 24 24" class="cl-camera-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </div>
+              <div class="cl-tile-tint" aria-hidden="true"></div>
+            </div>
+            <div class="cl-tile-caption">
+              <h3 class="cl-tile-title">Husn-e-Qira'at &amp; Tajweed Contest</h3>
+              <span class="cl-tile-date">July 2026</span>
+            </div>
+          </article>
+
+          <!-- Tile 6: Tall (1x2) -->
+          <article class="cl-bento-tile cl-tile-tall" data-category="academics" data-title="Computer Coding & Robotics Workshop"
+            data-date="June 2026" data-img="assets/images/hostel-meals.jpg" tabindex="0">
+            <div class="cl-tile-media">
+              <img src="assets/images/hostel-meals.jpg" alt="Campus Community & Dining Hall" class="cl-tile-img" loading="lazy">
+              <div class="cl-tile-tint" aria-hidden="true"></div>
+            </div>
+            <div class="cl-tile-caption">
+              <h3 class="cl-tile-title">Campus Community &amp; Dining Hall Gathering</h3>
+              <span class="cl-tile-date">June 2026</span>
+            </div>
+          </article>
+
+          <!-- Tile 7: 1x1 -->
+          <article class="cl-bento-tile" data-category="sports" data-title="Annual Athletics Meet & Sprint Races"
+            data-date="May 2026" data-img="" tabindex="0">
+            <div class="cl-tile-media">
+              <div class="cl-photo-placeholder" aria-label="Photo coming soon">
+                <svg viewBox="0 0 24 24" class="cl-camera-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </div>
+              <div class="cl-tile-tint" aria-hidden="true"></div>
+            </div>
+            <div class="cl-tile-caption">
+              <h3 class="cl-tile-title">Annual Athletics Meet &amp; Sprint Races</h3>
+              <span class="cl-tile-date">May 2026</span>
+            </div>
+          </article>
+
+          <!-- Tile 8: 1x1 -->
+          <article class="cl-bento-tile" data-category="celebrations" data-title="Seerat-un-Nabi ﷺ Conference & Speech Contest"
+            data-date="April 2026" data-img="" tabindex="0">
+            <div class="cl-tile-media">
+              <div class="cl-photo-placeholder" aria-label="Photo coming soon">
+                <svg viewBox="0 0 24 24" class="cl-camera-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </div>
+              <div class="cl-tile-tint" aria-hidden="true"></div>
+            </div>
+            <div class="cl-tile-caption">
+              <h3 class="cl-tile-title">Seerat-un-Nabi ﷺ Conference</h3>
+              <span class="cl-tile-date">April 2026</span>
+            </div>
+          </article>
+
+          <!-- Additional Hidden Tiles for "View More" -->
+          <article class="cl-bento-tile cl-tile-extra" data-category="quran" data-title="Morning Nazra Study Circles"
+            data-date="March 2026" data-img="" tabindex="0" style="display: none;">
+            <div class="cl-tile-media">
+              <div class="cl-photo-placeholder" aria-label="Photo coming soon">
+                <svg viewBox="0 0 24 24" class="cl-camera-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </div>
+              <div class="cl-tile-tint" aria-hidden="true"></div>
+            </div>
+            <div class="cl-tile-caption">
+              <h3 class="cl-tile-title">Morning Nazra Study Circles</h3>
+              <span class="cl-tile-date">March 2026</span>
+            </div>
+          </article>
+
+          <article class="cl-bento-tile cl-tile-extra" data-category="academics" data-title="Mathematics Olympiad Preparation Drills"
+            data-date="February 2026" data-img="" tabindex="0" style="display: none;">
+            <div class="cl-tile-media">
+              <div class="cl-photo-placeholder" aria-label="Photo coming soon">
+                <svg viewBox="0 0 24 24" class="cl-camera-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </div>
+              <div class="cl-tile-tint" aria-hidden="true"></div>
+            </div>
+            <div class="cl-tile-caption">
+              <h3 class="cl-tile-title">Mathematics Olympiad Drills</h3>
+              <span class="cl-tile-date">February 2026</span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- View More Moments Button -->
+        <div class="cl-events-footer">
+          <button type="button" class="btn cl-btn-view-more" id="clViewMoreBtn">
+            View more moments
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 5: MOMENTS REEL (navy background)
+         ========================================================================= -->
+    <section class="cl-reel-section" id="campus-reel" aria-label="Moments Reel">
+      <div class="cl-reel-track-wrap">
+        <!-- Row 1: Drifting Left -->
+        <div class="cl-reel-row cl-reel-left">
+          <div class="cl-reel-stream">
+            <div class="cl-reel-card"><img src="pictures/487208474_1096380759171686_11917749176188102_n.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/building.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/student-exam-mirrored.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="pictures/487511930_1099958022147293_2998034888938625822_n.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/boys.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/hostel-meals.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+
+            <!-- Seamless duplication -->
+            <div class="cl-reel-card"><img src="pictures/487208474_1096380759171686_11917749176188102_n.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/building.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/student-exam-mirrored.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="pictures/487511930_1099958022147293_2998034888938625822_n.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/boys.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/hostel-meals.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+          </div>
+        </div>
+
+        <!-- Row 2: Drifting Right (desktop only) -->
+        <div class="cl-reel-row cl-reel-right cl-reel-row-second">
+          <div class="cl-reel-stream">
+            <div class="cl-reel-card"><img src="assets/images/boys.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="pictures/487511930_1099958022147293_2998034888938625822_n.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/building.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/hostel-meals.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="pictures/487208474_1096380759171686_11917749176188102_n.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/student-exam-mirrored.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+
+            <!-- Seamless duplication -->
+            <div class="cl-reel-card"><img src="assets/images/boys.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="pictures/487511930_1099958022147293_2998034888938625822_n.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/building.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/hostel-meals.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="pictures/487208474_1096380759171686_11917749176188102_n.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><img src="assets/images/student-exam-mirrored.jpg" alt="" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 6: FACILITIES IN DETAIL (light gray background)
+         ========================================================================= -->
+    <section class="section cl-facilities-section" id="campus-facilities">
+      <div class="container">
+        <div class="cl-facilities-header">
+          <span class="cl-sub-tag">FACILITIES IN DETAIL</span>
+          <h2 class="cl-section-title">Campus Infrastructure &amp; Amenities</h2>
+          <p class="cl-facilities-intro">
+            Every department and facility is engineered for student safety, modern scholarship, and moral cultivation.
+          </p>
+        </div>
+
+        <div class="cl-facilities-grid">
+
+          <!-- 1: Smart Classrooms -->
+          <article class="cl-facility-item reveal">
+            <div class="cl-facility-header">
+              <svg class="cl-facility-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                <line x1="9" y1="7" x2="16" y2="7"></line>
+                <line x1="9" y1="11" x2="16" y2="11"></line>
+              </svg>
+              <h3 class="cl-facility-title">Smart Ventilated Classrooms</h3>
+            </div>
+            <p class="cl-facility-desc">
+              Low student-to-teacher ratio (average 22 students per section) ensuring personalized attention, continuous formative assessment, and comfortable ergonomic desks with natural airflow.
+            </p>
+          </article>
+
+          <!-- 2: Library -->
+          <article class="cl-facility-item reveal">
+            <div class="cl-facility-header">
+              <svg class="cl-facility-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              <h3 class="cl-facility-title">Islamic &amp; Academic Library</h3>
+            </div>
+            <p class="cl-facility-desc">
+              Over 5,000 reference volumes spanning Quranic Tafseer, authentic Hadith collections, children's storybooks, and competitive examination sets in a quiet, curated reading hall.
+            </p>
+          </article>
+
+          <!-- 3: Science Lab -->
+          <article class="cl-facility-item reveal">
+            <div class="cl-facility-header">
+              <svg class="cl-facility-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 2v7.31"></path>
+                <path d="M14 9.3V2"></path>
+                <path d="M8.5 2h7"></path>
+                <path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path>
+                <path d="M5.52 16h12.96"></path>
+              </svg>
+              <h3 class="cl-facility-title">Modern Science Laboratories</h3>
+            </div>
+            <p class="cl-facility-desc">
+              Equipped with optical microscopes, electronic balances, chemical fume areas, and board-certified experimental rigs to bring textbook theories to vibrant life through hands-on practice.
+            </p>
+          </article>
+
+          <!-- 4: Computer Lab -->
+          <article class="cl-facility-item reveal">
+            <div class="cl-facility-header">
+              <svg class="cl-facility-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              <h3 class="cl-facility-title">Computer &amp; Digital Lab</h3>
+            </div>
+            <p class="cl-facility-desc">
+              Individual workstations empowering students to learn touch-typing, computer programming basics, digital document publishing, and online research ethics via optical fiber internet.
+            </p>
+          </article>
+
+          <!-- 5: Central Mosque -->
+          <article class="cl-facility-item reveal">
+            <div class="cl-facility-header">
+              <svg class="cl-facility-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3c-2 3-5 5-5 8v10h10V11c0-3-3-5-5-8z"></path>
+                <path d="M4 14v7h3v-7"></path>
+                <path d="M17 14v7h3v-7"></path>
+                <circle cx="12" cy="7" r="1.5"></circle>
+              </svg>
+              <h3 class="cl-facility-title">Central Mosque &amp; Hifz Sanctuary</h3>
+            </div>
+            <p class="cl-facility-desc">
+              A sacred, calm spiritual heart of the campus. Students participate in congregational Zuhr prayer, learning wudu etiquette and respectful mosque manners firsthand under guided faculty supervision.
+            </p>
+          </article>
+
+          <!-- 6: Sports Grounds -->
+          <article class="cl-facility-item reveal">
+            <div class="cl-facility-header">
+              <svg class="cl-facility-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="m4.93 4.93 4.24 4.24"></path>
+                <path d="m14.83 9.17 4.24-4.24"></path>
+                <path d="m14.83 14.83 4.24 4.24"></path>
+                <path d="m9.17 14.83-4.24 4.24"></path>
+              </svg>
+              <h3 class="cl-facility-title">Sports Grounds &amp; Athletics</h3>
+            </div>
+            <p class="cl-facility-desc">
+              Physical wellness is essential to sound scholarship. Our green campus grounds host seasonal cricket leagues, football matches, badminton, and structured morning physical conditioning.
+            </p>
+          </article>
+
+          <!-- 7: Transport Fleet -->
+          <article class="cl-facility-item reveal">
+            <div class="cl-facility-header">
+              <svg class="cl-facility-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+              <h3 class="cl-facility-title">Dedicated School Transport</h3>
+            </div>
+            <p class="cl-facility-desc">
+              Reliable pick-and-drop service operated by background-verified drivers with scheduled routes across Balkasar, Pipli, and surrounding rural and city centers.
+            </p>
+          </article>
+
+          <!-- 8: Canteen & Clean Water -->
+          <article class="cl-facility-item reveal">
+            <div class="cl-facility-header">
+              <svg class="cl-facility-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+              </svg>
+              <h3 class="cl-facility-title">Hygienic Water &amp; Canteen</h3>
+            </div>
+            <p class="cl-facility-desc">
+              Equipped with reverse-osmosis multi-stage water filtration ensuring clean drinking water across all student blocks, plus healthy snack options strictly inspected for hygiene.
+            </p>
+          </article>
+
+          <!-- 9: Security & Health -->
+          <article class="cl-facility-item reveal">
+            <div class="cl-facility-header">
+              <svg class="cl-facility-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <h3 class="cl-facility-title">24/7 Security &amp; Health Station</h3>
+            </div>
+            <p class="cl-facility-desc">
+              Complete boundary wall security with stationed guards, CCTV camera monitoring across all public corridors, and equipped first aid room for medical emergencies.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 7: CLOSING CALL TO ACTION (navy)
+         ========================================================================= -->
+    <section class="cl-cta-section" id="campus-cta" aria-labelledby="clCtaTitle">
+      <div class="container cl-cta-container">
+        <div class="cl-cta-content">
+          <h2 class="cl-cta-title" id="clCtaTitle">Come and see it yourself</h2>
+          <p class="cl-cta-desc">
+            Book a campus visit and walk through a school day with us.
+          </p>
+          <a href="admission.html" class="btn cl-cta-btn">
+            Book a visit →
+          </a>
+        </div>
+
+        <!-- Faint concentric arches decoration on right -->
+        <div class="cl-cta-arches" aria-hidden="true">
+          <svg viewBox="0 0 320 320" fill="none" class="cl-cta-arches-svg">
+            <path d="M 20 320 V 160 A 140 140 0 0 1 300 160 V 320" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.40" />
+            <path d="M 60 320 V 160 A 100 100 0 0 1 260 160 V 320" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.24" />
+            <path d="M 100 320 V 160 A 60 60 0 0 1 220 160 V 320" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.14" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       FULLSCREEN LIGHTBOX: CAMPUS FILM (Watch the film)
+       ========================================================================= -->
+  <div class="cl-lightbox-modal" id="clFilmLightbox" role="dialog" aria-modal="true" aria-label="Campus Life Film"
+    tabindex="-1" hidden>
+    <div class="cl-lightbox-backdrop" id="clFilmBackdrop"></div>
+    <div class="cl-lightbox-dialog">
+      <button type="button" class="cl-lightbox-close" id="clFilmClose" aria-label="Close film lightbox">
+        &times;
+      </button>
+      <div class="cl-lightbox-video-frame">
+        <iframe id="clFilmIframe" data-src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
+          title="Hadi Education System Campus Film" allow="autoplay; encrypted-media; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FULLSCREEN LIGHTBOX: MOMENTS GALLERY
+       ========================================================================= -->
+  <div class="cl-lightbox-modal" id="clMomentsLightbox" role="dialog" aria-modal="true" aria-label="Event Moment Details"
+    tabindex="-1" hidden>
+    <div class="cl-lightbox-backdrop" id="clMomentsBackdrop"></div>
+    <div class="cl-lightbox-dialog cl-moments-dialog">
+      <button type="button" class="cl-lightbox-close" id="clMomentsClose" aria-label="Close moment viewer">
+        &times;
+      </button>
+      
+      <div class="cl-moments-media-box" id="clMomentsMediaBox">
+        <img src="" alt="" class="cl-moments-full-img" id="clMomentsImg">
+      </div>
+
+      <div class="cl-moments-info">
+        <div class="cl-moments-meta">
+          <span class="cl-moments-counter" id="clMomentsCounter">01 / 08</span>
+          <span class="cl-moments-cat-tag" id="clMomentsCategory">Event</span>
+        </div>
+        <h3 class="cl-moments-title" id="clMomentsTitle">Event title</h3>
+        <span class="cl-moments-date" id="clMomentsDate">Month Year</span>
+      </div>
+
+      <!-- Prev / Next Controls -->
+      <button type="button" class="cl-moments-nav cl-moments-prev" id="clMomentsPrev" aria-label="Previous moment">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button type="button" class="cl-moments-nav cl-moments-next" id="clMomentsNext" aria-label="Next moment">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 14px;">
+            <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
+            <div class="brand-title-wrap">
+              <span class="brand-name" style="color: #FFFFFF;">HADI EDUCATION</span>
+              <span class="brand-tag" style="color: #E5E5E5;">SYSTEM • CHAKWAL</span>
+            </div>
+          </a>
+          <p>Synthesizing sacred Quranic knowledge with modern 21st-century academic excellence in Chakwal, Pakistan since 2017.</p>
+          <div class="social-icons-row">
+            <a href="https://web.facebook.com/hadieducationsystem" target="_blank" rel="noopener" class="social-btn"
+              aria-label="Facebook">f</a>
+            <a href="https://www.youtube.com/@hadieducationsystembalkasar" target="_blank" rel="noopener"
+              class="social-btn" aria-label="YouTube">▶</a>
+            <a href="mailto:malishahhamdani@gmail.com" class="social-btn" aria-label="Email">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="m3 7 9 6 9-6"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="academics.html">Curriculum &amp; Hifz</a>
+            <a href="campus-life.html">Campus Life</a>
+            <a href="admission.html">Admissions 2026</a>
+            <a href="contact.html">Contact Administration</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Contact Details</h4>
+          <div class="footer-contact-item">
+            <strong>Location:</strong>
+            <span>Pipli Road, Balkasar, District Chakwal, Punjab, Pakistan</span>
+          </div>
+          <div class="footer-contact-item">
+            <strong>Phone Number:</strong>
+            <a href="tel:+923145075399" style="color: #FFFFFF;">+92 314 5075399</a>
+          </div>
+          <div class="footer-contact-item">
+            <strong>Email:</strong>
+            <a href="mailto:malishahhamdani@gmail.com" style="color: #FFFFFF;">malishahhamdani@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 Hadi Education System. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AI Chat Window -->
+  <div id="ai-chat-window" class="ai-chat-window">
+    <div class="chat-header">
+      <div class="chat-header-title"><span>✨</span> Hadi AI Virtual Advisor</div>
+      <button id="close-ai-chat" class="chat-close-btn">&times;</button>
+    </div>
+    <div id="ai-chat-messages" class="chat-body">
+      <div class="chat-msg bot">Assalam-o-Alaikum! How can I assist you with information about campus life or facilities?</div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="ai-chat-input" class="chat-input" placeholder="Ask about campus life...">
+      <button id="ai-chat-send" class="chat-send-btn">➤</button>
+    </div>
+  </div>
+
+  <script src="assets/js/siteContent.js"></script>
+  <script src="assets/js/app.js?v=34"></script>
+</body>
+
+</html>

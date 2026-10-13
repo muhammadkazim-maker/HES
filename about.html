@@ -7,7 +7,7 @@
   <title>About Us — Hadi Education System (HES)</title>
   <meta name="description"
     content="Discover our history since 2017, our vision, mission, leadership, and dedicated faculty in Balkasar, Chakwal.">
-  <link rel="stylesheet" href="assets/css/main.css?v=84">
+  <link rel="stylesheet" href="assets/css/main.css?v=102">
 </head>
 
 <body class="page-about">
@@ -28,7 +28,7 @@
         <a href="index.html" class="nav-link" data-en="Home" data-ur="صفحہ اول">Home</a>
         <a href="about.html" class="nav-link active" data-en="About Us" data-ur="تعارف">About Us</a>
         <a href="academics.html" class="nav-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
-        <a href="facilities.html" class="nav-link" data-en="Facilities" data-ur="سہولیات">Facilities</a>
+        <a href="campus-life.html" class="nav-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
         <a href="admission.html" class="nav-link" data-en="Admission" data-ur="داخلہ">Admission</a>
         <a href="contact.html" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
       </nav>
@@ -57,7 +57,7 @@
       <div class="brand-logo">
         <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
         <div class="brand-title-wrap">
-          <span class="brand-name">HES CHAKWAL</span>
+          <span class="brand-name">HES BALKASSAR</span>
           <span class="brand-tag">EST. 2017</span>
         </div>
       </div>
@@ -67,10 +67,14 @@
       <a href="index.html" class="drawer-link" data-en="Home" data-ur="صفحہ اول">Home</a>
       <a href="about.html" class="drawer-link active" data-en="About Us" data-ur="تعارف">About Us</a>
       <a href="academics.html" class="drawer-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
-      <a href="facilities.html" class="drawer-link" data-en="Facilities" data-ur="سہولیات">Facilities</a>
+      <a href="campus-life.html" class="drawer-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
       <a href="admission.html" class="drawer-link" data-en="Admission" data-ur="داخلہ">Admission</a>
       <a href="contact.html" class="drawer-link" data-en="Contact" data-ur="رابطہ">Contact</a>
     </div>
+    <a href="admission.html" class="btn btn-gold" style="width: 100%; text-align: center;" data-en="Apply for Admission"
+      data-ur="داخلہ فارم">
+      Apply for Admission
+    </a>
   </aside>
 
   <!-- Main Content -->
@@ -120,11 +124,6 @@
         <!-- 2. Vision Statement Heading (h2) with Scroll Text Fill & 2px White Underlines -->
         <h2 class="mv-vision-statement" id="mvVisionStatement"
           aria-label="To be Pakistan's leading educational institution that inspires students to achieve their utmost potential in both spiritual and worldly realms, cultivating visionary leaders anchored in Islamic integrity.">
-          <span class="visually-hidden"
-            data-en="To be Pakistan's leading educational institution that inspires students to achieve their utmost potential in both spiritual and worldly realms, cultivating visionary leaders anchored in Islamic integrity."
-            data-ur="ایک ایسا پاکستان کا مثالی تعلیمی ادارہ بننا جو طلباء کو دینی اور دنیاوی دونوں شعبوں میں اعلیٰ ترین مقام تک پہنچائے اور اسلامی اخلاقی قیادت تیار کرے۔">
-            To be Pakistan's leading educational institution that inspires students to achieve their utmost potential in both spiritual and worldly realms, cultivating visionary leaders anchored in Islamic integrity.
-          </span>
           <span class="mv-vision-visual" aria-hidden="true">
             <span class="mv-word">To</span>
             <span class="mv-word">be</span>
@@ -256,8 +255,8 @@
         <div class="grid-2" style="align-items: center;">
           <!-- Photo Placeholder -->
           <div>
-            <div class="image-slot aspect-1-1 shade-pulse-card principal-photo"
-              style="max-width: 440px; margin: 0 auto; box-shadow: var(--shadow-lg);">
+            <div class="image-slot aspect-1-1 principal-photo"
+              style="max-width: 440px; margin: 0 auto; box-shadow: none;">
               <img src="assets/images/principal-muhammad-ali-hamdani.jpg"
                 alt="Muhammad Ali Hamdani, Principal and Head of Institution">
             </div>
@@ -298,7 +297,21 @@
     </section>
 
     <!-- TEACHING FACULTY & LEADERSHIP DIRECTORY -->
-    <section class="section">
+    <section class="section faculty-section" id="faculty-section">
+      <!-- Decorative Subtle Islamic Geometric Star Pattern (Top-Right Corner) -->
+      <div class="faculty-pattern" aria-hidden="true">
+        <svg viewBox="0 0 240 240" width="240" height="240" fill="none" stroke="currentColor" stroke-width="1.2">
+          <polygon
+            points="120,12 144,72 204,48 180,108 240,120 180,132 204,192 144,168 120,228 96,168 36,192 60,132 0,120 60,108 36,48 96,72"
+            opacity="0.6" />
+          <polygon
+            points="120,36 138,84 186,66 168,114 216,120 168,126 186,174 138,156 120,204 102,156 54,174 72,126 24,120 72,114 54,66 102,84"
+            opacity="0.4" />
+          <circle cx="120" cy="120" r="54" opacity="0.35" />
+          <circle cx="120" cy="120" r="84" opacity="0.25" />
+        </svg>
+      </div>
+
       <div class="container">
         <div style="text-align: center; max-width: 720px; margin: 0 auto 50px;">
           <span class="section-tag" data-en="Dedicated Mentors" data-ur="ہمارے معزز اساتذہ">Dedicated Mentors</span>
@@ -312,133 +325,243 @@
           </p>
         </div>
 
-        <div class="grid-3">
-          <!-- Faculty 1 -->
-          <div class="glass-card faculty-card shade-pulse-card">
-            <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
-              <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
-              <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
+        <div class="faculty-carousel-wrapper" id="facultyCarouselWrapper">
+          <div class="grid-3 faculty-grid" id="facultyGrid" tabindex="0" role="region" aria-label="Meet Our Esteemed Faculty">
+            <!-- Faculty 1 -->
+            <div class="faculty-card">
+              <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
+                <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
+                <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
+              </div>
+              <h3 class="faculty-name">Muhammad Ali Hamdani</h3>
+              <div class="faculty-designation">Principal &amp; Head of School</div>
+              <p class="faculty-bio">Over 8 years in education, driving institutional excellence and holistic curriculum
+                synthesis.</p>
             </div>
-            <h3 class="faculty-name">Muhammad Ali Hamdani</h3>
-            <div class="faculty-designation">Principal &amp; Head of School</div>
-            <p class="faculty-bio">Over 8 years in education, driving institutional excellence and holistic curriculum
-              synthesis.</p>
+
+            <!-- Faculty 2 -->
+            <div class="faculty-card">
+              <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
+                <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
+                <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
+              </div>
+              <h3 class="faculty-name">Rana Sajjad Ullah</h3>
+              <div class="faculty-designation">Vice Principal • Islamic Studies &amp; Urdu</div>
+              <p class="faculty-bio">Senior leader fostering moral discipline, advanced Urdu literature, and academic
+                coordination.</p>
+            </div>
+
+            <!-- Faculty 3 -->
+            <div class="faculty-card">
+              <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
+                <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
+                <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
+              </div>
+              <h3 class="faculty-name">Ishaq Mehdi</h3>
+              <div class="faculty-designation">Mathematics Specialist</div>
+              <p class="faculty-bio">Empowers middle and high school students to master complex mathematical logic and
+                problem-solving.</p>
+            </div>
+
+            <!-- Faculty 4 -->
+            <div class="faculty-card">
+              <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
+                <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
+                <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
+              </div>
+              <h3 class="faculty-name">Amir Abbas</h3>
+              <div class="faculty-designation">Chemistry &amp; General Sciences</div>
+              <p class="faculty-bio">Fosters scientific curiosity with hands-on lab experiments and conceptual chemical
+                foundations.</p>
+            </div>
+
+            <!-- Faculty 5 -->
+            <div class="faculty-card">
+              <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
+                <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
+                <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
+              </div>
+              <h3 class="faculty-name">Syed Wajahat Naqvi</h3>
+              <div class="faculty-designation">English Language &amp; Computer Science</div>
+              <p class="faculty-bio">Mentor in spoken English fluency, digital literacy, and modern computer programming
+                fundamentals.</p>
+            </div>
+
+            <!-- Faculty 6 -->
+            <div class="faculty-card">
+              <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
+                <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
+                <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
+              </div>
+              <h3 class="faculty-name">Ali Husnain</h3>
+              <div class="faculty-designation">Islamic Jurisprudence &amp; Fiqh</div>
+              <p class="faculty-bio">Specialist in Tauzeeh-ul-Masail and Islamic rulings, guiding students in practical
+                religious life.</p>
+            </div>
           </div>
 
-          <!-- Faculty 2 -->
-          <div class="glass-card faculty-card shade-pulse-card">
-            <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
-              <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
-              <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
-            </div>
-            <h3 class="faculty-name">Rana Sajjad Ullah</h3>
-            <div class="faculty-designation">Vice Principal • Islamic Studies &amp; Urdu</div>
-            <p class="faculty-bio">Senior leader fostering moral discipline, advanced Urdu literature, and academic
-              coordination.</p>
-          </div>
-
-          <!-- Faculty 3 -->
-          <div class="glass-card faculty-card shade-pulse-card">
-            <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
-              <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
-              <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
-            </div>
-            <h3 class="faculty-name">Ishaq Mehdi</h3>
-            <div class="faculty-designation">Mathematics Specialist</div>
-            <p class="faculty-bio">Empowers middle and high school students to master complex mathematical logic and
-              problem-solving.</p>
-          </div>
-
-          <!-- Faculty 4 -->
-          <div class="glass-card faculty-card shade-pulse-card">
-            <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
-              <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
-              <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
-            </div>
-            <h3 class="faculty-name">Amir Abbas</h3>
-            <div class="faculty-designation">Chemistry &amp; General Sciences</div>
-            <p class="faculty-bio">Fosters scientific curiosity with hands-on lab experiments and conceptual chemical
-              foundations.</p>
-          </div>
-
-          <!-- Faculty 5 -->
-          <div class="glass-card faculty-card shade-pulse-card">
-            <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
-              <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
-              <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
-            </div>
-            <h3 class="faculty-name">Syed Wajahat Naqvi</h3>
-            <div class="faculty-designation">English Language &amp; Computer Science</div>
-            <p class="faculty-bio">Mentor in spoken English fluency, digital literacy, and modern computer programming
-              fundamentals.</p>
-          </div>
-
-          <!-- Faculty 6 -->
-          <div class="glass-card faculty-card shade-pulse-card">
-            <div class="image-slot aspect-1-1" style="max-width: 130px; margin: 0 auto 16px; border-radius: 50%;">
-              <div class="image-slot-icon" style="font-size: 1.8rem;">👤</div>
-              <span class="image-slot-dimensions" style="font-size: 0.65rem;">300x300</span>
-            </div>
-            <h3 class="faculty-name">Ali Husnain</h3>
-            <div class="faculty-designation">Islamic Jurisprudence &amp; Fiqh</div>
-            <p class="faculty-bio">Specialist in Tauzeeh-ul-Masail and Islamic rulings, guiding students in practical
-              religious life.</p>
+          <!-- Mobile Carousel Navigation Dots -->
+          <div class="faculty-carousel-dots" id="facultyDots" role="tablist" aria-label="Faculty pagination">
+            <button class="faculty-dot is-active" aria-label="Muhammad Ali Hamdani" data-index="0" role="tab" aria-selected="true"></button>
+            <button class="faculty-dot" aria-label="Rana Sajjad Ullah" data-index="1" role="tab" aria-selected="false"></button>
+            <button class="faculty-dot" aria-label="Ishaq Mehdi" data-index="2" role="tab" aria-selected="false"></button>
+            <button class="faculty-dot" aria-label="Amir Abbas" data-index="3" role="tab" aria-selected="false"></button>
+            <button class="faculty-dot" aria-label="Syed Wajahat Naqvi" data-index="4" role="tab" aria-selected="false"></button>
+            <button class="faculty-dot" aria-label="Ali Husnain" data-index="5" role="tab" aria-selected="false"></button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MILESTONES TIMELINE -->
-    <section class="section section-tinted">
-      <div class="container">
-        <div style="text-align: center; max-width: 680px; margin: 0 auto 50px;">
-          <span class="section-tag" data-en="Our Milestones" data-ur="ہمارا تاریخی سفر">Our Milestones</span>
-          <h2 class="section-title" data-en="Our Journey Since 2017" data-ur="2017 سے ہمارا تعلیمی سفر">Our Journey
-            Since 2017</h2>
+    <!-- OUR JOURNEY SINCE 2017 (THE YEAR RAIL) -->
+    <section class="section yr-section" id="journey-section" aria-labelledby="yrSectionTitle">
+      <div class="container yr-container">
+
+        <!-- Header -->
+        <div class="yr-header reveal">
+          <span class="yr-tag" data-en="OUR JOURNEY" data-ur="ہمارا تاریخی سفر">OUR JOURNEY</span>
+          <h2 class="yr-title" id="yrSectionTitle" data-en="Our Journey Since 2017" data-ur="2017 سے ہمارا تعلیمی سفر">
+            Our Journey Since 2017
+          </h2>
+          <p class="yr-intro" data-en="Key milestones shaping our balanced educational model in Balkasar, Chakwal."
+            data-ur="بلکسر، چکوال میں ہمارے متوازن تعلیمی سفر کے اہم سنگ میل۔">
+            Key milestones shaping our balanced educational model in Balkasar, Chakwal.
+          </p>
+          <p class="yr-years-line">
+            <span class="yr-calc-years" id="journeyYearsCalc">9</span>
+            <span data-en="years of Quran and modern education" data-ur="سالہ قرآنی و جدید تعلیم">years of Quran and modern education</span>
+          </p>
         </div>
 
-        <div class="timeline-stepper">
-          <div class="timeline-step shade-pulse-card">
-            <div class="timeline-badge">2017</div>
-            <h3 class="timeline-title" data-en="Foundation" data-ur="قیام">Foundation</h3>
-            <p class="timeline-desc"
-              data-en="Founded in Balkasar, Chakwal with the vision to integrate Quranic education with modern schooling."
-              data-ur="بلکسر چکوال میں قرآنی و جدید تعلیم کے ویژن کے ساتھ اسکول کا آغاز۔">
-              Founded in Balkasar, Chakwal with the vision to integrate Quranic education with modern schooling.
-            </p>
-          </div>
-
-          <div class="timeline-step shade-pulse-card">
-            <div class="timeline-badge">Growth</div>
-            <h3 class="timeline-title" data-en="Learning Together" data-ur="مل کر سیکھنا">Learning Together</h3>
-            <p class="timeline-desc"
-              data-en="Building a supportive learning environment that brings Quranic education and modern academics together."
-              data-ur="ایسا معاون تعلیمی ماحول تشکیل دینا جو قرآنی اور عصری تعلیم کو یکجا کرے۔">
-              Building a supportive learning environment that brings Quranic education and modern academics together.
-            </p>
-          </div>
-
-          <div class="timeline-step shade-pulse-card">
-            <div class="timeline-badge">Care</div>
-            <h3 class="timeline-title" data-en="Whole-Student Growth" data-ur="طلبہ کی ہمہ جہت نشوونما">Whole-Student
-              Growth</h3>
-            <p class="timeline-desc"
-              data-en="Encouraging students to grow through character building, active participation, and supportive guidance."
-              data-ur="کردار سازی، بھرپور شرکت اور معاون رہنمائی کے ذریعے طلبہ کی نشوونما کی حوصلہ افزائی۔">
-              Encouraging students to grow through character building, active participation, and supportive guidance.
-            </p>
-          </div>
-
-          <div class="timeline-step shade-pulse-card">
-            <div class="timeline-badge">Today</div>
-            <h3 class="timeline-title" data-en="Looking Ahead" data-ur="روشن مستقبل کی جانب">Looking Ahead</h3>
-            <p class="timeline-desc"
-              data-en="Continuing our commitment to meaningful learning, strong values, and preparing students for the future."
-              data-ur="بامقصد تعلیم، مضبوط اقدار اور طلبہ کو مستقبل کے لیے تیار کرنے کے عزم کو جاری رکھنا۔">
-              Continuing our commitment to meaningful learning, strong values, and preparing students for the future.
-            </p>
+        <!-- Desktop Year Rail -->
+        <div class="yr-rail-wrap" aria-hidden="false">
+          <div class="yr-rail-track" role="tablist" aria-label="Milestone year rail">
+            <div class="yr-rail-line" aria-hidden="true">
+              <div class="yr-rail-fill" id="yrRailFill"></div>
+            </div>
+            <div class="yr-rail-markers" id="yrRailMarkers">
+              <button type="button" class="yr-marker is-active" role="tab" aria-selected="true"
+                aria-controls="yrStoryPanel" id="yr-tab-0" data-index="0" data-shape="foundation">
+                <span class="yr-marker-circle" aria-hidden="true"></span>
+                <span class="yr-marker-label">2017</span>
+              </button>
+              <button type="button" class="yr-marker" role="tab" aria-selected="false"
+                aria-controls="yrStoryPanel" id="yr-tab-1" data-index="1" data-shape="growth">
+                <span class="yr-marker-circle" aria-hidden="true"></span>
+                <span class="yr-marker-label" data-en="Growth" data-ur="پیشرفت">Growth</span>
+              </button>
+              <button type="button" class="yr-marker" role="tab" aria-selected="false"
+                aria-controls="yrStoryPanel" id="yr-tab-2" data-index="2" data-shape="care">
+                <span class="yr-marker-circle" aria-hidden="true"></span>
+                <span class="yr-marker-label" data-en="Care" data-ur="نگہداشت">Care</span>
+              </button>
+              <button type="button" class="yr-marker" role="tab" aria-selected="false"
+                aria-controls="yrStoryPanel" id="yr-tab-3" data-index="3" data-shape="ahead">
+                <span class="yr-marker-circle" aria-hidden="true"></span>
+                <span class="yr-marker-label" data-en="Today" data-ur="موجودہ دور">Today</span>
+              </button>
+            </div>
           </div>
         </div>
+
+        <!-- Story Panel (Fixed Height Desktop: 460px) -->
+        <div class="yr-panel reveal" id="yrStoryPanel" role="tabpanel" aria-labelledby="yr-tab-0" aria-live="polite" tabindex="0">
+
+          <!-- Slide Content Wrap -->
+          <div class="yr-slide-wrap" id="yrSlideWrap">
+            <!-- Left Side: Story Text & Controls (55%) -->
+            <div class="yr-slide-content">
+              <div class="yr-text-block">
+                <!-- Giant outlined year numeral (Decorative) -->
+                <div class="yr-giant-year" id="yrGiantYear" aria-hidden="true">2017</div>
+                <h3 class="yr-slide-title" id="yrSlideTitle" data-en="Foundation" data-ur="قیام">Foundation</h3>
+                <p class="yr-slide-desc" id="yrSlideDesc"
+                  data-en="Founded in Balkasar, Chakwal with the vision to integrate Quranic education with modern schooling."
+                  data-ur="بلکسر چکوال میں قرآنی و جدید تعلیم کے ویژن کے ساتھ اسکول کا آغاز۔">
+                  Founded in Balkasar, Chakwal with the vision to integrate Quranic education with modern schooling.
+                </p>
+              </div>
+
+              <!-- Bottom Controls (Arrow Buttons & Counter) -->
+              <div class="yr-controls">
+                <button type="button" class="yr-arrow-btn yr-prev-btn" id="yrPrevBtn" aria-label="Previous milestone">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="yr-arrow-btn yr-next-btn" id="yrNextBtn" aria-label="Next milestone">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+                <div class="yr-counter" id="yrCounter" aria-label="Slide counter">01 / 04</div>
+              </div>
+            </div>
+
+            <!-- Right Side: Milestone Line-Art Visual -->
+            <div class="yr-slide-visual">
+              <div class="yr-shape-wrap" id="yrShapeWrap" aria-hidden="true">
+                <!-- Pre-rendered Shape 1 (Foundation) for zero layout shift and No-JS fallback -->
+                <svg viewBox="0 0 360 380" class="yr-shape-svg" aria-hidden="true" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                  <line class="yr-draw-elem" x1="0" y1="370" x2="360" y2="370" stroke="rgba(255, 255, 255, 0.35)" vector-effect="non-scaling-stroke" pathLength="1" />
+                  <rect class="yr-draw-elem" x="30" y="330" width="300" height="40" stroke="rgba(255, 255, 255, 0.45)" vector-effect="non-scaling-stroke" pathLength="1" />
+                  <rect class="yr-draw-elem" x="70" y="282" width="220" height="48" stroke="rgba(255, 255, 255, 0.32)" vector-effect="non-scaling-stroke" pathLength="1" />
+                  <rect class="yr-draw-elem" x="110" y="240" width="140" height="42" stroke="rgba(255, 255, 255, 0.22)" vector-effect="non-scaling-stroke" pathLength="1" />
+                  <path class="yr-draw-elem yr-faint-fill" d="M150 240 V200 A30 30 0 0 1 210 200 V240" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.65)" vector-effect="non-scaling-stroke" pathLength="1" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Controls & Toggle Buttons (under 768px) -->
+        <div class="yr-mobile-controls" id="yrMobileControls">
+          <button type="button" class="yr-mob-btn yr-mob-prev" id="yrMobPrevBtn" aria-label="Previous milestone">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span class="yr-mob-btn-text" data-en="Prev" data-ur="پچھلا">Prev</span>
+          </button>
+          <div class="yr-mobile-dots" id="yrMobileDots" role="tablist" aria-label="Milestone pagination dots">
+            <button type="button" class="yr-dot is-active" role="tab" aria-selected="true" aria-label="Slide 1: 2017 Foundation" data-index="0"></button>
+            <button type="button" class="yr-dot" role="tab" aria-selected="false" aria-label="Slide 2: Growth Learning Together" data-index="1"></button>
+            <button type="button" class="yr-dot" role="tab" aria-selected="false" aria-label="Slide 3: Care Whole-Student Growth" data-index="2"></button>
+            <button type="button" class="yr-dot" role="tab" aria-selected="false" aria-label="Slide 4: Today Looking Ahead" data-index="3"></button>
+          </div>
+          <button type="button" class="yr-mob-btn yr-mob-next" id="yrMobNextBtn" aria-label="Next milestone">
+            <span class="yr-mob-btn-text" data-en="Next" data-ur="اگلا">Next</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- No-JS Fallback: Plain accessible stacked cards -->
+        <noscript>
+          <div class="yr-noscript-stack">
+            <div class="yr-noscript-card">
+              <span class="yr-noscript-badge">2017</span>
+              <h3>Foundation</h3>
+              <p>Founded in Balkasar, Chakwal with the vision to integrate Quranic education with modern schooling.</p>
+            </div>
+            <div class="yr-noscript-card">
+              <span class="yr-noscript-badge">Growth</span>
+              <h3>Learning Together</h3>
+              <p>Building a supportive learning environment that brings Quranic education and modern academics together.</p>
+            </div>
+            <div class="yr-noscript-card">
+              <span class="yr-noscript-badge">Care</span>
+              <h3>Whole-Student Growth</h3>
+              <p>Encouraging students to grow through character building, active participation, and supportive guidance.</p>
+            </div>
+            <div class="yr-noscript-card">
+              <span class="yr-noscript-badge">Today</span>
+              <h3>Looking Ahead</h3>
+              <p>Continuing our commitment to meaningful learning, strong values, and preparing students for the future.</p>
+            </div>
+          </div>
+        </noscript>
+
       </div>
     </section>
 
@@ -478,7 +601,7 @@
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="academics.html">Curriculum &amp; Hifz</a>
-            <a href="facilities.html">Campus Facilities</a>
+            <a href="campus-life.html">Campus Life</a>
             <a href="admission.html">Admissions 2026</a>
             <a href="contact.html">Contact Administration</a>
           </div>
@@ -523,7 +646,7 @@
   </div>
 
   <script src="assets/js/siteContent.js"></script>
-  <script src="assets/js/app.js?v=22"></script>
+  <script src="assets/js/app.js?v=33"></script>
 </body>
 
 </html>
