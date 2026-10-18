@@ -1,0 +1,545 @@
+/* ==========================================================================
+   PAGE GATEWAY INTRO SYSTEM — SHARED STYLES
+   Hadi Education System (HES)
+   Strict Palette: Navy #14213D, White #FFFFFF, Black #000000, Gray #E5E5E5
+   ========================================================================== */
+
+:root {
+  --navy: #14213D;
+  --white: #FFFFFF;
+  --black: #000000;
+  --gray: #E5E5E5;
+
+  /* Consistency Tokens */
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --dur-reveal: 700ms;
+  --dur-fast: 250ms;
+  --reveal-distance: 20px;
+  --stagger: 90ms;
+  --hover-lift: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   1. OVERLAY CONTAINER (Hidden by default; shown only when .gw-active on html)
+   -------------------------------------------------------------------------- */
+/* Prevent background page scrolling or bouncing while gateway intro is active */
+html.gw-active,
+html.gw-active body {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none;
+}
+
+.gw-overlay {
+  display: none;
+}
+
+.gw-active .gw-overlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999; /* Above navbar and page content */
+  background-color: var(--navy, #14213D);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: auto;
+  opacity: 1;
+  will-change: opacity;
+  touch-action: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. STAGE & ARCH STRUCTURE
+   -------------------------------------------------------------------------- */
+.gw-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* Subpage Arch (240x300 viewBox) */
+.gw-arch-svg {
+  width: 240px;
+  height: 300px;
+  max-width: 80vw;
+  max-height: 70vh;
+  transform-origin: 50% 93%;
+  will-change: transform, opacity;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .gw-arch-svg {
+    width: 180px;
+    height: 225px;
+    transform-origin: 50% 93%;
+  }
+}
+
+/* Home Arch (300x360 viewBox - 30% larger) */
+.gw-arch-svg--home {
+  width: 300px;
+  height: 360px;
+  max-width: 85vw;
+  max-height: 75vh;
+  transform-origin: 50% 94%;
+}
+
+@media (max-width: 768px) {
+  .gw-arch-svg--home {
+    width: 220px;
+    height: 264px;
+    transform-origin: 50% 94%;
+  }
+}
+
+/* SVG Line Properties */
+.gw-arch-path {
+  stroke: var(--white, #FFFFFF);
+  stroke-opacity: 0.95;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.gw-arch-path--home {
+  stroke: var(--white, #FFFFFF);
+  stroke-opacity: 0.95;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.gw-baseline {
+  stroke: var(--white, #FFFFFF);
+  stroke-opacity: 0.25;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.gw-draw-item {
+  stroke: var(--white, #FFFFFF);
+  stroke-opacity: 0.95;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  will-change: stroke-dashoffset, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   3. SUBPAGE TIMELINE ANIMATIONS (0 to 1300ms)
+   -------------------------------------------------------------------------- */
+/* 0 to 500ms: Arch draws */
+.gw-active .gw-arch-path {
+  animation: gwArchDraw 500ms var(--ease) forwards;
+}
+
+@keyframes gwArchDraw {
+  0% { stroke-dashoffset: 1; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* 250 to 750ms: Inner drawing draws (elements staggered by 80ms) */
+.gw-active .gw-draw-item {
+  animation: gwInnerDraw 450ms var(--ease) calc(250ms + var(--gw-stagger, 0ms)) forwards;
+}
+
+@keyframes gwInnerDraw {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* 400 to 700ms: Label fades up 8px over 300ms in 11px DM Sans, tracked out, centred 28px below baseline */
+.gw-label {
+  display: block;
+  font-family: var(--font-main, 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--white, #FFFFFF);
+  opacity: 0;
+  transform: translateY(8px);
+  margin-top: 28px;
+  will-change: opacity, transform;
+}
+
+.gw-active .gw-label {
+  animation: gwLabelIn 300ms var(--ease) 400ms forwards;
+}
+
+@keyframes gwLabelIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. HOME VARIANT TIMELINE ANIMATIONS (0 to 2300ms)
+   -------------------------------------------------------------------------- */
+.gw-stage--home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gw-home-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 0 to 600ms: Home Arch draws */
+.gw-active .gw-arch-path--home {
+  animation: gwArchDrawHome 600ms var(--ease) forwards;
+}
+
+@keyframes gwArchDrawHome {
+  0% { stroke-dashoffset: 1; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* 300 to 850ms: Logo reveals cleanly from bottom upward without scale jitter */
+.gw-home-logo {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  clip-path: inset(100% 0 0 0);
+  will-change: opacity, clip-path;
+}
+
+@media (max-width: 768px) {
+  .gw-home-logo {
+    width: 110px;
+    height: 110px;
+    top: 48%;
+    left: 50%;
+  }
+}
+
+.gw-home-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.gw-active .gw-home-logo {
+  animation: gwLogoReveal 550ms var(--ease) 300ms forwards;
+}
+
+@keyframes gwLogoReveal {
+  0% {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* 600 to 1050ms: Wordmark with fixed letter-spacing and smooth vertical fade (no shaking/reflow) */
+.gw-home-wordmark {
+  display: block;
+  font-family: var(--font-main, 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white, #FFFFFF);
+  opacity: 0;
+  transform: translateY(6px);
+  margin-top: 24px;
+  text-align: center;
+  white-space: nowrap;
+  will-change: opacity, transform;
+}
+
+@media (max-width: 480px) {
+  .gw-home-wordmark {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    margin-top: 20px;
+  }
+}
+
+.gw-active .gw-home-wordmark {
+  animation: gwWordmarkIn 450ms var(--ease) 600ms forwards;
+}
+
+@keyframes gwWordmarkIn {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 0.90;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. EXIT TRANSITIONS (Overlay fades out, arch scales up slightly 1.04 over 500ms)
+   -------------------------------------------------------------------------- */
+.gw-exit .gw-label,
+.gw-exit .gw-draw-item {
+  opacity: 0 !important;
+  transition: opacity 150ms ease;
+}
+
+.gw-exit .gw-home-logo,
+.gw-exit .gw-home-wordmark {
+  opacity: 0 !important;
+  transition: opacity 200ms ease;
+}
+
+.gw-exit .gw-arch-svg,
+.gw-exit .gw-arch-svg--home {
+  transform: scale(1.04) !important;
+  opacity: 0 !important;
+  transition: transform 500ms var(--ease), opacity 500ms var(--ease);
+}
+
+.gw-exit {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 500ms var(--ease);
+}
+
+/* Fast skip exit (under 200ms) */
+.gw-exit.gw-skip-exit .gw-label,
+.gw-exit.gw-skip-exit .gw-draw-item,
+.gw-exit.gw-skip-exit .gw-home-logo,
+.gw-exit.gw-skip-exit .gw-home-wordmark {
+  opacity: 0 !important;
+  transition: opacity 80ms ease;
+}
+
+.gw-exit.gw-skip-exit .gw-arch-svg,
+.gw-exit.gw-skip-exit .gw-arch-svg--home {
+  transform: scale(1.04) !important;
+  opacity: 0 !important;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.gw-exit.gw-skip-exit {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 180ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   6. SKIP BUTTON (Top-right, min 44px tap target)
+   -------------------------------------------------------------------------- */
+.gw-skip {
+  position: absolute;
+  top: 24px;
+  top: calc(24px + env(safe-area-inset-top, 0px));
+  right: 24px;
+  right: calc(24px + env(safe-area-inset-right, 0px));
+  min-height: 44px;
+  min-width: 44px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 9999px;
+  font-family: var(--font-main, 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 100001;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gw-skip:hover {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.10);
+}
+
+.gw-skip:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   7. CONSISTENCY RULES: HERO ENTRANCE STAGGER
+   -------------------------------------------------------------------------- */
+.hero-stagger-item {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 500ms var(--ease),
+              transform 500ms var(--ease);
+  will-change: opacity, transform;
+}
+
+.hero-stagger-active .hero-stagger-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-stagger-active .hero-stagger-item:nth-child(1) { transition-delay: calc(0 * var(--stagger, 90ms)); }
+.hero-stagger-active .hero-stagger-item:nth-child(2) { transition-delay: calc(1 * var(--stagger, 90ms)); }
+.hero-stagger-active .hero-stagger-item:nth-child(3) { transition-delay: calc(2 * var(--stagger, 90ms)); }
+.hero-stagger-active .hero-stagger-item:nth-child(4) { transition-delay: calc(3 * var(--stagger, 90ms)); }
+
+/* --------------------------------------------------------------------------
+   8. SIBLING CARDS STAGGER (up to 4 items)
+   -------------------------------------------------------------------------- */
+.card-grid > *:nth-child(1),
+.facilities-grid > *:nth-child(1),
+.values-grid > *:nth-child(1),
+.faculty-grid > *:nth-child(1),
+.admissions-grid > *:nth-child(1),
+.contact-grid > *:nth-child(1),
+.features-grid > *:nth-child(1),
+.cl-spaces-grid > *:nth-child(1),
+.grid > *:nth-child(1) {
+  --reveal-delay: calc(0 * var(--stagger, 90ms));
+}
+.card-grid > *:nth-child(2),
+.facilities-grid > *:nth-child(2),
+.values-grid > *:nth-child(2),
+.faculty-grid > *:nth-child(2),
+.admissions-grid > *:nth-child(2),
+.contact-grid > *:nth-child(2),
+.features-grid > *:nth-child(2),
+.cl-spaces-grid > *:nth-child(2),
+.grid > *:nth-child(2) {
+  --reveal-delay: calc(1 * var(--stagger, 90ms));
+}
+.card-grid > *:nth-child(3),
+.facilities-grid > *:nth-child(3),
+.values-grid > *:nth-child(3),
+.faculty-grid > *:nth-child(3),
+.admissions-grid > *:nth-child(3),
+.contact-grid > *:nth-child(3),
+.features-grid > *:nth-child(3),
+.cl-spaces-grid > *:nth-child(3),
+.grid > *:nth-child(3) {
+  --reveal-delay: calc(2 * var(--stagger, 90ms));
+}
+.card-grid > *:nth-child(4),
+.facilities-grid > *:nth-child(4),
+.values-grid > *:nth-child(4),
+.faculty-grid > *:nth-child(4),
+.admissions-grid > *:nth-child(4),
+.contact-grid > *:nth-child(4),
+.features-grid > *:nth-child(4),
+.cl-spaces-grid > *:nth-child(4),
+.grid > *:nth-child(4) {
+  --reveal-delay: calc(3 * var(--stagger, 90ms));
+}
+
+/* --------------------------------------------------------------------------
+   9. SHARED HOVER LIFT & FOCUS BEHAVIOR (Desktop only)
+   -------------------------------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift,
+  .facility-card,
+  .feature-card,
+  .stat-card,
+  .contact-card,
+  .faculty-card,
+  .value-card,
+  .quote-card,
+  .cta-card,
+  .cl-space-card {
+    transition: transform var(--dur-fast, 250ms) var(--ease),
+                box-shadow var(--dur-fast, 250ms) var(--ease) !important;
+  }
+  .hover-lift:hover,
+  .facility-card:hover,
+  .feature-card:hover,
+  .stat-card:hover,
+  .contact-card:hover,
+  .faculty-card:hover,
+  .value-card:hover,
+  .quote-card:hover,
+  .cta-card:hover,
+  .cl-space-card:hover {
+    transform: translateY(calc(-1 * var(--hover-lift, 6px))) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. REDUCED MOTION & NO-JS FALLBACKS
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-stagger-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-zoom {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+html:not(.js) .hero-stagger-item,
+html:not(.js) .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}

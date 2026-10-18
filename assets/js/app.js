@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initTheme();
   initLanguage();
-  initHeroTyping();
   initNavbar();
   initNavigationHover();
   initLearningPathwayCarousel();
@@ -41,6 +40,10 @@ function initScrollReveal() {
     "footer p, footer ul, footer ol, footer li, footer img, footer article, " +
     "footer [class*='card'], footer [class*='item']"
   )).filter(element =>
+    !element.closest(".hero") &&
+    !element.closest(".cl-hero") &&
+    !element.closest(".page-about-hero") &&
+    !element.closest(".hero-unified") &&
     !element.closest(".mv-section") &&
     !element.closest(".admission-roadmap-section") &&
     !element.closest(".faculty-carousel-wrapper") &&
@@ -139,40 +142,7 @@ function initLanguage() {
   });
 }
 
-function initHeroTyping() {
-  const heading = document.querySelector("#hero-typing-title");
-  if (!heading) return;
-
-  const text = heading.textContent.trim();
-  heading.setAttribute("aria-label", text);
-
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  const typeText = (element, value, characterInterval, onComplete) => {
-    element.textContent = "";
-    element.classList.add("is-typing");
-
-    const startTime = performance.now();
-    const typeNextCharacter = () => {
-      const characterCount = Math.min(
-        value.length,
-        Math.floor((performance.now() - startTime) / characterInterval) + 1
-      );
-      element.textContent = value.slice(0, characterCount);
-
-      if (characterCount < value.length) {
-        window.setTimeout(typeNextCharacter, 30);
-      } else {
-        element.classList.remove("is-typing");
-        if (onComplete) onComplete();
-      }
-    };
-
-    typeNextCharacter();
-  };
-
-  typeText(heading, text, 65);
-}
+// Hero entrance is managed by the shared page-gateway module on 'gateway:done'
 
 /* ==========================================================================
    3. STICKY NAVBAR ON SCROLL
@@ -2468,26 +2438,29 @@ function initBalancedDayBar() {
    18. CAMPUS LIFE PAGE LOGIC
    ========================================================================== */
 function initCampusLife() {
-  const page = document.querySelector(".page-campus-life");
+  const page = document.querySelector(".page-campus-life, .cl-hero");
   if (!page) return;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  // 1. Hero Text Staggered Reveal
-  const fadeElements = page.querySelectorAll(".cl-fade-elem");
+  // 1. Hero Text & Visual Staggered Reveal across all pages
+  const fadeElements = document.querySelectorAll(".cl-fade-elem");
   if (fadeElements.length) {
-    if (reducedMotion.matches) {
-      fadeElements.forEach(el => el.classList.add("is-visible"));
-    } else {
-      window.setTimeout(() => {
+    const trigger = () => {
+      if (reducedMotion.matches) {
+        fadeElements.forEach(el => el.classList.add("is-visible"));
+      } else {
         fadeElements.forEach((el, idx) => {
           window.setTimeout(() => {
             el.classList.add("is-visible");
-          }, idx * 90);
+          }, idx * 70);
         });
-      }, 100);
-    }
+      }
+    };
+    document.addEventListener("gateway:done", trigger, { once: true });
+    window.setTimeout(trigger, 1600);
   }
+
 
   // 2. Video Hero Controls (Pause/Play, Viewport Observation, Connection Check)
   const heroVideo = document.getElementById("clHeroVideo");
@@ -2541,6 +2514,7 @@ function initCampusLife() {
 
   // 3. Fullscreen Film Lightbox (Watch the film)
   const filmLightbox = document.getElementById("clFilmLightbox");
+  const filmVideoPlayer = document.getElementById("clLightboxVideoPlayer");
   const filmIframe = document.getElementById("clFilmIframe");
   const filmCloseBtn = document.getElementById("clFilmClose");
   const filmBackdrop = document.getElementById("clFilmBackdrop");
@@ -2553,7 +2527,10 @@ function initCampusLife() {
     lastActiveElement = triggerEl || document.activeElement;
     filmLightbox.removeAttribute("hidden");
     document.body.style.overflow = "hidden";
-    if (filmIframe && filmIframe.getAttribute("data-src")) {
+    if (filmVideoPlayer) {
+      filmVideoPlayer.currentTime = 0;
+      filmVideoPlayer.play().catch(() => {});
+    } else if (filmIframe && filmIframe.getAttribute("data-src")) {
       filmIframe.src = filmIframe.getAttribute("data-src");
     }
     if (filmCloseBtn) filmCloseBtn.focus();
@@ -2563,6 +2540,9 @@ function initCampusLife() {
     if (!filmLightbox || filmLightbox.hasAttribute("hidden")) return;
     filmLightbox.setAttribute("hidden", "");
     document.body.style.overflow = "";
+    if (filmVideoPlayer) {
+      filmVideoPlayer.pause();
+    }
     if (filmIframe) {
       filmIframe.src = "";
     }
@@ -2582,6 +2562,39 @@ function initCampusLife() {
   }
   if (filmBackdrop) {
     filmBackdrop.addEventListener("click", closeFilmLightbox);
+  }
+
+  // 3b. Interactive Campus Video Playlist
+  const mainVideoPlayer = document.getElementById("clMainVideoPlayer");
+  const mainVideoBadge = document.getElementById("clMainVideoBadge");
+  const mainVideoTitle = document.getElementById("clMainVideoTitle");
+  const mainVideoDesc = document.getElementById("clMainVideoDesc");
+  const playlistItems = document.querySelectorAll(".cl-playlist-item");
+
+  if (mainVideoPlayer && playlistItems.length > 0) {
+    playlistItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        const videoSrc = item.getAttribute("data-video-src");
+        const posterSrc = item.getAttribute("data-poster");
+        const isUrdu = document.documentElement.getAttribute("dir") === "rtl";
+        const badge = isUrdu ? (item.getAttribute("data-badge-ur") || item.getAttribute("data-badge-en")) : item.getAttribute("data-badge-en");
+        const title = isUrdu ? (item.getAttribute("data-title-ur") || item.getAttribute("data-title-en")) : item.getAttribute("data-title-en");
+        const desc = isUrdu ? (item.getAttribute("data-desc-ur") || item.getAttribute("data-desc-en")) : item.getAttribute("data-desc-en");
+
+        playlistItems.forEach((btn) => btn.classList.remove("is-active"));
+        item.classList.add("is-active");
+
+        if (videoSrc) {
+          mainVideoPlayer.src = videoSrc;
+          if (posterSrc) mainVideoPlayer.poster = posterSrc;
+          mainVideoPlayer.load();
+          mainVideoPlayer.play().catch(() => {});
+        }
+        if (mainVideoBadge && badge) mainVideoBadge.textContent = badge;
+        if (mainVideoTitle && title) mainVideoTitle.textContent = title;
+        if (mainVideoDesc && desc) mainVideoDesc.textContent = desc;
+      });
+    });
   }
 
   // 4. Statement Word Fade-in
@@ -2995,98 +3008,7 @@ function initCampusLife() {
 
 
 
-  // =========================================================================
-  // 7. ARCH GATEWAY ENTRANCE (Plays on every visit to Campus Life)
-  // =========================================================================
-  function initCampusArchGateway() {
-    // Reduced motion: do not play
-    if (reducedMotion.matches) {
-      const existing = document.getElementById("clGatewayOverlay");
-      if (existing) existing.remove();
-      return;
-    }
-
-    let overlay = document.getElementById("clGatewayOverlay");
-    if (!overlay) {
-      overlay = document.createElement("div");
-      overlay.className = "cl-gateway-overlay cl-gateway-drawing";
-      overlay.id = "clGatewayOverlay";
-      overlay.setAttribute("role", "presentation");
-      overlay.setAttribute("aria-hidden", "true");
-      overlay.innerHTML = `
-        <svg class="cl-gateway-arch-svg" viewBox="0 0 240 280" fill="none" aria-hidden="true">
-          <path class="cl-gateway-arch-path" pathLength="1" d="M 20 280 V 110 A 100 100 0 0 1 220 110 V 280" />
-        </svg>
-        <button type="button" class="cl-gateway-skip" id="clGatewaySkip" aria-label="Skip gateway entrance">
-          Skip
-        </button>
-      `;
-      document.body.prepend(overlay);
-    }
-
-    let isDismissed = false;
-    let holdTimeout = null;
-    let finishTimeout = null;
-
-    function dismissGateway() {
-      if (isDismissed) return;
-      isDismissed = true;
-
-      if (holdTimeout) window.clearTimeout(holdTimeout);
-      if (finishTimeout) window.clearTimeout(finishTimeout);
-
-      if (overlay && overlay.parentNode) {
-        overlay.classList.add("cl-gateway-exit");
-        window.setTimeout(() => {
-          if (overlay && overlay.parentNode) {
-            overlay.remove();
-          }
-        }, 600);
-      }
-    }
-
-    // Skip on button click or tapping overlay
-    overlay.addEventListener("click", dismissGateway);
-    const skipBtn = overlay.querySelector(".cl-gateway-skip");
-    if (skipBtn) {
-      skipBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        dismissGateway();
-      });
-    }
-
-    // Sequence (~1.3s total):
-    // Arch draws (0.5s), holds briefly (~0.2s), then scales up 8x & fades out (0.6s)
-    function triggerExit() {
-      if (isDismissed || overlay.classList.contains("cl-gateway-exit")) return;
-      overlay.classList.add("cl-gateway-exit");
-      finishTimeout = window.setTimeout(() => {
-        if (overlay && overlay.parentNode) {
-          overlay.remove();
-        }
-      }, 600);
-    }
-
-    const archPath = overlay.querySelector(".cl-gateway-arch-path");
-    if (archPath) {
-      archPath.addEventListener("animationend", () => {
-        holdTimeout = window.setTimeout(triggerExit, 200);
-      }, { once: true });
-    }
-
-    // Safety fallback at 750ms if animationend is missed
-    holdTimeout = window.setTimeout(triggerExit, 750);
-
-    // Also handle bfcache restore
-    window.addEventListener("pageshow", (e) => {
-      if (e.persisted && overlay && overlay.parentNode) {
-        overlay.remove();
-      }
-    }, { once: true });
-  }
-
-  // Initialize features
-  initCampusArchGateway();
+  // Campus Life is initialized; Gateway intro is handled by page-gateway.js
 }
 
 

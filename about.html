@@ -1,22 +1,58 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="light">
+<html lang="en" dir="ltr" data-theme="light" data-gateway="about">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>About Us — Hadi Education System (HES)</title>
   <meta name="description"
     content="Discover our history since 2017, our vision, mission, leadership, and dedicated faculty in Balkasar, Chakwal.">
-  <link rel="stylesheet" href="assets/css/main.css?v=102">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=110">
+  <link rel="stylesheet" href="assets/css/main.css?v=113">
+
+  <!-- Page Gateway Active Decider (runs before first paint) -->
+  <script>
+    (function () {
+      try {
+        sessionStorage.clear();
+        var r = document.documentElement;
+        var p = new URLSearchParams(window.location.search);
+        if (p.get('gateway') === 'off') return;
+        r.classList.add('gw-active');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body class="page-about">
+  <!-- Page Gateway Intro Overlay (About Variant) -->
+  <div class="gw-overlay" id="gwOverlay" role="presentation" aria-hidden="true">
+    <div class="gw-stage">
+      <svg class="gw-arch-svg" viewBox="0 0 240 300" fill="none" aria-hidden="true">
+        <line class="gw-baseline" x1="0" y1="280" x2="240" y2="280" />
+        <path class="gw-arch-path" pathLength="1" d="M20 280 V120 A100 100 0 0 1 220 120 V280" />
+        <g class="gw-inner-drawing">
+          <path class="gw-draw-item" style="--gw-stagger:0ms" pathLength="1" d="M120 176 C102 162 76 160 56 168 V226 C76 218 102 220 120 234 Z" />
+          <path class="gw-draw-item" style="--gw-stagger:80ms" pathLength="1" d="M120 176 C138 162 164 160 184 168 V226 C164 218 138 220 120 234 Z" />
+        </g>
+      </svg>
+      <span class="gw-label">ABOUT US</span>
+    </div>
+    <button type="button" class="gw-skip" id="gwSkip" aria-label="Skip intro">Skip</button>
+  </div>
+
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
   <!-- Navbar -->
   <header class="navbar">
     <div class="container navbar-inner">
-      <a href="index.html" class="brand-logo">
+      <a href="index.html?v=2027" class="brand-logo">
         <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
         <div class="brand-title-wrap">
           <span class="brand-name">HADI EDUCATION</span>
@@ -25,23 +61,23 @@
       </a>
 
       <nav class="nav-links">
-        <a href="index.html" class="nav-link" data-en="Home" data-ur="صفحہ اول">Home</a>
-        <a href="about.html" class="nav-link active" data-en="About Us" data-ur="تعارف">About Us</a>
-        <a href="academics.html" class="nav-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
-        <a href="campus-life.html" class="nav-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
-        <a href="admission.html" class="nav-link" data-en="Admission" data-ur="داخلہ">Admission</a>
-        <a href="contact.html" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+        <a href="index.html?v=2027" class="nav-link" data-en="Home" data-ur="صفحہ اول">Home</a>
+        <a href="about.html?v=2027" class="nav-link active" data-en="About Us" data-ur="تعارف">About Us</a>
+        <a href="academics.html?v=2027" class="nav-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
+        <a href="campus-life.html?v=2027" class="nav-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+        <a href="admission.html?v=2027" class="nav-link" data-en="Admission" data-ur="داخلہ">Admission</a>
+        <a href="contact.html?v=2027" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
       </nav>
 
       <div class="header-actions">
         <!-- Admissions Status Pill Badge -->
-        <a href="admission.html" class="nav-status-badge" aria-label="Admissions Status">
+        <a href="admission.html?v=2027" class="nav-status-badge" aria-label="Admissions Status">
           <span class="nav-pulse-dot" aria-hidden="true"></span>
           <span data-en="Admissions Open" data-ur="داخلے جاری ہیں">Admissions Open</span>
         </a>
 
         <!-- Apply CTA -->
-        <a href="admission.html" class="btn header-cta" data-en="Apply Now →" data-ur="آن لائن داخلہ لیں →">
+        <a href="admission.html?v=2027" class="btn header-cta" data-en="Apply Now →" data-ur="آن لائن داخلہ لیں →">
           Apply Now <span class="cta-arrow" aria-hidden="true">→</span>
         </a>
 
@@ -64,38 +100,94 @@
       <button class="drawer-close">&times;</button>
     </div>
     <div class="drawer-links">
-      <a href="index.html" class="drawer-link" data-en="Home" data-ur="صفحہ اول">Home</a>
-      <a href="about.html" class="drawer-link active" data-en="About Us" data-ur="تعارف">About Us</a>
-      <a href="academics.html" class="drawer-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
-      <a href="campus-life.html" class="drawer-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
-      <a href="admission.html" class="drawer-link" data-en="Admission" data-ur="داخلہ">Admission</a>
-      <a href="contact.html" class="drawer-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+      <a href="index.html?v=2027" class="drawer-link" data-en="Home" data-ur="صفحہ اول">Home</a>
+      <a href="about.html?v=2027" class="drawer-link active" data-en="About Us" data-ur="تعارف">About Us</a>
+      <a href="academics.html?v=2027" class="drawer-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
+      <a href="campus-life.html?v=2027" class="drawer-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+      <a href="admission.html?v=2027" class="drawer-link" data-en="Admission" data-ur="داخلہ">Admission</a>
+      <a href="contact.html?v=2027" class="drawer-link" data-en="Contact" data-ur="رابطہ">Contact</a>
     </div>
-    <a href="admission.html" class="btn btn-gold" style="width: 100%; text-align: center;" data-en="Apply for Admission"
+    <a href="admission.html?v=2027" class="btn btn-gold" style="width: 100%; text-align: center;" data-en="Apply for Admission"
       data-ur="داخلہ فارم">
       Apply for Admission
     </a>
+    <div class="drawer-footer">
+      <p class="drawer-copyright" data-en="&copy; 2026 Hadi Education System. All rights reserved." data-ur="© 2026 ہادی ایجوکیشن سسٹم۔ جملہ حقوق محفوظ ہیں۔">
+        &copy; 2026 Hadi Education System. All rights reserved.
+      </p>
+    </div>
   </aside>
 
   <!-- Main Content -->
   <main id="main-content">
-    <!-- PAGE HERO -->
-    <section class="hero page-about-hero">
-      <div class="container hero-content">
-        <span class="section-tag" data-en="Our Story &amp; Leadership" data-ur="ہماری تاریخ و قیادت">Our Story &amp;
-          Leadership</span>
-        <h1 class="hero-title" data-en="Quran and Modern Education, Together"
-          data-ur="دینی و دنیاوی تربیت کا <span class='gold-gradient-text'>روشن مرکز</span>">
-          Quran and Modern Education, Together <span class="gold-gradient-text">Souls</span>
-        </h1>
-        <p class="hero-subtitle"
-          data-en="Established in 2017 in Balkasar, District Chakwal, Hadi Education System provides balanced education—uniting sacred Quranic teachings with strong modern academics."
-          data-ur="2017 میں بلکسر، ضلع چکوال میں قائم ہادی ایجوکیشن سسٹم قرآنی تعلیمات اور معیاری عصری تعلیم کا امتزاج فراہم کرتا ہے۔">
-          Established in 2017 in Balkasar, District Chakwal, Hadi Education System provides balanced education—uniting
-          sacred Quranic teachings with strong modern academics.
-        </p>
+    <!-- =========================================================================
+         PAGE HERO (Full-bleed, 100svh, unified rhythm with Campus Life)
+         ========================================================================= -->
+    <section class="cl-hero page-hero" id="about-hero" aria-label="About Hadi Education System">
+      <!-- Background Image -->
+      <div class="cl-hero-bg-wrap" aria-hidden="true">
+        <img src="assets/images/student-exam-mirrored.jpg" alt="Hadi Education System Students" class="cl-hero-fallback-img">
+      </div>
+
+      <!-- Overlays (Navy Tint & Left-to-Right Reading Gradient) -->
+      <div class="cl-hero-tint" aria-hidden="true"></div>
+      <div class="cl-hero-gradient" aria-hidden="true"></div>
+
+      <!-- Hero Main Content -->
+      <div class="container cl-hero-container">
+        <!-- Left: Text Block -->
+        <div class="cl-hero-text">
+          <span class="cl-hero-tag cl-fade-elem" data-en="OUR STORY &amp; LEADERSHIP" data-ur="ہماری تاریخ و قیادت">OUR STORY &amp; LEADERSHIP</span>
+          <h1 class="cl-hero-title cl-fade-elem">
+            <span class="cl-hero-title-solid" data-en="About" data-ur="ہمارا">About</span>
+            <span class="cl-hero-title-outline" data-en="Us" data-ur="تعارف">Us</span>
+          </h1>
+          <p class="cl-hero-desc cl-fade-elem"
+            data-en="Established in 2017 in Balkasar, District Chakwal, Hadi Education System provides balanced education—uniting sacred Quranic teachings with strong modern academics."
+            data-ur="2017 میں بلکسر، ضلع چکوال میں قائم ہادی ایجوکیشن سسٹم قرآنی تعلیمات اور معیاری عصری تعلیم کا امتزاج فراہم کرتا ہے۔">
+            Established in 2017 in Balkasar, District Chakwal, Hadi Education System provides balanced education—uniting sacred Quranic teachings with strong modern academics.
+          </p>
+          <div class="cl-hero-actions cl-fade-elem">
+            <a href="#mission-vision" class="btn cl-btn-white" data-en="Our Vision &amp; Mission" data-ur="ہمارا وژن و مشن">
+              Our Vision &amp; Mission
+            </a>
+            <a href="#leadership" class="btn cl-btn-outline" data-en="Meet Leadership" data-ur="ہماری قیادت">
+              Meet Leadership
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Concentric Arches Decoration & Page Emblem Badge -->
+        <div class="cl-hero-visual cl-fade-elem">
+          <div class="cl-hero-arches-wrap">
+            <svg class="cl-hero-arches-svg" viewBox="0 0 360 440" fill="none" aria-hidden="true">
+              <!-- Outer arch: 36% opacity -->
+              <path d="M 20 440 V 180 A 160 160 0 0 1 340 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.36" vector-effect="non-scaling-stroke" />
+              <!-- Middle arch: 22% opacity -->
+              <path d="M 60 440 V 180 A 120 120 0 0 1 300 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.22" vector-effect="non-scaling-stroke" />
+              <!-- Inner arch: 12% opacity -->
+              <path d="M 100 440 V 180 A 80 80 0 0 1 260 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.12" vector-effect="non-scaling-stroke" />
+            </svg>
+
+            <!-- 88px Center Circular Badge -->
+            <a href="#mission-vision" class="cl-hero-play-circle" aria-label="Explore Our Vision and Mission" title="Explore Our Vision and Mission">
+              <svg viewBox="50 155 140 85" width="42" height="42" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M120 176 C102 162 76 160 56 168 V226 C76 218 102 220 120 234 Z" />
+                <path d="M120 176 C138 162 164 160 184 168 V226 C164 218 138 220 120 234 Z" />
+                <path d="M120 176 V234" />
+              </svg>
+            </a>
+
+            <!-- Caption inside arches -->
+            <span class="cl-hero-arch-caption" data-en="EST. 2017 • FAITH &amp; LEARNING • BALKASAR" data-ur="قائم شدہ 2017 • علم و ایمان • بلکسر">EST. 2017 • FAITH &amp; LEARNING • BALKASAR</span>
+          </div>
+        </div>
       </div>
     </section>
+
 
     <!-- OUR MISSION & VISION -->
     <section class="section mv-section" id="mission-vision" aria-label="Our Vision and Mission">
@@ -572,7 +664,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="brand-logo" aria-label="Hadi Education System Home">
+          <a href="index.html?v=2027" class="brand-logo" aria-label="Hadi Education System Home">
             <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
             <div class="brand-title-wrap">
               <span class="brand-name">HADI EDUCATION</span>
@@ -598,12 +690,12 @@
         <div>
           <h4>Quick Links</h4>
           <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="academics.html">Curriculum &amp; Hifz</a>
-            <a href="campus-life.html">Campus Life</a>
-            <a href="admission.html">Admissions 2026</a>
-            <a href="contact.html">Contact Administration</a>
+            <a href="index.html?v=2027">Home</a>
+            <a href="about.html?v=2027">About Us</a>
+            <a href="academics.html?v=2027">Curriculum &amp; Hifz</a>
+            <a href="campus-life.html?v=2027">Campus Life</a>
+            <a href="admission.html?v=2027">Admissions 2026</a>
+            <a href="contact.html?v=2027">Contact Administration</a>
           </div>
         </div>
 
@@ -645,8 +737,9 @@
     </div>
   </div>
 
-  <script src="assets/js/siteContent.js"></script>
-  <script src="assets/js/app.js?v=33"></script>
+  <script src="assets/js/siteContent.js?v=37"></script>
+  <script src="assets/js/page-gateway.js?v=110"></script>
+  <script src="assets/js/app.js?v=37"></script>
 </body>
 
 </html>

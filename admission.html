@@ -1,22 +1,60 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="light">
+<html lang="en" dir="ltr" data-theme="light" data-gateway="admission">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>Admissions 2026–2027 — Hadi Education System (HES)</title>
   <meta name="description"
     content="Apply for admission at Hadi Education System, Chakwal. Step-by-step admission process, FAQs, and online application form.">
-  <link rel="stylesheet" href="assets/css/main.css?v=102">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=110">
+  <link rel="stylesheet" href="assets/css/main.css?v=113">
+
+  <!-- Page Gateway Active Decider (runs before first paint) -->
+  <script>
+    (function () {
+      try {
+        sessionStorage.clear();
+        var r = document.documentElement;
+        var p = new URLSearchParams(window.location.search);
+        if (p.get('gateway') === 'off') return;
+        r.classList.add('gw-active');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body class="page-admission">
+  <!-- Page Gateway Intro Overlay (Admission Variant) -->
+  <div class="gw-overlay" id="gwOverlay" role="presentation" aria-hidden="true">
+    <div class="gw-stage">
+      <svg class="gw-arch-svg" viewBox="0 0 240 300" fill="none" aria-hidden="true">
+        <line class="gw-baseline" x1="0" y1="280" x2="240" y2="280" />
+        <path class="gw-arch-path" pathLength="1" d="M20 280 V120 A100 100 0 0 1 220 120 V280" />
+        <g class="gw-inner-drawing">
+          <path class="gw-draw-item" style="--gw-stagger:0ms" pathLength="1" d="M90 280 V192 A30 30 0 0 1 150 192 V280" />
+          <path class="gw-draw-item" style="--gw-stagger:80ms" pathLength="1" d="M150 280 L128 272 V198 L150 192" />
+          <path class="gw-draw-item" style="--gw-stagger:160ms" pathLength="1" d="M76 280 H164" />
+          <path class="gw-draw-item" style="--gw-stagger:240ms" pathLength="1" d="M66 292 H174" />
+        </g>
+      </svg>
+      <span class="gw-label">ADMISSION</span>
+    </div>
+    <button type="button" class="gw-skip" id="gwSkip" aria-label="Skip intro">Skip</button>
+  </div>
+
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
   <!-- Navbar -->
   <header class="navbar">
     <div class="container navbar-inner">
-      <a href="index.html" class="brand-logo">
+      <a href="index.html?v=2027" class="brand-logo">
         <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
         <div class="brand-title-wrap">
           <span class="brand-name">HADI EDUCATION</span>
@@ -25,12 +63,12 @@
       </a>
 
       <nav class="nav-links">
-        <a href="index.html" class="nav-link" data-en="Home" data-ur="صفحہ اول">Home</a>
-        <a href="about.html" class="nav-link" data-en="About Us" data-ur="تعارف">About Us</a>
-        <a href="academics.html" class="nav-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
-        <a href="campus-life.html" class="nav-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
-        <a href="admission.html" class="nav-link active" data-en="Admission" data-ur="داخلہ">Admission</a>
-        <a href="contact.html" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+        <a href="index.html?v=2027" class="nav-link" data-en="Home" data-ur="صفحہ اول">Home</a>
+        <a href="about.html?v=2027" class="nav-link" data-en="About Us" data-ur="تعارف">About Us</a>
+        <a href="academics.html?v=2027" class="nav-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
+        <a href="campus-life.html?v=2027" class="nav-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+        <a href="admission.html?v=2027" class="nav-link active" data-en="Admission" data-ur="داخلہ">Admission</a>
+        <a href="contact.html?v=2027" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
       </nav>
 
       <div class="header-actions">
@@ -64,43 +102,92 @@
       <button class="drawer-close">&times;</button>
     </div>
     <div class="drawer-links">
-      <a href="index.html" class="drawer-link" data-en="Home" data-ur="صفحہ اول">Home</a>
-      <a href="about.html" class="drawer-link" data-en="About Us" data-ur="تعارف">About Us</a>
-      <a href="academics.html" class="drawer-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
-      <a href="campus-life.html" class="drawer-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
-      <a href="admission.html" class="drawer-link active" data-en="Admission" data-ur="داخلہ">Admission</a>
-      <a href="contact.html" class="drawer-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+      <a href="index.html?v=2027" class="drawer-link" data-en="Home" data-ur="صفحہ اول">Home</a>
+      <a href="about.html?v=2027" class="drawer-link" data-en="About Us" data-ur="تعارف">About Us</a>
+      <a href="academics.html?v=2027" class="drawer-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
+      <a href="campus-life.html?v=2027" class="drawer-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+      <a href="admission.html?v=2027" class="drawer-link active" data-en="Admission" data-ur="داخلہ">Admission</a>
+      <a href="contact.html?v=2027" class="drawer-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+    </div>
+    <div class="drawer-footer">
+      <p class="drawer-copyright" data-en="&copy; 2026 Hadi Education System. All rights reserved." data-ur="© 2026 ہادی ایجوکیشن سسٹم۔ جملہ حقوق محفوظ ہیں۔">
+        &copy; 2026 Hadi Education System. All rights reserved.
+      </p>
     </div>
   </aside>
 
   <!-- Main Content -->
   <main id="main-content">
 
-    <!-- PAGE HERO -->
-    <section class="hero">
-      <div class="container hero-content">
-        <h1 class="hero-title" data-en="Start Your Child’s Journey in Faith and Learning"
-          data-ur="اپنے بچے کے روشن مستقبل کا آغاز <span class='gold-gradient-text'>آج ہی کریں</span>">
-          Start Your Child’s Journey in Faith and Learning
-        </h1>
-        <p class="hero-subtitle"
-          data-en="We welcome students from Playgroup to Grade 10 and Hifz candidates. Review our clear admission steps and apply online below."
-          data-ur="پلے گروپ تا کلاس 10 اور شعبہ حفظ کے لیے داخلے جاری ہیں۔ آسان اور شفاف طریقہ کار کے ساتھ آن لائن درخواست دیں۔">
-          We welcome students from Playgroup to Grade 10 and Hifz candidates. Review our clear admission steps and apply
-          online below.
-        </p>
-        <div class="hero-actions">
-          <a href="#application-form" class="btn btn-navy" style="background: var(--navy, #14213D); color: #FFFFFF; border: 1.5px solid var(--navy, #14213D); font-weight: 600;" data-en="Fill Online Admission Form"
-            data-ur="آن لائن داخلہ فارم پر کریں">
-            Fill Online Admission Form <span>↓</span>
-          </a>
-          <a href="contact.html" class="btn btn-outline-navy" style="background: transparent; color: var(--navy, #14213D); border: 1.5px solid var(--navy, #14213D); font-weight: 600;" data-en="Contact Admissions Desk"
-            data-ur="داخلہ دفتر سے رابطہ">
-            Contact Admissions Desk
-          </a>
+    <!-- =========================================================================
+         PAGE HERO (Full-bleed, 100svh, unified rhythm with Campus Life)
+         ========================================================================= -->
+    <section class="cl-hero page-hero" id="admission-hero" aria-label="Student Admission at Hadi Education System">
+      <!-- Background Image -->
+      <div class="cl-hero-bg-wrap" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=80" alt="HES Students in Classroom" class="cl-hero-fallback-img">
+      </div>
+
+      <!-- Overlays (Navy Tint & Left-to-Right Reading Gradient) -->
+      <div class="cl-hero-tint" aria-hidden="true"></div>
+      <div class="cl-hero-gradient" aria-hidden="true"></div>
+
+      <!-- Hero Main Content -->
+      <div class="container cl-hero-container">
+        <!-- Left: Text Block -->
+        <div class="cl-hero-text">
+          <span class="cl-hero-tag cl-fade-elem" data-en="ENROLLMENT 2026–2027" data-ur="داخلہ 2026-2027">ENROLLMENT 2026–2027</span>
+          <h1 class="cl-hero-title cl-fade-elem">
+            <span class="cl-hero-title-solid" data-en="Student" data-ur="داخلہ">Student</span>
+            <span class="cl-hero-title-outline" data-en="Admission" data-ur="کا آغاز">Admission</span>
+          </h1>
+          <p class="cl-hero-desc cl-fade-elem"
+            data-en="We welcome students from Playgroup to Grade 10 and dedicated Hifz candidates. Review our clear admission steps and apply online below."
+            data-ur="پلے گروپ تا کلاس 10 اور شعبہ حفظ کے لیے داخلے جاری ہیں۔ آسان اور شفاف طریقہ کار کے ساتھ آن لائن درخواست دیں۔">
+            We welcome students from Playgroup to Grade 10 and dedicated Hifz candidates. Review our clear admission steps and apply online below.
+          </p>
+          <div class="cl-hero-actions cl-fade-elem">
+            <a href="#application-form" class="btn cl-btn-white" data-en="Fill Online Form" data-ur="آن لائن فارم پر کریں">
+              Fill Online Form
+            </a>
+            <a href="#admission-roadmap" class="btn cl-btn-outline" data-en="Admission Roadmap" data-ur="مرحلہ وار راستہ">
+              Admission Roadmap
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Concentric Arches Decoration & Page Emblem Badge -->
+        <div class="cl-hero-visual cl-fade-elem">
+          <div class="cl-hero-arches-wrap">
+            <svg class="cl-hero-arches-svg" viewBox="0 0 360 440" fill="none" aria-hidden="true">
+              <!-- Outer arch: 36% opacity -->
+              <path d="M 20 440 V 180 A 160 160 0 0 1 340 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.36" vector-effect="non-scaling-stroke" />
+              <!-- Middle arch: 22% opacity -->
+              <path d="M 60 440 V 180 A 120 120 0 0 1 300 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.22" vector-effect="non-scaling-stroke" />
+              <!-- Inner arch: 12% opacity -->
+              <path d="M 100 440 V 180 A 80 80 0 0 1 260 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.12" vector-effect="non-scaling-stroke" />
+            </svg>
+
+            <!-- 88px Center Circular Badge -->
+            <a href="#application-form" class="cl-hero-play-circle" aria-label="Jump to Admission Application Form" title="Jump to Admission Application Form">
+              <svg viewBox="34 130 172 98" width="44" height="42" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M70 210 V140 A50 50 0 0 1 170 140 V210" />
+                <path d="M170 210 L140 200 V148 L170 140" />
+                <path d="M50 210 H190" />
+                <path d="M38 222 H202" />
+              </svg>
+            </a>
+
+            <!-- Caption inside arches -->
+            <span class="cl-hero-arch-caption" data-en="MERIT &amp; HIFZ • SESSION 2026-27 • APPLY NOW" data-ur="حفظ و میرٹ • سال 2026-27 • ابھی داخلہ لیں">MERIT &amp; HIFZ • SESSION 2026-27 • APPLY NOW</span>
+          </div>
         </div>
       </div>
     </section>
+
 
     <!-- ADMISSION ROADMAP SECTION -->
     <section class="section admission-roadmap-section" id="admission-roadmap" aria-label="Admission Roadmap">
@@ -579,7 +666,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="brand-logo" aria-label="Hadi Education System Home">
+          <a href="index.html?v=2027" class="brand-logo" aria-label="Hadi Education System Home">
             <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
             <div class="brand-title-wrap">
               <span class="brand-name">HADI EDUCATION</span>
@@ -593,12 +680,12 @@
         <div>
           <h4>Quick Links</h4>
           <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="academics.html">Curriculum &amp; Hifz</a>
-            <a href="campus-life.html">Campus Life</a>
-            <a href="admission.html">Admissions 2026</a>
-            <a href="contact.html">Contact Administration</a>
+            <a href="index.html?v=2027">Home</a>
+            <a href="about.html?v=2027">About Us</a>
+            <a href="academics.html?v=2027">Curriculum &amp; Hifz</a>
+            <a href="campus-life.html?v=2027">Campus Life</a>
+            <a href="admission.html?v=2027">Admissions 2026</a>
+            <a href="contact.html?v=2027">Contact Administration</a>
           </div>
         </div>
 
@@ -639,8 +726,9 @@
     </div>
   </div>
 
-  <script src="assets/js/siteContent.js"></script>
-  <script src="assets/js/app.js?v=33"></script>
+  <script src="assets/js/siteContent.js?v=37"></script>
+  <script src="assets/js/page-gateway.js?v=110"></script>
+  <script src="assets/js/app.js?v=37"></script>
 </body>
 
 </html>

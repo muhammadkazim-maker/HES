@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="light">
+<html lang="en" dir="ltr" data-theme="light" data-gateway="home">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>Hadi Education System — Where the Quran Meets Modern Excellence</title>
   <meta name="description"
     content="Hadi Education System (HES) in Balkasar, Chakwal offers a unique synthesis of Holy Quran education (Tajweed, Hifz, Tafseer) and international-standard modern academics.">
@@ -18,8 +22,25 @@
     content="Synthesizing Holy Quran education with international-standard modern sciences and academics in Chakwal, Pakistan.">
   <meta property="og:url" content="https://www.hes.com.pk/">
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/main.css?v=102">
+  <!-- Preload Home Gateway Logo -->
+  <link rel="preload" as="image" href="assets/images/hadi-education-logo.jpg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=110">
+  <link rel="stylesheet" href="assets/css/main.css?v=115">
+
+  <!-- Page Gateway Active Decider (runs before first paint) -->
+  <script>
+    (function () {
+      try {
+        sessionStorage.clear();
+        var r = document.documentElement;
+        var p = new URLSearchParams(window.location.search);
+        if (p.get('gateway') === 'off') return;
+        r.classList.add('gw-active');
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Schema.org EducationalOrganization -->
   <script type="application/ld+json">
@@ -44,6 +65,23 @@
 </head>
 
 <body class="page-home">
+  <!-- Page Gateway Intro Overlay (Home Variant) -->
+  <div class="gw-overlay" id="gwOverlay" role="presentation" aria-hidden="true">
+    <div class="gw-stage gw-stage--home">
+      <div class="gw-home-visual">
+        <svg class="gw-arch-svg gw-arch-svg--home" viewBox="0 0 300 360" fill="none" aria-hidden="true">
+          <line class="gw-baseline" x1="0" y1="340" x2="300" y2="340" />
+          <path class="gw-arch-path gw-arch-path--home" pathLength="1" d="M25 340 V150 A125 125 0 0 1 275 150 V340" />
+        </svg>
+        <div class="gw-home-logo">
+          <img src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System" class="gw-home-logo-img" width="150" height="150">
+        </div>
+      </div>
+      <span class="gw-home-wordmark">HADI EDUCATION SYSTEM</span>
+    </div>
+    <button type="button" class="gw-skip" id="gwSkip" aria-label="Skip intro">Skip</button>
+  </div>
+
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
 
@@ -52,7 +90,7 @@
   <header class="navbar">
     <div class="container navbar-inner">
       <!-- Brand Logo -->
-      <a href="index.html" class="brand-logo" aria-label="Hadi Education System Home">
+      <a href="index.html?v=2027" class="brand-logo" aria-label="Hadi Education System Home">
         <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
         <div class="brand-title-wrap">
           <span class="brand-name">HADI EDUCATION</span>
@@ -62,24 +100,24 @@
 
       <!-- Desktop Nav Links -->
       <nav class="nav-links" aria-label="Main Navigation">
-        <a href="index.html" class="nav-link active" data-en="Home" data-ur="صفحہ اول">Home</a>
-        <a href="about.html" class="nav-link" data-en="About Us" data-ur="تعارف">About Us</a>
-        <a href="academics.html" class="nav-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
-        <a href="campus-life.html" class="nav-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
-        <a href="admission.html" class="nav-link" data-en="Admission" data-ur="داخلہ">Admission</a>
-        <a href="contact.html" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+        <a href="index.html?v=2027" class="nav-link active" data-en="Home" data-ur="صفحہ اول">Home</a>
+        <a href="about.html?v=2027" class="nav-link" data-en="About Us" data-ur="تعارف">About Us</a>
+        <a href="academics.html?v=2027" class="nav-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
+        <a href="campus-life.html?v=2027" class="nav-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+        <a href="admission.html?v=2027" class="nav-link" data-en="Admission" data-ur="داخلہ">Admission</a>
+        <a href="contact.html?v=2027" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
       </nav>
 
       <!-- Action Controls -->
       <div class="header-actions">
         <!-- Admissions Status Pill Badge -->
-        <a href="admission.html" class="nav-status-badge" aria-label="Admissions Status">
+        <a href="admission.html?v=2027" class="nav-status-badge" aria-label="Admissions Status">
           <span class="nav-pulse-dot" aria-hidden="true"></span>
           <span data-en="Admissions Open" data-ur="داخلے جاری ہیں">Admissions Open</span>
         </a>
 
         <!-- Apply CTA -->
-        <a href="admission.html" class="btn header-cta" data-en="Apply Now →" data-ur="آن لائن داخلہ لیں →">
+        <a href="admission.html?v=2027" class="btn header-cta" data-en="Apply Now →" data-ur="آن لائن داخلہ لیں →">
           Apply Now <span class="cta-arrow" aria-hidden="true">→</span>
         </a>
 
@@ -105,17 +143,22 @@
       <button class="drawer-close" aria-label="Close Navigation Menu">&times;</button>
     </div>
     <div class="drawer-links">
-      <a href="index.html" class="drawer-link active" data-en="Home" data-ur="صفحہ اول">Home</a>
-      <a href="about.html" class="drawer-link" data-en="About Us" data-ur="تعارف">About Us</a>
-      <a href="academics.html" class="drawer-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
-      <a href="campus-life.html" class="drawer-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
-      <a href="admission.html" class="drawer-link" data-en="Admission" data-ur="داخلہ">Admission</a>
-      <a href="contact.html" class="drawer-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+      <a href="index.html?v=2027" class="drawer-link active" data-en="Home" data-ur="صفحہ اول">Home</a>
+      <a href="about.html?v=2027" class="drawer-link" data-en="About Us" data-ur="تعارف">About Us</a>
+      <a href="academics.html?v=2027" class="drawer-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
+      <a href="campus-life.html?v=2027" class="drawer-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+      <a href="admission.html?v=2027" class="drawer-link" data-en="Admission" data-ur="داخلہ">Admission</a>
+      <a href="contact.html?v=2027" class="drawer-link" data-en="Contact" data-ur="رابطہ">Contact</a>
     </div>
-    <a href="admission.html" class="btn btn-gold" style="width: 100%; text-align: center;" data-en="Apply for Admission"
+    <a href="admission.html?v=2027" class="btn btn-gold" style="width: 100%; text-align: center;" data-en="Apply for Admission"
       data-ur="داخلہ فارم">
       Apply for Admission
     </a>
+    <div class="drawer-footer">
+      <p class="drawer-copyright" data-en="&copy; 2026 Hadi Education System. All rights reserved." data-ur="© 2026 ہادی ایجوکیشن سسٹم۔ جملہ حقوق محفوظ ہیں۔">
+        &copy; 2026 Hadi Education System. All rights reserved.
+      </p>
+    </div>
   </aside>
 
   <!-- Main Content -->
@@ -139,12 +182,12 @@
         </p>
 
         <div class="hero-actions">
-          <a href="admission.html" class="btn btn-gold" data-en="Apply for Admission" data-ur="آن لائن داخلہ لیں">
+          <a href="admission.html?v=2027" class="btn btn-gold" data-en="Apply for Admission" data-ur="آن لائن داخلہ لیں">
             Apply for Admission <span>→</span>
           </a>
-          <a href="#about-preview" class="btn btn-outline-emerald" data-en="Explore Campus"
+          <a href="campus-life.html?v=2027" class="btn btn-outline-emerald" data-en="Explore Campus"
             data-ur="کیمپس کے بارے میں جانیں">
-            Explore Campus <span>↓</span>
+            Explore Campus <span>→</span>
           </a>
         </div>
 
@@ -401,7 +444,7 @@
       <div class="footer-grid">
         <!-- Col 1: Brand Info -->
         <div class="footer-brand">
-          <a href="index.html" class="brand-logo" aria-label="Hadi Education System Home">
+          <a href="index.html?v=2027" class="brand-logo" aria-label="Hadi Education System Home">
             <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
             <div class="brand-title-wrap">
               <span class="brand-name">HADI EDUCATION</span>
@@ -431,13 +474,13 @@
         <div>
           <h4 data-en="Quick Links" data-ur="اہم روابط">Quick Links</h4>
           <div class="footer-links">
-            <a href="index.html" data-en="Home" data-ur="صفحہ اول">Home</a>
-            <a href="about.html" data-en="About Us" data-ur="ہمارے بارے میں">About Us</a>
-            <a href="academics.html" data-en="Curriculum &amp; Hifz" data-ur="تعلیمی نصاب و حفظ">Curriculum &amp;
+            <a href="index.html?v=2027" data-en="Home" data-ur="صفحہ اول">Home</a>
+            <a href="about.html?v=2027" data-en="About Us" data-ur="ہمارے بارے میں">About Us</a>
+            <a href="academics.html?v=2027" data-en="Curriculum &amp; Hifz" data-ur="تعلیمی نصاب و حفظ">Curriculum &amp;
               Hifz</a>
-            <a href="campus-life.html" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
-            <a href="admission.html" data-en="Admissions 2026" data-ur="داخلہ 2026">Admissions 2026</a>
-            <a href="contact.html" data-en="Contact Administration" data-ur="رابطہ">Contact Administration</a>
+            <a href="campus-life.html?v=2027" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+            <a href="admission.html?v=2027" data-en="Admissions 2026" data-ur="داخلہ 2026">Admissions 2026</a>
+            <a href="contact.html?v=2027" data-en="Contact Administration" data-ur="رابطہ">Contact Administration</a>
           </div>
         </div>
 
@@ -520,8 +563,9 @@
   </div>
 
   <!-- JavaScript Modules -->
-  <script src="assets/js/siteContent.js"></script>
-  <script src="assets/js/app.js?v=33"></script>
+  <script src="assets/js/siteContent.js?v=37"></script>
+  <script src="assets/js/page-gateway.js?v=110"></script>
+  <script src="assets/js/app.js?v=38"></script>
 </body>
 
 </html>

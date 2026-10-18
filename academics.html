@@ -1,22 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="light">
+<html lang="en" dir="ltr" data-theme="light" data-gateway="academics">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>Academics &amp; Quranic Curriculum — Hadi Education System (HES)</title>
   <meta name="description"
     content="Explore our dual-track academic program: authentic Holy Quran education (Nazra, Tajweed, Hifz, Tafseer) alongside international-standard modern sciences.">
-  <link rel="stylesheet" href="assets/css/main.css?v=102">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=110">
+  <link rel="stylesheet" href="assets/css/main.css?v=113">
+
+  <!-- Page Gateway Active Decider (runs before first paint) -->
+  <script>
+    (function () {
+      try {
+        sessionStorage.clear();
+        var r = document.documentElement;
+        var p = new URLSearchParams(window.location.search);
+        if (p.get('gateway') === 'off') return;
+        r.classList.add('gw-active');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body class="page-academics">
+  <!-- Page Gateway Intro Overlay (Academics Variant) -->
+  <div class="gw-overlay" id="gwOverlay" role="presentation" aria-hidden="true">
+    <div class="gw-stage">
+      <svg class="gw-arch-svg" viewBox="0 0 240 300" fill="none" aria-hidden="true">
+        <line class="gw-baseline" x1="0" y1="280" x2="240" y2="280" />
+        <path class="gw-arch-path" pathLength="1" d="M20 280 V120 A100 100 0 0 1 220 120 V280" />
+        <g class="gw-inner-drawing">
+          <!-- Sculpted Fountain Pen Nib Body (Al-Qalam) -->
+          <path class="gw-draw-item" style="--gw-stagger:0ms" pathLength="1" d="M 120 110 C 114 132, 94 158, 88 180 C 82 198, 96 210, 102 220 C 107 228, 98 238, 94 246 H 146 C 142 238, 133 228, 138 220 C 144 210, 158 198, 152 180 C 146 158, 126 132, 120 110 Z" />
+          <!-- Central Capillary Slit -->
+          <path class="gw-draw-item" style="--gw-stagger:80ms" pathLength="1" d="M 120 110 V 182" />
+          <!-- Breather Hole -->
+          <path class="gw-draw-item" style="--gw-stagger:160ms" pathLength="1" d="M 120 182 A 5.5 5.5 0 1 1 119.99 182 Z" />
+          <!-- Inner Engraving Filigree (Left & Right Flourish) -->
+          <path class="gw-draw-item" style="--gw-stagger:240ms; stroke-opacity: 0.50;" pathLength="1" d="M 115 142 C 106 160, 97 174, 97 186 C 97 198, 107 208, 107 224" />
+          <path class="gw-draw-item" style="--gw-stagger:240ms; stroke-opacity: 0.50;" pathLength="1" d="M 125 142 C 134 160, 143 174, 143 186 C 143 198, 133 208, 133 224" />
+          <!-- Pen Collar Grip Bands -->
+          <path class="gw-draw-item" style="--gw-stagger:320ms" pathLength="1" d="M 82 254 H 158" />
+          <path class="gw-draw-item" style="--gw-stagger:320ms; stroke-opacity: 0.50;" pathLength="1" d="M 88 262 H 152" />
+        </g>
+      </svg>
+      <span class="gw-label">ACADEMICS</span>
+    </div>
+    <button type="button" class="gw-skip" id="gwSkip" aria-label="Skip intro">Skip</button>
+  </div>
+
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
   <!-- Navbar -->
   <header class="navbar">
     <div class="container navbar-inner">
-      <a href="index.html" class="brand-logo">
+      <a href="index.html?v=2027" class="brand-logo">
         <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
         <div class="brand-title-wrap">
           <span class="brand-name">HADI EDUCATION</span>
@@ -25,23 +71,23 @@
       </a>
 
       <nav class="nav-links">
-        <a href="index.html" class="nav-link" data-en="Home" data-ur="صفحہ اول">Home</a>
-        <a href="about.html" class="nav-link" data-en="About Us" data-ur="تعارف">About Us</a>
-        <a href="academics.html" class="nav-link active" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
-        <a href="campus-life.html" class="nav-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
-        <a href="admission.html" class="nav-link" data-en="Admission" data-ur="داخلہ">Admission</a>
-        <a href="contact.html" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+        <a href="index.html?v=2027" class="nav-link" data-en="Home" data-ur="صفحہ اول">Home</a>
+        <a href="about.html?v=2027" class="nav-link" data-en="About Us" data-ur="تعارف">About Us</a>
+        <a href="academics.html?v=2027" class="nav-link active" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
+        <a href="campus-life.html?v=2027" class="nav-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+        <a href="admission.html?v=2027" class="nav-link" data-en="Admission" data-ur="داخلہ">Admission</a>
+        <a href="contact.html?v=2027" class="nav-link" data-en="Contact" data-ur="رابطہ">Contact</a>
       </nav>
 
       <div class="header-actions">
         <!-- Admissions Status Pill Badge -->
-        <a href="admission.html" class="nav-status-badge" aria-label="Admissions Status">
+        <a href="admission.html?v=2027" class="nav-status-badge" aria-label="Admissions Status">
           <span class="nav-pulse-dot" aria-hidden="true"></span>
           <span data-en="Admissions Open" data-ur="داخلے جاری ہیں">Admissions Open</span>
         </a>
 
         <!-- Apply CTA -->
-        <a href="admission.html" class="btn header-cta" data-en="Apply Now →" data-ur="آن لائن داخلہ لیں →">
+        <a href="admission.html?v=2027" class="btn header-cta" data-en="Apply Now →" data-ur="آن لائن داخلہ لیں →">
           Apply Now <span class="cta-arrow" aria-hidden="true">→</span>
         </a>
 
@@ -64,42 +110,99 @@
       <button class="drawer-close">&times;</button>
     </div>
     <div class="drawer-links">
-      <a href="index.html" class="drawer-link" data-en="Home" data-ur="صفحہ اول">Home</a>
-      <a href="about.html" class="drawer-link" data-en="About Us" data-ur="تعارف">About Us</a>
-      <a href="academics.html" class="drawer-link active" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
-      <a href="campus-life.html" class="drawer-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
-      <a href="admission.html" class="drawer-link" data-en="Admission" data-ur="داخلہ">Admission</a>
-      <a href="contact.html" class="drawer-link" data-en="Contact" data-ur="رابطہ">Contact</a>
+      <a href="index.html?v=2027" class="drawer-link" data-en="Home" data-ur="صفحہ اول">Home</a>
+      <a href="about.html?v=2027" class="drawer-link" data-en="About Us" data-ur="تعارف">About Us</a>
+      <a href="academics.html?v=2027" class="drawer-link active" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a>
+      <a href="campus-life.html?v=2027" class="drawer-link" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
+      <a href="admission.html?v=2027" class="drawer-link" data-en="Admission" data-ur="داخلہ">Admission</a>
+      <a href="contact.html?v=2027" class="drawer-link" data-en="Contact" data-ur="رابطہ">Contact</a>
     </div>
-    <a href="admission.html" class="btn btn-gold" style="width: 100%; text-align: center;" data-en="Apply for Admission"
+    <a href="admission.html?v=2027" class="btn btn-gold" style="width: 100%; text-align: center;" data-en="Apply for Admission"
       data-ur="داخلہ فارم">
       Apply for Admission
     </a>
+    <div class="drawer-footer">
+      <p class="drawer-copyright" data-en="&copy; 2026 Hadi Education System. All rights reserved." data-ur="© 2026 ہادی ایجوکیشن سسٹم۔ جملہ حقوق محفوظ ہیں۔">
+        &copy; 2026 Hadi Education System. All rights reserved.
+      </p>
+    </div>
   </aside>
 
   <!-- Main Content -->
   <main id="main-content">
 
-    <!-- PAGE HERO -->
-    <section class="hero">
-      <div class="container hero-content">
-        <span class="section-tag" data-en="Dual-Track Curricular Excellence"
-          data-ur="منفرد دوہرا تعلیمی نصاب">Dual-Track Curricular Excellence</span>
-        <h1 class="hero-title" data-en="Faith and Science, Taught Together"
-          data-ur="قرآنی بصیرت اور <span class='gold-gradient-text'>سائنسی مہارت</span> کا سنگم">
-          Faith and Science, Taught Together
-        </h1>
-        <p class="hero-subtitle"
-          data-en="Our curriculum is carefully architected so students never have to compromise between deep Quranic fluency and top-tier achievement in mathematics, science, English, and computing."
-          data-ur="ہمارا نصاب اس طرح ترتیب دیا گیا ہے کہ طلباء بیک وقت اعلیٰ پائے کے حافظ و قاری بھی بنیں اور جدید سائنس و ریاضی میں بھی نمایاں کامیابی حاصل کریں۔">
-          Our curriculum is carefully architected so students never have to compromise between deep Quranic fluency and
-          top-tier achievement in mathematics, science, English, and computing.
-        </p>
+    <!-- =========================================================================
+         PAGE HERO (Full-bleed, 100svh, unified rhythm with Campus Life)
+         ========================================================================= -->
+    <section class="cl-hero page-hero" id="academics-hero" aria-label="Academics at Hadi Education System">
+      <!-- Background Image -->
+      <div class="cl-hero-bg-wrap" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1920&q=80" alt="HES Academics" class="cl-hero-fallback-img">
+      </div>
+
+      <!-- Overlays (Navy Tint & Left-to-Right Reading Gradient) -->
+      <div class="cl-hero-tint" aria-hidden="true"></div>
+      <div class="cl-hero-gradient" aria-hidden="true"></div>
+
+      <!-- Hero Main Content -->
+      <div class="container cl-hero-container">
+        <!-- Left: Text Block -->
+        <div class="cl-hero-text">
+          <span class="cl-hero-tag cl-fade-elem" data-en="CURRICULAR EXCELLENCE" data-ur="منفرد دوہرا تعلیمی نصاب">CURRICULAR EXCELLENCE</span>
+          <h1 class="cl-hero-title cl-fade-elem">
+            <span class="cl-hero-title-solid" data-en="Academic" data-ur="تعلیمی">Academic</span>
+            <span class="cl-hero-title-outline" data-en="Excellence" data-ur="شعبہ جات">Excellence</span>
+          </h1>
+          <p class="cl-hero-desc cl-fade-elem"
+            data-en="Our curriculum is carefully architected so students never have to compromise between deep Quranic fluency and top-tier achievement in mathematics, science, English, and computing."
+            data-ur="ہمارا نصاب اس طرح ترتیب دیا گیا ہے کہ طلباء بیک وقت اعلیٰ پائے کے حافظ و قاری بھی بنیں اور جدید سائنس و ریاضی میں بھی نمایاں کامیابی حاصل کریں۔">
+            Our curriculum is carefully architected so students never have to compromise between deep Quranic fluency and top-tier achievement in mathematics, science, English, and computing.
+          </p>
+          <div class="cl-hero-actions cl-fade-elem">
+            <a href="#curriculum-tracks" class="btn cl-btn-white" data-en="Explore Curriculum" data-ur="نصاب دیکھیں">
+              Explore Curriculum
+            </a>
+            <a href="admission.html?v=2027" class="btn cl-btn-outline" data-en="Apply for Admission" data-ur="داخلہ لیں">
+              Apply for Admission
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Concentric Arches Decoration & Page Emblem Badge -->
+        <div class="cl-hero-visual cl-fade-elem">
+          <div class="cl-hero-arches-wrap">
+            <svg class="cl-hero-arches-svg" viewBox="0 0 360 440" fill="none" aria-hidden="true">
+              <!-- Outer arch: 36% opacity -->
+              <path d="M 20 440 V 180 A 160 160 0 0 1 340 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.36" vector-effect="non-scaling-stroke" />
+              <!-- Middle arch: 22% opacity -->
+              <path d="M 60 440 V 180 A 120 120 0 0 1 300 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.22" vector-effect="non-scaling-stroke" />
+              <!-- Inner arch: 12% opacity -->
+              <path d="M 100 440 V 180 A 80 80 0 0 1 260 180 V 440" stroke="#FFFFFF" stroke-width="1"
+                stroke-opacity="0.12" vector-effect="non-scaling-stroke" />
+            </svg>
+
+            <!-- 88px Center Circular Badge -->
+            <a href="#curriculum-tracks" class="cl-hero-play-circle" aria-label="Explore Curriculum Tracks" title="Explore Curriculum Tracks">
+              <svg viewBox="75 52 90 160" width="36" height="44" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M 120 60 C 114 82, 94 108, 88 130 C 82 148, 96 160, 102 170 C 107 178, 98 188, 94 196 H 146 C 142 188, 133 178, 138 170 C 144 160, 158 148, 152 130 C 146 108, 126 82, 120 60 Z" />
+                <path d="M 120 60 V 132" />
+                <circle cx="120" cy="132" r="4" fill="#FFFFFF" />
+                <path d="M 82 204 H 158" />
+              </svg>
+            </a>
+
+            <!-- Caption inside arches -->
+            <span class="cl-hero-arch-caption" data-en="DUAL-TRACK • QURAN &amp; SCIENCE • PRE-K TO 10" data-ur="دوہرا نصاب • قرآن و سائنس • پلے گروپ تا دہم">DUAL-TRACK • QURAN &amp; SCIENCE • PRE-K TO 10</span>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- TWO CORE TRACKS COMPARISON -->
-    <section class="section" style="padding-top: 30px; background: #FFFFFF;">
+    <section class="section" id="curriculum-tracks" style="padding-top: 30px; background: #FFFFFF;">
+
       <div class="container">
         <div class="grid-2">
           <!-- Track 1: Quranic Program -->
@@ -413,7 +516,7 @@
             <p>Speak to our academic counselors or submit an online application for the upcoming 2026 session.</p>
           </div>
           <div>
-            <a href="admission.html" class="btn btn-gold">Apply for Admission <span>→</span></a>
+            <a href="admission.html?v=2027" class="btn btn-gold">Apply for Admission <span>→</span></a>
           </div>
         </div>
       </div>
@@ -426,7 +529,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="brand-logo" aria-label="Hadi Education System Home">
+          <a href="index.html?v=2027" class="brand-logo" aria-label="Hadi Education System Home">
             <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
             <div class="brand-title-wrap">
               <span class="brand-name">HADI EDUCATION</span>
@@ -440,12 +543,12 @@
         <div>
           <h4>Quick Links</h4>
           <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="academics.html">Curriculum &amp; Hifz</a>
-            <a href="campus-life.html">Campus Life</a>
-            <a href="admission.html">Admissions 2026</a>
-            <a href="contact.html">Contact Administration</a>
+            <a href="index.html?v=2027">Home</a>
+            <a href="about.html?v=2027">About Us</a>
+            <a href="academics.html?v=2027">Curriculum &amp; Hifz</a>
+            <a href="campus-life.html?v=2027">Campus Life</a>
+            <a href="admission.html?v=2027">Admissions 2026</a>
+            <a href="contact.html?v=2027">Contact Administration</a>
           </div>
         </div>
 
@@ -487,8 +590,9 @@
     </div>
   </div>
 
-  <script src="assets/js/siteContent.js"></script>
-  <script src="assets/js/app.js?v=33"></script>
+  <script src="assets/js/siteContent.js?v=37"></script>
+  <script src="assets/js/page-gateway.js?v=110"></script>
+  <script src="assets/js/app.js?v=37"></script>
 </body>
 
 </html>
