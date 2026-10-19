@@ -50,7 +50,7 @@ function initScrollReveal() {
     !element.closest(".faculty-carousel-wrapper") &&
     !element.closest(".yr-section") &&
     !element.closest(".bd-section") &&
-    !element.matches(".timeline-stepper-pair .timeline-step, .footer-copyright, .vm-bg-img, .vm-bg-logo, .principal-bg-img")
+    !element.closest(".principal-photo") && !element.matches(".timeline-stepper-pair .timeline-step, .footer-copyright, .vm-bg-img, .vm-bg-logo, .principal-bg-img, .principal-img")
   );
   if (!revealElements.length) return;
 
