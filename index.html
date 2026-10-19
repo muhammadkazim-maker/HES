@@ -8,22 +8,55 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <title>Hadi Education System — Where the Quran Meets Modern Excellence</title>
-  <meta name="description"
-    content="Hadi Education System (HES) in Balkasar, Chakwal offers a unique synthesis of Holy Quran education (Tajweed, Hifz, Tafseer) and international-standard modern academics.">
+  <title>Hadi Education System — Islamic School, Chakwal</title>
+  <meta name="description" content="Give your child the best of both worlds at Hadi Education System, Balkasar — authentic Quran education alongside modern FBISE academics. Admissions open now.">
   <meta name="keywords"
     content="Hadi Education System, HES Balkassar, Islamic School Pakistan, Hifz School, Modern Islamic Education, Balkasar School">
-  <link rel="canonical" href="https://www.hes.com.pk/">
+  <!-- TODO: Set canonical when domain is live: <link rel="canonical" href="SITE_URL/index.html"> -->
 
-  <!-- Open Graph / SEO -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Hadi Education System — Modern Islamic School">
-  <meta property="og:description"
-    content="Synthesizing Holy Quran education with international-standard modern sciences and academics in Chakwal, Pakistan.">
-  <meta property="og:url" content="https://www.hes.com.pk/">
+  <!-- Single Config: change SITE_URL when production domain is live -->
+  <script>window.SITE_URL = window.SITE_URL || 'http://localhost:3000';</script>
+
+  <!-- Favicons & Manifest -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#14213D">
+  <meta name="color-scheme" content="light">
+
+  
 
   <!-- Preload Home Gateway Logo -->
   <link rel="preload" as="image" href="assets/images/hadi-education-logo.jpg">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hadi Education System">
+  <meta property="og:title" content="Hadi Education System — Islamic School, Chakwal">
+  <meta property="og:description" content="Synthesizing Holy Quran education with international-standard modern sciences and academics in Chakwal, Pakistan.">
+  <!-- TODO: Update og:url when domain is live: <meta property="og:url" content="SITE_URL/index.html"> -->
+  <meta property="og:image" content="assets/images/og/og-home.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Hadi Education System Campus & Islamic Academic Excellence">
+  <meta property="og:locale" content="en_PK">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hadi Education System — Islamic School, Chakwal">
+  <meta name="twitter:description" content="Synthesizing Holy Quran education with international-standard modern sciences and academics in Chakwal, Pakistan.">
+  <meta name="twitter:image" content="assets/images/og/og-home.jpg">
+  <meta name="twitter:image:alt" content="Hadi Education System Campus & Islamic Academic Excellence">
+
+  <!-- Faster Non-Blocking Font Loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap">
+  </noscript>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/page-gateway.css?v=110">
@@ -258,7 +291,7 @@
           <!-- Video / Campus Visual Container -->
           <div>
             <div class="video-wrapper aspect-16-9">
-              <iframe src="https://www.youtube.com/embed/PHHqdR6M28w?si=km2zCGJ9A0py-VRs&enablejsapi=1"
+              <iframe loading="lazy" src="https://www.youtube.com/embed/PHHqdR6M28w?si=km2zCGJ9A0py-VRs&enablejsapi=1"
                 title="Hadi Education System campus video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
@@ -280,7 +313,9 @@
       <!-- Full-Width Student Journey Background Image with Directional Fade Overlay -->
       <div class="vm-bg-wrap" aria-hidden="true">
         <picture>
+          <source media="(max-width: 768px)" srcset="assets/images/boys-mobile.webp" type="image/webp">
           <source media="(max-width: 768px)" srcset="assets/images/boys-mobile.jpg">
+          <source srcset="assets/images/boys.webp" type="image/webp">
           <img class="vm-bg-img" src="assets/images/boys.jpg"
             alt="Students engaged in prayer and learning at Hadi Education System" loading="lazy" decoding="async"
             width="2048" height="1362">
@@ -378,6 +413,13 @@
             data-ur="ہر طالب علم کے لیے معیاری تعلیم، قرآنی تعلیم اور ذاتی نشوونما کا متوازن امتزاج۔">
             A thoughtful blend of academic excellence, Quranic learning, and personal growth for every student.
           </p>
+        </div>
+
+        <div class="marquee-controls">
+          <button class="marquee-pause-btn" aria-pressed="false" aria-label="Pause testimonials">
+            <span class="pause-icon" aria-hidden="true">⏸</span>
+            <span class="sr-only">Pause</span>
+          </button>
         </div>
 
         <div class="quote-marquee-shell" aria-label="Parent testimonials and family reviews">
@@ -481,6 +523,7 @@
             <a href="campus-life.html?v=2027" data-en="Campus Life" data-ur="کیمپس لائف">Campus Life</a>
             <a href="admission.html?v=2027" data-en="Admissions 2026" data-ur="داخلہ 2026">Admissions 2026</a>
             <a href="contact.html?v=2027" data-en="Contact Administration" data-ur="رابطہ">Contact Administration</a>
+            <a href="privacy.html">Privacy Policy</a>
           </div>
         </div>
 
@@ -565,6 +608,8 @@
   <!-- JavaScript Modules -->
   <script src="assets/js/siteContent.js?v=37"></script>
   <script src="assets/js/page-gateway.js?v=110"></script>
+    <script src="assets/js/toast.js?v=1"></script>
+  <script src="assets/js/analytics.js?v=1" defer></script>
   <script src="assets/js/app.js?v=38"></script>
 </body>
 

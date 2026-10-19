@@ -178,6 +178,16 @@
       return;
     }
 
+    // Instant dismiss for users preferring reduced motion (WCAG 2.2 AA)
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (overlay && overlay.parentNode) {
+        overlay.remove();
+      }
+      root.classList.remove('gw-active');
+      dispatchGatewayEvent('gateway:done');
+      return;
+    }
+
     var config = GATEWAY_CONFIG[variant] || GATEWAY_CONFIG.home;
 
     // Populate inner SVG and label if not already present

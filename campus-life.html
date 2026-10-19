@@ -8,11 +8,49 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <title>Campus Life — Hadi Education System (HES)</title>
-  <meta name="description"
-    content="Experience Campus Life at Hadi Education System in Balkasar, Chakwal: a balanced day integrating sacred Quranic study with modern sciences, athletics, vibrant community events, and state-of-the-art facilities.">
-  <link rel="canonical" href="https://www.hes.com.pk/campus-life.html">
+  <title>Campus Life at Hadi Education System, Chakwal</title>
+  <meta name="description" content="Experience boarding, sports, excursions, and a nurturing community at Hadi Education System — where faith, character and confidence are built every day.">
+  <!-- TODO: Set canonical when domain is live: <link rel="canonical" href="SITE_URL/campus-life.html"> -->
+
+  <!-- Single Config: change SITE_URL when production domain is live -->
+  <script>window.SITE_URL = window.SITE_URL || 'http://localhost:3000';</script>
+
+  <!-- Favicons & Manifest -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#14213D">
+  <meta name="color-scheme" content="light">
   <link rel="preload" as="image" href="media/poster_team_huddle.jpg">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hadi Education System">
+  <meta property="og:title" content="Campus Life at Hadi Education System, Chakwal">
+  <meta property="og:description" content="Athletics, educational excursions, hostel life, and vibrant student community in Balkasar, Chakwal.">
+  <!-- TODO: Update og:url when domain is live: <meta property="og:url" content="SITE_URL/campus-life.html"> -->
+  <meta property="og:image" content="assets/images/og/og-campus-life.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Campus Life, Athletics and Boarding at HES">
+  <meta property="og:locale" content="en_PK">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Campus Life at Hadi Education System, Chakwal">
+  <meta name="twitter:description" content="Athletics, educational excursions, hostel life, and vibrant student community in Balkasar, Chakwal.">
+  <meta name="twitter:image" content="assets/images/og/og-campus-life.jpg">
+  <meta name="twitter:image:alt" content="Campus Life, Athletics and Boarding at HES">
+
+  <!-- Faster Non-Blocking Font Loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap">
+  </noscript>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/page-gateway.css?v=110">
@@ -126,6 +164,16 @@
 
   <!-- Main Content -->
   <main id="main-content">
+    <!-- Accessible Breadcrumb Navigation (WCAG 2.2 AA) -->
+    <div class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Home</a></li>
+          <li class="breadcrumb-item breadcrumb-item--current" aria-current="page">Campus Life</li>
+        </ol>
+      </nav>
+    </div>
+
 
     <!-- =========================================================================
          SECTION 1: VIDEO HERO (full-bleed, 100svh, min-height 560px)
@@ -281,7 +329,7 @@
             <!-- Space 1: Grand Auditorium & Assembly Hall -->
             <article class="cl-arch-card" data-index="0">
               <div class="cl-arch-frame">
-                <img src="assets/images/cl/IMG_9607.jpg" alt="Grand Auditorium & Morning Assembly" class="cl-arch-img" loading="lazy">
+                <picture><source srcset="assets/images/cl/IMG_9607.webp" type="image/webp"><img src="assets/images/cl/IMG_9607.jpg" alt="Grand Auditorium & Morning Assembly" class="cl-arch-img" loading="lazy"></picture>
                 <div class="cl-arch-tint" aria-hidden="true"></div>
               </div>
               <div class="cl-arch-meta">
@@ -293,7 +341,7 @@
             <!-- Space 2: Academic Lecture Theatre -->
             <article class="cl-arch-card" data-index="1">
               <div class="cl-arch-frame">
-                <img src="assets/images/cl/IMG_9551.jpg" alt="Academic Lecture Theatre and Seminars" class="cl-arch-img" loading="lazy">
+                <picture><source srcset="assets/images/cl/IMG_9551.webp" type="image/webp"><img src="assets/images/cl/IMG_9551.jpg" alt="Academic Lecture Theatre and Seminars" class="cl-arch-img" loading="lazy"></picture>
                 <div class="cl-arch-tint" aria-hidden="true"></div>
               </div>
               <div class="cl-arch-meta">
@@ -305,7 +353,7 @@
             <!-- Space 3: Athletic Grounds & Courts -->
             <article class="cl-arch-card" data-index="2">
               <div class="cl-arch-frame">
-                <img src="assets/images/cl/IMG_0822.jpg" alt="Athletic Grounds and Volleyball Court" class="cl-arch-img" loading="lazy">
+                <picture><source srcset="assets/images/cl/IMG_0822.webp" type="image/webp"><img src="assets/images/cl/IMG_0822.jpg" alt="Athletic Grounds and Volleyball Court" class="cl-arch-img" loading="lazy"></picture>
                 <div class="cl-arch-tint" aria-hidden="true"></div>
               </div>
               <div class="cl-arch-meta">
@@ -317,7 +365,7 @@
             <!-- Space 4: Sports Gala Field -->
             <article class="cl-arch-card" data-index="3">
               <div class="cl-arch-frame">
-                <img src="assets/images/cl/IMG_8241.jpg" alt="Sports Gala 2025 Opening Ceremony" class="cl-arch-img" loading="lazy">
+                <picture><source srcset="assets/images/cl/IMG_8241.webp" type="image/webp"><img src="assets/images/cl/IMG_8241.jpg" alt="Sports Gala 2025 Opening Ceremony" class="cl-arch-img" loading="lazy"></picture>
                 <div class="cl-arch-tint" aria-hidden="true"></div>
               </div>
               <div class="cl-arch-meta">
@@ -329,7 +377,7 @@
             <!-- Space 5: Heritage & Study Excursions -->
             <article class="cl-arch-card" data-index="4">
               <div class="cl-arch-frame">
-                <img src="assets/images/cl/IMG_9315.jpg" alt="Museum and Heritage Educational Excursions" class="cl-arch-img" loading="lazy">
+                <picture><source srcset="assets/images/cl/IMG_9315.webp" type="image/webp"><img src="assets/images/cl/IMG_9315.jpg" alt="Museum and Heritage Educational Excursions" class="cl-arch-img" loading="lazy"></picture>
                 <div class="cl-arch-tint" aria-hidden="true"></div>
               </div>
               <div class="cl-arch-meta">
@@ -341,7 +389,7 @@
             <!-- Space 6: Campus Courtyard & Evening Fellowship -->
             <article class="cl-arch-card" data-index="5">
               <div class="cl-arch-frame">
-                <img src="assets/images/cl/IMG_6488.jpg" alt="Campus Courtyard & Evening Fellowship" class="cl-arch-img" loading="lazy">
+                <picture><source srcset="assets/images/cl/IMG_6488.webp" type="image/webp"><img src="assets/images/cl/IMG_6488.jpg" alt="Campus Courtyard & Evening Fellowship" class="cl-arch-img" loading="lazy"></picture>
                 <div class="cl-arch-tint" aria-hidden="true"></div>
               </div>
               <div class="cl-arch-meta">
@@ -391,7 +439,7 @@
           <article class="cl-bento-tile cl-tile-large" data-category="sports" data-title="Sports Gala 2025: Grand Championship &amp; Gold Medals"
             data-date="February 2025" data-img="assets/images/cl/IMG_2476.jpg" tabindex="0">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_2476.jpg" alt="Sports Gala 2025 Grand Championship &amp; Gold Medals" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_2476.webp" type="image/webp"><img src="assets/images/cl/IMG_2476.jpg" alt="Sports Gala 2025 Grand Championship &amp; Gold Medals" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -404,7 +452,7 @@
           <article class="cl-bento-tile" data-category="academics" data-title="Faculty &amp; Distinguished Scholars Convocation"
             data-date="Annual Convocation" data-img="assets/images/cl/IMG_9602.jpg" tabindex="0">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_9602.jpg" alt="Faculty &amp; Distinguished Scholars Convocation" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_9602.webp" type="image/webp"><img src="assets/images/cl/IMG_9602.jpg" alt="Faculty &amp; Distinguished Scholars Convocation" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -417,7 +465,7 @@
           <article class="cl-bento-tile" data-category="sports" data-title="Inter-House Athletic &amp; Sports Championships"
             data-date="Annual Sports Week" data-img="assets/images/cl/IMG_0822.jpg" tabindex="0">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_0822.jpg" alt="Inter-House Athletic &amp; Sports Match" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_0822.webp" type="image/webp"><img src="assets/images/cl/IMG_0822.jpg" alt="Inter-House Athletic &amp; Sports Match" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -430,7 +478,7 @@
           <article class="cl-bento-tile" data-category="academics" data-title="Annual Heritage Museum Study Excursion"
             data-date="Educational Tour" data-img="assets/images/cl/IMG_9318.jpg" tabindex="0">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_9318.jpg" alt="Annual Heritage Museum Study Excursion" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_9318.webp" type="image/webp"><img src="assets/images/cl/IMG_9318.jpg" alt="Annual Heritage Museum Study Excursion" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -443,7 +491,7 @@
           <article class="cl-bento-tile" data-category="celebrations" data-title="Morning Assembly &amp; Student Leadership Roll Call"
             data-date="Campus Tradition" data-img="assets/images/cl/IMG_3167.jpg" tabindex="0">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_3167.jpg" alt="Morning Assembly &amp; Student Leadership" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_3167.webp" type="image/webp"><img src="assets/images/cl/IMG_3167.jpg" alt="Morning Assembly &amp; Student Leadership" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -456,7 +504,7 @@
           <article class="cl-bento-tile cl-tile-tall" data-category="academics" data-title="State-of-the-Art Lecture Theatre &amp; Seminars"
             data-date="Weekly Academic Program" data-img="assets/images/cl/IMG_9551.jpg" tabindex="0">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_9551.jpg" alt="State-of-the-Art Lecture Theatre &amp; Seminars" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_9551.webp" type="image/webp"><img src="assets/images/cl/IMG_9551.jpg" alt="State-of-the-Art Lecture Theatre &amp; Seminars" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -469,7 +517,7 @@
           <article class="cl-bento-tile" data-category="sports" data-title="Trophy Presentation &amp; Gold Medal Honors"
             data-date="February 2025" data-img="assets/images/cl/IMG_2479.jpg" tabindex="0">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_2479.jpg" alt="Trophy Presentation &amp; Gold Medal Honors" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_2479.webp" type="image/webp"><img src="assets/images/cl/IMG_2479.jpg" alt="Trophy Presentation &amp; Gold Medal Honors" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -482,7 +530,7 @@
           <article class="cl-bento-tile" data-category="quran" data-title="Distinguished Scholars &amp; Graduation Assembly"
             data-date="Annual Convocation" data-img="assets/images/cl/IMG_6399.jpg" tabindex="0">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_6399.jpg" alt="Distinguished Scholars &amp; Graduation Assembly" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_6399.webp" type="image/webp"><img src="assets/images/cl/IMG_6399.jpg" alt="Distinguished Scholars &amp; Graduation Assembly" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -495,7 +543,7 @@
           <article class="cl-bento-tile cl-tile-extra" data-category="celebrations" data-title="Student Camaraderie &amp; Campus Brotherhood"
             data-date="Campus Life" data-img="assets/images/cl/IMG_3169.jpg" tabindex="0" style="display: none;">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_3169.jpg" alt="Student Camaraderie &amp; Campus Brotherhood" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_3169.webp" type="image/webp"><img src="assets/images/cl/IMG_3169.jpg" alt="Student Camaraderie &amp; Campus Brotherhood" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -507,7 +555,7 @@
           <article class="cl-bento-tile cl-tile-extra" data-category="academics" data-title="Islamic Architectural Study Tour &amp; Hall Delegation"
             data-date="Field Excursion" data-img="assets/images/cl/IMG_7739.jpg" tabindex="0" style="display: none;">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_7739.jpg" alt="Islamic Architectural Study Tour" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_7739.webp" type="image/webp"><img src="assets/images/cl/IMG_7739.jpg" alt="Islamic Architectural Study Tour" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -519,7 +567,7 @@
           <article class="cl-bento-tile cl-tile-extra" data-category="sports" data-title="Sports Gala 2025 Ribbon Cutting Opening"
             data-date="February 2025" data-img="assets/images/cl/IMG_8241.jpg" tabindex="0" style="display: none;">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_8241.jpg" alt="Sports Gala 2025 Ribbon Cutting Opening" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_8241.webp" type="image/webp"><img src="assets/images/cl/IMG_8241.jpg" alt="Sports Gala 2025 Ribbon Cutting Opening" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -531,7 +579,7 @@
           <article class="cl-bento-tile cl-tile-extra" data-category="academics" data-title="Historic Excursion Student Delegation at Museum"
             data-date="October 2024" data-img="assets/images/cl/IMG_9315.jpg" tabindex="0" style="display: none;">
             <div class="cl-tile-media">
-              <img src="assets/images/cl/IMG_9315.jpg" alt="Historic Excursion Student Delegation at Museum" class="cl-tile-img" loading="lazy">
+              <picture><source srcset="assets/images/cl/IMG_9315.webp" type="image/webp"><img src="assets/images/cl/IMG_9315.jpg" alt="Historic Excursion Student Delegation at Museum" class="cl-tile-img" loading="lazy">
               <div class="cl-tile-tint" aria-hidden="true"></div>
             </div>
             <div class="cl-tile-caption">
@@ -570,7 +618,7 @@
           <!-- Main Grand Video Player -->
           <div class="cl-video-main-card">
             <div class="cl-video-player-wrap">
-              <video id="clMainVideoPlayer" class="cl-main-video" controls playsinline preload="metadata" poster="media/poster_sports_week.jpg">
+              <video id="clMainVideoPlayer" class="cl-main-video" controls playsinline preload="none" poster="media/poster_sports_week.jpg">
                 <source id="clMainVideoSource" src="media/cl_sports_week_2025.mp4" type="video/mp4">
                 Your browser does not support HTML5 video.
               </video>
@@ -659,40 +707,40 @@
         <!-- Row 1: Drifting Left -->
         <div class="cl-reel-row cl-reel-left">
           <div class="cl-reel-stream">
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_9607.jpg" alt="Auditorium Convocation" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_2476.jpg" alt="Sports Trophy Champions" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_0822.jpg" alt="Athletic Sports Court" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_9315.jpg" alt="Museum Excursion" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_8241.jpg" alt="Sports Gala 2025" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_6488.jpg" alt="Evening Courtyard" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_9607.webp" type="image/webp"><img src="assets/images/cl/IMG_9607.jpg" alt="Auditorium Convocation" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_2476.webp" type="image/webp"><img src="assets/images/cl/IMG_2476.jpg" alt="Sports Trophy Champions" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_0822.webp" type="image/webp"><img src="assets/images/cl/IMG_0822.jpg" alt="Athletic Sports Court" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_9315.webp" type="image/webp"><img src="assets/images/cl/IMG_9315.jpg" alt="Museum Excursion" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_8241.webp" type="image/webp"><img src="assets/images/cl/IMG_8241.jpg" alt="Sports Gala 2025" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_6488.webp" type="image/webp"><img src="assets/images/cl/IMG_6488.jpg" alt="Evening Courtyard" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
 
             <!-- Seamless duplication -->
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_9607.jpg" alt="Auditorium Convocation" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_2476.jpg" alt="Sports Trophy Champions" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_0822.jpg" alt="Athletic Sports Court" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_9315.jpg" alt="Museum Excursion" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_8241.jpg" alt="Sports Gala 2025" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_6488.jpg" alt="Evening Courtyard" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_9607.webp" type="image/webp"><img src="assets/images/cl/IMG_9607.jpg" alt="Auditorium Convocation" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_2476.webp" type="image/webp"><img src="assets/images/cl/IMG_2476.jpg" alt="Sports Trophy Champions" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_0822.webp" type="image/webp"><img src="assets/images/cl/IMG_0822.jpg" alt="Athletic Sports Court" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_9315.webp" type="image/webp"><img src="assets/images/cl/IMG_9315.jpg" alt="Museum Excursion" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_8241.webp" type="image/webp"><img src="assets/images/cl/IMG_8241.jpg" alt="Sports Gala 2025" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_6488.webp" type="image/webp"><img src="assets/images/cl/IMG_6488.jpg" alt="Evening Courtyard" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
           </div>
         </div>
 
         <!-- Row 2: Drifting Right (desktop only) -->
         <div class="cl-reel-row cl-reel-right cl-reel-row-second">
           <div class="cl-reel-stream">
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_9551.jpg" alt="Lecture Hall" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_3167.jpg" alt="Morning Assembly Blazers" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_2479.jpg" alt="Medal Celebrations" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_3169.jpg" alt="Student Life" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_6399.jpg" alt="Scholars Ceremony" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_9602.jpg" alt="Auditorium Stage" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_9551.webp" type="image/webp"><img src="assets/images/cl/IMG_9551.jpg" alt="Lecture Hall" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_3167.webp" type="image/webp"><img src="assets/images/cl/IMG_3167.jpg" alt="Morning Assembly Blazers" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_2479.webp" type="image/webp"><img src="assets/images/cl/IMG_2479.jpg" alt="Medal Celebrations" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_3169.webp" type="image/webp"><img src="assets/images/cl/IMG_3169.jpg" alt="Student Life" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_6399.webp" type="image/webp"><img src="assets/images/cl/IMG_6399.jpg" alt="Scholars Ceremony" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_9602.webp" type="image/webp"><img src="assets/images/cl/IMG_9602.jpg" alt="Auditorium Stage" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
 
             <!-- Seamless duplication -->
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_9551.jpg" alt="Lecture Hall" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_3167.jpg" alt="Morning Assembly Blazers" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_2479.jpg" alt="Medal Celebrations" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_3169.jpg" alt="Student Life" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_6399.jpg" alt="Scholars Ceremony" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
-            <div class="cl-reel-card"><img src="assets/images/cl/IMG_9602.jpg" alt="Auditorium Stage" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_9551.webp" type="image/webp"><img src="assets/images/cl/IMG_9551.jpg" alt="Lecture Hall" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_3167.webp" type="image/webp"><img src="assets/images/cl/IMG_3167.jpg" alt="Morning Assembly Blazers" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_2479.webp" type="image/webp"><img src="assets/images/cl/IMG_2479.jpg" alt="Medal Celebrations" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_3169.webp" type="image/webp"><img src="assets/images/cl/IMG_3169.jpg" alt="Student Life" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_6399.webp" type="image/webp"><img src="assets/images/cl/IMG_6399.jpg" alt="Scholars Ceremony" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
+            <div class="cl-reel-card"><picture><source srcset="assets/images/cl/IMG_9602.webp" type="image/webp"><img src="assets/images/cl/IMG_9602.jpg" alt="Auditorium Stage" class="cl-reel-img" loading="lazy"><div class="cl-reel-tint"></div></div>
           </div>
         </div>
       </div>
@@ -724,6 +772,24 @@
       </div>
     </section>
 
+  
+    <!-- Related Pages Internal Linking -->
+    <section class="related-pages-section" aria-label="Related Pages">
+      <div class="container">
+        <span class="section-tag">Explore Further</span>
+        <h2 class="section-title">Related Pages &amp; Pathways</h2>
+        <div class="related-pages-grid">
+          <a href="admission.html" class="related-page-card" data-track-event="related_page_click" data-track-label="admission.html">
+            <h3><span>Admissions 2026–2027</span> <span aria-hidden="true">→</span></h3>
+            <p>Learn how to join our vibrant student community this academic year.</p>
+          </a>
+          <a href="academics.html" class="related-page-card" data-track-event="related_page_click" data-track-label="academics.html">
+            <h3><span>Academic Curriculum</span> <span aria-hidden="true">→</span></h3>
+            <p>Detailed view of Middle School, Matric, and College tracks.</p>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- =========================================================================
@@ -737,7 +803,7 @@
         &times;
       </button>
       <div class="cl-lightbox-video-frame" style="padding-bottom: 56.25%; position: relative; background: #000;">
-        <video id="clLightboxVideoPlayer" class="cl-lightbox-video" controls playsinline poster="media/poster_sports_week.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;">
+        <video id="clLightboxVideoPlayer" class="cl-lightbox-video" controls playsinline preload="none" poster="media/poster_sports_week.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;">
           <source src="media/cl_sports_week_2025.mp4" type="video/mp4">
           Your browser does not support HTML5 video.
         </video>
@@ -819,6 +885,7 @@
             <a href="campus-life.html?v=2027">Campus Life</a>
             <a href="admission.html?v=2027">Admissions 2026</a>
             <a href="contact.html?v=2027">Contact Administration</a>
+            <a href="privacy.html">Privacy Policy</a>
           </div>
         </div>
 
@@ -862,6 +929,8 @@
 
   <script src="assets/js/siteContent.js?v=37"></script>
   <script src="assets/js/page-gateway.js?v=110"></script>
+    <script src="assets/js/toast.js?v=1"></script>
+  <script src="assets/js/analytics.js?v=1" defer></script>
   <script src="assets/js/app.js?v=38"></script>
 </body>
 

@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initYearRail();
   initBalancedDayBar();
   initCampusLife();
+  initMarqueePauseControl();
 });
 
 /* ==========================================================================
@@ -488,6 +489,17 @@ function initCounters() {
   const counters = document.querySelectorAll(".counter-number");
   if (!counters.length) return;
 
+  // Reduced-motion: set final values immediately, skip animation
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    counters.forEach(c => {
+      const target = c.getAttribute('data-target') || '';
+      const suffix = c.getAttribute('data-suffix') || '';
+      const num = parseInt(target, 10);
+      c.textContent = (isNaN(num) ? target : num.toLocaleString()) + suffix;
+    });
+    return;
+  }
+
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -692,54 +704,183 @@ function initChatbot() {
 }
 
 /* ==========================================================================
-   10. FORMS & CLIENT-SIDE VALIDATION (Admission & Contact)
+   10. FORMS & CLIENT-SIDE VALIDATION (Admission & Contact) — HARDENED
+   Full server-side & client-side validation, anti-spam, Turnstile, honeypot,
+   minimum submit time, preserved inputs on error, accessible inline errors.
    ========================================================================== */
 function initForms() {
-  // Admission Form
-  const admissionForm = document.querySelector("#admissionForm");
-  if (admissionForm) {
-    admissionForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      
-      const submitBtn = admissionForm.querySelector("button[type='submit']");
-      const originalText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Submitting Application...";
+  const pageLoadTime = Date.now();
 
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        admissionForm.reset();
-        
-        // Show Success Feedback Modal
-        const successModal = document.querySelector("#admission-success-modal");
-        if (successModal) {
-          successModal.classList.add("active");
-        } else {
-          alert("Alhamdulillah! Your admission inquiry has been received. Our administration team will contact you shortly.");
+  function setupFormHandler(formEl, formType) {
+    if (!formEl) return;
+
+    // Attach real-time input clearing for inline errors
+    formEl.querySelectorAll("input, select, textarea").forEach(field => {
+      field.addEventListener("input", () => {
+        field.classList.remove("has-error");
+        const errSpan = formEl.querySelector("#" + field.name + "-error") ||
+                        formEl.querySelector("#" + field.id + "-error");
+        if (errSpan) {
+          errSpan.textContent = "";
+          errSpan.classList.remove("is-visible");
         }
-      }, 1200);
+      });
     });
-  }
 
-  // Contact Form
-  const contactForm = document.querySelector("#contactForm");
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
+    formEl.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const submitBtn = contactForm.querySelector("button[type='submit']");
-      const originalText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Sending Message...";
 
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        contactForm.reset();
-        alert("Thank you! Your message has been sent to the administration of Hadi Education System.");
-      }, 900);
+      // Clear any lingering error states
+      formEl.querySelectorAll(".form-control").forEach(el => el.classList.remove("has-error"));
+      formEl.querySelectorAll(".form-error").forEach(el => {
+        el.textContent = "";
+        el.classList.remove("is-visible");
+      });
+
+      const submitBtn = formEl.querySelector("button[type='submit']");
+      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : "Submit";
+
+      // 1. Client-Side Validation
+      const formData = new FormData(formEl);
+      const payload = {};
+      formData.forEach((val, key) => { payload[key] = typeof val === 'string' ? val.trim() : val; });
+
+      // Add minimum-time token
+      payload._timeLoaded = pageLoadTime;
+
+      // Extract unified field mappings
+      const parentName = payload.parentName || payload.name || "";
+      const studentName = payload.studentName || "";
+      const email = payload.email || payload.parentEmail || "";
+      const phone = payload.phone || payload.parentPhone || "";
+      const classApplying = payload.classApplying || payload.grade || payload.subject || "General Inquiry";
+      const message = payload.message || payload.address || (studentName ? "Application for " + studentName : "Admission Inquiry");
+
+      let clientErrors = {};
+      if (!parentName || parentName.length < 2) {
+        clientErrors.parentName = "Please enter parent / guardian name (at least 2 letters).";
+      }
+      if (!phone || phone.replace(/\D/g, "").length < 8) {
+        clientErrors.phone = "Please enter a valid mobile / WhatsApp number.";
+      }
+      if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        clientErrors.email = "Please enter a valid email address.";
+      }
+      if (!message || message.length < 4) {
+        clientErrors.message = "Please provide details or a brief message.";
+      }
+
+      // Display client-side errors if any
+      if (Object.keys(clientErrors).length > 0) {
+        for (const [fieldKey, errMsg] of Object.entries(clientErrors)) {
+          const inputEl = formEl.querySelector(`[name="${fieldKey}"]`) || formEl.querySelector(`#${fieldKey}`);
+          if (inputEl) inputEl.classList.add("has-error");
+          const errEl = formEl.querySelector(`#${fieldKey}-error`);
+          if (errEl) {
+            errEl.textContent = errMsg;
+            errEl.classList.add("is-visible");
+          }
+        }
+        if (window.HESToast) {
+          window.HESToast.error("Please fill in all required fields accurately.");
+        }
+        return;
+      }
+
+      // 2. Submit to Server
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.setAttribute("aria-busy", "true");
+        submitBtn.innerHTML = "Sending Inquiry... <span class='spinner' aria-hidden='true'>⏳</span>";
+      }
+
+      // Read Turnstile token if widget exists
+      const turnstileInput = formEl.querySelector('[name="cf-turnstile-response"]');
+      if (turnstileInput) {
+        payload["cf-turnstile-response"] = turnstileInput.value;
+      }
+
+      try {
+        const endpoint = (window.SITE_URL || "") + "/api/inquiry";
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (response.ok && result.success) {
+          // Success
+          formEl.reset();
+
+          if (window.HESToast) {
+            window.HESToast.success(result.message || "Assalam-o-Alaikum! Your inquiry has been received. Our administration will contact you shortly.");
+          } else {
+            alert(result.message || "Thank you! Your inquiry has been received.");
+          }
+
+          if (window.HESAnalytics) {
+            window.HESAnalytics.track("inquiry_submit", {
+              form: formType,
+              class: classApplying
+            });
+          }
+
+          // Trigger success modal if present on admission page
+          const successModal = document.querySelector("#admission-success-modal");
+          if (successModal) successModal.classList.add("active");
+
+          // Reset Turnstile widget if available
+          if (window.turnstile && typeof window.turnstile.reset === 'function') {
+            try { window.turnstile.reset(); } catch (e) {}
+          }
+        } else {
+          // Server returned validation or rate limit error
+          const errMsg = result.error || "Unable to send inquiry. Please try again.";
+          if (window.HESToast) {
+            window.HESToast.error(errMsg);
+          } else {
+            alert(errMsg);
+          }
+
+          // Display specific server validation errors if returned
+          if (result.errors) {
+            for (const [fieldKey, errText] of Object.entries(result.errors)) {
+              const inputEl = formEl.querySelector(`[name="${fieldKey}"]`) || formEl.querySelector(`#${fieldKey}`);
+              if (inputEl) inputEl.classList.add("has-error");
+              const errEl = formEl.querySelector(`#${fieldKey}-error`);
+              if (errEl) {
+                errEl.textContent = errText;
+                errEl.classList.add("is-visible");
+              }
+            }
+          }
+        }
+      } catch (err) {
+        // Network or fetch failure - preserve all input values!
+        console.error("[HES Form Error]", err);
+        const fallbackMsg = "Network error connecting to the server. Please check your connection or contact us directly at +92 314 5075399.";
+        if (window.HESToast) {
+          window.HESToast.error(fallbackMsg);
+        } else {
+          alert(fallbackMsg);
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.removeAttribute("aria-busy");
+          submitBtn.innerHTML = originalBtnHtml;
+        }
+      }
     });
   }
+
+  setupFormHandler(document.querySelector("#admissionForm"), "admission-form");
+  setupFormHandler(document.querySelector("#contactForm"), "contact-form");
 
   // Success Modal Close Handlers
   const modalCloseBtns = document.querySelectorAll(".modal-close-trigger");
@@ -3009,6 +3150,34 @@ function initCampusLife() {
 
 
   // Campus Life is initialized; Gateway intro is handled by page-gateway.js
+}
+
+/* ==========================================================================
+   MARQUEE PAUSE/PLAY CONTROL (WCAG 2.2 SC 2.2.2)
+   ========================================================================== */
+function initMarqueePauseControl() {
+  const btn = document.querySelector('.marquee-pause-btn');
+  const track = document.querySelector('.quote-marquee-track');
+  if (!btn || !track) return;
+
+  let paused = false;
+
+  btn.addEventListener('click', () => {
+    paused = !paused;
+    track.style.animationPlayState = paused ? 'paused' : 'running';
+    btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    btn.setAttribute('aria-label', paused ? 'Play testimonials' : 'Pause testimonials');
+    btn.querySelector('.pause-icon').textContent = paused ? '▶' : '⏸';
+  });
+
+  // Start paused if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    paused = true;
+    track.style.animationPlayState = 'paused';
+    btn.setAttribute('aria-pressed', 'true');
+    btn.setAttribute('aria-label', 'Play testimonials');
+    btn.querySelector('.pause-icon').textContent = '▶';
+  }
 }
 
 

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#14213D"/>
+  <!-- Subtle gold inner arch border -->
+  <path d="M12 52 V28 A20 20 0 0 1 52 28 V52" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.3"/>
+  <!-- Crescent & Star -->
+  <path d="M36 21 A9 9 0 1 1 27 35 A11 11 0 1 0 36 21 Z" fill="#FFFFFF"/>
+  <polygon points="39,23 40.5,27.5 45,27.5 41.5,30 43,34.5 39,31.5 35,34.5 36.5,30 33,27.5 37.5,27.5" fill="#FFFFFF"/>
+  <!-- HES Wordmark -->
+  <text x="32" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">HES</text>
+</svg>

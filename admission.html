@@ -8,9 +8,48 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <title>Admissions 2026–2027 — Hadi Education System (HES)</title>
-  <meta name="description"
-    content="Apply for admission at Hadi Education System, Chakwal. Step-by-step admission process, FAQs, and online application form.">
+  <title>Admissions Open 2026 — Hadi Education System, Chakwal</title>
+  <meta name="description" content="Apply to Hadi Education System in Chakwal. Simple 4-step admissions for Classes 6–12 with optional Hifz track. Submit your inquiry online today.">
+  <!-- TODO: Set canonical when domain is live: <link rel="canonical" href="SITE_URL/admission.html"> -->
+
+  <!-- Single Config: change SITE_URL when production domain is live -->
+  <script>window.SITE_URL = window.SITE_URL || 'http://localhost:3000';</script>
+
+  <!-- Favicons & Manifest -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#14213D">
+  <meta name="color-scheme" content="light">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hadi Education System">
+  <meta property="og:title" content="Admissions Open 2026 — Hadi Education System, Chakwal">
+  <meta property="og:description" content="Admissions open for Classes 6 to 12 and accelerated Hifz track. Complete the online inquiry form today.">
+  <!-- TODO: Update og:url when domain is live: <meta property="og:url" content="SITE_URL/admission.html"> -->
+  <meta property="og:image" content="assets/images/og/og-admission.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Hadi Education System Admissions Open 2026">
+  <meta property="og:locale" content="en_PK">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Admissions Open 2026 — Hadi Education System, Chakwal">
+  <meta name="twitter:description" content="Admissions open for Classes 6 to 12 and accelerated Hifz track. Complete the online inquiry form today.">
+  <meta name="twitter:image" content="assets/images/og/og-admission.jpg">
+  <meta name="twitter:image:alt" content="Hadi Education System Admissions Open 2026">
+
+  <!-- Faster Non-Blocking Font Loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap">
+  </noscript>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/page-gateway.css?v=110">
@@ -28,6 +67,8 @@
       } catch (e) {}
     })();
   </script>
+  <!-- Cloudflare Turnstile Captcha API -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body class="page-admission">
@@ -118,6 +159,16 @@
 
   <!-- Main Content -->
   <main id="main-content">
+    <!-- Accessible Breadcrumb Navigation (WCAG 2.2 AA) -->
+    <div class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Home</a></li>
+          <li class="breadcrumb-item breadcrumb-item--current" aria-current="page">Admission</li>
+        </ol>
+      </nav>
+    </div>
+
 
     <!-- =========================================================================
          PAGE HERO (Full-bleed, 100svh, unified rhythm with Campus Life)
@@ -276,9 +327,9 @@
                   Inquiry &amp; Application
                 </h3>
                 <p class="ar-card-desc"
-                  data-en="Submit the online application below or visit our Balkasar campus to obtain the registration docket."
+                  data-en="Submit the online application below or visit our Balkasar campus. <a href="#admissionForm" style="color: var(--navy); font-weight: 600; text-decoration: underline;">Jump directly to application form ↓</a>"
                   data-ur="آن لائن فارم پر کریں یا کیمپس تشریف لا کر رجسٹریشن فارم حاصل کریں۔">
-                  Submit the online application below or visit our Balkasar campus to obtain the registration docket.
+                  Submit the online application below or visit our Balkasar campus. <a href="#admissionForm" style="color: var(--navy); font-weight: 600; text-decoration: underline;">Jump directly to application form ↓</a>
                 </p>
               </div>
             </li>
@@ -470,7 +521,10 @@
         </div>
 
         <div class="glass-card" style="max-width: 860px; margin: 0 auto; padding: 40px;">
-          <form id="admissionForm">
+          <form id="admissionForm" novalidate>
+            <!-- Anti-spam Honeypot (hidden from screen readers & users) -->
+            <input type="text" name="website" class="hes-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
             <!-- Student Information Section -->
             <h4
               style="font-size: 1.25rem; font-family: var(--font-serif); color: var(--navy, #14213D); border-bottom: 2px solid #E5E5E5; padding-bottom: 8px; margin-bottom: 20px;">
@@ -481,11 +535,13 @@
               <div class="form-group">
                 <label for="studentName" class="form-label">Student’s Full Name *</label>
                 <input type="text" id="studentName" name="studentName" class="form-control"
-                  placeholder="e.g. Muhammad Ali" required>
+                  placeholder="e.g. Muhammad Ali" autocomplete="name" required>
+                <span class="form-error" id="studentName-error" role="alert" aria-live="polite"></span>
               </div>
               <div class="form-group">
                 <label for="dateOfBirth" class="form-label">Date of Birth *</label>
                 <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" required>
+                <span class="form-error" id="dateOfBirth-error" role="alert" aria-live="polite"></span>
               </div>
             </div>
 
@@ -497,26 +553,24 @@
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
+                <span class="form-error" id="gender-error" role="alert" aria-live="polite"></span>
               </div>
               <div class="form-group">
                 <label for="grade" class="form-label">Grade / Class Applying For *</label>
                 <select id="grade" name="grade" class="form-control" required>
                   <option value="">Select Grade Level</option>
-                  <option value="nursery">Playgroup / Nursery</option>
-                  <option value="prep">Prep / Kindergarten (KG)</option>
-                  <option value="grade-1">Grade 1</option>
-                  <option value="grade-2">Grade 2</option>
-                  <option value="grade-3">Grade 3</option>
-                  <option value="grade-4">Grade 4</option>
-                  <option value="grade-5">Grade 5</option>
-                  <option value="grade-6">Grade 6</option>
-                  <option value="grade-7">Grade 7</option>
-                  <option value="grade-8">Grade 8</option>
-                  <option value="grade-9">Grade 9 (Science / Computer)</option>
-                  <option value="grade-10">Grade 10 (Matric Board)</option>
+                  <option value="grade-6">Grade 6 (Middle School)</option>
+                  <option value="grade-7">Grade 7 (Middle School)</option>
+                  <option value="grade-8">Grade 8 (Middle School)</option>
+                  <option value="grade-9">Grade 9 (Matric Science / CS)</option>
+                  <option value="grade-10">Grade 10 (Matric Board Examination)</option>
+                  <option value="ics">ICS (Computer Science Intermediate)</option>
+                  <option value="pre-medical">FSc Pre-Medical</option>
+                  <option value="pre-engineering">FSc Pre-Engineering</option>
                   <option value="hifz">Dedicated Full-Time Hifz Track</option>
-                  <option value="online">Worldwide Online Course</option>
+                  <option value="online">Worldwide Online Quran Course</option>
                 </select>
+                <span class="form-error" id="grade-error" role="alert" aria-live="polite"></span>
               </div>
             </div>
 
@@ -530,25 +584,29 @@
               <div class="form-group">
                 <label for="parentName" class="form-label">Parent / Guardian’s Full Name *</label>
                 <input type="text" id="parentName" name="parentName" class="form-control"
-                  placeholder="e.g. Tariq Mehmood" required>
+                  placeholder="e.g. Tariq Mehmood" autocomplete="name" required>
+                <span class="form-error" id="parentName-error" role="alert" aria-live="polite"></span>
               </div>
               <div class="form-group">
                 <label for="parentPhone" class="form-label">Primary Mobile Phone (WhatsApp) *</label>
                 <input type="tel" id="parentPhone" name="parentPhone" class="form-control" placeholder="0300-1234567"
-                  required>
+                  autocomplete="tel" required>
+                <span class="form-error" id="parentPhone-error" role="alert" aria-live="polite"></span>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label for="parentEmail" class="form-label">Email Address</label>
+                <label for="parentEmail" class="form-label">Email Address *</label>
                 <input type="email" id="parentEmail" name="parentEmail" class="form-control"
-                  placeholder="name@domain.com">
+                  placeholder="name@domain.com" autocomplete="email" required>
+                <span class="form-error" id="parentEmail-error" role="alert" aria-live="polite"></span>
               </div>
               <div class="form-group">
                 <label for="previousSchool" class="form-label">Previous School Attended (if any)</label>
                 <input type="text" id="previousSchool" name="previousSchool" class="form-control"
                   placeholder="Previous school name &amp; city">
+                <span class="form-error" id="previousSchool-error" role="alert" aria-live="polite"></span>
               </div>
             </div>
 
@@ -556,14 +614,20 @@
               <label for="address" class="form-label">Residential Address (Chakwal / Balkasar / Town) *</label>
               <textarea id="address" name="address" rows="3" class="form-control"
                 placeholder="Street, Village, Tehsil, District" required></textarea>
+              <span class="form-error" id="address-error" role="alert" aria-live="polite"></span>
             </div>
 
-            <div style="margin-top: 30px;">
-              <button type="submit" class="btn" style="width: 100%; font-size: 1.05rem; background: var(--navy, #14213D); color: #FFFFFF; border: none; border-radius: 8px; font-weight: 600; padding: 14px 24px; cursor: pointer;">
+            <!-- Cloudflare Turnstile Captcha Widget (Using official testing keys) -->
+            <div style="margin: 20px 0;">
+              <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="light"></div>
+            </div>
+
+            <div style="margin-top: 24px;">
+              <button type="submit" class="btn" style="width: 100%; font-size: 1.05rem; background: var(--navy, #14213D); color: #FFFFFF; border: none; border-radius: 8px; font-weight: 600; padding: 14px 24px; cursor: pointer;" data-track-event="inquiry_submit" data-track-label="admission-form">
                 Submit Admission Application <span>→</span>
               </button>
-              <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">
-                Your information is held in strict confidence by Hadi Education System administration.
+              <p class="form-privacy">
+                We respect your family’s privacy. View our <a href="privacy.html">Privacy Policy</a>.
               </p>
             </div>
           </form>
@@ -646,6 +710,24 @@
       </div>
     </section>
 
+  
+    <!-- Related Pages Internal Linking -->
+    <section class="related-pages-section" aria-label="Related Pages">
+      <div class="container">
+        <span class="section-tag">Explore Further</span>
+        <h2 class="section-title">Related Pages &amp; Pathways</h2>
+        <div class="related-pages-grid">
+          <a href="contact.html" class="related-page-card" data-track-event="related_page_click" data-track-label="contact.html">
+            <h3><span>Campus Visit & Contact</span> <span aria-hidden="true">→</span></h3>
+            <p>Get directions to our campus on Pipli Road or chat on WhatsApp.</p>
+          </a>
+          <a href="academics.html" class="related-page-card" data-track-event="related_page_click" data-track-label="academics.html">
+            <h3><span>Academic Curriculum</span> <span aria-hidden="true">→</span></h3>
+            <p>Review subjects, FBISE affiliation, and Hifz integration.</p>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- SUCCESS FEEDBACK MODAL -->
@@ -728,6 +810,8 @@
 
   <script src="assets/js/siteContent.js?v=37"></script>
   <script src="assets/js/page-gateway.js?v=110"></script>
+    <script src="assets/js/toast.js?v=1"></script>
+  <script src="assets/js/analytics.js?v=1" defer></script>
   <script src="assets/js/app.js?v=37"></script>
 </body>
 

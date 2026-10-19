@@ -7,8 +7,48 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <title>Contact Us — Hadi Education System (HES)</title>
-  <meta name="description" content="Get in touch with Hadi Education System administration in Balkasar, Chakwal. Campus address, phone, email, office hours, and embedded Google Map.">
+  <title>Contact Hadi Education System — Balkasar, Chakwal</title>
+  <meta name="description" content="Reach Hadi Education System's admin team by phone, WhatsApp, or email. Campus on Pipli Road, Balkasar, District Chakwal. Office hours listed inside.">
+  <!-- TODO: Set canonical when domain is live: <link rel="canonical" href="SITE_URL/contact.html"> -->
+
+  <!-- Single Config: change SITE_URL when production domain is live -->
+  <script>window.SITE_URL = window.SITE_URL || 'http://localhost:3000';</script>
+
+  <!-- Favicons & Manifest -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#14213D">
+  <meta name="color-scheme" content="light">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hadi Education System">
+  <meta property="og:title" content="Contact Hadi Education System — Balkasar, Chakwal">
+  <meta property="og:description" content="Direct telephone numbers, admissions WhatsApp desk, campus map, and online inquiry form.">
+  <!-- TODO: Update og:url when domain is live: <meta property="og:url" content="SITE_URL/contact.html"> -->
+  <meta property="og:image" content="assets/images/og/og-contact.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Contact Hadi Education System Administration">
+  <meta property="og:locale" content="en_PK">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Hadi Education System — Balkasar, Chakwal">
+  <meta name="twitter:description" content="Direct telephone numbers, admissions WhatsApp desk, campus map, and online inquiry form.">
+  <meta name="twitter:image" content="assets/images/og/og-contact.jpg">
+  <meta name="twitter:image:alt" content="Contact Hadi Education System Administration">
+
+  <!-- Faster Non-Blocking Font Loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap">
+  </noscript>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/page-gateway.css?v=110">
@@ -26,6 +66,8 @@
       } catch (e) {}
     })();
   </script>
+  <!-- Cloudflare Turnstile Captcha API -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body class="page-contact">
   <!-- Page Gateway Intro Overlay (Contact Variant) -->
@@ -119,6 +161,16 @@
 
   <!-- Main Content -->
   <main id="main-content">
+    <!-- Accessible Breadcrumb Navigation (WCAG 2.2 AA) -->
+    <div class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Home</a></li>
+          <li class="breadcrumb-item breadcrumb-item--current" aria-current="page">Contact</li>
+        </ol>
+      </nav>
+    </div>
+
 
     <!-- =========================================================================
          PAGE HERO (Full-bleed, 100svh, unified rhythm with Campus Life)
@@ -126,7 +178,7 @@
     <section class="cl-hero page-hero" id="contact-hero" aria-label="Contact Hadi Education System">
       <!-- Background Image -->
       <div class="cl-hero-bg-wrap" aria-hidden="true">
-        <img src="assets/images/building.jpg" alt="Hadi Education System Campus" class="cl-hero-fallback-img">
+        <picture><source srcset="assets/images/building.webp" type="image/webp"><img src="assets/images/building.jpg" alt="Hadi Education System Campus" class="cl-hero-fallback-img" fetchpriority="high" width="1920" height="1080"></picture>
       </div>
 
       <!-- Overlays (Navy Tint & Left-to-Right Reading Gradient) -->
@@ -269,42 +321,72 @@
                 Please leave your details below and our team will get in touch promptly.
               </p>
 
-              <form id="contactForm">
-                <div class="form-group">
-                  <label for="name" class="form-label">Your Name *</label>
-                  <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Malik Tariq" required>
+              <form id="contactForm" novalidate>
+                <!-- Anti-spam Honeypot (hidden from screen readers & users) -->
+                <input type="text" name="website" class="hes-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="parentName" class="form-label">Parent / Guardian Name *</label>
+                    <input type="text" id="parentName" name="parentName" class="form-control" placeholder="e.g. Malik Tariq" autocomplete="name" required>
+                    <span class="form-error" id="parentName-error" role="alert" aria-live="polite"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="studentName" class="form-label">Student Name</label>
+                    <input type="text" id="studentName" name="studentName" class="form-control" placeholder="e.g. Muhammad Hamza" autocomplete="name">
+                    <span class="form-error" id="studentName-error" role="alert" aria-live="polite"></span>
+                  </div>
                 </div>
 
                 <div class="form-row">
                   <div class="form-group">
-                    <label for="email" class="form-label">Email Address *</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="name@email.com" required>
+                    <label for="phone" class="form-label">Mobile Phone (WhatsApp) *</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="0300-1234567" autocomplete="tel" required>
+                    <span class="form-error" id="phone-error" role="alert" aria-live="polite"></span>
                   </div>
                   <div class="form-group">
-                    <label for="phone" class="form-label">Mobile Number *</label>
-                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="0300-1234567" required>
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="name@email.com" autocomplete="email" required>
+                    <span class="form-error" id="email-error" role="alert" aria-live="polite"></span>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="subject" class="form-label">Subject / Purpose</label>
-                  <select id="subject" name="subject" class="form-control">
+                  <label for="classApplying" class="form-label">Class Applying For / Purpose</label>
+                  <select id="classApplying" name="classApplying" class="form-control">
                     <option value="General Inquiry">General School Inquiry</option>
-                    <option value="Admission Question">Admission for 2026</option>
-                    <option value="Online Course">Worldwide Online Quran Course</option>
-                    <option value="Transport Route">School Transport Route</option>
-                    <option value="Principal Meeting">Meeting with Principal</option>
+                    <option value="Class 6">Class 6 (Middle School)</option>
+                    <option value="Class 7">Class 7 (Middle School)</option>
+                    <option value="Class 8">Class 8 (Middle School)</option>
+                    <option value="Class 9 Matric">Class 9 (FBISE Matric Science)</option>
+                    <option value="Class 10 Matric">Class 10 (FBISE Matric Science)</option>
+                    <option value="ICS College">Intermediate: ICS (Computer Science)</option>
+                    <option value="Pre-Medical">Intermediate: FSc Pre-Medical</option>
+                    <option value="Pre-Engineering">Intermediate: FSc Pre-Engineering</option>
+                    <option value="Dedicated Hifz">Dedicated Full-Time Hifz Track</option>
+                    <option value="Campus Visit">Campus Visit / Principal Meeting</option>
                   </select>
+                  <span class="form-error" id="classApplying-error" role="alert" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
-                  <label for="message" class="form-label">Your Message *</label>
-                  <textarea id="message" name="message" rows="5" class="form-control" placeholder="Write your question or request..." required></textarea>
+                  <label for="message" class="form-label">Your Message or Question *</label>
+                  <textarea id="message" name="message" rows="4" class="form-control" placeholder="Write your question, curriculum query, or transportation request..." required></textarea>
+                  <span class="form-error" id="message-error" role="alert" aria-live="polite"></span>
                 </div>
 
-                <button type="submit" class="btn" style="width: 100%; font-size: 1.05rem; background: var(--navy, #14213D); color: #FFFFFF; border: none; border-radius: 8px; font-weight: 600; padding: 14px 24px; cursor: pointer;">
+                <!-- Cloudflare Turnstile Captcha Widget (Using official testing keys) -->
+                <div style="margin: 16px 0;">
+                  <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="light"></div>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; font-size: 1.05rem; background: var(--navy, #14213D); color: #FFFFFF; border: none; border-radius: 8px; font-weight: 600; padding: 14px 24px; cursor: pointer;" data-track-event="inquiry_submit" data-track-label="contact-form">
                   Send Message <span>→</span>
                 </button>
+
+                <p class="form-privacy">
+                  We respect your family’s privacy. View our <a href="privacy.html">Privacy Policy</a>.
+                </p>
               </form>
             </div>
           </div>
@@ -338,6 +420,24 @@
       </div>
     </section>
 
+  
+    <!-- Related Pages Internal Linking -->
+    <section class="related-pages-section" aria-label="Related Pages">
+      <div class="container">
+        <span class="section-tag">Explore Further</span>
+        <h2 class="section-title">Related Pages &amp; Pathways</h2>
+        <div class="related-pages-grid">
+          <a href="admission.html" class="related-page-card" data-track-event="related_page_click" data-track-label="admission.html">
+            <h3><span>Admissions 2026</span> <span aria-hidden="true">→</span></h3>
+            <p>Apply online for Middle School, Matric, and Intermediate tracks.</p>
+          </a>
+          <a href="about.html" class="related-page-card" data-track-event="related_page_click" data-track-label="about.html">
+            <h3><span>About Our Institution</span> <span aria-hidden="true">→</span></h3>
+            <p>Discover our history, vision, leadership, and campus values.</p>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- FOOTER -->
@@ -406,6 +506,8 @@
 
   <script src="assets/js/siteContent.js?v=37"></script>
   <script src="assets/js/page-gateway.js?v=110"></script>
+    <script src="assets/js/toast.js?v=1"></script>
+  <script src="assets/js/analytics.js?v=1" defer></script>
   <script src="assets/js/app.js?v=37"></script>
 </body>
 </html>

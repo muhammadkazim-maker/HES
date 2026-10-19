@@ -4,6 +4,10 @@ A complete, production-ready website for **Hadi Education System (HES)**, establ
 
 The visual identity uses the supplied neutral palette: white (`#FFFFFF`), light gray (`#E5E5E5`), navy (`#14213D`), and black (`#000000`). These colors are shared across page backgrounds, navigation, buttons, cards, and forms. The current website presentation is English and light mode, with responsive navigation.
 
+> **Security, SEO & Performance Hardening Documentation**
+> For the complete hardening report, environment variables specification, security headers, and the "When the Domain Arrives" deployment checklist, see [**HARDENING_DOCUMENTATION.md**](HARDENING_DOCUMENTATION.md).
+
+
 ---
 
 ## 📁 Project Architecture & Deliverables
