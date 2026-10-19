@@ -180,7 +180,7 @@
     }
 
     // Lite performance mode or subsequent visit in same session: fast 200ms fade
-    if (root.getAttribute('data-perf') === 'lite' || root.classList.contains('gw-subsequent')) {
+    if (root.getAttribute('data-perf') === 'lite' || (root.classList.contains('gw-subsequent') && !isHome)) {
       overlay.classList.add('gw-exit', 'gw-skip-exit');
       setTimeout(function () {
         finishGateway(false);

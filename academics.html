@@ -52,8 +52,8 @@
   </noscript>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/page-gateway.css?v=130">
-  <link rel="stylesheet" href="assets/css/main.css?v=130">
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=131">
+  <link rel="stylesheet" href="assets/css/main.css?v=131">
 
   <!-- Pre-Paint Capability Detector & Gateway Decider -->
   <script>
@@ -62,6 +62,7 @@
         var doc = document.documentElement;
         var p = new URLSearchParams(window.location.search);
         
+        // 1. Explicit user override via footer toggle takes highest priority
         var savedMode = null;
         try { savedMode = localStorage.getItem('hes-perf-mode'); } catch (e) {}
 
@@ -71,21 +72,36 @@
         } else if (savedMode === 'full') {
           isLite = false;
         } else {
-          var nav = navigator || {};
-          var conn = nav.connection || nav.mozConnection || nav.webkitConnection;
-          var memory = nav.deviceMemory;
-          var cpus = nav.hardwareConcurrency;
+          // 2. OS accessibility preference: always respect prefers-reduced-motion
           var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
           if (reduced) {
             isLite = true;
-          } else if (typeof memory === 'number' && memory <= 4) {
-            isLite = true;
-          } else if (typeof cpus === 'number' && cpus <= 4) {
-            isLite = true;
-          } else if (conn) {
-            if (conn.saveData === true) isLite = true;
-            if (conn.effectiveType && ['slow-2g', '2g', '3g'].indexOf(conn.effectiveType) !== -1) isLite = true;
+          } else {
+            var nav = navigator || {};
+            var conn = nav.connection || nav.mozConnection || nav.webkitConnection;
+            
+            // Respect Data Saver mode if user enabled it in their browser
+            if (conn && conn.saveData === true) {
+              isLite = true;
+            } else {
+              // 3. Automatic detection for low-end mobile devices:
+              // Desktop browsers / laptops have ample power and run in full animation mode.
+              var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(nav.userAgent || '') ||
+                             (window.matchMedia && window.matchMedia('(max-width: 768px) and (pointer: coarse)').matches);
+
+              if (isMobile) {
+                // Auto animation-saving mode for low-end mobile hardware or slow cellular networks
+                var memory = nav.deviceMemory;
+                var cpus = nav.hardwareConcurrency;
+                if (typeof memory === 'number' && memory <= 2) {
+                  isLite = true; // Budget phone (<= 2GB RAM)
+                } else if (typeof cpus === 'number' && cpus <= 2) {
+                  isLite = true; // Budget phone (dual-core CPU)
+                } else if (conn && conn.effectiveType && ['slow-2g', '2g'].indexOf(conn.effectiveType) !== -1) {
+                  isLite = true; // 2G mobile network
+                }
+              }
+            }
           }
         }
 
@@ -96,31 +112,13 @@
         var seen = false;
         try { seen = !!sessionStorage.getItem('hes-gateway-seen'); } catch (e) {}
 
+        var isHomePage = doc.getAttribute('data-gateway') === 'home';
         if (isLite) {
-          if (!seen) {
-            doc.classList.add('gw-active', 'gw-subsequent');
-          }
-        } else if (seen) {
+          doc.classList.add('gw-active', 'gw-subsequent');
+        } else if (seen && !isHomePage) {
           doc.classList.add('gw-active', 'gw-subsequent');
         } else {
           doc.classList.add('gw-active');
-        }
-
-        if (!isLite && savedMode !== 'full' && window.requestAnimationFrame) {
-          var frameCount = 0;
-          var probeStart = performance.now();
-          var probe = function (now) {
-            frameCount++;
-            if (frameCount < 20) {
-              requestAnimationFrame(probe);
-            } else {
-              var elapsed = now - probeStart;
-              if (elapsed > 500) {
-                doc.setAttribute('data-perf', 'lite');
-              }
-            }
-          };
-          requestAnimationFrame(probe);
         }
       } catch (e) {}
     })();
@@ -691,10 +689,10 @@
   </div>
 
   <script src="assets/js/siteContent.js?v=37"></script>
-  <script src="assets/js/page-gateway.js?v=130"></script>
+  <script src="assets/js/page-gateway.js?v=131"></script>
     <script src="assets/js/toast.js?v=1"></script>
   <script src="assets/js/analytics.js?v=1" defer></script>
-  <script src="assets/js/app.js?v=130"></script>
+  <script src="assets/js/app.js?v=131"></script>
 </body>
 
 </html>
