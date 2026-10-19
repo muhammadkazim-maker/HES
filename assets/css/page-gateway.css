@@ -442,9 +442,10 @@ html.gw-active body {
   will-change: opacity, transform;
 }
 
-.hero-stagger-active .hero-stagger-item {
-  opacity: 1;
-  transform: translateY(0);
+.hero-stagger-active .hero-stagger-item,
+.hero-stagger-active .cl-fade-elem {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 .hero-stagger-active .hero-stagger-item:nth-child(1) { transition-delay: calc(0 * var(--stagger, 45ms)); }

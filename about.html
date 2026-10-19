@@ -54,8 +54,8 @@
     <!-- Preload Principal Portrait for Instant Render -->
   <link rel="preload" as="image" href="assets/images/principal-muhammad-ali-hamdani.webp" type="image/webp">
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/page-gateway.css?v=131">
-  <link rel="stylesheet" href="assets/css/main.css?v=131">
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=132">
+  <link rel="stylesheet" href="assets/css/main.css?v=132">
 
   <!-- Pre-Paint Capability Detector & Gateway Decider -->
   <script>
@@ -111,13 +111,7 @@
 
         if (p.get('gateway') === 'off') return;
 
-        var seen = false;
-        try { seen = !!sessionStorage.getItem('hes-gateway-seen'); } catch (e) {}
-
-        var isHomePage = doc.getAttribute('data-gateway') === 'home';
         if (isLite) {
-          doc.classList.add('gw-active', 'gw-subsequent');
-        } else if (seen && !isHomePage) {
           doc.classList.add('gw-active', 'gw-subsequent');
         } else {
           doc.classList.add('gw-active');
@@ -849,10 +843,10 @@
   </div>
 
   <script src="assets/js/siteContent.js?v=37"></script>
-  <script src="assets/js/page-gateway.js?v=131"></script>
+  <script src="assets/js/page-gateway.js?v=132"></script>
     <script src="assets/js/toast.js?v=1"></script>
   <script src="assets/js/analytics.js?v=1" defer></script>
-  <script src="assets/js/app.js?v=131"></script>
+  <script src="assets/js/app.js?v=132"></script>
 </body>
 
 </html>

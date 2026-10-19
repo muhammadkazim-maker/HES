@@ -50,6 +50,7 @@
   function dispatchGatewayEvent(name) {
     if (name === 'gateway:done') {
       isGatewayDone = true;
+      window.isGatewayDone = true;
     }
     try {
       var event = new CustomEvent(name, { bubbles: true, cancelable: true });
@@ -84,6 +85,10 @@
       heroElem.classList.add('hero-stagger-active');
       var visual = document.querySelector('.cl-hero-visual');
       if (visual) visual.classList.add('is-visible');
+      var fadeElems = heroElem.querySelectorAll('.cl-fade-elem');
+      fadeElems.forEach(function (el) {
+        el.classList.add('is-visible');
+      });
     }
 
     if (isGatewayDone) {
@@ -179,8 +184,8 @@
       return;
     }
 
-    // Lite performance mode or subsequent visit in same session: fast 200ms fade
-    if (root.getAttribute('data-perf') === 'lite' || (root.classList.contains('gw-subsequent') && !isHome)) {
+    // Lite performance mode: fast 200ms fade
+    if (root.getAttribute('data-perf') === 'lite' || root.classList.contains('gw-subsequent')) {
       overlay.classList.add('gw-exit', 'gw-skip-exit');
       setTimeout(function () {
         finishGateway(false);
