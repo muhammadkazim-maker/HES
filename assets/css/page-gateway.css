@@ -10,13 +10,16 @@
   --black: #000000;
   --gray: #E5E5E5;
 
-  /* Consistency Tokens */
+  /* Snappy Performance Timing Tokens */
   --ease: cubic-bezier(.22, 1, .36, 1);
-  --dur-reveal: 700ms;
-  --dur-fast: 250ms;
-  --reveal-distance: 20px;
-  --stagger: 90ms;
-  --hover-lift: 6px;
+  --dur-micro: 150ms;
+  --dur-fast: 180ms;
+  --dur-standard: 280ms;
+  --dur-reveal: 300ms;
+  --dur-large: 600ms;
+  --reveal-distance: 14px;
+  --stagger: 45ms;
+  --hover-lift: 4px;
 }
 
 /* --------------------------------------------------------------------------
@@ -151,11 +154,11 @@ html.gw-active body {
 }
 
 /* --------------------------------------------------------------------------
-   3. SUBPAGE TIMELINE ANIMATIONS (0 to 1300ms)
+   3. SUBPAGE TIMELINE ANIMATIONS (0 to 650ms)
    -------------------------------------------------------------------------- */
-/* 0 to 500ms: Arch draws */
+/* 0 to 380ms: Arch draws */
 .gw-active .gw-arch-path {
-  animation: gwArchDraw 500ms var(--ease) forwards;
+  animation: gwArchDraw 380ms var(--ease) forwards;
 }
 
 @keyframes gwArchDraw {
@@ -163,9 +166,9 @@ html.gw-active body {
   100% { stroke-dashoffset: 0; }
 }
 
-/* 250 to 750ms: Inner drawing draws (elements staggered by 80ms) */
+/* 90 to 400ms: Inner drawing draws (elements staggered by 40ms) */
 .gw-active .gw-draw-item {
-  animation: gwInnerDraw 450ms var(--ease) calc(250ms + var(--gw-stagger, 0ms)) forwards;
+  animation: gwInnerDraw 300ms var(--ease) calc(90ms + var(--gw-stagger, 0ms)) forwards;
 }
 
 @keyframes gwInnerDraw {
@@ -182,7 +185,7 @@ html.gw-active body {
   }
 }
 
-/* 400 to 700ms: Label fades up 8px over 300ms in 11px DM Sans, tracked out, centred 28px below baseline */
+/* 150 to 350ms: Label fades up 6px over 200ms */
 .gw-label {
   display: block;
   font-family: var(--font-main, 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif);
@@ -192,19 +195,19 @@ html.gw-active body {
   text-transform: uppercase;
   color: var(--white, #FFFFFF);
   opacity: 0;
-  transform: translateY(8px);
-  margin-top: 28px;
+  transform: translateY(6px);
+  margin-top: 24px;
   will-change: opacity, transform;
 }
 
 .gw-active .gw-label {
-  animation: gwLabelIn 300ms var(--ease) 400ms forwards;
+  animation: gwLabelIn 200ms var(--ease) 150ms forwards;
 }
 
 @keyframes gwLabelIn {
   0% {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   100% {
     opacity: 0.85;
@@ -213,7 +216,7 @@ html.gw-active body {
 }
 
 /* --------------------------------------------------------------------------
-   4. HOME VARIANT TIMELINE ANIMATIONS (0 to 2300ms)
+   4. HOME VARIANT TIMELINE ANIMATIONS (0 to 750ms)
    -------------------------------------------------------------------------- */
 .gw-stage--home {
   display: flex;
@@ -229,9 +232,9 @@ html.gw-active body {
   justify-content: center;
 }
 
-/* 0 to 600ms: Home Arch draws */
+/* 0 to 420ms: Home Arch draws */
 .gw-active .gw-arch-path--home {
-  animation: gwArchDrawHome 600ms var(--ease) forwards;
+  animation: gwArchDrawHome 420ms var(--ease) forwards;
 }
 
 @keyframes gwArchDrawHome {
@@ -239,7 +242,7 @@ html.gw-active body {
   100% { stroke-dashoffset: 0; }
 }
 
-/* 300 to 850ms: Logo reveals cleanly from bottom upward without scale jitter */
+/* 120 to 470ms: Logo reveals cleanly without scale jitter */
 .gw-home-logo {
   position: absolute;
   top: 48%;
@@ -277,7 +280,7 @@ html.gw-active body {
 }
 
 .gw-active .gw-home-logo {
-  animation: gwLogoReveal 550ms var(--ease) 300ms forwards;
+  animation: gwLogoReveal 350ms var(--ease) 120ms forwards;
 }
 
 @keyframes gwLogoReveal {
@@ -291,7 +294,7 @@ html.gw-active body {
   }
 }
 
-/* 600 to 1050ms: Wordmark with fixed letter-spacing and smooth vertical fade (no shaking/reflow) */
+/* 240 to 480ms: Wordmark with fixed letter-spacing and smooth vertical fade */
 .gw-home-wordmark {
   display: block;
   font-family: var(--font-main, 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif);
@@ -317,7 +320,7 @@ html.gw-active body {
 }
 
 .gw-active .gw-home-wordmark {
-  animation: gwWordmarkIn 450ms var(--ease) 600ms forwards;
+  animation: gwWordmarkIn 240ms var(--ease) 240ms forwards;
 }
 
 @keyframes gwWordmarkIn {
@@ -332,53 +335,62 @@ html.gw-active body {
 }
 
 /* --------------------------------------------------------------------------
-   5. EXIT TRANSITIONS (Overlay fades out, arch scales up slightly 1.04 over 500ms)
+   5. EXIT TRANSITIONS (Overlay fades out quickly, total sequence < 1100ms)
    -------------------------------------------------------------------------- */
 .gw-exit .gw-label,
 .gw-exit .gw-draw-item {
   opacity: 0 !important;
-  transition: opacity 150ms ease;
+  transition: opacity 120ms ease;
 }
 
 .gw-exit .gw-home-logo,
 .gw-exit .gw-home-wordmark {
   opacity: 0 !important;
-  transition: opacity 200ms ease;
+  transition: opacity 140ms ease;
 }
 
 .gw-exit .gw-arch-svg,
 .gw-exit .gw-arch-svg--home {
-  transform: scale(1.04) !important;
+  transform: scale(1.03) !important;
   opacity: 0 !important;
-  transition: transform 500ms var(--ease), opacity 500ms var(--ease);
+  transition: transform 250ms var(--ease), opacity 250ms var(--ease);
 }
 
 .gw-exit {
   opacity: 0 !important;
   pointer-events: none !important;
-  transition: opacity 500ms var(--ease);
+  transition: opacity 250ms var(--ease);
 }
 
-/* Fast skip exit (under 200ms) */
+/* Subsequent visit in same session: quick 220ms fade exit */
+.gw-subsequent .gw-overlay {
+  animation: gwSubsequentFade 240ms var(--ease) forwards !important;
+}
+@keyframes gwSubsequentFade {
+  0% { opacity: 0.9; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Fast skip exit (under 150ms) */
 .gw-exit.gw-skip-exit .gw-label,
 .gw-exit.gw-skip-exit .gw-draw-item,
 .gw-exit.gw-skip-exit .gw-home-logo,
 .gw-exit.gw-skip-exit .gw-home-wordmark {
   opacity: 0 !important;
-  transition: opacity 80ms ease;
+  transition: opacity 60ms ease;
 }
 
 .gw-exit.gw-skip-exit .gw-arch-svg,
 .gw-exit.gw-skip-exit .gw-arch-svg--home {
-  transform: scale(1.04) !important;
+  transform: scale(1.02) !important;
   opacity: 0 !important;
-  transition: transform 180ms ease, opacity 180ms ease;
+  transition: transform 140ms ease, opacity 140ms ease;
 }
 
 .gw-exit.gw-skip-exit {
   opacity: 0 !important;
   pointer-events: none !important;
-  transition: opacity 180ms ease;
+  transition: opacity 140ms ease;
 }
 
 /* --------------------------------------------------------------------------
@@ -424,9 +436,9 @@ html.gw-active body {
    -------------------------------------------------------------------------- */
 .hero-stagger-item {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 500ms var(--ease),
-              transform 500ms var(--ease);
+  transform: translateY(10px);
+  transition: opacity 280ms var(--ease),
+              transform 280ms var(--ease);
   will-change: opacity, transform;
 }
 
@@ -435,13 +447,14 @@ html.gw-active body {
   transform: translateY(0);
 }
 
-.hero-stagger-active .hero-stagger-item:nth-child(1) { transition-delay: calc(0 * var(--stagger, 90ms)); }
-.hero-stagger-active .hero-stagger-item:nth-child(2) { transition-delay: calc(1 * var(--stagger, 90ms)); }
-.hero-stagger-active .hero-stagger-item:nth-child(3) { transition-delay: calc(2 * var(--stagger, 90ms)); }
-.hero-stagger-active .hero-stagger-item:nth-child(4) { transition-delay: calc(3 * var(--stagger, 90ms)); }
+.hero-stagger-active .hero-stagger-item:nth-child(1) { transition-delay: calc(0 * var(--stagger, 45ms)); }
+.hero-stagger-active .hero-stagger-item:nth-child(2) { transition-delay: calc(1 * var(--stagger, 45ms)); }
+.hero-stagger-active .hero-stagger-item:nth-child(3) { transition-delay: calc(2 * var(--stagger, 45ms)); }
+.hero-stagger-active .hero-stagger-item:nth-child(4) { transition-delay: calc(3 * var(--stagger, 45ms)); }
+.hero-stagger-active .hero-stagger-item:nth-child(n+5) { transition-delay: calc(4 * var(--stagger, 45ms)); }
 
 /* --------------------------------------------------------------------------
-   8. SIBLING CARDS STAGGER (up to 4 items)
+   8. SIBLING CARDS STAGGER (capped at 5 items, max 180ms delay)
    -------------------------------------------------------------------------- */
 .card-grid > *:nth-child(1),
 .facilities-grid > *:nth-child(1),
@@ -452,7 +465,7 @@ html.gw-active body {
 .features-grid > *:nth-child(1),
 .cl-spaces-grid > *:nth-child(1),
 .grid > *:nth-child(1) {
-  --reveal-delay: calc(0 * var(--stagger, 90ms));
+  --reveal-delay: calc(0 * var(--stagger, 45ms));
 }
 .card-grid > *:nth-child(2),
 .facilities-grid > *:nth-child(2),
@@ -463,7 +476,7 @@ html.gw-active body {
 .features-grid > *:nth-child(2),
 .cl-spaces-grid > *:nth-child(2),
 .grid > *:nth-child(2) {
-  --reveal-delay: calc(1 * var(--stagger, 90ms));
+  --reveal-delay: calc(1 * var(--stagger, 45ms));
 }
 .card-grid > *:nth-child(3),
 .facilities-grid > *:nth-child(3),
@@ -474,7 +487,7 @@ html.gw-active body {
 .features-grid > *:nth-child(3),
 .cl-spaces-grid > *:nth-child(3),
 .grid > *:nth-child(3) {
-  --reveal-delay: calc(2 * var(--stagger, 90ms));
+  --reveal-delay: calc(2 * var(--stagger, 45ms));
 }
 .card-grid > *:nth-child(4),
 .facilities-grid > *:nth-child(4),
@@ -485,7 +498,18 @@ html.gw-active body {
 .features-grid > *:nth-child(4),
 .cl-spaces-grid > *:nth-child(4),
 .grid > *:nth-child(4) {
-  --reveal-delay: calc(3 * var(--stagger, 90ms));
+  --reveal-delay: calc(3 * var(--stagger, 45ms));
+}
+.card-grid > *:nth-child(n+5),
+.facilities-grid > *:nth-child(n+5),
+.values-grid > *:nth-child(n+5),
+.faculty-grid > *:nth-child(n+5),
+.admissions-grid > *:nth-child(n+5),
+.contact-grid > *:nth-child(n+5),
+.features-grid > *:nth-child(n+5),
+.cl-spaces-grid > *:nth-child(n+5),
+.grid > *:nth-child(n+5) {
+  --reveal-delay: calc(4 * var(--stagger, 45ms));
 }
 
 /* --------------------------------------------------------------------------
@@ -541,5 +565,24 @@ html.gw-active body {
 html:not(.js) .hero-stagger-item,
 html:not(.js) .reveal {
   opacity: 1 !important;
+  transform: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. LOW-END DEVICE OVERRIDES (data-perf="lite")
+   -------------------------------------------------------------------------- */
+[data-perf="lite"] .gw-overlay {
+  transition: opacity 200ms ease !important;
+}
+
+[data-perf="lite"] .gw-arch-svg,
+[data-perf="lite"] .gw-draw-item,
+[data-perf="lite"] .gw-home-logo,
+[data-perf="lite"] .gw-home-wordmark,
+[data-perf="lite"] .gw-label {
+  animation: none !important;
+  stroke-dashoffset: 0 !important;
+  opacity: 1 !important;
+  clip-path: none !important;
   transform: none !important;
 }

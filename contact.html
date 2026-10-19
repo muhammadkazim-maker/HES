@@ -51,18 +51,76 @@
   </noscript>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/page-gateway.css?v=110">
-  <link rel="stylesheet" href="assets/css/main.css?v=120">
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=130">
+  <link rel="stylesheet" href="assets/css/main.css?v=130">
 
-  <!-- Page Gateway Active Decider (runs before first paint) -->
+  <!-- Pre-Paint Capability Detector & Gateway Decider -->
   <script>
     (function () {
       try {
-        sessionStorage.clear();
-        var r = document.documentElement;
+        var doc = document.documentElement;
         var p = new URLSearchParams(window.location.search);
+        
+        var savedMode = null;
+        try { savedMode = localStorage.getItem('hes-perf-mode'); } catch (e) {}
+
+        var isLite = false;
+        if (savedMode === 'lite') {
+          isLite = true;
+        } else if (savedMode === 'full') {
+          isLite = false;
+        } else {
+          var nav = navigator || {};
+          var conn = nav.connection || nav.mozConnection || nav.webkitConnection;
+          var memory = nav.deviceMemory;
+          var cpus = nav.hardwareConcurrency;
+          var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          if (reduced) {
+            isLite = true;
+          } else if (typeof memory === 'number' && memory <= 4) {
+            isLite = true;
+          } else if (typeof cpus === 'number' && cpus <= 4) {
+            isLite = true;
+          } else if (conn) {
+            if (conn.saveData === true) isLite = true;
+            if (conn.effectiveType && ['slow-2g', '2g', '3g'].indexOf(conn.effectiveType) !== -1) isLite = true;
+          }
+        }
+
+        doc.setAttribute('data-perf', isLite ? 'lite' : 'full');
+
         if (p.get('gateway') === 'off') return;
-        r.classList.add('gw-active');
+
+        var seen = false;
+        try { seen = !!sessionStorage.getItem('hes-gateway-seen'); } catch (e) {}
+
+        if (isLite) {
+          if (!seen) {
+            doc.classList.add('gw-active', 'gw-subsequent');
+          }
+        } else if (seen) {
+          doc.classList.add('gw-active', 'gw-subsequent');
+        } else {
+          doc.classList.add('gw-active');
+        }
+
+        if (!isLite && savedMode !== 'full' && window.requestAnimationFrame) {
+          var frameCount = 0;
+          var probeStart = performance.now();
+          var probe = function (now) {
+            frameCount++;
+            if (frameCount < 20) {
+              requestAnimationFrame(probe);
+            } else {
+              var elapsed = now - probeStart;
+              if (elapsed > 500) {
+                doc.setAttribute('data-perf', 'lite');
+              }
+            }
+          };
+          requestAnimationFrame(probe);
+        }
       } catch (e) {}
     })();
   </script>
@@ -456,6 +514,10 @@
 
       <div class="footer-bottom">
         <p class="footer-copyright">&copy; 2026 Hadi Education System. All rights reserved.</p>
+        <button type="button" class="perf-toggle-btn" id="perfToggleBtn" aria-pressed="false" aria-label="Toggle reduced animations mode">
+          <span class="perf-toggle-icon" aria-hidden="true">⚡</span>
+          <span class="perf-toggle-text">Reduce animations</span>
+        </button>
       </div>
     </div>
   </footer>
@@ -475,9 +537,9 @@
   </div>
 
   <script src="assets/js/siteContent.js?v=37"></script>
-  <script src="assets/js/page-gateway.js?v=110"></script>
+  <script src="assets/js/page-gateway.js?v=130"></script>
     <script src="assets/js/toast.js?v=1"></script>
   <script src="assets/js/analytics.js?v=1" defer></script>
-  <script src="assets/js/app.js?v=37"></script>
+  <script src="assets/js/app.js?v=130"></script>
 </body>
 </html>

@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initBalancedDayBar();
   initCampusLife();
   initMarqueePauseControl();
+  initTabVisibilityController();
+  initMarqueeVisibilityObserver();
+  initPerformanceToggle();
 });
 
 /* ==========================================================================
@@ -74,9 +77,10 @@ function initScrollReveal() {
     if (!parent) return;
 
     const count = staggerCounts.get(parent) || 0;
+    const cappedCount = Math.min(count, 4);
     if (element.matches("p, ul, ol, li, button")) {
       if (!element.hasAttribute("data-delay")) {
-        element.setAttribute("data-delay", String(Math.min(count * 100, 600)));
+        element.setAttribute("data-delay", String(cappedCount * 45));
       }
       staggerCounts.set(parent, count + 1);
     }
@@ -84,7 +88,7 @@ function initScrollReveal() {
     if (element.hasAttribute("data-delay")) {
       const delay = Number.parseInt(element.getAttribute("data-delay"), 10);
       if (Number.isFinite(delay) && delay > 0) {
-        element.style.setProperty("--reveal-delay", `${Math.min(delay, 1000)}ms`);
+        element.style.setProperty("--reveal-delay", `${Math.min(delay, 180)}ms`);
       }
     }
 
@@ -100,8 +104,12 @@ function initScrollReveal() {
 
   document.documentElement.classList.add("js", "reveal-pending");
 
-  if (reducedMotion.matches) {
-    revealElements.forEach(element => element.classList.add("is-visible"));
+  const isLite = document.documentElement.getAttribute("data-perf") === "lite";
+  if (reducedMotion.matches || isLite) {
+    revealElements.forEach(element => {
+      element.classList.add("is-visible", "is-revealed");
+      element.style.setProperty("--reveal-delay", "0ms");
+    });
     document.documentElement.classList.remove("reveal-pending");
     return;
   }
@@ -109,12 +117,12 @@ function initScrollReveal() {
   const observer = new IntersectionObserver((entries, activeObserver) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      entry.target.classList.add("is-visible");
+      entry.target.classList.add("is-visible", "is-revealed");
       activeObserver.unobserve(entry.target);
     });
   }, {
-    threshold: 0.15,
-    rootMargin: "0px 0px -50px 0px"
+    threshold: 0.12,
+    rootMargin: "0px 0px -20px 0px"
   });
 
   window.requestAnimationFrame(() => {
@@ -281,10 +289,11 @@ function initLearningPathwayCarousel() {
     }
   };
 
-  const rotationDelay = () => (compactViewport.matches ? 1300 : 2200);
+  const rotationDelay = () => (compactViewport.matches ? 1600 : 2500);
 
   const startCarousel = () => {
-    if (reducedMotion.matches || intervalId !== undefined) return;
+    const isLite = document.documentElement.getAttribute("data-perf") === "lite";
+    if (reducedMotion.matches || isLite || document.hidden || intervalId !== undefined) return;
 
     intervalId = window.setInterval(() => {
       activeIndex = (activeIndex + 1) % cards.length;
@@ -294,7 +303,32 @@ function initLearningPathwayCarousel() {
 
   stage.classList.add("is-carousel-ready");
   updatePositions();
-  startCarousel();
+
+  if ("IntersectionObserver" in window) {
+    const stageObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !document.hidden) {
+          startCarousel();
+        } else {
+          stopCarousel();
+        }
+      });
+    }, { threshold: 0.1 });
+    stageObserver.observe(stage);
+  } else {
+    startCarousel();
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopCarousel();
+    } else {
+      startCarousel();
+    }
+  });
+
+  stage.addEventListener("mouseenter", stopCarousel);
+  stage.addEventListener("mouseleave", startCarousel);
 
   const restartCarousel = () => {
     stopCarousel();
@@ -489,8 +523,9 @@ function initCounters() {
   const counters = document.querySelectorAll(".counter-number");
   if (!counters.length) return;
 
-  // Reduced-motion: set final values immediately, skip animation
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  // Reduced-motion or lite performance mode: set final values immediately, skip animation
+  const isLite = document.documentElement.getAttribute('data-perf') === 'lite';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || isLite) {
     counters.forEach(c => {
       const target = c.getAttribute('data-target') || '';
       const suffix = c.getAttribute('data-suffix') || '';
@@ -506,11 +541,11 @@ function initCounters() {
         const el = entry.target;
         const targetValue = parseInt(el.getAttribute("data-target"), 10) || 0;
         const suffix = el.getAttribute("data-suffix") || "";
-        animateValue(el, 0, targetValue, 1800, suffix);
+        animateValue(el, 0, targetValue, 600, suffix);
         obs.unobserve(el);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.2 });
 
   counters.forEach(c => observer.observe(c));
 }
@@ -901,7 +936,9 @@ function initVisionMissionParallax() {
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const desktopQuery = window.matchMedia("(min-width: 769px)");
-  if (reducedMotion.matches || !desktopQuery.matches) return;
+  const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const isLite = document.documentElement.getAttribute("data-perf") === "lite";
+  if (reducedMotion.matches || !desktopQuery.matches || isTouch || isLite) return;
 
   sections.forEach(section => {
     const bgImg = section.querySelector(".vm-bg-img, .vm-bg-logo");
@@ -1265,127 +1302,97 @@ function initAdmissionRoadmap() {
   // Initial calculation after layout render
   setTimeout(updateDesktopPathGeometry, 60);
 
-  // Debounced ResizeObserver
+  // Debounced ResizeObserver to keep path aligned with stations on resize
   let resizeTimer = null;
   if ("ResizeObserver" in window) {
     const ro = new ResizeObserver(() => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         updateDesktopPathGeometry();
-        onScroll();
       }, 75);
     });
     ro.observe(stage);
-  } else {
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        updateDesktopPathGeometry();
-        onScroll();
-      }, 75);
-    });
   }
 
-  // 3. Scroll Progress and Station States via requestAnimationFrame
-  let ticking = false;
+  // 3. One-Shot Viewport Trigger (650ms total, not scroll-scrubbed per pixel)
+  let hasTriggered = false;
 
-  function onScroll() {
-    if (!ticking) {
-      requestAnimationFrame(updateScrollProgress);
-      ticking = true;
-    }
-  }
+  function triggerRoadmapEntrance() {
+    if (hasTriggered) return;
+    hasTriggered = true;
 
-  function updateScrollProgress() {
-    ticking = false;
-    if (!stage) return;
-
-    const stageRect = stage.getBoundingClientRect();
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-
-    // Progress begins when stage top enters 70% of viewport
-    const startY = vh * 0.70;
-    // Progress completes when stage bottom approaches 40% of viewport
-    const endY = vh * 0.40;
-    const scrollTravel = stageRect.height + (startY - endY);
-    const current = startY - stageRect.top;
-
-    let progress = scrollTravel > 0 ? current / scrollTravel : 0;
-    progress = Math.max(0, Math.min(1, progress));
-
+    const isLite = document.documentElement.getAttribute("data-perf") === "lite";
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = window.innerWidth <= 768;
 
-    if (!isMobile) {
-      // Desktop SVG Fill and Marker
-      if (pathTotalLength <= 0 && fillPath) {
+    if (reducedMotion || isLite) {
+      // Instant reveal in lite/reduced-motion mode
+      if (fillPath) {
+        fillPath.style.transition = "none";
+        fillPath.style.strokeDashoffset = "0";
+      }
+      if (mobileFill) {
+        mobileFill.style.transition = "none";
+        mobileFill.style.height = "100%";
+      }
+      stations.forEach(st => {
+        st.classList.add("is-completed");
+        st.classList.remove("is-upcoming", "is-active");
+        const card = st.querySelector(".ar-card");
+        if (card) card.classList.add("is-visible");
+      });
+      return;
+    }
+
+    // Full mode: smooth 650ms stroke-dashoffset transition
+    if (!isMobile && fillPath) {
+      if (pathTotalLength <= 0) {
         pathTotalLength = fillPath.getTotalLength();
         fillPath.style.strokeDasharray = `${pathTotalLength} ${pathTotalLength}`;
       }
-
-      if (fillPath && pathTotalLength > 0) {
-        const drawLen = pathTotalLength * progress;
-        fillPath.style.strokeDashoffset = `${pathTotalLength - drawLen}`;
-
-        if (marker) {
-          if (progress > 0.01) {
-            marker.style.display = "block";
-            const pt = fillPath.getPointAtLength(drawLen);
-            const ptAhead = fillPath.getPointAtLength(Math.min(pathTotalLength, drawLen + 3));
-            const angle = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * (180 / Math.PI);
-            marker.setAttribute("transform", `translate(${pt.x}, ${pt.y}) rotate(${angle})`);
-          } else {
-            const pt0 = fillPath.getPointAtLength(0);
-            marker.setAttribute("transform", `translate(${pt0.x}, ${pt0.y})`);
-          }
-        }
-      }
-    } else {
-      // Mobile Vertical Rail
-      if (mobileFill && mobileMarker) {
-        const pPercent = progress * 100;
-        mobileFill.style.height = `${pPercent}%`;
-        mobileMarker.style.top = `${pPercent}%`;
-      }
+      fillPath.style.transition = "stroke-dashoffset 650ms cubic-bezier(0.22, 1, 0.36, 1)";
+      requestAnimationFrame(() => {
+        fillPath.style.strokeDashoffset = "0";
+      });
+    } else if (mobileFill) {
+      mobileFill.style.transition = "height 650ms cubic-bezier(0.22, 1, 0.36, 1)";
+      requestAnimationFrame(() => {
+        mobileFill.style.height = "100%";
+      });
     }
 
-    // Station States: Completed, Active, Upcoming
-    const thresholds = [
-      { start: 0.04, done: 0.28 },
-      { start: 0.28, done: 0.54 },
-      { start: 0.54, done: 0.78 },
-      { start: 0.78, done: 0.96 }
-    ];
-
+    // Step cards stagger cleanly across the 650ms duration (0, 150ms, 300ms, 450ms)
     stations.forEach((st, idx) => {
-      const th = thresholds[idx];
-      const card = st.querySelector(".ar-card");
-
-      if (progress < th.start) {
-        // Upcoming
-        st.classList.add("is-upcoming");
-        st.classList.remove("is-active", "is-completed");
-        st.removeAttribute("aria-current");
-      } else if (progress >= th.start && progress < th.done) {
-        // Active
+      const delay = idx * 150;
+      setTimeout(() => {
+        st.classList.remove("is-upcoming");
         st.classList.add("is-active");
-        st.classList.remove("is-upcoming", "is-completed");
         st.setAttribute("aria-current", "step");
+        const card = st.querySelector(".ar-card");
         if (card) card.classList.add("is-visible");
-      } else {
-        // Completed
-        st.classList.add("is-completed");
-        st.classList.remove("is-upcoming", "is-active");
-        st.removeAttribute("aria-current");
-        if (card) card.classList.add("is-visible");
-      }
+
+        setTimeout(() => {
+          st.classList.add("is-completed");
+          st.classList.remove("is-active");
+          st.removeAttribute("aria-current");
+        }, 160);
+      }, delay);
     });
   }
 
-  // Bind passive scroll listener
-  window.addEventListener("scroll", onScroll, { passive: true });
-
-  // Initial trigger
-  onScroll();
+  if ("IntersectionObserver" in window) {
+    const roadmapObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          triggerRoadmapEntrance();
+          roadmapObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    roadmapObserver.observe(stage);
+  } else {
+    triggerRoadmapEntrance();
+  }
 }
 
 /* ==========================================================================
@@ -3178,6 +3185,86 @@ function initMarqueePauseControl() {
     btn.setAttribute('aria-label', 'Play testimonials');
     btn.querySelector('.pause-icon').textContent = '▶';
   }
+}
+
+/* ==========================================================================
+   TAB VISIBILITY & LOW-END RESOURCE CONTROLLER
+   ========================================================================== */
+function initTabVisibilityController() {
+  document.addEventListener("visibilitychange", () => {
+    const isHidden = document.hidden;
+    document.documentElement.classList.toggle("is-tab-hidden", isHidden);
+
+    const heroVideo = document.getElementById("clHeroVideo");
+    if (heroVideo) {
+      if (isHidden) {
+        heroVideo.pause();
+      } else if (document.documentElement.getAttribute("data-perf") !== "lite") {
+        heroVideo.play().catch(() => {});
+      }
+    }
+  });
+}
+
+/* ==========================================================================
+   OFF-SCREEN ANIMATION PAUSING (IntersectionObserver)
+   ========================================================================== */
+function initMarqueeVisibilityObserver() {
+  const animatedTracks = document.querySelectorAll(
+    ".quote-marquee-track, .cl-marquee-track, .cl-reel-stream"
+  );
+  if (!animatedTracks.length || !("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove("is-anim-paused");
+      } else {
+        entry.target.classList.add("is-anim-paused");
+      }
+    });
+  }, { threshold: 0.05 });
+
+  animatedTracks.forEach(track => observer.observe(track));
+}
+
+/* ==========================================================================
+   FOOTER "REDUCE ANIMATIONS" TOGGLE
+   ========================================================================== */
+function initPerformanceToggle() {
+  const toggleBtn = document.getElementById("perfToggleBtn");
+  if (!toggleBtn) return;
+
+  const updateButtonState = () => {
+    const isLite = document.documentElement.getAttribute("data-perf") === "lite";
+    toggleBtn.setAttribute("aria-pressed", isLite ? "true" : "false");
+    const textSpan = toggleBtn.querySelector(".perf-toggle-text");
+    if (textSpan) {
+      textSpan.textContent = isLite ? "Reduced animations: ON" : "Reduce animations";
+    }
+  };
+
+  updateButtonState();
+
+  toggleBtn.addEventListener("click", () => {
+    const currentMode = document.documentElement.getAttribute("data-perf");
+    const newMode = currentMode === "lite" ? "full" : "lite";
+    document.documentElement.setAttribute("data-perf", newMode);
+
+    try {
+      localStorage.setItem("hes-perf-mode", newMode);
+    } catch (e) {}
+
+    updateButtonState();
+
+    if (window.HESToast && typeof window.HESToast.show === "function") {
+      if (newMode === "lite") {
+        window.HESToast.show("info", "Reduced animations mode enabled for smooth performance.");
+      } else {
+        window.HESToast.show("info", "Standard animations restored.");
+      }
+    }
+  });
 }
 
 

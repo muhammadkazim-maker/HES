@@ -135,17 +135,20 @@
   --black: #000000;
   --gray: #E5E5E5;
 
-  /* Shared Animation Tokens */
+  /* Shared Snappy Performance Tokens */
   --ease: cubic-bezier(.22, 1, .36, 1);
-  --dur-reveal: 700ms;
-  --dur-fast: 250ms;
-  --reveal-distance: 20px;
-  --stagger: 90ms;
-  --hover-lift: 6px;
+  --dur-micro: 150ms;
+  --dur-fast: 180ms;
+  --dur-standard: 280ms;
+  --dur-reveal: 300ms;
+  --dur-large: 600ms;
+  --reveal-distance: 14px;
+  --stagger: 45ms;
+  --hover-lift: 4px;
 
-  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 150ms cubic-bezier(.22, 1, .36, 1);
+  --transition-normal: 280ms cubic-bezier(.22, 1, .36, 1);
+  --transition-slow: 500ms cubic-bezier(.22, 1, .36, 1);
 
   /* Container */
   --container-width: 1240px;
@@ -5769,24 +5772,39 @@ main,
 }
 
 .nav-pulse-dot {
+  position: relative !important;
   width: 7px !important;
   height: 7px !important;
   border-radius: 50% !important;
   background: #22C55E !important;
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25) !important;
   display: inline-block !important;
   flex-shrink: 0 !important;
-  animation: navPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
 }
 
-@keyframes navPulse {
-  0%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+.nav-pulse-dot::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -3px !important;
+  border-radius: 50% !important;
+  background: #22C55E !important;
+  opacity: 0.45 !important;
+  transform: scale(1) !important;
+  animation: navPulseTransform 3s cubic-bezier(0.22, 1, 0.36, 1) infinite !important;
+  pointer-events: none !important;
+}
+
+@keyframes navPulseTransform {
+  0% {
+    transform: scale(1);
+    opacity: 0.45;
   }
-  50% {
-    opacity: 0.75;
-    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.10);
+  35% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
   }
 }
 
@@ -6497,7 +6515,7 @@ main,
 .reveal-right,
 .reveal-zoom {
   transition-property: opacity, transform;
-  transition-duration: var(--dur-reveal, 700ms);
+  transition-duration: var(--dur-reveal, 300ms);
   transition-timing-function: var(--ease, cubic-bezier(.22, 1, .36, 1));
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
@@ -6506,25 +6524,25 @@ main,
 .reveal:not(.is-revealed):not(.is-visible),
 .js .reveal:not(.is-revealed):not(.is-visible) {
   opacity: 0;
-  transform: translate3d(0, var(--reveal-distance, 20px), 0);
+  transform: translate3d(0, var(--reveal-distance, 14px), 0);
 }
 
 .reveal-left:not(.is-revealed):not(.is-visible),
 .js .reveal-left:not(.is-revealed):not(.is-visible) {
   opacity: 0;
-  transform: translate3d(calc(-1 * var(--reveal-distance, 20px)), 0, 0);
+  transform: translate3d(calc(-1 * var(--reveal-distance, 14px)), 0, 0);
 }
 
 .reveal-right:not(.is-revealed):not(.is-visible),
 .js .reveal-right:not(.is-revealed):not(.is-visible) {
   opacity: 0;
-  transform: translate3d(var(--reveal-distance, 20px), 0, 0);
+  transform: translate3d(var(--reveal-distance, 14px), 0, 0);
 }
 
 .reveal-zoom:not(.is-revealed):not(.is-visible),
 .js .reveal-zoom:not(.is-revealed):not(.is-visible) {
   opacity: 0;
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
 .reveal.is-revealed,
@@ -11683,5 +11701,170 @@ html:not(.js) .bd-noscript-stack {
 .form-privacy a {
   color: var(--navy, #14213D);
   text-decoration: underline;
-  font-weight: 600;
+  text-weight: 600;
+}
+
+/* ==========================================================================
+   LOW-END DEVICE MODE & ACCESSIBILITY (data-perf="lite")
+   ========================================================================== */
+[data-perf="lite"] * {
+  text-shadow: none !important;
+}
+
+[data-perf="lite"] {
+  --backdrop-blur: none;
+}
+
+/* Strip expensive backdrop-filters on low-end devices */
+[data-perf="lite"] .navbar,
+[data-perf="lite"] .glass-card,
+[data-perf="lite"] .glass-panel,
+[data-perf="lite"] .quote-marquee-shell::before,
+[data-perf="lite"] .quote-marquee-shell::after,
+[data-perf="lite"] .cl-reel-shell::before,
+[data-perf="lite"] .cl-reel-shell::after,
+[data-perf="lite"] .cl-fade-edge,
+[data-perf="lite"] .cl-lightbox-backdrop {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
+
+/* Lite mode reveals: snappy 150ms opacity-only fade without translate */
+[data-perf="lite"] .reveal,
+[data-perf="lite"] .reveal-left,
+[data-perf="lite"] .reveal-right,
+[data-perf="lite"] .reveal-zoom {
+  transition: opacity 150ms ease !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+
+[data-perf="lite"] .reveal:not(.is-revealed):not(.is-visible),
+[data-perf="lite"] .reveal-left:not(.is-revealed):not(.is-visible),
+[data-perf="lite"] .reveal-right:not(.is-revealed):not(.is-visible),
+[data-perf="lite"] .reveal-zoom:not(.is-revealed):not(.is-visible) {
+  opacity: 0 !important;
+  transform: none !important;
+}
+
+/* Lite mode: disable parallax */
+[data-perf="lite"] .vm-bg-img,
+[data-perf="lite"] .vm-bg-logo {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* Lite mode: disable staggers */
+[data-perf="lite"] .hero-stagger-item,
+[data-perf="lite"] .cl-fade-elem,
+[data-perf="lite"] [class*='stagger-item'] {
+  transition-delay: 0ms !important;
+  animation-delay: 0ms !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* Lite mode: immediate admission roadmap path */
+[data-perf="lite"] #ar-fill-path,
+[data-perf="lite"] #ar-track-path {
+  stroke-dashoffset: 0 !important;
+  transition: none !important;
+}
+
+/* Lite mode: Hero video paused/hidden, poster only */
+[data-perf="lite"] #clHeroVideo {
+  display: none !important;
+}
+[data-perf="lite"] .cl-hero-poster {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+/* Lite mode: Campus Life strip & testimonials static or paused */
+[data-perf="lite"] .quote-marquee-track,
+[data-perf="lite"] .cl-marquee-track,
+[data-perf="lite"] .cl-reel-stream {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Lite mode: Static status dot without animation */
+[data-perf="lite"] .nav-pulse-dot::after {
+  animation: none !important;
+  display: none !important;
+}
+
+/* Lite mode: Simple static box shadows, no hover transitions */
+[data-perf="lite"] .hover-lift:hover,
+[data-perf="lite"] .facility-card:hover,
+[data-perf="lite"] .stat-card:hover,
+[data-perf="lite"] .cl-space-card:hover {
+  transform: none !important;
+  box-shadow: 0 4px 12px rgba(20, 33, 61, 0.08) !important;
+}
+
+/* Pause animations when tab is hidden (document.hidden) or off-screen */
+.is-tab-hidden .nav-pulse-dot::after,
+.is-tab-hidden .quote-marquee-track,
+.is-tab-hidden .cl-marquee-track,
+.is-tab-hidden .cl-reel-stream,
+.is-anim-paused {
+  animation-play-state: paused !important;
+}
+
+/* ==========================================================================
+   FOOTER REDUCE ANIMATIONS TOGGLE BUTTON
+   ========================================================================== */
+.footer-bottom {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+}
+
+.perf-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 0.76rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all var(--dur-micro, 150ms) ease;
+  min-height: 32px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.perf-toggle-btn:hover,
+.perf-toggle-btn:focus-visible {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.12);
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+.perf-toggle-btn[aria-pressed="true"] {
+  background: rgba(34, 197, 94, 0.16);
+  border-color: #22C55E;
+  color: #86EFAC;
+}
+
+.perf-toggle-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .footer-bottom {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
 }

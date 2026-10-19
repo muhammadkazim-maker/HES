@@ -31,8 +31,44 @@
   </noscript>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/page-gateway.css?v=110">
-  <link rel="stylesheet" href="assets/css/main.css?v=120">
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=130">
+  <link rel="stylesheet" href="assets/css/main.css?v=130">
+
+  <!-- Pre-Paint Capability Detector -->
+  <script>
+    (function () {
+      try {
+        var doc = document.documentElement;
+        var savedMode = null;
+        try { savedMode = localStorage.getItem('hes-perf-mode'); } catch (e) {}
+
+        var isLite = false;
+        if (savedMode === 'lite') {
+          isLite = true;
+        } else if (savedMode === 'full') {
+          isLite = false;
+        } else {
+          var nav = navigator || {};
+          var conn = nav.connection || nav.mozConnection || nav.webkitConnection;
+          var memory = nav.deviceMemory;
+          var cpus = nav.hardwareConcurrency;
+          var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          if (reduced) {
+            isLite = true;
+          } else if (typeof memory === 'number' && memory <= 4) {
+            isLite = true;
+          } else if (typeof cpus === 'number' && cpus <= 4) {
+            isLite = true;
+          } else if (conn) {
+            if (conn.saveData === true) isLite = true;
+            if (conn.effectiveType && ['slow-2g', '2g', '3g'].indexOf(conn.effectiveType) !== -1) isLite = true;
+          }
+        }
+        doc.setAttribute('data-perf', isLite ? 'lite' : 'full');
+      } catch (e) {}
+    })();
+  </script>
 
   <style>
     .error-hero {
@@ -228,6 +264,10 @@
 
       <div class="footer-bottom">
         <p class="footer-copyright">&copy; 2026 Hadi Education System. All rights reserved.</p>
+        <button type="button" class="perf-toggle-btn" id="perfToggleBtn" aria-pressed="false" aria-label="Toggle reduced animations mode">
+          <span class="perf-toggle-icon" aria-hidden="true">⚡</span>
+          <span class="perf-toggle-text">Reduce animations</span>
+        </button>
       </div>
     </div>
   </footer>
@@ -236,6 +276,6 @@
   <script src="assets/js/siteContent.js?v=37"></script>
   <script src="assets/js/toast.js?v=1"></script>
   <script src="assets/js/analytics.js?v=1" defer></script>
-  <script src="assets/js/app.js?v=39"></script>
+  <script src="assets/js/app.js?v=130"></script>
 </body>
 </html>
