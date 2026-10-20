@@ -11757,106 +11757,31 @@ html:not(.js) .bd-noscript-stack {
 }
 
 /* ==========================================================================
-   LOW-END DEVICE MODE & ACCESSIBILITY (data-perf="lite")
+   OPTIMIZED UNIVERSAL HARDWARE-ACCELERATED ANIMATIONS
+   Ensures smooth, lightweight 60fps animations across low-end and high-end devices
    ========================================================================== */
-[data-perf="lite"] * {
-  text-shadow: none !important;
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-zoom {
+  transition: opacity 280ms var(--ease, cubic-bezier(0.22, 1, 0.36, 1)),
+              transform 280ms var(--ease, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+  will-change: opacity, transform;
 }
 
-[data-perf="lite"] {
-  --backdrop-blur: none;
-}
-
-/* Strip expensive backdrop-filters on low-end devices */
-[data-perf="lite"] .navbar,
-[data-perf="lite"] .glass-card,
-[data-perf="lite"] .glass-panel,
-[data-perf="lite"] .quote-marquee-shell::before,
-[data-perf="lite"] .quote-marquee-shell::after,
-[data-perf="lite"] .cl-reel-shell::before,
-[data-perf="lite"] .cl-reel-shell::after,
-[data-perf="lite"] .cl-fade-edge,
-[data-perf="lite"] .cl-lightbox-backdrop {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  filter: none !important;
-}
-
-/* Lite mode reveals: snappy 150ms opacity-only fade without translate */
-[data-perf="lite"] .reveal,
-[data-perf="lite"] .reveal-left,
-[data-perf="lite"] .reveal-right,
-[data-perf="lite"] .reveal-zoom {
-  transition: opacity 150ms ease !important;
-  transform: none !important;
-  will-change: auto !important;
-}
-
-[data-perf="lite"] .reveal:not(.is-revealed):not(.is-visible),
-[data-perf="lite"] .reveal-left:not(.is-revealed):not(.is-visible),
-[data-perf="lite"] .reveal-right:not(.is-revealed):not(.is-visible),
-[data-perf="lite"] .reveal-zoom:not(.is-revealed):not(.is-visible) {
-  opacity: 0 !important;
-  transform: none !important;
-}
-
-/* Lite mode: disable parallax */
-[data-perf="lite"] .vm-bg-img,
-[data-perf="lite"] .vm-bg-logo {
-  transform: none !important;
-  will-change: auto !important;
-}
-
-/* Lite mode: disable staggers */
-[data-perf="lite"] .hero-stagger-item,
-[data-perf="lite"] .cl-fade-elem,
-[data-perf="lite"] [class*='stagger-item'] {
-  transition-delay: 0ms !important;
-  animation-delay: 0ms !important;
-  transform: none !important;
+.reveal.is-revealed,
+.reveal.is-visible,
+.reveal-left.is-revealed,
+.reveal-left.is-visible,
+.reveal-right.is-revealed,
+.reveal-right.is-visible,
+.reveal-zoom.is-revealed,
+.reveal-zoom.is-visible {
   opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
 }
 
-/* Lite mode: immediate admission roadmap path */
-[data-perf="lite"] #ar-fill-path,
-[data-perf="lite"] #ar-track-path {
-  stroke-dashoffset: 0 !important;
-  transition: none !important;
-}
-
-/* Lite mode: Hero video paused/hidden, poster only */
-[data-perf="lite"] #clHeroVideo {
-  display: none !important;
-}
-[data-perf="lite"] .cl-hero-poster {
-  display: block !important;
-  opacity: 1 !important;
-}
-
-/* Lite mode: Campus Life strip & testimonials static or paused */
-[data-perf="lite"] .quote-marquee-track,
-[data-perf="lite"] .cl-marquee-track,
-[data-perf="lite"] .cl-reel-stream {
-  animation: none !important;
-  transform: none !important;
-}
-
-/* Lite mode: Static status dot without animation */
-[data-perf="lite"] .nav-pulse-dot::after {
-  animation: none !important;
-  display: none !important;
-}
-
-/* Lite mode: Simple static box shadows, no hover transitions */
-[data-perf="lite"] .hover-lift:hover,
-[data-perf="lite"] .facility-card:hover,
-[data-perf="lite"] .stat-card:hover,
-[data-perf="lite"] .cl-space-card:hover {
-  transform: none !important;
-  box-shadow: 0 4px 12px rgba(20, 33, 61, 0.08) !important;
-}
-
-/* Pause animations when tab is hidden (document.hidden) or off-screen */
+/* Pause animations when tab is hidden (document.hidden) or off-screen to preserve CPU & battery */
 .is-tab-hidden .nav-pulse-dot::after,
 .is-tab-hidden .quote-marquee-track,
 .is-tab-hidden .cl-marquee-track,
@@ -11866,57 +11791,24 @@ html:not(.js) .bd-noscript-stack {
 }
 
 /* ==========================================================================
-   FOOTER REDUCE ANIMATIONS TOGGLE BUTTON
+   FOOTER BOTTOM (Centered Copyright Across All Layouts)
    ========================================================================== */
 .footer-bottom {
   display: flex !important;
   align-items: center !important;
-  justify-content: space-between !important;
-  flex-wrap: wrap !important;
-  gap: 12px !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  padding-top: 28px !important;
+  margin-top: 36px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
-.perf-toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: rgba(255, 255, 255, 0.8);
-  padding: 5px 12px;
-  border-radius: 9999px;
-  font-size: 0.76rem;
-  font-family: var(--font-sans);
-  cursor: pointer;
-  transition: all var(--dur-micro, 150ms) ease;
-  min-height: 32px;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.perf-toggle-btn:hover,
-.perf-toggle-btn:focus-visible {
-  color: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.12);
-  outline: 2px solid #FFFFFF;
-  outline-offset: 2px;
-}
-
-.perf-toggle-btn[aria-pressed="true"] {
-  background: rgba(34, 197, 94, 0.16);
-  border-color: #22C55E;
-  color: #86EFAC;
-}
-
-.perf-toggle-icon {
-  font-size: 0.85rem;
-  line-height: 1;
-}
-
-@media (max-width: 600px) {
-  .footer-bottom {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
+.footer-copyright {
+  margin: 0 auto !important;
+  text-align: center !important;
+  color: #E5E5E5 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.6 !important;
+  width: 100% !important;
 }

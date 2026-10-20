@@ -52,64 +52,25 @@
   </noscript>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/page-gateway.css?v=132">
-  <link rel="stylesheet" href="assets/css/main.css?v=133">
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=134">
+  <link rel="stylesheet" href="assets/css/main.css?v=134">
 
-  <!-- Pre-Paint Capability Detector & Gateway Decider -->
+  <!-- Pre-Paint Gateway Decider -->
   <script>
     (function () {
       try {
         var doc = document.documentElement;
+        try { localStorage.removeItem('hes-perf-mode'); } catch (e) {}
         var p = new URLSearchParams(window.location.search);
-        
-        // 1. Explicit user override via footer toggle takes highest priority
-        var savedMode = null;
-        try { savedMode = localStorage.getItem('hes-perf-mode'); } catch (e) {}
-
-        var isLite = false;
-        if (savedMode === 'lite') {
-          isLite = true;
-        } else if (savedMode === 'full') {
-          isLite = false;
-        } else {
-          // 2. OS accessibility preference: always respect prefers-reduced-motion
-          var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          if (reduced) {
-            isLite = true;
-          } else {
-            var nav = navigator || {};
-            var conn = nav.connection || nav.mozConnection || nav.webkitConnection;
-            
-            // Respect Data Saver mode if user enabled it in their browser
-            if (conn && conn.saveData === true) {
-              isLite = true;
-            } else {
-              // 3. Automatic detection for low-end mobile devices:
-              // Desktop browsers / laptops have ample power and run in full animation mode.
-              var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(nav.userAgent || '') ||
-                             (window.matchMedia && window.matchMedia('(max-width: 768px) and (pointer: coarse)').matches);
-
-              if (isMobile) {
-                // Auto animation-saving mode for low-end mobile hardware or slow cellular networks
-                var memory = nav.deviceMemory;
-                var cpus = nav.hardwareConcurrency;
-                if (typeof memory === 'number' && memory <= 2) {
-                  isLite = true; // Budget phone (<= 2GB RAM)
-                } else if (typeof cpus === 'number' && cpus <= 2) {
-                  isLite = true; // Budget phone (dual-core CPU)
-                } else if (conn && conn.effectiveType && ['slow-2g', '2g'].indexOf(conn.effectiveType) !== -1) {
-                  isLite = true; // 2G mobile network
-                }
-              }
-            }
-          }
-        }
-
-        doc.setAttribute('data-perf', isLite ? 'lite' : 'full');
-
         if (p.get('gateway') === 'off') return;
 
-        if (isLite) {
+        var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduced) return;
+
+        var seen = false;
+        try { seen = sessionStorage.getItem('hes-gateway-seen') === 'true'; } catch (e) {}
+
+        if (seen) {
           doc.classList.add('gw-active', 'gw-subsequent');
         } else {
           doc.classList.add('gw-active');
@@ -804,10 +765,6 @@
 
       <div class="footer-bottom">
         <p class="footer-copyright">&copy; 2026 Hadi Education System. All rights reserved.</p>
-        <button type="button" class="perf-toggle-btn" id="perfToggleBtn" aria-pressed="false" aria-label="Toggle reduced animations mode">
-          <span class="perf-toggle-icon" aria-hidden="true">⚡</span>
-          <span class="perf-toggle-text">Reduce animations</span>
-        </button>
       </div>
     </div>
   </footer>
@@ -827,10 +784,10 @@
   </div>
 
   <script src="assets/js/siteContent.js?v=37"></script>
-  <script src="assets/js/page-gateway.js?v=132"></script>
-    <script src="assets/js/toast.js?v=1"></script>
+  <script src="assets/js/page-gateway.js?v=134"></script>
+  <script src="assets/js/toast.js?v=1"></script>
   <script src="assets/js/analytics.js?v=1" defer></script>
-  <script src="assets/js/app.js?v=132"></script>
+  <script src="assets/js/app.js?v=134"></script>
 </body>
 
 </html>

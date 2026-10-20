@@ -128,4 +128,13 @@ Then visit: `http://localhost:3000` in your web browser.
 4. **Fee Table Adjustments:** Editable in `assets/js/siteContent.js` and `admission.html`.
 
 ---
+
+## 🔒 Security & Audit Artifact Hygiene
+
+- Raw automated audit outputs (such as Lighthouse JSON reports, HAR files, and browser network traces) capture third-party iframe network calls (e.g., Google Maps embed client keys).
+- All raw diagnostic reports are excluded via `.gitignore` (`audit-artifacts/*.json`).
+- Only human-readable markdown summaries (`AUDIT_REPORT.md`) and sanitized screenshots are tracked. See [AUDIT_NOTES.md](AUDIT_NOTES.md) for complete details.
+
+---
+
 © 2026 Hadi Education System. All rights reserved.

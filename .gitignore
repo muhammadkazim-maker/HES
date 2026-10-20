@@ -3,3 +3,15 @@
 *.mkv
 media-source/
 CL Images/
+
+# Raw audit outputs, network traces, and diagnostic dumps
+audit-artifacts/*.json
+audit-artifacts/**/*.json
+*.har
+*.trace
+*.network-dump
+
+# Python cache
+__pycache__/
+*.pyc
+

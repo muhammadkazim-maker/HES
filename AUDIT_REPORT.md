@@ -303,4 +303,4 @@ While the Hadi Education System website presents a visually disciplined, cultura
 | `#perfToggleBtn` | 148×32 px | Footer Bottom (All pages) | WCAG 2.5.5 / 2.5.8 |
 
 ---
-*Report generated and cross-verified via automated Chrome CDP, Lighthouse, Axe-Core, and Python test suites. All visual artifacts and raw audits archived in `/Users/syedmurtaza/Desktop/HES/audit-artifacts/`.*
+*Report generated and cross-verified via automated Chrome CDP, Lighthouse, Axe-Core, and Python test suites. All visual artifacts and raw audits archived in `audit-artifacts/`.*

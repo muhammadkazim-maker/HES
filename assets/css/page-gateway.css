@@ -568,22 +568,3 @@ html:not(.js) .reveal {
   opacity: 1 !important;
   transform: none !important;
 }
-
-/* --------------------------------------------------------------------------
-   11. LOW-END DEVICE OVERRIDES (data-perf="lite")
-   -------------------------------------------------------------------------- */
-[data-perf="lite"] .gw-overlay {
-  transition: opacity 200ms ease !important;
-}
-
-[data-perf="lite"] .gw-arch-svg,
-[data-perf="lite"] .gw-draw-item,
-[data-perf="lite"] .gw-home-logo,
-[data-perf="lite"] .gw-home-wordmark,
-[data-perf="lite"] .gw-label {
-  animation: none !important;
-  stroke-dashoffset: 0 !important;
-  opacity: 1 !important;
-  clip-path: none !important;
-  transform: none !important;
-}

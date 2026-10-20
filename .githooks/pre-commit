@@ -1,0 +1,3 @@
+#!/bin/sh
+# Git pre-commit hook: Run secret & raw audit output scanner
+python3 scripts/pre-commit-check.py

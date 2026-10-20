@@ -4,6 +4,11 @@
  * mobile drawer, interactive AI assistant, and form validation.
  */
 
+// Purge any legacy animation toggle states
+try {
+  localStorage.removeItem("hes-perf-mode");
+} catch (e) {}
+
 document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initTheme();
@@ -29,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initMarqueePauseControl();
   initTabVisibilityController();
   initMarqueeVisibilityObserver();
-  initPerformanceToggle();
 });
 
 /* ==========================================================================
@@ -104,8 +108,7 @@ function initScrollReveal() {
 
   document.documentElement.classList.add("js", "reveal-pending");
 
-  const isLite = document.documentElement.getAttribute("data-perf") === "lite";
-  if (reducedMotion.matches || isLite) {
+  if (reducedMotion.matches) {
     revealElements.forEach(element => {
       element.classList.add("is-visible", "is-revealed");
       element.style.setProperty("--reveal-delay", "0ms");
@@ -292,8 +295,7 @@ function initLearningPathwayCarousel() {
   const rotationDelay = () => (compactViewport.matches ? 1600 : 2500);
 
   const startCarousel = () => {
-    const isLite = document.documentElement.getAttribute("data-perf") === "lite";
-    if (reducedMotion.matches || isLite || document.hidden || intervalId !== undefined) return;
+    if (reducedMotion.matches || document.hidden || intervalId !== undefined) return;
 
     intervalId = window.setInterval(() => {
       activeIndex = (activeIndex + 1) % cards.length;
@@ -523,9 +525,8 @@ function initCounters() {
   const counters = document.querySelectorAll(".counter-number");
   if (!counters.length) return;
 
-  // Reduced-motion or lite performance mode: set final values immediately, skip animation
-  const isLite = document.documentElement.getAttribute('data-perf') === 'lite';
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || isLite) {
+  // Respect OS prefers-reduced-motion for accessibility
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     counters.forEach(c => {
       const target = c.getAttribute('data-target') || '';
       const suffix = c.getAttribute('data-suffix') || '';
@@ -937,8 +938,7 @@ function initVisionMissionParallax() {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const desktopQuery = window.matchMedia("(min-width: 769px)");
   const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-  const isLite = document.documentElement.getAttribute("data-perf") === "lite";
-  if (reducedMotion.matches || !desktopQuery.matches || isTouch || isLite) return;
+  if (reducedMotion.matches || !desktopQuery.matches || isTouch) return;
 
   sections.forEach(section => {
     const bgImg = section.querySelector(".vm-bg-img, .vm-bg-logo");
@@ -1321,12 +1321,11 @@ function initAdmissionRoadmap() {
     if (hasTriggered) return;
     hasTriggered = true;
 
-    const isLite = document.documentElement.getAttribute("data-perf") === "lite";
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = window.innerWidth <= 768;
 
-    if (reducedMotion || isLite) {
-      // Instant reveal in lite/reduced-motion mode
+    if (reducedMotion) {
+      // Instant reveal only for reduced-motion users
       if (fillPath) {
         fillPath.style.transition = "none";
         fillPath.style.strokeDashoffset = "0";
@@ -3207,7 +3206,7 @@ function initTabVisibilityController() {
     if (heroVideo) {
       if (isHidden) {
         heroVideo.pause();
-      } else if (document.documentElement.getAttribute("data-perf") !== "lite") {
+      } else {
         heroVideo.play().catch(() => {});
       }
     }
@@ -3234,45 +3233,6 @@ function initMarqueeVisibilityObserver() {
   }, { threshold: 0.05 });
 
   animatedTracks.forEach(track => observer.observe(track));
-}
-
-/* ==========================================================================
-   FOOTER "REDUCE ANIMATIONS" TOGGLE
-   ========================================================================== */
-function initPerformanceToggle() {
-  const toggleBtn = document.getElementById("perfToggleBtn");
-  if (!toggleBtn) return;
-
-  const updateButtonState = () => {
-    const isLite = document.documentElement.getAttribute("data-perf") === "lite";
-    toggleBtn.setAttribute("aria-pressed", isLite ? "true" : "false");
-    const textSpan = toggleBtn.querySelector(".perf-toggle-text");
-    if (textSpan) {
-      textSpan.textContent = isLite ? "Reduced animations: ON" : "Reduce animations";
-    }
-  };
-
-  updateButtonState();
-
-  toggleBtn.addEventListener("click", () => {
-    const currentMode = document.documentElement.getAttribute("data-perf");
-    const newMode = currentMode === "lite" ? "full" : "lite";
-    document.documentElement.setAttribute("data-perf", newMode);
-
-    try {
-      localStorage.setItem("hes-perf-mode", newMode);
-    } catch (e) {}
-
-    updateButtonState();
-
-    if (window.HESToast && typeof window.HESToast.show === "function") {
-      if (newMode === "lite") {
-        window.HESToast.show("info", "Reduced animations mode enabled for smooth performance.");
-      } else {
-        window.HESToast.show("info", "Standard animations restored.");
-      }
-    }
-  });
 }
 
 

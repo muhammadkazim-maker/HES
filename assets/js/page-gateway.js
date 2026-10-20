@@ -94,7 +94,10 @@
     if (isGatewayDone) {
       triggerHero();
     } else {
+      document.addEventListener('gateway:exit', triggerHero, { once: true });
       document.addEventListener('gateway:done', triggerHero, { once: true });
+      // Safety net: ensure hero is never kept waiting more than 500ms
+      setTimeout(triggerHero, 500);
     }
   }
 
@@ -184,8 +187,8 @@
       return;
     }
 
-    // Lite performance mode: fast 200ms fade
-    if (root.getAttribute('data-perf') === 'lite' || root.classList.contains('gw-subsequent')) {
+    // Subsequent visit in same session: fast 200ms fade
+    if (root.classList.contains('gw-subsequent')) {
       overlay.classList.add('gw-exit', 'gw-skip-exit');
       setTimeout(function () {
         finishGateway(false);
