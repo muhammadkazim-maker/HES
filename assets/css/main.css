@@ -11207,6 +11207,16 @@ html:not(.js) .bd-noscript-stack {
   transition: transform 6s ease-out;
 }
 
+#admission-hero .cl-hero-fallback-img {
+  object-position: 70% 35%;
+}
+
+@media (max-width: 768px) {
+  #admission-hero .cl-hero-fallback-img {
+    object-position: 65% 35%;
+  }
+}
+
 .cl-hero:hover .cl-hero-fallback-img {
   transform: scale(1.05);
 }

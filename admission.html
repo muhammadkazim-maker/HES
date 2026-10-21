@@ -53,9 +53,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap">
   </noscript>
 
+  <!-- Preload Critical Hero Image -->
+  <link rel="preload" as="image" href="assets/images/boys.webp" type="image/webp">
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/page-gateway.css?v=134">
-  <link rel="stylesheet" href="assets/css/main.css?v=134">
+  <link rel="stylesheet" href="assets/css/main.css?v=135">
 
   <!-- Pre-Paint Gateway Decider -->
   <script>
@@ -178,9 +181,14 @@
          PAGE HERO (Full-bleed, 100svh, unified rhythm with Campus Life)
          ========================================================================= -->
     <section class="cl-hero page-hero" id="admission-hero" aria-label="Student Admission at Hadi Education System">
-      <!-- Background Image -->
+      <!-- Background Image (The Student's Journey) -->
       <div class="cl-hero-bg-wrap" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=80" alt="HES Students in Classroom" class="cl-hero-fallback-img">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/images/boys-mobile.webp" type="image/webp">
+          <source media="(max-width: 768px)" srcset="assets/images/boys-mobile.jpg">
+          <source srcset="assets/images/boys.webp" type="image/webp">
+          <img src="assets/images/boys.jpg" alt="Students engaged in prayer and learning at Hadi Education System" class="cl-hero-fallback-img" fetchpriority="high" decoding="async" width="2048" height="1362">
+        </picture>
       </div>
 
       <!-- Overlays (Navy Tint & Left-to-Right Reading Gradient) -->
