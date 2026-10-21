@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initYearRail();
   initBalancedDayBar();
   initCampusLife();
-  initMarqueePauseControl();
   initTabVisibilityController();
   initMarqueeVisibilityObserver();
 });
@@ -1109,7 +1108,6 @@ function initAdmissionRoadmap() {
   const trackPath = document.getElementById("ar-svg-track");
   const fillPath = document.getElementById("ar-svg-fill");
   const marker = document.getElementById("ar-svg-marker");
-  const mobileRail = document.querySelector(".ar-mobile-rail");
   const mobileFill = document.getElementById("ar-mobile-rail-fill");
   const mobileMarker = document.getElementById("ar-mobile-rail-marker");
   const stations = Array.from(roadmapSection.querySelectorAll(".ar-station"));
@@ -1119,62 +1117,9 @@ function initAdmissionRoadmap() {
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Reduced motion: show complete path and all elements immediately
-  if (reducedMotion) {
-    if (fillPath) fillPath.style.strokeDashoffset = "0";
-    if (marker) marker.style.display = "none";
-    if (mobileFill) mobileFill.style.height = "100%";
-    if (mobileMarker) mobileMarker.style.display = "none";
-    cards.forEach(card => card.classList.add("is-visible"));
-    if (ctaBlock) ctaBlock.classList.add("is-visible");
-    stations.forEach((st, idx) => {
-      st.classList.remove("is-upcoming", "is-active");
-      st.classList.add("is-completed");
-      if (idx === stations.length - 1) st.setAttribute("aria-current", "step");
-    });
-    return;
-  }
+  // Ensure all cards are visible immediately
+  cards.forEach(card => card.classList.add("is-visible"));
 
-  // 1. IntersectionObserver for Cards fade-up and CTA block reveal
-  if ("IntersectionObserver" in window) {
-    const cardObserver = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target);
-        }
-      });
-    }, {
-      root: null,
-      threshold: 0.15,
-      rootMargin: "0px 0px -40px 0px"
-    });
-
-    cards.forEach(card => cardObserver.observe(card));
-
-    if (ctaBlock) {
-      const ctaObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            if (ctaBtn) {
-              ctaBtn.classList.add("shine-triggered");
-            }
-            obs.unobserve(entry.target);
-          }
-        });
-      }, {
-        root: null,
-        threshold: 0.18
-      });
-      ctaObserver.observe(ctaBlock);
-    }
-  } else {
-    cards.forEach(card => card.classList.add("is-visible"));
-    if (ctaBlock) ctaBlock.classList.add("is-visible");
-  }
-
-  // 2. Desktop Path Calculation linking through exact node centers
   let pathTotalLength = 0;
 
   function updateDesktopPathGeometry() {
@@ -1237,84 +1182,146 @@ function initAdmissionRoadmap() {
     ro.observe(stage);
   }
 
-  // 3. One-Shot Viewport Trigger (650ms total, not scroll-scrubbed per pixel)
-  let hasTriggered = false;
+  // Station thresholds along normalized progress (0.0 to 1.0)
+  const thresholds = [
+    { start: 0.05, done: 0.28 },
+    { start: 0.28, done: 0.52 },
+    { start: 0.52, done: 0.76 },
+    { start: 0.76, done: 0.95 }
+  ];
 
-  function triggerRoadmapEntrance() {
-    if (hasTriggered) return;
-    hasTriggered = true;
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function renderRoadmapState(progress) {
     const isMobile = window.innerWidth <= 768;
 
-    if (reducedMotion) {
-      // Instant reveal only for reduced-motion users
+    if (!isMobile) {
       if (fillPath) {
-        fillPath.style.transition = "none";
-        fillPath.style.strokeDashoffset = "0";
+        if (pathTotalLength <= 0) {
+          pathTotalLength = fillPath.getTotalLength();
+          fillPath.style.strokeDasharray = `${pathTotalLength} ${pathTotalLength}`;
+        }
+        if (pathTotalLength > 0) {
+          const drawLen = pathTotalLength * progress;
+          fillPath.style.strokeDashoffset = `${pathTotalLength - drawLen}`;
+
+          if (marker) {
+            if (progress > 0.005) {
+              marker.style.display = "block";
+              const pt = fillPath.getPointAtLength(Math.min(pathTotalLength, drawLen));
+              const lookBehind = Math.max(0, drawLen - 2);
+              const lookAhead = Math.min(pathTotalLength, drawLen + 2);
+              let angle = 90;
+              if (lookAhead > lookBehind) {
+                const p1 = fillPath.getPointAtLength(lookBehind);
+                const p2 = fillPath.getPointAtLength(lookAhead);
+                angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
+              }
+              marker.setAttribute("transform", `translate(${pt.x.toFixed(1)}, ${pt.y.toFixed(1)}) rotate(${angle.toFixed(1)})`);
+            } else {
+              marker.style.display = "none";
+            }
+          }
+        }
       }
+    } else {
       if (mobileFill) {
-        mobileFill.style.transition = "none";
-        mobileFill.style.height = "100%";
+        mobileFill.style.height = `${(progress * 100).toFixed(1)}%`;
       }
-      stations.forEach(st => {
+      if (mobileMarker) {
+        if (progress > 0.005) {
+          mobileMarker.style.display = "flex";
+          mobileMarker.style.top = `${(progress * 100).toFixed(1)}%`;
+        } else {
+          mobileMarker.style.display = "none";
+        }
+      }
+    }
+
+    stations.forEach((st, idx) => {
+      const th = thresholds[idx];
+      if (progress < th.start) {
+        st.classList.add("is-upcoming");
+        st.classList.remove("is-active", "is-completed");
+        st.removeAttribute("aria-current");
+      } else if (progress >= th.start && progress < th.done) {
+        st.classList.add("is-active");
+        st.classList.remove("is-upcoming", "is-completed");
+        st.setAttribute("aria-current", "step");
+      } else {
         st.classList.add("is-completed");
         st.classList.remove("is-upcoming", "is-active");
-        const card = st.querySelector(".ar-card");
-        if (card) card.classList.add("is-visible");
-      });
-      return;
-    }
-
-    // Full mode: smooth 650ms stroke-dashoffset transition
-    if (!isMobile && fillPath) {
-      if (pathTotalLength <= 0) {
-        pathTotalLength = fillPath.getTotalLength();
-        fillPath.style.strokeDasharray = `${pathTotalLength} ${pathTotalLength}`;
+        st.removeAttribute("aria-current");
       }
-      fillPath.style.transition = "stroke-dashoffset 650ms cubic-bezier(0.22, 1, 0.36, 1)";
-      requestAnimationFrame(() => {
-        fillPath.style.strokeDashoffset = "0";
-      });
-    } else if (mobileFill) {
-      mobileFill.style.transition = "height 650ms cubic-bezier(0.22, 1, 0.36, 1)";
-      requestAnimationFrame(() => {
-        mobileFill.style.height = "100%";
-      });
-    }
-
-    // Step cards stagger cleanly across the 650ms duration (0, 150ms, 300ms, 450ms)
-    stations.forEach((st, idx) => {
-      const delay = idx * 150;
-      setTimeout(() => {
-        st.classList.remove("is-upcoming");
-        st.classList.add("is-active");
-        st.setAttribute("aria-current", "step");
-        const card = st.querySelector(".ar-card");
-        if (card) card.classList.add("is-visible");
-
-        setTimeout(() => {
-          st.classList.add("is-completed");
-          st.classList.remove("is-active");
-          st.removeAttribute("aria-current");
-        }, 160);
-      }, delay);
     });
+
+    if (ctaBlock) {
+      if (progress >= 0.92) {
+        ctaBlock.classList.add("is-visible");
+        if (ctaBtn) ctaBtn.classList.add("shine-triggered");
+      } else {
+        ctaBlock.classList.remove("is-visible");
+        if (ctaBtn) ctaBtn.classList.remove("shine-triggered");
+      }
+    }
   }
 
-  if ("IntersectionObserver" in window) {
-    const roadmapObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          triggerRoadmapEntrance();
-          roadmapObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    roadmapObserver.observe(stage);
-  } else {
-    triggerRoadmapEntrance();
+  // Reduced motion: show full completed path immediately with no animation
+  if (reducedMotion) {
+    if (fillPath) fillPath.style.strokeDashoffset = "0";
+    if (marker) marker.style.display = "none";
+    if (mobileFill) mobileFill.style.height = "100%";
+    if (mobileMarker) mobileMarker.style.display = "none";
+    if (ctaBlock) ctaBlock.classList.add("is-visible");
+    stations.forEach((st, idx) => {
+      st.classList.remove("is-upcoming", "is-active");
+      st.classList.add("is-completed");
+      if (idx === stations.length - 1) st.setAttribute("aria-current", "step");
+    });
+    return;
   }
+
+  // Scroll-Driven Lockstep Animation
+  function updateScrollProgress() {
+    if (!stage) return;
+    const stageRect = stage.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+
+    // Start progress when stage enters viewport (at 68% of viewport height)
+    // Complete progress when stage bottom reaches 32% of viewport height
+    const startY = vh * 0.68;
+    const endY = vh * 0.32;
+    const totalTravel = stageRect.height + (startY - endY);
+
+    if (totalTravel <= 0) return;
+
+    const currentTravel = startY - stageRect.top;
+    let progress = currentTravel / totalTravel;
+    progress = Math.max(0, Math.min(1, progress));
+
+    renderRoadmapState(progress);
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateScrollProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", () => {
+    updateDesktopPathGeometry();
+    onScroll();
+  }, { passive: true });
+
+  // Initial synchronization with current scroll position
+  setTimeout(() => {
+    updateDesktopPathGeometry();
+    updateScrollProgress();
+  }, 80);
 }
 
 /* ==========================================================================
@@ -3087,34 +3094,6 @@ function initCampusLife() {
 
 
   // Campus Life is initialized; Gateway intro is handled by page-gateway.js
-}
-
-/* ==========================================================================
-   MARQUEE PAUSE/PLAY CONTROL (WCAG 2.2 SC 2.2.2)
-   ========================================================================== */
-function initMarqueePauseControl() {
-  const btn = document.querySelector('.marquee-pause-btn');
-  const track = document.querySelector('.quote-marquee-track');
-  if (!btn || !track) return;
-
-  let paused = false;
-
-  btn.addEventListener('click', () => {
-    paused = !paused;
-    track.style.animationPlayState = paused ? 'paused' : 'running';
-    btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
-    btn.setAttribute('aria-label', paused ? 'Play testimonials' : 'Pause testimonials');
-    btn.querySelector('.pause-icon').textContent = paused ? '▶' : '⏸';
-  });
-
-  // Start paused if user prefers reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    paused = true;
-    track.style.animationPlayState = 'paused';
-    btn.setAttribute('aria-pressed', 'true');
-    btn.setAttribute('aria-label', 'Play testimonials');
-    btn.querySelector('.pause-icon').textContent = '▶';
-  }
 }
 
 /* ==========================================================================

@@ -2128,45 +2128,6 @@ body.drawer-open {
   }
 }
 
-/* --- Marquee Pause/Play Control Button --- */
-.marquee-controls {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 12px;
-}
-
-.marquee-pause-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  background: var(--white, #ffffff);
-  color: var(--navy, #14213D);
-  border: 1.5px solid rgba(20, 33, 61, 0.22);
-  border-radius: var(--radius-full, 9999px);
-  font-family: var(--font-sans, system-ui, sans-serif);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  line-height: 1;
-}
-
-.marquee-pause-btn:hover,
-.marquee-pause-btn:focus-visible {
-  background: var(--navy, #14213D);
-  color: var(--white, #ffffff);
-  border-color: var(--navy, #14213D);
-  outline: 3px solid rgba(20, 33, 61, 0.35);
-  outline-offset: 2px;
-}
-
-.pause-icon {
-  font-size: 0.9em;
-  line-height: 1;
-}
-
 /* Visually-hidden utility (WCAG) */
 .sr-only {
   position: absolute;
@@ -7121,11 +7082,10 @@ html:not(.js) .mv-card {
   stroke-width: 3.2;
   stroke-linecap: round;
   fill: none;
-  transition: stroke-dashoffset 0.1s linear;
 }
 
 .ar-svg-marker {
-  transition: transform 0.08s linear;
+  will-change: transform;
 }
 
 /* Mobile Vertical Rail */
@@ -7547,7 +7507,6 @@ html:not(.js) .mv-card {
     background: #14213D;
     height: 0%;
     border-radius: 2px;
-    transition: height 0.15s ease-out;
   }
 
   .ar-mobile-rail-marker {
