@@ -11211,9 +11211,17 @@ html:not(.js) .bd-noscript-stack {
   object-position: 70% 35%;
 }
 
+#about-hero .cl-hero-fallback-img {
+  object-position: center 42%;
+}
+
 @media (max-width: 768px) {
   #admission-hero .cl-hero-fallback-img {
     object-position: 65% 35%;
+  }
+
+  #about-hero .cl-hero-fallback-img {
+    object-position: center 38%;
   }
 }
 

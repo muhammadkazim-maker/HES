@@ -53,11 +53,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap">
   </noscript>
 
-    <!-- Preload Principal Portrait for Instant Render -->
+    <!-- Preload Critical Hero Image & Principal Portrait -->
+  <link rel="preload" as="image" href="assets/images/cl/IMG_9602.webp" type="image/webp">
   <link rel="preload" as="image" href="assets/images/principal-muhammad-ali-hamdani.webp" type="image/webp">
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/page-gateway.css?v=134">
-  <link rel="stylesheet" href="assets/css/main.css?v=135">
+  <link rel="stylesheet" href="assets/css/main.css?v=136">
 
   <!-- Pre-Paint Gateway Decider -->
   <script>
@@ -179,9 +180,14 @@
          PAGE HERO (Full-bleed, 100svh, unified rhythm with Campus Life)
          ========================================================================= -->
     <section class="cl-hero page-hero" id="about-hero" aria-label="About Hadi Education System">
-      <!-- Background Image -->
+      <!-- Background Image (Faculty & Leadership Convocation) -->
       <div class="cl-hero-bg-wrap" aria-hidden="true">
-        <img src="assets/images/student-exam-mirrored.jpg" alt="Hadi Education System Students" class="cl-hero-fallback-img">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/images/cl/IMG_9602-mobile.webp" type="image/webp">
+          <source media="(max-width: 768px)" srcset="assets/images/cl/IMG_9602.jpg">
+          <source srcset="assets/images/cl/IMG_9602.webp" type="image/webp">
+          <img src="assets/images/cl/IMG_9602.jpg" alt="Faculty &amp; Leadership Convocation at Hadi Education System" class="cl-hero-fallback-img" fetchpriority="high" decoding="async" width="1920" height="1440">
+        </picture>
       </div>
 
       <!-- Overlays (Navy Tint & Left-to-Right Reading Gradient) -->
