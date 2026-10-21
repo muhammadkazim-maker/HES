@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initLanguage();
   initNavbar();
   initNavigationHover();
-  initLearningPathwayCarousel();
   initCampusVideo();
   initMobileDrawer();
   initCounters();
@@ -57,7 +56,7 @@ function initScrollReveal() {
     !element.closest(".faculty-carousel-wrapper") &&
     !element.closest(".yr-section") &&
     !element.closest(".bd-section") &&
-    !element.closest(".principal-photo") && !element.matches(".timeline-stepper-pair .timeline-step, .footer-copyright, .vm-bg-img, .vm-bg-logo, .principal-bg-img, .principal-img")
+    !element.closest(".principal-photo") && !element.matches(".footer-copyright, .vm-bg-img, .vm-bg-logo, .principal-bg-img, .principal-img")
   );
   if (!revealElements.length) return;
 
@@ -263,82 +262,6 @@ function initNavigationHover() {
       leaveNav();
     }
   }, { passive: true });
-}
-
-function initLearningPathwayCarousel() {
-  const stage = document.querySelector(".timeline-stepper-pair");
-  if (!stage) return;
-
-  const cards = Array.from(stage.querySelectorAll(".timeline-step"));
-  if (cards.length !== 3) return;
-
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const compactViewport = window.matchMedia("(max-width: 768px)");
-  let activeIndex = 0;
-  let intervalId;
-
-  const updatePositions = () => {
-    cards.forEach((card, index) => {
-      const position = (index - activeIndex + cards.length) % cards.length;
-      card.dataset.carouselPosition = ["front", "right", "left"][position];
-      card.setAttribute("aria-current", position === 0 ? "true" : "false");
-    });
-  };
-
-  const stopCarousel = () => {
-    if (intervalId !== undefined) {
-      window.clearInterval(intervalId);
-      intervalId = undefined;
-    }
-  };
-
-  const rotationDelay = () => (compactViewport.matches ? 1600 : 2500);
-
-  const startCarousel = () => {
-    if (reducedMotion.matches || document.hidden || intervalId !== undefined) return;
-
-    intervalId = window.setInterval(() => {
-      activeIndex = (activeIndex + 1) % cards.length;
-      updatePositions();
-    }, rotationDelay());
-  };
-
-  stage.classList.add("is-carousel-ready");
-  updatePositions();
-
-  if ("IntersectionObserver" in window) {
-    const stageObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !document.hidden) {
-          startCarousel();
-        } else {
-          stopCarousel();
-        }
-      });
-    }, { threshold: 0.1 });
-    stageObserver.observe(stage);
-  } else {
-    startCarousel();
-  }
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      stopCarousel();
-    } else {
-      startCarousel();
-    }
-  });
-
-  stage.addEventListener("mouseenter", stopCarousel);
-  stage.addEventListener("mouseleave", startCarousel);
-
-  const restartCarousel = () => {
-    stopCarousel();
-    startCarousel();
-  };
-
-  reducedMotion.addEventListener("change", restartCarousel);
-  compactViewport.addEventListener("change", restartCarousel);
 }
 
 function initCampusVideo() {
