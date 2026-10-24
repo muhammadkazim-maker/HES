@@ -62,7 +62,7 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/page-gateway.css?v=134">
-  <link rel="stylesheet" href="assets/css/main.css?v=141">
+  <link rel="stylesheet" href="assets/css/main.css?v=142">
 
   <!-- Pre-Paint Gateway Decider -->
   <script>
@@ -340,27 +340,22 @@
         <!-- Centered Header -->
         <header class="arches-header">
           <div class="arches-pill-wrap">
-            <span class="arches-pill">LEARNING PATHWAY</span>
+            <span class="arches-pill" data-en="LEARNING PATHWAY" data-ur="تعلیمی سفر">LEARNING PATHWAY</span>
           </div>
 
-          <h2 id="pathway-heading" class="arches-title">
+          <h2 id="pathway-heading" class="arches-title" data-en="The Student's Journey at HES" data-ur="ہادی ایجوکیشن سسٹم کا تعلیمی روڈ میپ">
             The Student's Journey at HES
           </h2>
 
-          <p class="arches-intro">
+          <p class="arches-intro"
+            data-en="As an institution registered with the Federal Board of Intermediate and Secondary Education (FBISE), HES offers learning from Classes 6 to 12, including ICS, Pre-Medical, and Pre-Engineering."
+            data-ur="وفاقی بورڈ برائے انٹرمیڈیٹ و ثانوی تعلیم (FBISE) سے رجسٹرڈ ادارے کے طور پر، ہادی ایجوکیشن سسٹم جماعت ششم تا بارہویں تعلیم فراہم کرتا ہے، جس میں آئی سی ایس، پری میڈیکل اور پری انجینئرنگ شامل ہیں۔">
             As an institution registered with the Federal Board of Intermediate and Secondary Education (FBISE), HES offers learning from Classes 6 to 12, including ICS, Pre-Medical, and Pre-Engineering.
           </p>
         </header>
 
-        <!-- Mobile-Only Academic Stages Caption (Above Card 1) -->
-        <div class="arches-mobile-academic-header">
-          <p class="arches-caption arches-caption--academic">
-            Academic stages, in order
-          </p>
-        </div>
-
-        <!-- Arches Grid: <ol> for stages 1 & 2 + separate Quranic Card -->
-        <div class="arches-grid">
+        <!-- Arches Track: Native Horizontal Swipe Row (< 1024px) / 3-Column Grid (>= 1024px) -->
+        <div class="arches-grid arches-track" role="region" tabindex="0" aria-label="Learning pathway stages">
           <!-- Numbered Academic Stages List -->
           <ol class="arches-list">
             <!-- Card 1: Middle School -->
@@ -368,9 +363,11 @@
               <div class="arch-badge" aria-hidden="true">
                 <span class="arch-badge-num">1</span>
               </div>
-              <span class="arch-label">CLASSES 6 TO 8</span>
-              <h3 class="arch-title">Middle School</h3>
-              <p class="arch-desc">
+              <span class="arch-label" data-en="CLASSES 6 TO 8" data-ur="کلاس 6 تا 8">CLASSES 6 TO 8</span>
+              <h3 class="arch-title" data-en="Middle School" data-ur="مڈل اسکول">Middle School</h3>
+              <p class="arch-desc"
+                data-en="Optional accelerated Hifz track, computer lab programming, algebra, practical science experiments, and critical thinking."
+                data-ur="خصوصی شعبہ حفظ کی سہولت، کمپیوٹر لیب، الجبرا اور سائنسی تجربات۔">
                 Optional accelerated Hifz track, computer lab programming, algebra, practical science experiments, and critical thinking.
               </p>
             </li>
@@ -380,25 +377,19 @@
               <div class="arch-badge" aria-hidden="true">
                 <span class="arch-badge-num">2</span>
               </div>
-              <span class="arch-label">CLASSES 9, 10 &amp; ICS</span>
-              <h3 class="arch-title">Matric &amp; High School</h3>
-              <p class="arch-desc">
+              <span class="arch-label" data-en="CLASSES 9, 10 &amp; ICS" data-ur="کلاس 9، 10 اور آئی سی ایس">CLASSES 9, 10 &amp; ICS</span>
+              <h3 class="arch-title" data-en="Matric &amp; High School" data-ur="میٹرک و ہائی اسکول">Matric &amp; High School</h3>
+              <p class="arch-desc"
+                data-en="Focused FBISE examination preparation in Science and Computer Science, complemented by career guidance and leadership development."
+                data-ur="سائنس اور کمپیوٹر سائنس میں FBISE امتحانات کی جامع تیاری، ساتھ ہی پیشہ ورانہ رہنمائی اور قائدانہ صلاحیتوں کی نشوونما۔">
                 Focused FBISE examination preparation in Science and Computer Science, complemented by career guidance and leadership development.
               </p>
               <div class="arch-pills" aria-label="Specialization tracks">
-                <span class="arch-pill">Pre-Medical</span>
-                <span class="arch-pill">Pre-Engineering</span>
+                <span class="arch-pill" data-en="Pre-Medical" data-ur="پری میڈیکل">Pre-Medical</span>
+                <span class="arch-pill" data-en="Pre-Engineering" data-ur="پری انجینئرنگ">Pre-Engineering</span>
               </div>
             </li>
           </ol>
-
-          <!-- Mobile-Only Quranic Header: dashed gold line + caption -->
-          <div class="arches-mobile-quranic-header">
-            <div class="arches-dashed-line-mobile" aria-hidden="true"></div>
-            <p class="arches-caption arches-caption--quranic">
-              Alongside every stage
-            </p>
-          </div>
 
           <!-- Card 3: Quranic & Islamic Studies (outside the <ol>) -->
           <article class="arch-card arch-card--navy">
@@ -406,15 +397,33 @@
               <!-- 8-pointed star icon (two overlapping squares) -->
               <svg class="arch-star-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
                 <rect x="4" y="4" width="16" height="16" fill="#16213e" />
-                <rect x="4" y="4" width="16" height="16" fill="#16213e" transform="rotate(45 12 12)" />
+                <rect x="4" y="4" width="16" height="16" transform="rotate(45 12 12)" />
               </svg>
             </div>
-            <span class="arch-label arch-label--gold">QURANIC &amp; ISLAMIC STUDIES</span>
-            <h3 class="arch-title arch-title--light">Quranic Education &amp; Ahkam</h3>
-            <p class="arch-desc arch-desc--light">
+            <span class="arch-label arch-label--gold" data-en="QURANIC &amp; ISLAMIC STUDIES" data-ur="قرآنی و اسلامی تعلیمات">QURANIC &amp; ISLAMIC STUDIES</span>
+            <h3 class="arch-title arch-title--light" data-en="Quranic Education &amp; Ahkam" data-ur="قرآنی تعلیم و احکام">Quranic Education &amp; Ahkam</h3>
+            <p class="arch-desc arch-desc--light"
+              data-en="Quranic learning nurtures recitation, understanding, reflection. Students also explore essential Ahkam and Islamic manners, connecting their learning with everyday life."
+              data-ur="قرآنی تعلیم تلاوت، فہم اور تدبر کو مضبوط کرتی ہے۔ طلبہ بنیادی احکام اور اسلامی آداب سیکھتے ہیں تاکہ اس علم کو روزمرہ زندگی میں اپنا سکیں۔">
               Quranic learning nurtures recitation, understanding, reflection. Students also explore essential Ahkam and Islamic manners, connecting their learning with everyday life.
             </p>
+
+            <!-- Internal Quranic Footer (Mobile-only: anchored to bottom) -->
+            <div class="arch-card-quranic-footer">
+              <div class="arch-card-quranic-line" aria-hidden="true"></div>
+              <p class="arches-caption arches-caption--quranic" data-en="Alongside every stage" data-ur="ہر تعلیمی مرحلے کے ساتھ ساتھ">
+                Alongside every stage
+              </p>
+            </div>
           </article>
+        </div>
+
+        <!-- Swipe Hint (Mobile & Tablet only: < 1024px) -->
+        <div class="arches-swipe-hint" aria-hidden="true">
+          <span data-en="Swipe to see all" data-ur="سب دیکھنے کے لیے سوائپ کریں <!-- TODO: Urdu review -->">Swipe to see all</span>
+          <svg class="arches-swipe-icon" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">
+            <path d="M3 10h14M13 6l4 4-4 4M7 6L3 10l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          </svg>
         </div>
 
         <!-- The Rail (Desktop: 1024px and up) -->
@@ -428,7 +437,7 @@
                 <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" stroke="rgba(226, 232, 240, 0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
               </svg>
             </div>
-            <p class="arches-caption arches-caption--academic">
+            <p class="arches-caption arches-caption--academic" data-en="Academic stages, in order" data-ur="تعلیمی مراحل، ترتیب وار">
               Academic stages, in order
             </p>
           </div>
@@ -436,7 +445,7 @@
           <!-- Rail under Card 3 -->
           <div class="arches-rail-quranic">
             <div class="arches-dashed-line" aria-hidden="true"></div>
-            <p class="arches-caption arches-caption--quranic">
+            <p class="arches-caption arches-caption--quranic" data-en="Alongside every stage" data-ur="ہر تعلیمی مرحلے کے ساتھ ساتھ">
               Alongside every stage
             </p>
           </div>
@@ -653,7 +662,7 @@
   <script src="assets/js/page-gateway.js?v=134"></script>
   <script src="assets/js/toast.js?v=1"></script>
   <script src="assets/js/analytics.js?v=1" defer></script>
-  <script src="assets/js/app.js?v=141"></script>
+  <script src="assets/js/app.js?v=142"></script>
 </body>
 
 </html>

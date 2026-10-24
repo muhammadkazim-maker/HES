@@ -378,6 +378,7 @@ h4,
 .arches-section {
   position: relative;
   overflow: clip;
+  overflow-x: clip;
   padding: clamp(64px, 8vw, 100px) 0 clamp(72px, 8.5vw, 108px);
   background: #14213D !important;
   color: #FFFFFF !important;
@@ -393,7 +394,7 @@ h4,
   z-index: 2;
   max-width: 1160px;
   margin-inline: auto;
-  padding-inline: clamp(16px, 3.5vw, 32px);
+  min-width: 0;
 }
 
 /* Background Pattern (Bottom-Left Corner) */
@@ -472,18 +473,48 @@ h4,
   box-sizing: border-box;
   overflow: hidden;
   box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+  filter: none !important;
+}
+
+.arch-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .arch-card--white {
-  background: #FFFFFF;
-  border: 2px solid transparent;
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  border: 2px solid #FFFFFF !important;
   color: #16213e;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.arch-card--white::before,
+.arch-card--white::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
 }
 
 .arch-card--navy {
-  background: #1f2f57;
-  border: 2px solid #d9b56a;
+  background: #1f2f57 !important;
+  background-color: #1f2f57 !important;
+  background-image: none !important;
+  border: 2px solid #d9b56a !important;
   color: #FFFFFF;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.arch-card--navy::before,
+.arch-card--navy::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
 }
 
 /* Number / Star Badge (sits 20px from top, 44px diameter) */
@@ -592,6 +623,25 @@ h4,
   pointer-events: none;
 }
 
+/* Inside Card 3 Quranic Footer (Mobile) */
+.arch-card-quranic-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.arch-card-quranic-line {
+  width: 100%;
+  max-width: 120px;
+  height: 0;
+  border-top: 2px dashed #d9b56a;
+  margin-bottom: 8px;
+}
+
 /* Captions Shared */
 .arches-caption {
   font-family: var(--font-sans);
@@ -608,15 +658,46 @@ h4,
   color: #e8cf94;
 }
 
+/* Swipe Hint */
+.arches-swipe-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #cbd5e1;
+  margin-top: 20px;
+  padding-inline: 16px;
+  user-select: none;
+}
+
+.arches-swipe-icon {
+  display: inline-block;
+  color: #cbd5e1;
+  flex-shrink: 0;
+}
+
 /* =========================================================================
    DESKTOP LAYOUT (1024px and up)
    ========================================================================= */
 @media (min-width: 1024px) {
+  .arches-container {
+    padding-inline: clamp(16px, 3.5vw, 32px);
+  }
+
+  .arches-header {
+    padding-inline: 0;
+  }
+
   .arches-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px;
     align-items: stretch;
+    overflow: visible;
+    padding-inline: 0;
+    scroll-snap-type: none;
   }
 
   .arches-list {
@@ -684,73 +765,116 @@ h4,
     margin-top: 3px;
   }
 
-  /* Hide Mobile-Specific Rail Elements */
-  .arches-mobile-academic-header,
-  .arches-mobile-quranic-header {
+  /* Hide Mobile-Specific Elements on Desktop */
+  .arch-card-quranic-footer,
+  .arches-swipe-hint {
+    display: none !important;
+  }
+
+  .arches-track::after {
     display: none !important;
   }
 }
 
 /* =========================================================================
-   MOBILE & TABLET LAYOUT (< 1024px)
+   MOBILE & TABLET LAYOUT (< 1024px) — Native Horizontal Swipe Row
    ========================================================================= */
-@media (max-width: 1023px) {
+@media (max-width: 1023.98px) {
+  .arches-container {
+    padding-inline: 0;
+    max-width: 100%;
+  }
+
+  .arches-header {
+    padding-inline: clamp(16px, 4vw, 32px);
+    margin-block-end: 28px;
+  }
+
   .arches-desktop-rail {
     display: none !important;
   }
 
-  .arches-mobile-academic-header {
-    display: block;
-    text-align: center;
-    margin-block-end: 18px;
-  }
-
-  .arches-grid {
+  /* The Track */
+  .arches-track {
     display: flex;
-    flex-direction: column;
-    max-width: 560px;
-    margin-inline: auto;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    align-items: stretch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: auto;
+    overscroll-behavior-x: contain;
+    padding-inline-start: max(16px, env(safe-area-inset-left));
+    padding-inline-end: max(16px, env(safe-area-inset-right));
+    scroll-padding-inline-start: max(16px, env(safe-area-inset-left));
+    scroll-padding-inline-end: max(16px, env(safe-area-inset-right));
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    -webkit-overflow-scrolling: touch;
   }
 
+  .arches-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .arches-track:focus-visible {
+    outline: 2px solid #d9b56a;
+    outline-offset: 2px;
+  }
+
+  /* 1px ::after spacer at the end of the track so the last card gets its end padding in every browser */
+  .arches-track::after {
+    content: "";
+    flex: 0 0 1px;
+    width: 1px;
+    min-width: 1px;
+    height: 1px;
+    pointer-events: none;
+  }
+
+  /* Numbered Stages List as flex row within track */
   .arches-list {
     display: flex;
-    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
     list-style: none;
     padding: 0;
     margin: 0;
+    flex: 0 0 auto;
+    min-width: 0;
   }
 
-  /* Down-arrow connector between Card 1 and Card 2 */
-  .arches-list > li:first-child::after {
-    content: "";
-    display: block;
-    width: 24px;
-    height: 32px;
-    margin: 18px auto;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32" fill="none" stroke="rgba(226,232,240,0.65)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="4" x2="12" y2="26"/><polyline points="5 18 12 26 19 18"/></svg>') no-repeat center;
-  }
-
-  /* Dashed gold line & caption directly above Quranic Card */
-  .arches-mobile-quranic-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-block-start: 32px;
-    margin-block-end: 20px;
-    text-align: center;
-  }
-
-  .arches-dashed-line-mobile {
-    width: 100%;
-    max-width: 320px;
-    height: 0;
-    border-top: 2px dashed #d9b56a;
-    margin-block-end: 10px;
-  }
-
+  /* Each Card */
   .arch-card {
+    flex: 0 0 clamp(280px, 80vw, 340px);
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    box-sizing: border-box;
+    min-width: 0;
     padding: 68px clamp(20px, 5vw, 32px) 32px;
   }
+
+  .arch-card-quranic-footer {
+    display: flex;
+  }
+
+  .arches-swipe-hint {
+    display: flex;
+  }
+}
+
+/* --- RTL (Urdu Language) Support --- */
+html[dir="rtl"] .arches-swipe-icon,
+[dir="rtl"] .arches-swipe-icon {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .arches-rail-arrow,
+[dir="rtl"] .arches-rail-arrow {
+  transform: scaleX(-1);
 }
 
 /* =========================================================================
