@@ -52,6 +52,8 @@ function initScrollReveal() {
     !element.closest(".hero-unified") &&
     !element.closest(".mv-section") &&
     !element.closest(".admission-roadmap-section") &&
+    !element.closest(".arches-section") &&
+    !element.closest(".academic-journey-section") &&
     !element.closest(".faculty-carousel-wrapper") &&
     !element.closest(".yr-section") &&
     !element.closest(".bd-section") &&
@@ -851,73 +853,10 @@ function initForms() {
 }
 
 /* ==========================================================================
-   11. VISION & MISSION PARALLAX (Desktop Only)
+   11. VISION & MISSION PARALLAX (Obsolete — section is fully static)
    ========================================================================== */
 function initVisionMissionParallax() {
-  const sections = document.querySelectorAll(".academic-journey-section");
-  if (!sections.length) return;
-
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const desktopQuery = window.matchMedia("(min-width: 769px)");
-  const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-  if (reducedMotion.matches || !desktopQuery.matches || isTouch) return;
-
-  sections.forEach(section => {
-    const bgImg = section.querySelector(".vm-bg-img, .vm-bg-logo");
-    if (!bgImg) return;
-
-    const isLogo = bgImg.classList.contains("vm-bg-logo");
-    let isIntersecting = false;
-    let ticking = false;
-
-    const updateParallax = () => {
-      ticking = false;
-      if (!isIntersecting || !desktopQuery.matches || reducedMotion.matches) {
-        bgImg.style.transform = isLogo ? "translate(-50%, -50%)" : "none";
-        return;
-      }
-      const rect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      // Calculate relative scroll position through section (-1 to 1)
-      const relativeY = (rect.top + rect.height / 2 - viewportHeight / 2) / (viewportHeight + rect.height);
-      // Subtle parallax offset
-      const offset = Math.max(-25, Math.min(25, relativeY * 40));
-      if (isLogo) {
-        bgImg.style.transform = `translate3d(-50%, calc(-50% + ${offset.toFixed(1)}px), 0)`;
-      } else {
-        bgImg.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
-      }
-    };
-
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(updateParallax);
-      }
-    };
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          isIntersecting = entry.isIntersecting;
-          if (isIntersecting && desktopQuery.matches && !reducedMotion.matches) {
-            window.addEventListener("scroll", onScroll, { passive: true });
-            window.addEventListener("resize", onScroll, { passive: true });
-            updateParallax();
-          } else {
-            window.removeEventListener("scroll", onScroll);
-            window.removeEventListener("resize", onScroll);
-            bgImg.style.transform = isLogo ? "translate(-50%, -50%)" : "none";
-          }
-        });
-      }, {
-        threshold: 0,
-        rootMargin: "50px 0px 50px 0px"
-      });
-
-      observer.observe(section);
-    }
-  });
+  // Static: Learning Pathway section has zero JavaScript animations
 }
 
 /* ==========================================================================
