@@ -726,55 +726,324 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html?v=2027" class="brand-logo" aria-label="Hadi Education System Home">
-            <img class="brand-logo-image" src="assets/images/hadi-education-logo.jpg" alt="Hadi Education System logo">
-            <div class="brand-title-wrap">
-              <span class="brand-name">HADI EDUCATION</span>
-              <span class="brand-tag">SYSTEM • CHAKWAL</span>
+  <!-- ==========================================================================
+       THE CAMPUS SKYLINE — GLOBAL SHARED FOOTER
+       ========================================================================== -->
+    <!-- ==========================================================================
+       THE CAMPUS SKYLINE — GLOBAL SHARED FOOTER
+       ========================================================================== -->
+  <footer class="footer footer-skyline" id="campus-skyline" role="contentinfo">
+    <!-- Faint Islamic Geometric Star Pattern (5% opacity) -->
+    <div class="footer-bg-pattern" aria-hidden="true">
+      <svg viewBox="0 0 240 240" width="100%" height="100%" fill="none" stroke="#FFFFFF" stroke-width="1.2">
+        <defs>
+          <pattern id="footer-star-tile" width="120" height="120" patternUnits="userSpaceOnUse">
+            <g transform="scale(0.5)">
+              <polygon points="120,12 144,72 204,48 180,108 240,120 180,132 204,192 144,168 120,228 96,168 36,192 60,132 0,120 60,108 36,48 96,72" opacity="0.6" />
+              <polygon points="120,36 138,84 186,66 168,114 216,120 168,126 186,174 138,156 120,204 102,156 54,174 72,126 24,120 72,114 54,66 102,84" opacity="0.4" />
+              <circle cx="120" cy="120" r="54" opacity="0.35" />
+              <circle cx="120" cy="120" r="84" opacity="0.25" />
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#footer-star-tile)" />
+      </svg>
+    </div>
+
+    <div class="container footer-container">
+      <!-- Top Row: Left Brand/Sign-off/CTA + Right 3 Link Columns -->
+      <div class="footer-top-row">
+        <!-- Left Column -->
+        <div class="footer-col-left">
+          <!-- Logo Arch Emblem -->
+          <div class="skyline-brand">
+            <div class="skyline-logo-arch">
+              <svg viewBox="0 0 48 56" width="48" height="56" aria-hidden="true" class="skyline-arch-svg">
+                <path class="skyline-arch-stroke footer-arch-path" d="M 4 54 L 4 24 C 4 11 13 4 24 4 C 35 4 44 11 44 24 L 44 54" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+                <text x="24" y="38" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1">HES</text>
+              </svg>
             </div>
+            <div class="skyline-brand-text">
+              <div class="skyline-brand-name">Hadi Education System</div>
+              <div class="skyline-brand-sub" data-en="Since 2017" data-ur="قیام 2017">Since 2017</div>
+            </div>
+          </div>
+
+          <!-- Lora Sign-off Line -->
+          <h2 class="footer-sign-off" data-en="Raised on the Quran,&lt;br&gt;ready for &lt;em&gt;tomorrow&lt;/em&gt;." data-ur="قرآن سے تربیت،&lt;br&gt;&lt;em&gt;مستقبل&lt;/em&gt; کے لیے تیار۔">Raised on the Quran,<br>ready for <em>tomorrow</em>.</h2>
+
+          <!-- White Pill Button with Navy Arrow Circle -->
+          <a href="https://wa.me/923001234567?text=Assalam-o-Alaikum,%20I%20would%20like%20to%20inquire%20about%20admissions%20at%20Hadi%20Education%20System." class="footer-cta-btn" id="footerWhatsappCta" target="_blank" rel="noopener" aria-label="Ask about admission on WhatsApp">
+            <span class="footer-cta-label" data-en="Ask about admission" data-ur="داخلے کے متعلق معلومات">Ask about admission</span>
+            <span class="footer-cta-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
           </a>
-          <p>Synthesizing sacred Quranic knowledge with modern 21st-century academic excellence in Chakwal, Pakistan
-            since 2017.</p>
         </div>
 
-        <div>
-          <h4>Quick Links</h4>
-          <div class="footer-links">
-            <a href="index.html?v=2027">Home</a>
-            <a href="about.html?v=2027">About Us</a>
-            <a href="academics.html?v=2027">Curriculum &amp; Hifz</a>
-            <a href="campus-life.html?v=2027">Campus Life</a>
-            <a href="admission.html?v=2027">Admissions 2026</a>
-            <a href="contact.html?v=2027">Contact Administration</a>
-          </div>
-        </div>
+        <!-- Right Column: 3 Link Groups in DM Sans -->
+        <div class="footer-col-right">
+          <!-- Column 1: Explore -->
+          <details class="footer-link-group" open>
+            <summary class="footer-group-title">
+              <span data-en="Explore" data-ur="دریافت کریں">Explore</span>
+              <span class="footer-accordion-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <ul class="footer-links-list">
+              <li><a href="index.html" class="footer-nav-link" data-en="Home" data-ur="صفحہ اول">Home</a></li>
+              <li><a href="about.html" class="footer-nav-link" data-en="About us" data-ur="ہمارے بارے میں">About us</a></li>
+              <li><a href="academics.html" class="footer-nav-link" data-en="Academics" data-ur="تعلیمی شعبہ">Academics</a></li>
+              <li><a href="facilities.html" class="footer-nav-link" data-en="Campus life" data-ur="کیمپس لائف">Campus life</a></li>
+            </ul>
+          </details>
 
-        <div>
-          <h4>Contact Details</h4>
-          <div class="footer-contact-item">
-            <svg class="footer-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <span class="sr-only">Location:</span>
-            <span class="footer-contact-text">Pipli Road, Balkasar, District Chakwal, Punjab, Pakistan</span>
-          </div>
-          <div class="footer-contact-item">
-            <svg class="footer-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            <span class="sr-only">Phone Number:</span>
-            <a href="tel:+923145075399" class="footer-contact-text" style="color: #FFFFFF;">+92 314 5075399</a>
-          </div>
-          <div class="footer-contact-item">
-            <svg class="footer-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            <span class="sr-only">Email:</span>
-            <a href="mailto:malishahhamdani@gmail.com" class="footer-contact-text" style="color: #FFFFFF;">malishahhamdani@gmail.com</a>
-          </div>
+          <!-- Column 2: Admissions -->
+          <details class="footer-link-group" open>
+            <summary class="footer-group-title">
+              <span data-en="Admissions" data-ur="داخلہ طریقہ کار">Admissions</span>
+              <span class="footer-accordion-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <ul class="footer-links-list">
+              <li><a href="admission.html#admission-roadmap" class="footer-nav-link" data-en="Roadmap" data-ur="داخلہ روڈ میپ">Roadmap</a></li>
+              <li><a href="admission.html#ar-station-2" class="footer-nav-link" data-en="Documents" data-ur="دستاویزات کی فہرست">Documents</a></li>
+              <li><a href="admission.html#application-form" class="footer-nav-link" data-en="Fee structure" data-ur="فیس شیڈول">Fee structure</a></li>
+              <li><a href="admission.html#application-form" class="footer-nav-link" data-en="Apply online" data-ur="آن لائن درخواست">Apply online</a></li>
+            </ul>
+          </details>
+
+          <!-- Column 3: Visit -->
+          <details class="footer-link-group" open>
+            <summary class="footer-group-title">
+              <span data-en="Visit" data-ur="کیمپس وزٹ">Visit</span>
+              <span class="footer-accordion-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <ul class="footer-links-list">
+              <li><a href="contact.html" class="footer-nav-link" id="footerAddressRoad" data-en="Pipli Road" data-ur="پپلی روڈ">Pipli Road</a></li>
+              <li><a href="contact.html" class="footer-nav-link" id="footerAddressCity" data-en="Balkasar" data-ur="بلکسر">Balkasar</a></li>
+              <li><a href="contact.html" class="footer-nav-link" id="footerHoursLink" data-en="Office hours" data-ur="دفتری اوقات">Office hours</a></li>
+              <li><a href="contact.html" class="footer-nav-link" data-en="Contact" data-ur="رابطہ">Contact</a></li>
+            </ul>
+          </details>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <p class="footer-copyright">&copy; 2026 Hadi Education System. All rights reserved.</p>
+      <!-- Middle Row: Admissions Open Star Badge & Language Toggle -->
+      <div class="footer-middle-row">
+        <a href="admission.html" class="footer-admissions-badge" aria-label="Admissions open, Apply for 2026">
+          <svg class="footer-star-icon" width="28" height="28" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true">
+            <polygon points="12,2 14.8,7.8 20.6,5 17.8,10.8 22,14.8 16.2,16.2 14.8,22 10.8,17.8 5,20.6 7.8,14.8 2,12 7.8,9.2 5,3.4 10.8,6.2"/>
+          </svg>
+          <div class="footer-badge-text-wrap">
+            <div class="footer-badge-title" data-en="Admissions open" data-ur="داخلے جاری ہیں">Admissions open</div>
+            <div class="footer-badge-sub" data-en="Apply for 2026" data-ur="سیشن 2026 کے لیے">Apply for 2026</div>
+          </div>
+        </a>
+
+        <div class="footer-lang-toggle" role="group" aria-label="Language selection">
+          <button type="button" class="footer-lang-btn is-active" data-lang="en" aria-pressed="true">English</button>
+          <button type="button" class="footer-lang-btn" data-lang="ur" aria-pressed="false" lang="ur">اردو</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skyline Strip: Full-Width Inline SVG along Bottom Edge -->
+    <div class="footer-skyline-wrap" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 140" preserveAspectRatio="xMidYMax meet" fill="none" aria-hidden="true" class="footer-skyline-svg footer-skyline-desktop">
+  <defs>
+    <style>
+      .skyline-fill { fill: var(--skyline-fill, #000000); }
+      .skyline-stroke { stroke: #FFFFFF; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    </style>
+  </defs>
+
+  <!-- SOLID SILHOUETTES -->
+  <!-- 1. Left Minaret -->
+  <polygon points="76,46 83,18 90,46" class="skyline-fill" />
+  <rect x="78" y="46" width="10" height="94" class="skyline-fill" />
+  <rect x="75" y="75" width="16" height="6" class="skyline-fill" />
+
+  <!-- 2. Mosque Base & Dome -->
+  <rect x="105" y="80" width="140" height="60" class="skyline-fill" />
+  <path d="M 125 80 C 125 42, 225 42, 225 80 Z" class="skyline-fill" />
+
+  <!-- 3. Right Minaret -->
+  <polygon points="265,46 272,18 279,46" class="skyline-fill" />
+  <rect x="267" y="46" width="10" height="94" class="skyline-fill" />
+  <rect x="264" y="75" width="16" height="6" class="skyline-fill" />
+
+  <!-- 4. Main School Building -->
+  <!-- Left Wing -->
+  <rect x="360" y="75" width="65" height="65" class="skyline-fill" />
+  <!-- Center Tower -->
+  <polygon points="425,35 455,18 485,35" class="skyline-fill" />
+  <rect x="425" y="35" width="60" height="105" class="skyline-fill" />
+  <!-- Right Wing -->
+  <rect x="485" y="75" width="65" height="65" class="skyline-fill" />
+
+  <!-- 5. Library Pavilion -->
+  <rect x="610" y="80" width="90" height="60" class="skyline-fill" />
+  <path d="M 622 80 C 622 48, 688 48, 688 80 Z" class="skyline-fill" />
+
+  <!-- 6. Open Book -->
+  <path d="M 740 140 L 740 124 C 748 116, 764 116, 775 120 C 786 116, 802 116, 810 124 L 810 140 Z" class="skyline-fill" />
+
+  <!-- 7. Cricket Ground Plinth -->
+  <rect x="830" y="136" width="30" height="4" class="skyline-fill" />
+
+  <!-- WHITE DETAIL OUTLINES (Matching screenshot exactly) -->
+  <!-- Ground Line -->
+  <line x1="0" y1="140" x2="1000" y2="140" class="skyline-stroke" />
+
+  <!-- Left Minaret Outlines -->
+  <polygon points="76,46 83,18 90,46" class="skyline-stroke" />
+  <line x1="83" y1="18" x2="83" y2="10" class="skyline-stroke" />
+  <rect x="75" y="75" width="16" height="6" class="skyline-stroke" />
+  <line x1="78" y1="46" x2="78" y2="140" class="skyline-stroke" />
+  <line x1="88" y1="46" x2="88" y2="140" class="skyline-stroke" />
+
+  <!-- Mosque Outlines -->
+  <!-- Base frame -->
+  <line x1="105" y1="80" x2="245" y2="80" class="skyline-stroke" />
+  <line x1="105" y1="80" x2="105" y2="140" class="skyline-stroke" />
+  <line x1="245" y1="80" x2="245" y2="140" class="skyline-stroke" />
+  <!-- Dome curve & Finial -->
+  <path d="M 125 80 C 125 42, 225 42, 225 80" class="skyline-stroke" />
+  <line x1="175" y1="42" x2="175" y2="28" class="skyline-stroke" />
+  <!-- Left Arched Window -->
+  <path d="M 124 140 L 124 114 C 124 102, 148 102, 148 114 L 148 140" class="skyline-stroke" />
+  <!-- Right Arched Window -->
+  <path d="M 202 140 L 202 114 C 202 102, 226 102, 226 114 L 226 140" class="skyline-stroke" />
+
+  <!-- Right Minaret Outlines -->
+  <polygon points="265,46 272,18 279,46" class="skyline-stroke" />
+  <line x1="272" y1="18" x2="272" y2="10" class="skyline-stroke" />
+  <rect x="264" y="75" width="16" height="6" class="skyline-stroke" />
+  <line x1="267" y1="46" x2="267" y2="140" class="skyline-stroke" />
+  <line x1="277" y1="46" x2="277" y2="140" class="skyline-stroke" />
+
+  <!-- Main School Building Outlines -->
+  <!-- Left Wing -->
+  <line x1="360" y1="75" x2="425" y2="75" class="skyline-stroke" />
+  <line x1="360" y1="75" x2="360" y2="140" class="skyline-stroke" />
+  <path d="M 372 140 L 372 116 C 372 108, 388 108, 388 116 L 388 140" class="skyline-stroke" />
+  <path d="M 398 140 L 398 116 C 398 108, 414 108, 414 116 L 414 140" class="skyline-stroke" />
+
+  <!-- Center Tower with Gable Roof -->
+  <polygon points="425,35 455,18 485,35" class="skyline-stroke" />
+  <line x1="425" y1="35" x2="425" y2="140" class="skyline-stroke" />
+  <line x1="485" y1="35" x2="485" y2="140" class="skyline-stroke" />
+  <path d="M 442 140 L 442 85 C 442 70, 468 70, 468 85 L 468 140" class="skyline-stroke" />
+
+  <!-- Right Wing -->
+  <line x1="485" y1="75" x2="550" y2="75" class="skyline-stroke" />
+  <line x1="550" y1="75" x2="550" y2="140" class="skyline-stroke" />
+  <path d="M 496 140 L 496 116 C 496 108, 512 108, 512 116 L 512 140" class="skyline-stroke" />
+  <path d="M 522 140 L 522 116 C 522 108, 538 108, 538 116 L 538 140" class="skyline-stroke" />
+
+  <!-- Library Pavilion Outlines -->
+  <!-- Base box -->
+  <line x1="610" y1="80" x2="700" y2="80" class="skyline-stroke" />
+  <line x1="610" y1="80" x2="610" y2="140" class="skyline-stroke" />
+  <line x1="700" y1="80" x2="700" y2="140" class="skyline-stroke" />
+  <!-- Dome curve & Finial -->
+  <path d="M 622 80 C 622 48, 688 48, 688 80" class="skyline-stroke" />
+  <line x1="655" y1="48" x2="655" y2="36" class="skyline-stroke" />
+  <!-- Arched Windows -->
+  <path d="M 628 140 L 628 118 C 628 110, 646 110, 646 118 L 646 140" class="skyline-stroke" />
+  <path d="M 664 140 L 664 118 C 664 110, 682 110, 682 118 L 682 140" class="skyline-stroke" />
+
+  <!-- Open Book Outlines -->
+  <path d="M 740 140 L 740 124 C 748 116, 764 116, 775 120 C 786 116, 802 116, 810 124 L 810 140" class="skyline-stroke" />
+  <line x1="775" y1="120" x2="775" y2="140" class="skyline-stroke" />
+  <path d="M 745 126 C 755 120, 767 121, 775 124" class="skyline-stroke" />
+  <path d="M 775 124 C 783 121, 795 120, 805 126" class="skyline-stroke" />
+
+  <!-- Cricket Stumps & Bails -->
+  <line x1="832" y1="140" x2="832" y2="114" class="skyline-stroke" />
+  <line x1="840" y1="140" x2="840" y2="114" class="skyline-stroke" />
+  <line x1="848" y1="140" x2="848" y2="114" class="skyline-stroke" />
+  <!-- Bails -->
+  <line x1="830" y1="113" x2="850" y2="113" class="skyline-stroke" />
+</svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 120" preserveAspectRatio="xMidYMax meet" fill="none" aria-hidden="true" class="footer-skyline-svg footer-skyline-compact">
+  <defs>
+    <style>
+      .skyline-fill { fill: var(--skyline-fill, #000000); }
+      .skyline-stroke { stroke: #FFFFFF; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    </style>
+  </defs>
+
+  <!-- SILHOUETTES -->
+  <!-- Mosque Dome & Minaret -->
+  <polygon points="18,36 24,12 30,36" class="skyline-fill" />
+  <rect x="20" y="36" width="8" height="84" class="skyline-fill" />
+  <rect x="42" y="65" width="90" height="55" class="skyline-fill" />
+  <path d="M 52 65 C 52 32, 122 32, 122 65 Z" class="skyline-fill" />
+
+  <!-- School Building -->
+  <rect x="150" y="62" width="40" height="58" class="skyline-fill" />
+  <polygon points="190,32 215,16 240,32" class="skyline-fill" />
+  <rect x="190" y="32" width="50" height="88" class="skyline-fill" />
+  <rect x="240" y="62" width="40" height="58" class="skyline-fill" />
+
+  <!-- Open Book -->
+  <path d="M 305 120 L 305 106 C 313 98, 326 98, 335 102 C 344 98, 357 98, 365 106 L 365 120 Z" class="skyline-fill" />
+
+  <!-- WHITE DETAIL OUTLINES -->
+  <line x1="0" y1="120" x2="390" y2="120" class="skyline-stroke" />
+
+  <!-- Minaret -->
+  <polygon points="18,36 24,12 30,36" class="skyline-stroke" />
+  <line x1="24" y1="12" x2="24" y2="6" class="skyline-stroke" />
+  <line x1="20" y1="36" x2="20" y2="120" class="skyline-stroke" />
+  <line x1="28" y1="36" x2="28" y2="120" class="skyline-stroke" />
+
+  <!-- Mosque -->
+  <line x1="42" y1="65" x2="132" y2="65" class="skyline-stroke" />
+  <line x1="42" y1="65" x2="42" y2="120" class="skyline-stroke" />
+  <line x1="132" y1="65" x2="132" y2="120" class="skyline-stroke" />
+  <path d="M 52 65 C 52 32, 122 32, 122 65" class="skyline-stroke" />
+  <line x1="87" y1="32" x2="87" y2="20" class="skyline-stroke" />
+  <path d="M 58 120 L 58 96 C 58 86, 76 86, 76 96 L 76 120" class="skyline-stroke" />
+  <path d="M 98 120 L 98 96 C 98 86, 116 86, 116 96 L 116 120" class="skyline-stroke" />
+
+  <!-- School -->
+  <line x1="150" y1="62" x2="190" y2="62" class="skyline-stroke" />
+  <line x1="150" y1="62" x2="150" y2="120" class="skyline-stroke" />
+  <path d="M 160 120 L 160 98 C 160 90, 178 90, 178 98 L 178 120" class="skyline-stroke" />
+
+  <polygon points="190,32 215,16 240,32" class="skyline-stroke" />
+  <line x1="190" y1="32" x2="190" y2="120" class="skyline-stroke" />
+  <line x1="240" y1="32" x2="240" y2="120" class="skyline-stroke" />
+  <path d="M 203 120 L 203 72 C 203 60, 227 60, 227 72 L 227 120" class="skyline-stroke" />
+
+  <line x1="240" y1="62" x2="280" y2="62" class="skyline-stroke" />
+  <line x1="280" y1="62" x2="280" y2="120" class="skyline-stroke" />
+  <path d="M 252 120 L 252 98 C 252 90, 270 90, 270 98 L 270 120" class="skyline-stroke" />
+
+  <!-- Open Book -->
+  <path d="M 305 120 L 305 106 C 313 98, 326 98, 335 102 C 344 98, 357 98, 365 106 L 365 120" class="skyline-stroke" />
+  <line x1="335" y1="102" x2="335" y2="120" class="skyline-stroke" />
+</svg>
+    </div>
+
+    <!-- Legal Strip below Skyline -->
+    <div class="footer-legal-strip">
+      <div class="container footer-legal-container">
+        <p class="footer-legal-copyright" data-en="© 2026 Hadi Education System. All rights reserved." data-ur="© 2026 ہادی ایجوکیشن سسٹم۔ جملہ حقوق محفوظ ہیں۔">© 2026 Hadi Education System. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="privacy.html" class="footer-legal-link" data-en="Privacy" data-ur="پرائیویسی">Privacy</a>
+          <a href="privacy.html#terms" class="footer-legal-link" data-en="Terms" data-ur="شرائط">Terms</a>
+        </div>
       </div>
     </div>
   </footer>

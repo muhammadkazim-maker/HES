@@ -476,7 +476,83 @@ const siteContent = {
       responseEn: "We are located at Pipli Road, Balkasar, District Chakwal. Contact us via phone at +92 300 1234567 or email info@hes.com.pk. Office hours: 7:45 AM - 2:00 PM.",
       responseUr: "ہمارا پتہ: پپلی روڈ، بلکسر، ضلع چکوال۔ رابطہ فون: 0300-1234567، دفتری اوقات: صبح 7:45 تا دوپہر 2:00 بجے۔"
     }
-  ]
+  ],
+
+  // --- The Campus Skyline Global Footer Data ---
+  footer: {
+    signOff: {
+      en: "Raised on the Quran,<br>ready for <em>tomorrow</em>.",
+      ur: "قرآن سے تربیت،<br><em>مستقبل</em> کے لیے تیار۔"
+    },
+    ctaButton: {
+      en: "Ask about admission",
+      ur: "داخلے کے متعلق معلومات"
+    },
+    admissionsBadge: {
+      title: {
+        en: "Admissions open",
+        ur: "داخلے جاری ہیں"
+      },
+      subtitle: {
+        en: "Apply for 2026",
+        ur: "سیشن 2026 کے لیے"
+      }
+    },
+    groups: {
+      explore: {
+        title: {
+          en: "Explore",
+          ur: "دریافت کریں"
+        },
+        links: [
+          { label: { en: "Home", ur: "صفحہ اول" }, url: "index.html" },
+          { label: { en: "About us", ur: "ہمارے بارے میں" }, url: "about.html" },
+          { label: { en: "Academics", ur: "تعلیمی شعبہ" }, url: "academics.html" },
+          { label: { en: "Campus life", ur: "کیمپس لائف" }, url: "facilities.html" }
+        ]
+      },
+      admissions: {
+        title: {
+          en: "Admissions",
+          ur: "داخلہ طریقہ کار"
+        },
+        links: [
+          { label: { en: "Roadmap", ur: "روڈ میپ" }, url: "admission.html#admission-roadmap" },
+          { label: { en: "Documents", ur: "دستاویزات" }, url: "admission.html#ar-station-2" },
+          { label: { en: "Fee structure", ur: "فیس شیڈول" }, url: "admission.html#application-form" },
+          { label: { en: "Apply online", ur: "آن لائن درخواست" }, url: "admission.html#application-form" }
+        ]
+      },
+      visit: {
+        title: {
+          en: "Visit",
+          ur: "کیمپس وزٹ"
+        },
+        links: [
+          { label: { en: "Pipli Road", ur: "پپلی روڈ" }, url: "contact.html" },
+          { label: { en: "Balkasar", ur: "بلکسر" }, url: "contact.html" },
+          { label: { en: "Office hours", ur: "دفتری اوقات" }, url: "contact.html" },
+          { label: { en: "Contact", ur: "رابطہ" }, url: "contact.html" }
+        ]
+      }
+    },
+    legal: {
+      copyright: {
+        en: "© 2026 Hadi Education System. All rights reserved.",
+        ur: "© 2026 ہادی ایجوکیشن سسٹم۔ جملہ حقوق محفوظ ہیں۔"
+      },
+      privacy: {
+        en: "Privacy",
+        ur: "پرائیویسی",
+        url: "privacy.html"
+      },
+      terms: {
+        en: "Terms",
+        ur: "شرائط",
+        url: "privacy.html#terms"
+      }
+    }
+  }
 };
 
 // Export to window object for vanilla JS accessibility

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 140" preserveAspectRatio="xMidYMax meet" fill="none" aria-hidden="true" class="footer-skyline-svg footer-skyline-desktop">
+  <defs>
+    <style>
+      .skyline-fill { fill: var(--skyline-fill, #000000); }
+      .skyline-stroke { stroke: #FFFFFF; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    </style>
+  </defs>
+
+  <!-- SOLID SILHOUETTES -->
+  <!-- 1. Left Minaret -->
+  <polygon points="76,46 83,18 90,46" class="skyline-fill" />
+  <rect x="78" y="46" width="10" height="94" class="skyline-fill" />
+  <rect x="75" y="75" width="16" height="6" class="skyline-fill" />
+
+  <!-- 2. Mosque Base & Dome -->
+  <rect x="105" y="80" width="140" height="60" class="skyline-fill" />
+  <path d="M 125 80 C 125 42, 225 42, 225 80 Z" class="skyline-fill" />
+
+  <!-- 3. Right Minaret -->
+  <polygon points="265,46 272,18 279,46" class="skyline-fill" />
+  <rect x="267" y="46" width="10" height="94" class="skyline-fill" />
+  <rect x="264" y="75" width="16" height="6" class="skyline-fill" />
+
+  <!-- 4. Main School Building -->
+  <!-- Left Wing -->
+  <rect x="360" y="75" width="65" height="65" class="skyline-fill" />
+  <!-- Center Tower -->
+  <polygon points="425,35 455,18 485,35" class="skyline-fill" />
+  <rect x="425" y="35" width="60" height="105" class="skyline-fill" />
+  <!-- Right Wing -->
+  <rect x="485" y="75" width="65" height="65" class="skyline-fill" />
+
+  <!-- 5. Library Pavilion -->
+  <rect x="610" y="80" width="90" height="60" class="skyline-fill" />
+  <path d="M 622 80 C 622 48, 688 48, 688 80 Z" class="skyline-fill" />
+
+  <!-- 6. Open Book -->
+  <path d="M 740 140 L 740 124 C 748 116, 764 116, 775 120 C 786 116, 802 116, 810 124 L 810 140 Z" class="skyline-fill" />
+
+  <!-- 7. Cricket Ground Plinth -->
+  <rect x="830" y="136" width="30" height="4" class="skyline-fill" />
+
+  <!-- WHITE DETAIL OUTLINES (Matching screenshot exactly) -->
+  <!-- Ground Line -->
+  <line x1="0" y1="140" x2="1000" y2="140" class="skyline-stroke" />
+
+  <!-- Left Minaret Outlines -->
+  <polygon points="76,46 83,18 90,46" class="skyline-stroke" />
+  <line x1="83" y1="18" x2="83" y2="10" class="skyline-stroke" />
+  <rect x="75" y="75" width="16" height="6" class="skyline-stroke" />
+  <line x1="78" y1="46" x2="78" y2="140" class="skyline-stroke" />
+  <line x1="88" y1="46" x2="88" y2="140" class="skyline-stroke" />
+
+  <!-- Mosque Outlines -->
+  <!-- Base frame -->
+  <line x1="105" y1="80" x2="245" y2="80" class="skyline-stroke" />
+  <line x1="105" y1="80" x2="105" y2="140" class="skyline-stroke" />
+  <line x1="245" y1="80" x2="245" y2="140" class="skyline-stroke" />
+  <!-- Dome curve & Finial -->
+  <path d="M 125 80 C 125 42, 225 42, 225 80" class="skyline-stroke" />
+  <line x1="175" y1="42" x2="175" y2="28" class="skyline-stroke" />
+  <!-- Left Arched Window -->
+  <path d="M 124 140 L 124 114 C 124 102, 148 102, 148 114 L 148 140" class="skyline-stroke" />
+  <!-- Right Arched Window -->
+  <path d="M 202 140 L 202 114 C 202 102, 226 102, 226 114 L 226 140" class="skyline-stroke" />
+
+  <!-- Right Minaret Outlines -->
+  <polygon points="265,46 272,18 279,46" class="skyline-stroke" />
+  <line x1="272" y1="18" x2="272" y2="10" class="skyline-stroke" />
+  <rect x="264" y="75" width="16" height="6" class="skyline-stroke" />
+  <line x1="267" y1="46" x2="267" y2="140" class="skyline-stroke" />
+  <line x1="277" y1="46" x2="277" y2="140" class="skyline-stroke" />
+
+  <!-- Main School Building Outlines -->
+  <!-- Left Wing -->
+  <line x1="360" y1="75" x2="425" y2="75" class="skyline-stroke" />
+  <line x1="360" y1="75" x2="360" y2="140" class="skyline-stroke" />
+  <path d="M 372 140 L 372 116 C 372 108, 388 108, 388 116 L 388 140" class="skyline-stroke" />
+  <path d="M 398 140 L 398 116 C 398 108, 414 108, 414 116 L 414 140" class="skyline-stroke" />
+
+  <!-- Center Tower with Gable Roof -->
+  <polygon points="425,35 455,18 485,35" class="skyline-stroke" />
+  <line x1="425" y1="35" x2="425" y2="140" class="skyline-stroke" />
+  <line x1="485" y1="35" x2="485" y2="140" class="skyline-stroke" />
+  <path d="M 442 140 L 442 85 C 442 70, 468 70, 468 85 L 468 140" class="skyline-stroke" />
+
+  <!-- Right Wing -->
+  <line x1="485" y1="75" x2="550" y2="75" class="skyline-stroke" />
+  <line x1="550" y1="75" x2="550" y2="140" class="skyline-stroke" />
+  <path d="M 496 140 L 496 116 C 496 108, 512 108, 512 116 L 512 140" class="skyline-stroke" />
+  <path d="M 522 140 L 522 116 C 522 108, 538 108, 538 116 L 538 140" class="skyline-stroke" />
+
+  <!-- Library Pavilion Outlines -->
+  <!-- Base box -->
+  <line x1="610" y1="80" x2="700" y2="80" class="skyline-stroke" />
+  <line x1="610" y1="80" x2="610" y2="140" class="skyline-stroke" />
+  <line x1="700" y1="80" x2="700" y2="140" class="skyline-stroke" />
+  <!-- Dome curve & Finial -->
+  <path d="M 622 80 C 622 48, 688 48, 688 80" class="skyline-stroke" />
+  <line x1="655" y1="48" x2="655" y2="36" class="skyline-stroke" />
+  <!-- Arched Windows -->
+  <path d="M 628 140 L 628 118 C 628 110, 646 110, 646 118 L 646 140" class="skyline-stroke" />
+  <path d="M 664 140 L 664 118 C 664 110, 682 110, 682 118 L 682 140" class="skyline-stroke" />
+
+  <!-- Open Book Outlines -->
+  <path d="M 740 140 L 740 124 C 748 116, 764 116, 775 120 C 786 116, 802 116, 810 124 L 810 140" class="skyline-stroke" />
+  <line x1="775" y1="120" x2="775" y2="140" class="skyline-stroke" />
+  <path d="M 745 126 C 755 120, 767 121, 775 124" class="skyline-stroke" />
+  <path d="M 775 124 C 783 121, 795 120, 805 126" class="skyline-stroke" />
+
+  <!-- Cricket Stumps & Bails -->
+  <line x1="832" y1="140" x2="832" y2="114" class="skyline-stroke" />
+  <line x1="840" y1="140" x2="840" y2="114" class="skyline-stroke" />
+  <line x1="848" y1="140" x2="848" y2="114" class="skyline-stroke" />
+  <!-- Bails -->
+  <line x1="830" y1="113" x2="850" y2="113" class="skyline-stroke" />
+</svg>

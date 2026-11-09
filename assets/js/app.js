@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCampusLife();
   initTabVisibilityController();
   initMarqueeVisibilityObserver();
+  initCampusSkylineFooter();
 });
 
 /* ==========================================================================
@@ -57,6 +58,7 @@ function initScrollReveal() {
     !element.closest(".faculty-carousel-wrapper") &&
     !element.closest(".yr-section") &&
     !element.closest(".bd-section") &&
+    !element.closest(".footer-skyline") &&
     !element.closest(".principal-photo") && !element.matches(".footer-copyright, .vm-bg-img, .vm-bg-logo, .principal-bg-img, .principal-img")
   );
   if (!revealElements.length) return;
@@ -142,16 +144,85 @@ function initTheme() {
 }
 
 /* ==========================================================================
-   2. ENGLISH LANGUAGE
+   2. LANGUAGE MANAGEMENT (English / Urdu)
    ========================================================================== */
-function initLanguage() {
-  document.documentElement.setAttribute("lang", "en");
-  document.documentElement.setAttribute("dir", "ltr");
+function setSiteLanguage(lang) {
+  const isUrdu = lang === "ur";
+  document.documentElement.setAttribute("lang", isUrdu ? "ur" : "en");
+  document.documentElement.setAttribute("dir", isUrdu ? "rtl" : "ltr");
 
-  const englishElements = document.querySelectorAll("[data-en][data-ur]");
-  englishElements.forEach(el => {
-    el.innerHTML = el.getAttribute("data-en");
+  const translatableElements = document.querySelectorAll("[data-en][data-ur]");
+  translatableElements.forEach(el => {
+    el.innerHTML = isUrdu ? el.getAttribute("data-ur") : el.getAttribute("data-en");
+    if (isUrdu) {
+      el.setAttribute("lang", "ur");
+    } else {
+      el.removeAttribute("lang");
+    }
   });
+
+  // Populate dynamic contact details in footer from siteContent.info
+  if (typeof window.siteContent !== "undefined" && window.siteContent.info) {
+    const info = window.siteContent.info;
+    const footerAddress = document.getElementById("footerAddressText");
+    const footerPhone = document.getElementById("footerPhoneLink");
+    const footerHours = document.getElementById("footerHoursText");
+    const footerWhatsapp = document.getElementById("footerWhatsappCta");
+    const footerRoad = document.getElementById("footerAddressRoad");
+    const footerCity = document.getElementById("footerAddressCity");
+    const footerHoursLink = document.getElementById("footerHoursLink");
+
+    if (footerRoad) {
+      footerRoad.textContent = isUrdu ? "پپلی روڈ" : "Pipli Road";
+    }
+    if (footerCity) {
+      footerCity.textContent = isUrdu ? "بلکسر" : "Balkasar";
+    }
+    if (footerHoursLink) {
+      footerHoursLink.textContent = isUrdu ? "دفتری اوقات" : "Office hours";
+    }
+
+    if (footerAddress && info.campus) {
+      footerAddress.textContent = isUrdu ? (info.campus.addressUr || info.campus.addressEn) : info.campus.addressEn;
+      if (isUrdu) footerAddress.setAttribute("lang", "ur");
+      else footerAddress.removeAttribute("lang");
+    }
+
+    if (footerPhone && info.contact) {
+      footerPhone.textContent = info.contact.phoneDisplay || info.contact.phone;
+      footerPhone.href = `tel:${(info.contact.phone || "").replace(/\s+/g, "")}`;
+    }
+
+    if (footerHours && info.contact) {
+      footerHours.textContent = isUrdu ? (info.contact.officeHoursUr || info.contact.officeHoursEn) : info.contact.officeHoursEn;
+      if (isUrdu) footerHours.setAttribute("lang", "ur");
+      else footerHours.removeAttribute("lang");
+    }
+
+    if (footerWhatsapp && info.contact && info.contact.whatsappNumber) {
+      footerWhatsapp.href = `https://wa.me/${info.contact.whatsappNumber}?text=Assalam-o-Alaikum,%20I%20would%20like%20to%20inquire%20about%20admissions%20at%20Hadi%20Education%20System.`;
+    }
+  }
+
+  // Update footer language toggle buttons state
+  const langButtons = document.querySelectorAll(".footer-lang-btn");
+  langButtons.forEach(btn => {
+    const active = btn.getAttribute("data-lang") === lang;
+    btn.classList.toggle("is-active", active);
+    btn.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+
+  try {
+    localStorage.setItem("hes-lang", lang);
+  } catch (e) {}
+}
+
+function initLanguage() {
+  let initialLang = "en";
+  try {
+    initialLang = localStorage.getItem("hes-lang") || "en";
+  } catch (e) {}
+  setSiteLanguage(initialLang);
 }
 
 // Hero entrance is managed by the shared page-gateway module on 'gateway:done'
@@ -3079,3 +3150,70 @@ function initMarqueeVisibilityObserver() {
 
 
 
+
+/* ==========================================================================
+   THE CAMPUS SKYLINE — FOOTER INITIALIZATION & ACCORDION BEHAVIOR
+   ========================================================================== */
+function initCampusSkylineFooter() {
+  const footer = document.querySelector(".footer-skyline");
+  if (!footer) return;
+
+  // 1. Motion and Scroll Reveal (IntersectionObserver ~20% visibility)
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) {
+    footer.classList.add("is-revealed");
+  } else if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          footer.classList.add("is-revealed");
+          obs.unobserve(footer);
+        }
+      });
+    }, { threshold: 0.2 });
+    observer.observe(footer);
+  } else {
+    footer.classList.add("is-revealed");
+  }
+
+  // 2. Accordion behavior on mobile (closed by default) vs desktop (open)
+  const linkGroups = footer.querySelectorAll(".footer-link-group");
+  const handleViewportAccordion = () => {
+    const isDesktop = window.innerWidth >= 769;
+    linkGroups.forEach(group => {
+      if (isDesktop) {
+        group.setAttribute("open", "");
+      } else {
+        if (!group.dataset.userToggled) {
+          group.removeAttribute("open");
+        }
+      }
+    });
+  };
+
+  linkGroups.forEach(group => {
+    const summary = group.querySelector("summary");
+    if (summary) {
+      summary.addEventListener("click", () => {
+        group.dataset.userToggled = "true";
+      });
+    }
+  });
+
+  handleViewportAccordion();
+  window.addEventListener("resize", handleViewportAccordion, { passive: true });
+
+  // 3. Language toggle hookup
+  const langButtons = footer.querySelectorAll(".footer-lang-btn");
+  langButtons.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetLang = btn.getAttribute("data-lang");
+      setSiteLanguage(targetLang);
+    });
+  });
+
+  // 4. Initial populate from siteContent.info
+  const currentLang = document.documentElement.getAttribute("lang") || "en";
+  setSiteLanguage(currentLang);
+}
