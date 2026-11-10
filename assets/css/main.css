@@ -1615,8 +1615,18 @@ body.drawer-open {
   .drawer-header,
   .drawer-link {
     transition: none !important;
+  }
+  .mobile-drawer.open {
     transform: none !important;
     opacity: 1 !important;
+  }
+  .mobile-drawer:not(.open) {
+    transform: translateX(100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  [dir="rtl"] .mobile-drawer:not(.open) {
+    transform: translateX(-100%) !important;
   }
 }
 
@@ -11667,4 +11677,1355 @@ html:not(.js) .bd-noscript-stack {
   font-size: 0.88rem !important;
   line-height: 1.6 !important;
   width: 100% !important;
+}
+
+/* ==========================================================================
+   THE CAMPUS SKYLINE — GLOBAL FOOTER REDESIGN (EXACT MOCKUP ACCURACY)
+   Palette: Navy #14213D | Black #000000 | White #FFFFFF | Light Gray #E5E5E5
+   ========================================================================== */
+:root {
+  --skyline-navy: #14213D;
+  --skyline-black: #000000;
+  --skyline-white: #FFFFFF;
+  --skyline-gray: #E5E5E5;
+  --skyline-hairline: rgba(229, 229, 229, 0.2);
+  --skyline-bg: #14213D;
+  --skyline-fill: rgba(255, 255, 255, 0.04);
+}
+
+:root[data-theme="dark"],
+html[data-theme="dark"] {
+  --skyline-bg: #14213D;
+  --skyline-fill: rgba(255, 255, 255, 0.04);
+}
+
+/* Base Footer Shell */
+footer.footer-skyline {
+  background: var(--skyline-bg) !important;
+  background-color: var(--skyline-bg) !important;
+  background-image: none !important;
+  color: var(--skyline-white) !important;
+  position: relative !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-top: none !important;
+  overflow: hidden !important;
+  font-family: var(--font-sans);
+  z-index: 10;
+}
+
+html[data-theme="dark"] footer.footer-skyline,
+[data-theme="dark"] footer.footer-skyline {
+  background: #14213D !important;
+  background-color: #14213D !important;
+  background-image: none !important;
+}
+
+html[data-theme="dark"] .footer-skyline .skyline-fill,
+[data-theme="dark"] .footer-skyline .skyline-fill {
+  fill: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Background Faint Islamic Geometric Star Pattern (5% opacity) */
+.footer-skyline .footer-bg-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.05;
+  overflow: hidden;
+  z-index: 0;
+  color: var(--skyline-white);
+}
+
+.footer-skyline .footer-bg-pattern svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Footer Container */
+.footer-skyline .footer-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+
+/* Top Row: Two Columns */
+.footer-skyline .footer-top-row {
+  display: grid;
+  grid-template-columns: 1.28fr 1fr;
+  gap: clamp(36px, 5vw, 64px);
+  align-items: start;
+  padding-block-start: clamp(48px, 6vw, 72px);
+  padding-block-end: clamp(40px, 5vw, 60px);
+  border-block-end: none;
+}
+
+/* Left Column */
+.footer-skyline .footer-col-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+}
+
+[dir="rtl"] .footer-skyline .footer-col-left {
+  align-items: flex-start;
+  text-align: start;
+}
+
+/* Logo & Brand Emblem */
+.footer-skyline .skyline-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-block-end: 24px;
+}
+
+.footer-skyline .skyline-logo-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.footer-skyline .skyline-logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: contain;
+  display: block;
+}
+
+.footer-skyline .skyline-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-skyline .skyline-brand-name {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--skyline-white);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.footer-skyline .skyline-brand-sub {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--skyline-gray);
+  opacity: 0.85;
+  margin-block-start: 3px;
+  line-height: 1.2;
+}
+
+/* Lora Sign-off Line */
+.footer-skyline .footer-sign-off {
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 3.2vw, 2.75rem);
+  line-height: 1.2;
+  color: var(--skyline-white);
+  margin: 0 0 32px 0;
+  max-width: 500px;
+  font-weight: 500;
+  text-align: start;
+}
+
+.footer-skyline .footer-sign-off em,
+.footer-skyline .footer-sign-off i {
+  font-style: italic;
+  font-weight: 400;
+}
+
+[dir="rtl"] .footer-skyline .footer-sign-off,
+[lang="ur"] .footer-skyline .footer-sign-off {
+  font-family: var(--font-urdu), var(--font-serif);
+  line-height: 1.85 !important;
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  text-align: start;
+}
+
+/* White Pill Button with Navy Arrow Circle */
+.footer-skyline .footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--skyline-white);
+  color: var(--skyline-navy) !important;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 6px 8px 6px 24px;
+  border-radius: 9999px;
+  text-decoration: none !important;
+  min-height: 48px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-skyline .footer-cta-btn:hover,
+.footer-skyline .footer-cta-btn:focus-visible {
+  background-color: var(--skyline-gray);
+}
+
+.footer-skyline .footer-cta-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--skyline-navy);
+  color: var(--skyline-white);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.footer-skyline .footer-cta-arrow svg {
+  display: block;
+}
+
+.footer-skyline .footer-cta-btn:hover .footer-cta-arrow,
+.footer-skyline .footer-cta-btn:focus-visible .footer-cta-arrow {
+  transform: translateX(4px);
+}
+
+[dir="rtl"] .footer-skyline .footer-cta-btn:hover .footer-cta-arrow,
+[dir="rtl"] .footer-skyline .footer-cta-btn:focus-visible .footer-cta-arrow {
+  transform: translateX(-4px);
+}
+
+/* Right Column: Three Link Columns */
+.footer-skyline .footer-col-right {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+}
+
+.footer-skyline .footer-link-group {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+
+.footer-skyline.is-revealed .footer-link-group:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0ms;
+}
+
+.footer-skyline.is-revealed .footer-link-group:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 60ms;
+}
+
+.footer-skyline.is-revealed .footer-link-group:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 120ms;
+}
+
+.footer-skyline .footer-group-title {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--skyline-white);
+  margin-block-end: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.footer-skyline .footer-group-title::-webkit-details-marker {
+  display: none;
+}
+
+.footer-skyline .footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-skyline .footer-nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: var(--skyline-gray) !important;
+  text-decoration: none;
+  transition: color 0.18s ease;
+  display: inline-block;
+  width: fit-content;
+}
+
+.footer-skyline .footer-nav-link:hover,
+.footer-skyline .footer-nav-link:focus-visible {
+  color: var(--skyline-white) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+
+/* Middle Row: Admissions Open 8-Pointed Star Badge & Language Toggle */
+.footer-skyline .footer-middle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block-start: 28px;
+  padding-block-end: 8px;
+  gap: 16px;
+}
+
+/* Admissions Star Badge */
+.footer-skyline .footer-admissions-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none !important;
+  color: var(--skyline-white) !important;
+  transition: opacity 0.2s ease;
+}
+
+.footer-skyline .footer-admissions-badge:hover,
+.footer-skyline .footer-admissions-badge:focus-visible {
+  opacity: 0.9;
+}
+
+.footer-skyline .footer-star-icon {
+  fill: var(--skyline-white);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.footer-skyline .footer-admissions-badge:hover .footer-star-icon,
+.footer-skyline .footer-admissions-badge:focus-visible .footer-star-icon {
+  transform: rotate(22.5deg);
+}
+
+.footer-skyline .footer-badge-text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-skyline .footer-badge-title {
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--skyline-white);
+  line-height: 1.25;
+}
+
+.footer-skyline .footer-badge-sub {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--skyline-gray);
+  opacity: 0.85;
+  margin-block-start: 2px;
+  line-height: 1.2;
+}
+
+/* Language Toggle Pill */
+.footer-skyline .footer-lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--skyline-hairline);
+  border-radius: 9999px;
+  padding: 3px;
+  min-height: 40px;
+}
+
+.footer-skyline .footer-lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--skyline-gray);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  cursor: pointer;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.footer-skyline .footer-lang-btn[lang="ur"] {
+  font-family: var(--font-urdu), var(--font-sans);
+  font-size: 1.02rem;
+  line-height: 1;
+}
+
+.footer-skyline .footer-lang-btn.is-active {
+  background-color: var(--skyline-white) !important;
+  color: var(--skyline-navy) !important;
+}
+
+/* Skyline Strip */
+.footer-skyline .footer-skyline-wrap {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: translateY(24px);
+  opacity: 0;
+  transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1), opacity 800ms ease-out;
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+  margin-block-start: 16px;
+}
+
+.footer-skyline.is-revealed .footer-skyline-wrap {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Do not mirror skyline in RTL */
+[dir="rtl"] .footer-skyline .footer-skyline-wrap {
+  direction: ltr !important;
+}
+
+.footer-skyline .footer-skyline-svg {
+  width: 100%;
+  height: 160px;
+  display: block;
+}
+
+.footer-skyline .skyline-fill {
+  fill: var(--skyline-fill, #000000);
+}
+
+.footer-skyline .skyline-stroke {
+  stroke: var(--skyline-white);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.footer-skyline .footer-skyline-compact {
+  display: none;
+}
+
+/* Legal Strip Below Skyline (Complete Blue to bottom) */
+.footer-skyline .footer-legal-strip {
+  background-color: transparent !important;
+  padding-block: 22px;
+  border-block-start: 1px solid var(--skyline-hairline);
+  position: relative;
+  z-index: 2;
+}
+
+.footer-skyline .footer-legal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: 32px;
+  text-align: center;
+}
+
+.footer-skyline .footer-legal-copyright {
+  color: var(--skyline-white) !important;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  margin: 0;
+  text-align: center !important;
+  width: 100%;
+}
+
+.footer-skyline .footer-legal-rights {
+  display: inline !important;
+}
+
+.footer-skyline .footer-legal-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.footer-skyline .footer-legal-link {
+  color: var(--skyline-white) !important;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.footer-skyline .footer-legal-link:hover,
+.footer-skyline .footer-legal-link:focus-visible {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* Focus Ring */
+.footer-skyline a:focus-visible,
+.footer-skyline button:focus-visible,
+.footer-skyline summary:focus-visible,
+.footer-skyline [tabindex]:focus-visible {
+  outline: 2px solid var(--skyline-white) !important;
+  outline-offset: 2px !important;
+}
+
+/* ==========================================================================
+   DESKTOP ACCORDION EXPANSION (min-width: 769px)
+   ========================================================================== */
+@media (min-width: 769px) {
+  .footer-skyline .footer-link-group {
+    display: block;
+  }
+  .footer-skyline .footer-link-group summary {
+    pointer-events: none;
+    cursor: default;
+  }
+  .footer-skyline .footer-link-group .footer-links-list {
+    display: flex !important;
+  }
+  .footer-skyline .footer-accordion-icon {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   PHONE LAYOUT (390px reference, max-width: 768px)
+   Matches mobile design mockup exactly
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Override any legacy .footer rules on page-home or other pages */
+  footer.footer-skyline,
+  .page-home footer.footer-skyline,
+  .page-about footer.footer-skyline,
+  .page-academics footer.footer-skyline,
+  .page-admission footer.footer-skyline,
+  .page-contact footer.footer-skyline,
+  .page-campus footer.footer-skyline {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: var(--skyline-bg) !important;
+    background-color: var(--skyline-bg) !important;
+  }
+
+  .footer-skyline .footer-container {
+    display: flex !important;
+    flex-direction: column !important;
+    padding-inline: 24px !important;
+    padding-block-start: 40px !important;
+    padding-block-end: 0 !important;
+  }
+
+  .footer-skyline .footer-top-row,
+  .footer-skyline .footer-col-left,
+  .footer-skyline .footer-middle-row {
+    display: contents !important;
+  }
+
+  /* 1. Logo with Arch */
+  .footer-skyline .skyline-brand {
+    order: 1 !important;
+    margin-block-start: 0 !important;
+    margin-block-end: 20px !important;
+  }
+
+  /* 2. Lora Sign-off Line */
+  .footer-skyline .footer-sign-off {
+    order: 2 !important;
+    font-size: 30px !important;
+    line-height: 1.25 !important;
+    max-width: 100% !important;
+    margin-block-end: 24px !important;
+  }
+
+  [dir="rtl"] .footer-skyline .footer-sign-off,
+  [lang="ur"] .footer-skyline .footer-sign-off {
+    line-height: 1.8 !important;
+  }
+
+  /* 3. Full-width WhatsApp Pill CTA Button */
+  .footer-skyline .footer-cta-btn {
+    order: 3 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 6px 6px 6px 24px !important;
+    margin-block-end: 22px !important;
+    min-height: 52px !important;
+  }
+
+  /* 4. Admissions open Badge */
+  .footer-skyline .footer-admissions-badge {
+    order: 4 !important;
+    width: fit-content !important;
+    margin-block-end: 24px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  .footer-skyline .footer-badge-title {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+  }
+
+  .footer-skyline .footer-badge-sub {
+    display: none !important;
+  }
+
+  /* 5. The Three Link Groups as Native Details/Summary Accordions */
+  .footer-skyline .footer-col-right {
+    order: 5 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    width: 100% !important;
+    border-block-start: 1px solid var(--skyline-hairline) !important;
+    margin-block-end: 0 !important;
+  }
+
+  .footer-skyline .footer-link-group {
+    border-block-end: 1px solid var(--skyline-hairline) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 100% !important;
+  }
+
+  .footer-skyline .footer-group-title {
+    margin-block-end: 0 !important;
+    padding-block: 16px !important;
+    min-height: 52px !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    font-size: 1.08rem !important;
+    font-weight: 700 !important;
+  }
+
+  .footer-skyline .footer-accordion-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.25s ease !important;
+    color: var(--skyline-white) !important;
+  }
+
+  .footer-skyline .footer-link-group[open] .footer-accordion-icon {
+    transform: rotate(180deg) !important;
+  }
+
+  .footer-skyline .footer-links-list {
+    padding-block-end: 18px !important;
+    padding-inline-start: 4px !important;
+    gap: 12px !important;
+  }
+
+  .footer-skyline .footer-nav-link {
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  /* 6. Language Toggle: Compact Left-Aligned Pill */
+  .footer-skyline .footer-lang-toggle {
+    order: 6 !important;
+    width: fit-content !important;
+    margin-block-start: 24px !important;
+    margin-block-end: 28px !important;
+    align-self: flex-start !important;
+  }
+
+  .footer-skyline .footer-lang-btn {
+    flex: 0 0 auto !important;
+    padding: 6px 18px !important;
+  }
+
+  /* Skyline: Compact Variant */
+  .footer-skyline .footer-skyline-desktop {
+    display: none !important;
+  }
+
+  .footer-skyline .footer-skyline-compact {
+    display: block !important;
+    width: 100% !important;
+    height: 120px !important;
+  }
+
+  /* 7. Legal Strip: Centered Single Line */
+  .footer-skyline .footer-legal-strip {
+    border-block-start: none !important;
+    padding-block: 20px !important;
+  }
+
+  .footer-skyline .footer-legal-links {
+    display: none !important;
+  }
+
+  .footer-skyline .footer-legal-rights {
+    display: inline !important;
+  }
+
+  .footer-skyline .footer-legal-container {
+    justify-content: center !important;
+    text-align: center !important;
+    padding-inline: 24px !important;
+    padding-block: 16px !important;
+  }
+
+  .footer-skyline .footer-legal-copyright {
+    text-align: center !important;
+    margin: 0 !important;
+    font-size: 0.88rem !important;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION SUPPORT (prefers-reduced-motion: reduce)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .footer-skyline .footer-arch-path,
+  .footer-skyline .footer-skyline-wrap,
+  .footer-skyline .footer-link-group,
+  .footer-skyline .footer-cta-btn,
+  .footer-skyline .footer-cta-arrow,
+  .footer-skyline .footer-admissions-badge,
+  .footer-skyline .footer-star-icon {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+  }
+
+  .footer-skyline .footer-cta-btn:hover .footer-cta-arrow,
+  .footer-skyline .footer-cta-btn:focus-visible .footer-cta-arrow {
+    transform: none !important;
+  }
+
+  .footer-skyline .footer-admissions-badge:hover .footer-star-icon,
+  .footer-skyline .footer-admissions-badge:focus-visible .footer-star-icon {
+    transform: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   STUDENT BRAND SPOTLIGHT & ARCHITECTURAL VISUAL SHOWCASE
+   Hadi Education System (HES) — Authentic Student Branding
+   ========================================================================== */
+
+.student-spotlight-section {
+  position: relative;
+  background-color: #F8F9FA;
+  padding: clamp(60px, 8vw, 96px) 0;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+  overflow: hidden;
+}
+
+.student-spotlight-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto clamp(36px, 5vw, 56px);
+}
+
+.student-spotlight-header .section-tag {
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+.student-spotlight-header .section-title {
+  font-family: var(--font-serif, "Lora", Georgia, serif);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 700;
+  color: var(--navy, #14213D);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.student-spotlight-header .section-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: #4B5563;
+  line-height: 1.7;
+  margin: 0 auto;
+}
+
+.student-spotlight-grid {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.student-spotlight-grid .student-spotlight-card {
+  max-width: 680px;
+  width: 100%;
+}
+
+.student-spotlight-card {
+  background: #FFFFFF;
+  border-radius: 28px;
+  border: 1px solid rgba(20, 33, 61, 0.08);
+  box-shadow: 0 10px 30px rgba(20, 33, 61, 0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+}
+
+.student-spotlight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 48px rgba(20, 33, 61, 0.09);
+  border-color: rgba(201, 162, 75, 0.4);
+}
+
+/* Architectural Arch Stage (Preserved for future use) */
+.student-arch-stage {
+  position: relative;
+  background: linear-gradient(180deg, #F0F4F9 0%, #E2E8F0 100%);
+  height: clamp(340px, 36vw, 400px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(20, 33, 61, 0.06);
+  padding-top: 48px;
+}
+
+/* Subtle architectural arch contour inside stage */
+.student-arch-contour {
+  position: absolute;
+  top: 24px;
+  bottom: 0;
+  width: min(84%, 380px);
+  border-radius: 160px 160px 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 100%);
+  border: 1.5px solid rgba(201, 162, 75, 0.35);
+  border-bottom: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   BROTHERHOOD & LEADERSHIP — COMPACT LEGACY BAND (CLASSES 9 TO 12)
+   ========================================================================== */
+.brotherhood-hero-band {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  background-image: radial-gradient(ellipse 50% 45% at 50% 100%, #EEF1F7 0%, rgba(238, 241, 247, 0) 100%);
+  padding: 64px 24px 0 24px;
+  box-sizing: border-box;
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brotherhood-hero-band * {
+  visibility: visible !important;
+}
+
+/* 2px navy-fade line across top edge */
+.brotherhood-hero-band::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #1F3A7A, transparent);
+  z-index: 4;
+}
+
+/* Headline centered: "Brotherhood & Leadership" */
+.brotherhood-headline {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: clamp(32px, 4.4vw, 60px);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: #0A1530;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 900px;
+  box-sizing: border-box;
+}
+
+.brotherhood-amp {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 600;
+  color: #1F3A7A;
+}
+
+/* Subtitle directly below headline */
+.brotherhood-subtitle {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.6;
+  color: #4A5673;
+  margin: 14px auto 0 auto;
+  padding: 0 16px;
+  max-width: 560px;
+  box-sizing: border-box;
+}
+
+/* Arch Figure (Exactly Two Arcs Total) */
+.brotherhood-arch-figure {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 580px;
+  margin: 28px auto 0 auto;
+  padding: 0;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* ARC 2 – OUTER ARCH (decorative, aria-hidden, rises behind headline & subtitle) */
+.brotherhood-outer-arch {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 126%;
+  height: 140%;
+  border: 1px solid #1F3A7A;
+  opacity: 0.45;
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+  z-index: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+/* ARC 1 – IMAGE ARCH (the photo frame clipping the cutout) */
+.brotherhood-image-arch {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 6 / 4.8;
+  border: 1px solid #1F3A7A;
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E6EBF5 100%);
+  z-index: 1;
+  box-sizing: border-box;
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.brotherhood-hero-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.brotherhood-hero-img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: contain;
+  object-position: bottom center;
+  vertical-align: bottom;
+}
+
+@media (max-width: 640px) {
+  .brotherhood-hero-band {
+    padding: 64px 16px 0 16px;
+  }
+
+  .brotherhood-headline {
+    font-size: clamp(26px, 7.2vw, 34px);
+    line-height: 1.15;
+    max-width: 320px;
+  }
+
+  .brotherhood-subtitle {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 0 8px;
+    max-width: 340px;
+  }
+
+  .brotherhood-arch-figure {
+    margin-top: 24px;
+  }
+}
+
+.student-arch-img--trio {
+  width: min(92%, 460px);
+  max-width: 92%;
+  height: auto;
+  max-height: 345px;
+}
+
+.student-spotlight-card:hover .student-arch-img {
+  transform: scale(1.025);
+}
+
+/* Floating Stage Badge */
+.student-stage-badge {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--navy, #14213D);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(20, 33, 61, 0.22);
+  border: 1px solid rgba(201, 162, 75, 0.45);
+}
+
+.student-stage-badge .badge-icon-star {
+  color: #C9A24B;
+  display: inline-flex;
+}
+
+/* Card Body Content */
+.student-card-body {
+  padding: clamp(24px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.student-card-track-tag {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C9A24B;
+  margin-bottom: 8px;
+}
+
+.student-card-title {
+  font-family: var(--font-serif, "Lora", Georgia, serif);
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  color: var(--navy, #14213D);
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+
+.student-card-desc {
+  font-size: 0.96rem;
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 22px;
+  flex: 1;
+}
+
+/* Checklist of Highlights */
+.student-card-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.student-card-checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy, #14213D);
+  line-height: 1.45;
+}
+
+.student-card-checklist-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #10B981;
+}
+
+/* Bottom Metric / Pill Tag */
+.student-card-footer {
+  padding-top: 18px;
+  border-top: 1px solid #F0F2F5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.student-card-meta {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #6B7280;
+}
+
+.student-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--navy, #14213D);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.student-card-link:hover {
+  color: #C9A24B;
+  transform: translateX(4px);
+}
+
+[dir="rtl"] .student-card-link:hover {
+  transform: translateX(-4px);
+}
+
+/* Spotlight Bottom Banner CTA */
+.student-spotlight-banner {
+  margin-top: clamp(40px, 6vw, 60px);
+  background: var(--navy, #14213D);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 36px) clamp(24px, 5vw, 48px);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  box-shadow: 0 12px 36px rgba(20, 33, 61, 0.16);
+  border: 1px solid rgba(201, 162, 75, 0.35);
+}
+
+.student-spotlight-banner-text {
+  flex: 1;
+}
+
+.student-spotlight-banner-title {
+  font-family: var(--font-serif, "Lora", Georgia, serif);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.student-spotlight-banner-subtitle {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.student-spotlight-banner-cta {
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   ADMISSIONS HERO RIGHT FLANK STUDENT SHOWCASE
+   ========================================================================== */
+
+.ar-hero-student-card {
+  flex: 0 0 340px;
+  max-width: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.ar-student-arch-frame {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  border-radius: 160px 160px 24px 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(20, 33, 61, 0.65) 100%);
+  border: 1.5px solid rgba(201, 162, 75, 0.55);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.ar-student-hero-img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  height: 94%;
+  width: auto;
+  max-width: 94%;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.45));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ar-hero-student-card:hover .ar-student-hero-img {
+  transform: scale(1.03);
+}
+
+.ar-student-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: rgba(20, 33, 61, 0.92);
+  border: 1px solid rgba(201, 162, 75, 0.6);
+  border-radius: 9999px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+.ar-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: arPulseDot 2s ease infinite;
+}
+
+@keyframes arPulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.ar-badge-text {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   RESPONSIVE QUERIES
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .student-spotlight-grid {
+    grid-template-columns: 1fr;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .student-spotlight-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .student-spotlight-banner-cta {
+    width: 100%;
+  }
+
+  .student-spotlight-banner-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ar-hero-student-card {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .student-arch-stage {
+    height: 330px;
+    padding-top: 44px;
+  }
+
+  .student-arch-img {
+    height: 82%;
+    max-height: 280px;
+  }
+
+  .student-card-body {
+    padding: 22px 18px;
+  }
+
+  .student-stage-badge {
+    font-size: 0.68rem;
+    padding: 5px 12px;
+    top: 14px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .student-spotlight-card,
+  .student-arch-img,
+  .student-card-link,
+  .ar-student-hero-img {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .ar-badge-dot {
+    animation: none !important;
+  }
 }

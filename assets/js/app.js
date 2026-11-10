@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCampusLife();
   initTabVisibilityController();
   initMarqueeVisibilityObserver();
+  initCampusSkylineFooter();
 });
 
 /* ==========================================================================
@@ -57,6 +58,8 @@ function initScrollReveal() {
     !element.closest(".faculty-carousel-wrapper") &&
     !element.closest(".yr-section") &&
     !element.closest(".bd-section") &&
+    !element.closest(".footer-skyline") &&
+    !element.closest(".brotherhood-hero-band") &&
     !element.closest(".principal-photo") && !element.matches(".footer-copyright, .vm-bg-img, .vm-bg-logo, .principal-bg-img, .principal-img")
   );
   if (!revealElements.length) return;
@@ -142,16 +145,47 @@ function initTheme() {
 }
 
 /* ==========================================================================
-   2. ENGLISH LANGUAGE
+   2. LANGUAGE SWITCHER & BILINGUAL SUPPORT (EN / UR)
    ========================================================================== */
-function initLanguage() {
-  document.documentElement.setAttribute("lang", "en");
-  document.documentElement.setAttribute("dir", "ltr");
+function setLanguage(lang) {
+  const isUrdu = lang === "ur";
+  document.documentElement.setAttribute("lang", isUrdu ? "ur" : "en");
+  document.documentElement.setAttribute("dir", isUrdu ? "rtl" : "ltr");
 
-  const englishElements = document.querySelectorAll("[data-en][data-ur]");
-  englishElements.forEach(el => {
-    el.innerHTML = el.getAttribute("data-en");
+  try {
+    localStorage.setItem("hes_lang", lang);
+  } catch (e) {}
+
+  const elements = document.querySelectorAll("[data-en][data-ur]");
+  elements.forEach(el => {
+    el.innerHTML = isUrdu ? el.getAttribute("data-ur") : el.getAttribute("data-en");
   });
+
+  // Update footer lang toggle buttons
+  const langBtns = document.querySelectorAll(".footer-lang-btn");
+  langBtns.forEach(btn => {
+    const btnLang = btn.getAttribute("data-lang");
+    const active = btnLang === lang;
+    btn.classList.toggle("is-active", active);
+    btn.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+
+  const signOff = document.querySelector(".footer-sign-off");
+  if (signOff) {
+    if (isUrdu) {
+      signOff.setAttribute("lang", "ur");
+    } else {
+      signOff.removeAttribute("lang");
+    }
+  }
+}
+
+function initLanguage() {
+  let savedLang = "en";
+  try {
+    savedLang = localStorage.getItem("hes_lang") || "en";
+  } catch (e) {}
+  setLanguage(savedLang);
 }
 
 // Hero entrance is managed by the shared page-gateway module on 'gateway:done'
@@ -3075,6 +3109,83 @@ function initMarqueeVisibilityObserver() {
 
   animatedTracks.forEach(track => observer.observe(track));
 }
+
+/* ==========================================================================
+   THE CAMPUS SKYLINE — GLOBAL SHARED FOOTER CONTROLLER
+   ========================================================================== */
+function initCampusSkylineFooter() {
+  const footer = document.querySelector(".footer-skyline");
+  if (!footer) return;
+
+  // 1. Populate dynamic links/info from siteContent.info if available
+  if (window.siteContent && window.siteContent.info) {
+    const info = window.siteContent.info;
+    const whatsappBtn = footer.querySelector("#footerWhatsappCta");
+    if (whatsappBtn && info.contact && info.contact.whatsappNumber) {
+      whatsappBtn.href = `https://wa.me/${info.contact.whatsappNumber}?text=Assalam-o-Alaikum,%20I%20would%20like%20to%20inquire%20about%20admissions%20at%20Hadi%20Education%20System.`;
+    }
+
+    const roadLink = footer.querySelector("#footerAddressRoad");
+    if (roadLink && info.campus && info.campus.addressEn) {
+      roadLink.setAttribute("title", info.campus.addressEn);
+    }
+    const hoursLink = footer.querySelector("#footerHoursLink");
+    if (hoursLink && info.contact && info.contact.officeHoursEn) {
+      hoursLink.setAttribute("title", info.contact.officeHoursEn);
+    }
+  }
+
+  // 2. Language toggle button click handlers
+  const langBtns = footer.querySelectorAll(".footer-lang-btn");
+  langBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const lang = btn.getAttribute("data-lang");
+      if (lang) {
+        setLanguage(lang);
+      }
+    });
+  });
+
+  // 3. Responsive native details/summary accordions on phone (closed by default on mobile)
+  const linkGroups = footer.querySelectorAll(".footer-link-group");
+  const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+  function applyAccordionState(e) {
+    const isMobile = e.matches;
+    linkGroups.forEach(group => {
+      if (isMobile) {
+        group.removeAttribute("open");
+      } else {
+        group.setAttribute("open", "");
+      }
+    });
+  }
+  applyAccordionState(mediaQuery);
+  if (typeof mediaQuery.addEventListener === "function") {
+    mediaQuery.addEventListener("change", applyAccordionState);
+  } else if (typeof mediaQuery.addListener === "function") {
+    mediaQuery.addListener(applyAccordionState);
+  }
+
+  // 4. Motion & Scroll reveal (triggered once when footer is about 20% visible)
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    footer.classList.add("is-revealed");
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting || entry.intersectionRatio >= 0.2) {
+        footer.classList.add("is-revealed");
+        obs.unobserve(footer);
+      }
+    });
+  }, { threshold: [0, 0.2] });
+
+  observer.observe(footer);
+}
+
 
 
 

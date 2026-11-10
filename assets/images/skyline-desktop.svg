@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 160" preserveAspectRatio="xMidYMax meet" fill="none" aria-hidden="true" class="footer-skyline-svg footer-skyline-desktop">
+  <defs>
+    <style>
+      .arch-fill { fill: #1F2C46; }
+      .arch-tier-fill { fill: rgba(31, 44, 70, 0.4); }
+      .arch-stroke { stroke: rgba(255, 255, 255, 0.85); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .arch-stroke-soft { stroke: rgba(255, 255, 255, 0.45); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    </style>
+  </defs>
+
+  <!-- ==========================================
+       1. THE CAMPUS MOSQUE (Left Side)
+       Stepped tiered podium with prominent arch dome & minarets
+       ========================================== -->
+  <!-- Left Minaret: Stepped vertical tiers with arch cap -->
+  <rect x="72" y="140" width="16" height="20" class="arch-tier-fill" />
+  <rect x="72" y="140" width="16" height="20" class="arch-stroke" />
+  <rect x="74" y="60" width="12" height="80" class="arch-tier-fill" />
+  <rect x="74" y="60" width="12" height="80" class="arch-stroke" />
+  <!-- Minaret Arch Balcony & Top Arch -->
+  <rect x="70" y="54" width="20" height="6" class="arch-stroke" />
+  <path d="M 74 54 L 74 38 A 6 6 0 0 1 86 38 L 86 54 Z" class="arch-fill" />
+  <path d="M 74 54 L 74 38 A 6 6 0 0 1 86 38 L 86 54" class="arch-stroke" />
+  <line x1="80" y1="32" x2="80" y2="20" class="arch-stroke" />
+
+  <!-- Mosque Main Stepped Structure (Exact stepped tiers style from user reference) -->
+  <!-- Tier 1 (Base tier): wide rectangle -->
+  <rect x="110" y="132" width="160" height="28" class="arch-tier-fill" />
+  <rect x="110" y="132" width="160" height="28" class="arch-stroke" />
+  <!-- Tier 2 (Middle tier): stepped in -->
+  <rect x="128" y="104" width="124" height="28" class="arch-tier-fill" />
+  <rect x="128" y="104" width="124" height="28" class="arch-stroke" />
+  <!-- Tier 3 (Top tier): stepped in -->
+  <rect x="150" y="76" width="80" height="28" class="arch-tier-fill" />
+  <rect x="150" y="76" width="80" height="28" class="arch-stroke" />
+
+  <!-- Mosque Grand Arch (Rising from top tier, matching reference image) -->
+  <path d="M 166 76 L 166 42 A 24 24 0 0 1 214 42 L 214 76 Z" class="arch-fill" />
+  <path d="M 166 76 L 166 42 A 24 24 0 0 1 214 42 L 214 76" class="arch-stroke" />
+  <!-- Inner Arch Detail -->
+  <path d="M 174 76 L 174 48 A 16 16 0 0 1 206 48 L 206 76" class="arch-stroke-soft" />
+  <!-- Spire Finial -->
+  <line x1="190" y1="18" x2="190" y2="6" class="arch-stroke" />
+  <circle cx="190" cy="5" r="1.5" fill="#FFFFFF" />
+
+  <!-- Mosque Base Arched Portals (Cut into Tier 1 and Tier 2) -->
+  <path d="M 178 160 L 178 140 A 12 12 0 0 1 202 140 L 202 160" class="arch-stroke" />
+  <path d="M 134 160 L 134 144 A 8 8 0 0 1 150 144 L 150 160" class="arch-stroke-soft" />
+  <path d="M 230 160 L 230 144 A 8 8 0 0 1 246 144 L 246 160" class="arch-stroke-soft" />
+
+  <!-- Right Minaret: Stepped vertical tiers with arch cap (Matching Left) -->
+  <rect x="292" y="140" width="16" height="20" class="arch-tier-fill" />
+  <rect x="292" y="140" width="16" height="20" class="arch-stroke" />
+  <rect x="294" y="60" width="12" height="80" class="arch-tier-fill" />
+  <rect x="294" y="60" width="12" height="80" class="arch-stroke" />
+  <rect x="290" y="54" width="20" height="6" class="arch-stroke" />
+  <path d="M 294 54 L 294 38 A 6 6 0 0 1 306 38 L 306 54 Z" class="arch-fill" />
+  <path d="M 294 54 L 294 38 A 6 6 0 0 1 306 38 L 306 54" class="arch-stroke" />
+  <line x1="300" y1="32" x2="300" y2="20" class="arch-stroke" />
+
+  <!-- ==========================================
+       2. MAIN ACADEMIC BUILDING (Center)
+       Tiered campus building with monumental central arch & flanking arch colonnade
+       ========================================== -->
+  <!-- Base Tier 1: Wide foundation block -->
+  <rect x="368" y="130" width="194" height="30" class="arch-tier-fill" />
+  <rect x="368" y="130" width="194" height="30" class="arch-stroke" />
+  <!-- Tier 2: Stepped second level -->
+  <rect x="388" y="100" width="154" height="30" class="arch-tier-fill" />
+  <rect x="388" y="100" width="154" height="30" class="arch-stroke" />
+  <!-- Tier 3: Top central pavilion block -->
+  <rect x="424" y="70" width="82" height="30" class="arch-tier-fill" />
+  <rect x="424" y="70" width="82" height="30" class="arch-stroke" />
+
+  <!-- Monumental Central Arch (Rising above top tier, in exact reference style) -->
+  <path d="M 440 70 L 440 36 A 25 25 0 0 1 490 36 L 490 70 Z" class="arch-fill" />
+  <path d="M 440 70 L 440 36 A 25 25 0 0 1 490 36 L 490 70" class="arch-stroke" />
+  <path d="M 448 70 L 448 44 A 17 17 0 0 1 482 44 L 482 70" class="arch-stroke-soft" />
+
+  <!-- Grand Entrance Arch Portal (Center of Base & Tier 2) -->
+  <path d="M 450 160 L 450 114 A 15 15 0 0 1 480 114 L 480 160" class="arch-stroke" />
+  <path d="M 454 160 L 454 118 A 11 11 0 0 1 476 118 L 476 160" class="arch-stroke-soft" />
+  
+  <!-- Flanking Arched Windows on Wing Tiers -->
+  <path d="M 398 130 L 398 112 A 8 8 0 0 1 414 112 L 414 130" class="arch-stroke-soft" />
+  <path d="M 378 160 L 378 142 A 8 8 0 0 1 394 142 L 394 160" class="arch-stroke-soft" />
+  <path d="M 402 160 L 402 142 A 8 8 0 0 1 418 142 L 418 160" class="arch-stroke-soft" />
+  <path d="M 516 130 L 516 112 A 8 8 0 0 1 532 112 L 532 130" class="arch-stroke-soft" />
+  <path d="M 512 160 L 512 142 A 8 8 0 0 1 528 142 L 528 160" class="arch-stroke-soft" />
+  <path d="M 536 160 L 536 142 A 8 8 0 0 1 552 142 L 552 160" class="arch-stroke-soft" />
+
+  <!-- ==========================================
+       3. THE LIBRARY & QURANIC ACADEMY (Right of Center)
+       Stepped tiers with elegant reading arch
+       ========================================== -->
+  <!-- Base Tier -->
+  <rect x="620" y="132" width="110" height="28" class="arch-tier-fill" />
+  <rect x="620" y="132" width="110" height="28" class="arch-stroke" />
+  <!-- Middle Tier -->
+  <rect x="635" y="104" width="80" height="28" class="arch-tier-fill" />
+  <rect x="635" y="104" width="80" height="28" class="arch-stroke" />
+  <!-- Library Arch Pavilion -->
+  <path d="M 648 104 L 648 64 A 27 27 0 0 1 702 64 L 702 104 Z" class="arch-fill" />
+  <path d="M 648 104 L 648 64 A 27 27 0 0 1 702 64 L 702 104" class="arch-stroke" />
+  <path d="M 656 104 L 656 72 A 19 19 0 0 1 694 72 L 694 104" class="arch-stroke-soft" />
+  <!-- Colonnade Arches in Base -->
+  <path d="M 634 160 L 634 144 A 8 8 0 0 1 650 144 L 650 160" class="arch-stroke-soft" />
+  <path d="M 667 160 L 667 144 A 8 8 0 0 1 683 144 L 683 160" class="arch-stroke-soft" />
+  <path d="M 700 160 L 700 144 A 8 8 0 0 1 716 144 L 716 160" class="arch-stroke-soft" />
+
+  <!-- ==========================================
+       4. THE OPEN BOOK (Quran on Arched Rehl Stand)
+       ========================================== -->
+  <!-- Stepped Plinth -->
+  <rect x="768" y="148" width="68" height="12" class="arch-tier-fill" />
+  <rect x="768" y="148" width="68" height="12" class="arch-stroke" />
+  <!-- Arched Rehl Stand Base -->
+  <path d="M 788 148 L 788 134 A 14 14 0 0 1 816 134 L 816 148" class="arch-stroke" />
+  <!-- Open Book Spreads -->
+  <path d="M 764 132 C 778 120, 796 120, 802 125 C 808 120, 826 120, 840 132" class="arch-stroke" />
+  <path d="M 766 136 C 780 124, 796 124, 802 129 C 808 124, 824 124, 838 136" class="arch-stroke-soft" />
+  <line x1="802" y1="125" x2="802" y2="148" class="arch-stroke" />
+
+  <!-- ==========================================
+       5. ATHLETIC GROUNDS (Cricket Wickets)
+       ========================================== -->
+  <line x1="880" y1="160" x2="880" y2="132" class="arch-stroke" />
+  <line x1="888" y1="160" x2="888" y2="132" class="arch-stroke" />
+  <line x1="896" y1="160" x2="896" y2="132" class="arch-stroke" />
+  <line x1="877" y1="132" x2="899" y2="132" class="arch-stroke" />
+
+  <!-- ==========================================
+       CONTINUOUS GROUND LINE
+       ========================================== -->
+  <line x1="0" y1="160" x2="1000" y2="160" class="arch-stroke" />
+</svg>

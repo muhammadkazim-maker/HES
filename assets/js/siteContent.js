@@ -476,7 +476,70 @@ const siteContent = {
       responseEn: "We are located at Pipli Road, Balkasar, District Chakwal. Contact us via phone at +92 300 1234567 or email info@hes.com.pk. Office hours: 7:45 AM - 2:00 PM.",
       responseUr: "ہمارا پتہ: پپلی روڈ، بلکسر، ضلع چکوال۔ رابطہ فون: 0300-1234567، دفتری اوقات: صبح 7:45 تا دوپہر 2:00 بجے۔"
     }
-  ]
+  ],
+
+  // --- The Campus Skyline Global Shared Footer ---
+  footer: {
+    brandNameEn: "Hadi Education System",
+    brandNameUr: "ہادی ایجوکیشن سسٹم",
+    sinceEn: "Since 2017",
+    sinceUr: "قیام 2017",
+    signOffEn: "Raised on the Quran,<br>ready for <em>tomorrow</em>.",
+    signOffUr: "قرآن سے تربیت،<br><em>مستقبل</em> کے لیے تیار۔",
+    ctaButtonEn: "Ask about admission",
+    ctaButtonUr: "داخلے کے متعلق معلومات",
+    groupExploreTitleEn: "Explore",
+    groupExploreTitleUr: "دریافت کریں",
+    groupAdmissionsTitleEn: "Admissions",
+    groupAdmissionsTitleUr: "داخلہ طریقہ کار",
+    groupVisitTitleEn: "Visit",
+    groupVisitTitleUr: "کیمپس وزٹ",
+    links: {
+      homeEn: "Home",
+      homeUr: "صفحہ اول",
+      aboutEn: "About us",
+      aboutUr: "ہمارے بارے میں",
+      academicsEn: "Academics",
+      academicsUr: "تعلیمی شعبہ",
+      campusLifeEn: "Campus life",
+      campusLifeUr: "کیمپس لائف",
+      roadmapEn: "Admission Roadmap",
+      roadmapUr: "داخلہ روڈ میپ",
+      documentsEn: "Documents Checklist",
+      documentsUr: "دستاویزات کی فہرست",
+      feeStructureEn: "Fee Structure",
+      feeStructureUr: "فیس شیڈول",
+      applyOnlineEn: "Apply Online",
+      applyOnlineUr: "آن لائن درخواست",
+      contactEn: "Contact",
+      contactUr: "رابطہ",
+      officeHoursEn: "Office hours",
+      officeHoursUr: "دفتری اوقات",
+      pipliRoadEn: "Pipli Road",
+      pipliRoadUr: "پپلی روڈ",
+      balkasarEn: "Balkasar",
+      balkasarUr: "بلکسر"
+    },
+    badge: {
+      titleEn: "Admissions open",
+      titleUr: "داخلے جاری ہیں",
+      subEn: "Apply for 2026",
+      subUr: "سیشن 2026 کے لیے",
+      href: "admission.html"
+    },
+    langToggle: {
+      en: "English",
+      ur: "اردو"
+    },
+    legal: {
+      copyrightEn: "© 2026 Hadi Education System. All rights reserved.",
+      copyrightUr: "© 2026 ہادی ایجوکیشن سسٹم۔ جملہ حقوق محفوظ ہیں۔",
+      privacyEn: "Privacy",
+      privacyUr: "پرائیویسی",
+      termsEn: "Terms",
+      termsUr: "شرائط"
+    }
+  }
 };
 
 // Export to window object for vanilla JS accessibility
