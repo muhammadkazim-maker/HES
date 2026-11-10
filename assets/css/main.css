@@ -12607,7 +12607,7 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 660px;
+  max-width: 840px;
   margin: 28px auto 0 auto;
   padding: 0;
   display: block;
@@ -12620,8 +12620,8 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
   left: 50%;
   transform: translateX(-50%);
   bottom: 0;
-  width: 126%;
-  height: 140%;
+  width: 122%;
+  height: 125%;
   border: 1px solid #1F3A7A;
   opacity: 0.45;
   border-bottom: 0;
@@ -12692,7 +12692,13 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
   }
 
   .brotherhood-arch-figure {
+    max-width: 100%;
     margin-top: 24px;
+  }
+
+  .brotherhood-outer-arch {
+    width: 126%;
+    height: 140%;
   }
 }
 
