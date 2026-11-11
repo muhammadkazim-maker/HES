@@ -12908,125 +12908,25 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
 #admission-hero {
   background-color: #FFFFFF !important;
   background-image: none !important;
-  min-height: clamp(660px, 86vh, 850px) !important;
-  height: 86vh !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  min-height: 560px !important;
   display: flex !important;
   align-items: stretch !important;
-  padding-top: clamp(80px, 11vh, 105px) !important;
+  padding-top: clamp(80px, 10vh, 100px) !important;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
   border-bottom: none !important;
   box-shadow: none !important;
   overflow: hidden !important;
   position: relative !important;
+  box-sizing: border-box !important;
 }
 
 #admission-hero .cl-hero-bg-wrap,
 #admission-hero .cl-hero-tint,
 #admission-hero .cl-hero-gradient {
   display: none !important;
-}
-
-/* Decorative Floating Accents (Matching Reference Mockup) */
-#admission-hero .ar-hero-accents {
-  position: absolute !important;
-  inset: 0 !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-  overflow: hidden !important;
-}
-
-#admission-hero .ar-accent-dot {
-  position: absolute !important;
-  border-radius: 50% !important;
-  pointer-events: none !important;
-}
-
-/* Top Center Group */
-#admission-hero .ar-dot-gold-1 {
-  width: 6px !important;
-  height: 6px !important;
-  background: #CFCBC2 !important;
-  top: 13.5% !important;
-  left: 54.5% !important;
-}
-
-#admission-hero .ar-dot-navy-1 {
-  width: 5px !important;
-  height: 5px !important;
-  background: #0F172A !important;
-  top: 17% !important;
-  left: 58.5% !important;
-}
-
-#admission-hero .ar-dot-blue-1 {
-  width: 7px !important;
-  height: 7px !important;
-  background: #2563EB !important;
-  top: 18.5% !important;
-  left: 65.5% !important;
-}
-
-/* Bottom Center Group */
-#admission-hero .ar-dot-gold-2 {
-  width: 6px !important;
-  height: 6px !important;
-  background: #C3B490 !important;
-  bottom: 22% !important;
-  left: 54% !important;
-}
-
-#admission-hero .ar-dot-navy-2 {
-  width: 6px !important;
-  height: 6px !important;
-  background: #0F172A !important;
-  bottom: 16% !important;
-  left: 52% !important;
-}
-
-#admission-hero .ar-dot-blue-2 {
-  width: 5px !important;
-  height: 5px !important;
-  background: #94A3B8 !important;
-  bottom: 25% !important;
-  left: 49.5% !important;
-}
-
-/* Right Side Group */
-#admission-hero .ar-dot-navy-3 {
-  width: 5px !important;
-  height: 5px !important;
-  background: #0F172A !important;
-  top: 41.5% !important;
-  right: 3% !important;
-}
-
-#admission-hero .ar-dot-blue-3 {
-  width: 7px !important;
-  height: 7px !important;
-  background: #1E3A8A !important;
-  top: 47% !important;
-  right: 3.8% !important;
-}
-
-#admission-hero .ar-dot-gold-3 {
-  width: 6px !important;
-  height: 6px !important;
-  background: #B6B77B !important;
-  top: 55% !important;
-  right: 5.2% !important;
-}
-
-#admission-hero .ar-mark-angle {
-  position: absolute !important;
-  width: 10px !important;
-  height: 10px !important;
-  border-right: 2px solid #0F172A !important;
-  border-bottom: 2px solid #0F172A !important;
-  top: 69% !important;
-  right: 4.5% !important;
-  transform: rotate(-12deg) !important;
-  opacity: 0.75 !important;
 }
 
 #admission-hero .cl-hero-container {
@@ -13180,7 +13080,8 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
 
 #admission-hero .ar-student-hero-img {
   display: block !important;
-  height: clamp(520px, 74vh, 740px) !important;
+  height: calc(100svh - clamp(80px, 10vh, 100px)) !important;
+  max-height: calc(100svh - clamp(80px, 10vh, 100px)) !important;
   width: auto !important;
   max-width: 100% !important;
   object-fit: contain !important;
@@ -13255,10 +13156,6 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
 
 /* Responsive */
 @media (max-width: 992px) {
-  #admission-hero .ar-hero-accents {
-    display: none !important;
-  }
-
   #admission-hero {
     min-height: auto !important;
     height: auto !important;
