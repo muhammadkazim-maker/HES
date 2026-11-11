@@ -4283,8 +4283,8 @@ p {
 .page-academics .hero::before {
   background-image:
     linear-gradient(180deg, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.44) 50%, rgba(255, 255, 255, 0.66) 100%),
-    url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=85") !important;
-  background-position: center 44% !important;
+    url("../images/boys.jpg") !important;
+  background-position: center 35% !important;
 }
 
 .page-facilities .hero::before {
@@ -4511,8 +4511,8 @@ p {
   .page-academics .hero::before {
     background-image:
       linear-gradient(180deg, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.44) 50%, rgba(255, 255, 255, 0.66) 100%),
-      url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=85") !important;
-    background-position: center 44% !important;
+      url("../images/boys.jpg") !important;
+    background-position: center 35% !important;
   }
 
   .page-facilities .hero::before {
@@ -11075,7 +11075,8 @@ html:not(.js) .bd-noscript-stack {
   transition: transform 6s ease-out;
 }
 
-#admission-hero .cl-hero-fallback-img {
+#admission-hero .cl-hero-fallback-img,
+#academics-hero .cl-hero-fallback-img {
   object-position: 70% 35%;
 }
 
@@ -11084,7 +11085,8 @@ html:not(.js) .bd-noscript-stack {
 }
 
 @media (max-width: 768px) {
-  #admission-hero .cl-hero-fallback-img {
+  #admission-hero .cl-hero-fallback-img,
+  #academics-hero .cl-hero-fallback-img {
     object-position: 65% 35%;
   }
 
