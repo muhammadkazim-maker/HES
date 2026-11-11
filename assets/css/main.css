@@ -12902,82 +12902,204 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
 }
 
 /* ==========================================================================
-   ADMISSIONS HERO RIGHT FLANK STUDENT SHOWCASE
+   ADMISSIONS HERO (Clean Editorial Layout on Pure White)
    ========================================================================== */
 
-.ar-hero-student-card {
-  flex: 0 0 340px;
-  max-width: 340px;
+#admission-hero {
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  min-height: clamp(600px, 80vh, 760px);
+  height: auto;
+  padding: 120px 0 60px;
+}
+
+#admission-hero .cl-hero-bg-wrap,
+#admission-hero .cl-hero-tint,
+#admission-hero .cl-hero-gradient {
+  display: none !important;
+}
+
+#admission-hero .cl-hero-container {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 56px);
+  max-width: 1240px;
+  position: relative;
+  z-index: 2;
+}
+
+#admission-hero .cl-hero-text {
+  flex: 1 1 540px;
+  max-width: 620px;
+}
+
+/* Eyebrow Label */
+#admission-hero .cl-hero-tag {
+  font-family: var(--font-sans, system-ui, sans-serif) !important;
+  color: #334155 !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 16px !important;
+  display: inline-block !important;
+}
+
+/* Main Heading ("Student Admission") */
+#admission-hero .cl-hero-title {
+  font-family: var(--font-serif, "Lora", Georgia, serif) !important;
+  font-size: clamp(3.2rem, 8vw, 7.2rem) !important;
+  font-weight: 700 !important;
+  line-height: 0.94 !important;
+  letter-spacing: -0.03em !important;
+  margin: 0 0 24px !important;
+}
+
+#admission-hero .cl-hero-title-solid {
+  display: block;
+  color: #0F172A !important;
+}
+
+#admission-hero .cl-hero-title-outline {
+  display: block;
+  color: transparent !important;
+  -webkit-text-stroke: 2px #0F172A !important;
+}
+
+/* Description Text */
+#admission-hero .cl-hero-desc {
+  color: #475569 !important;
+  font-size: clamp(1rem, 1.2vw, 1.15rem) !important;
+  line-height: 1.65 !important;
+  margin-bottom: 32px !important;
+  max-width: 520px !important;
+}
+
+/* CTA Buttons */
+#admission-hero .cl-hero-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+}
+
+#admission-hero .cl-hero-actions .btn.cl-btn-white {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid #0F172A !important;
+  border-radius: 9999px !important;
+  padding: 13px 32px !important;
+  font-weight: 700 !important;
+  font-size: 0.94rem !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.22) !important;
+  transition: all 0.25s ease !important;
+}
+
+#admission-hero .cl-hero-actions .btn.cl-btn-white:hover {
+  background-color: #1E293B !important;
+  border-color: #1E293B !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.3) !important;
+}
+
+#admission-hero .cl-hero-actions .btn.cl-btn-outline {
+  background-color: transparent !important;
+  color: #0F172A !important;
+  border: 1.5px solid #0F172A !important;
+  border-radius: 9999px !important;
+  padding: 13px 32px !important;
+  font-weight: 700 !important;
+  font-size: 0.94rem !important;
+  transition: all 0.25s ease !important;
+}
+
+#admission-hero .cl-hero-actions .btn.cl-btn-outline:hover {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Right Column: Full-Size Unframed Student Portrait */
+.ar-hero-student-card {
+  flex: 0 1 500px;
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   position: relative;
   z-index: 5;
 }
 
 .ar-student-arch-frame {
   position: relative;
-  width: 320px;
-  height: 420px;
-  border-radius: 160px 160px 24px 24px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(20, 33, 61, 0.65) 100%);
-  border: 1.5px solid rgba(201, 162, 75, 0.55);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  overflow: hidden;
-  padding-bottom: 0;
+  overflow: visible !important;
+  padding: 0;
 }
 
 .ar-student-hero-img {
   position: relative;
   z-index: 2;
   display: block;
-  height: 94%;
   width: auto;
-  max-width: 94%;
+  max-width: 100%;
+  height: auto;
+  max-height: 580px;
   object-fit: contain;
   object-position: bottom center;
-  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 16px 36px rgba(15, 23, 42, 0.12));
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .ar-hero-student-card:hover .ar-student-hero-img {
-  transform: scale(1.03);
+  transform: translateY(-4px) scale(1.02);
 }
 
+/* Admissions Badge & Static Green Dot */
 .ar-student-badge {
   position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
+  bottom: 24px;
+  right: 20px;
+  left: auto;
+  transform: none;
+  z-index: 6;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 7px 16px;
-  background: rgba(20, 33, 61, 0.92);
-  border: 1px solid rgba(201, 162, 75, 0.6);
+  gap: 10px;
+  padding: 9px 20px;
+  background: #0B1324;
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 9999px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 28px rgba(11, 19, 36, 0.35);
   white-space: nowrap;
 }
 
 .ar-badge-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 8px #10B981;
-  animation: arPulseDot 2s ease infinite;
+  background: #22C55E !important;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.5) !important;
+  animation: none !important;
 }
 
-@keyframes arPulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.85); }
+.ar-badge-dot::before,
+.ar-badge-dot::after {
+  display: none !important;
+  animation: none !important;
 }
 
 .ar-badge-text {
@@ -12987,6 +13109,56 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #FFFFFF;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  #admission-hero {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 100px !important;
+    padding-bottom: 40px !important;
+  }
+
+  #admission-hero .cl-hero-container {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 32px !important;
+  }
+
+  #admission-hero .cl-hero-text {
+    max-width: 100% !important;
+    text-align: center !important;
+    order: 1 !important;
+  }
+
+  #admission-hero .cl-hero-desc {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #admission-hero .cl-hero-actions {
+    justify-content: center !important;
+  }
+
+  #admission-hero .ar-hero-student-card,
+  .ar-hero-student-card {
+    display: flex !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
+    order: 2 !important;
+  }
+
+  .ar-student-hero-img {
+    max-height: 440px !important;
+  }
+
+  .ar-student-badge {
+    bottom: 14px !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+  }
 }
 
 /* ==========================================================================
@@ -13014,10 +13186,6 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
   .student-spotlight-banner-cta .btn {
     width: 100%;
     justify-content: center;
-  }
-
-  .ar-hero-student-card {
-    display: none;
   }
 }
 
