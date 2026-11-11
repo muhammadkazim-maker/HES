@@ -12902,15 +12902,23 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
 }
 
 /* ==========================================================================
-   ADMISSIONS HERO (Clean Editorial Layout on Pure White)
+   ADMISSIONS HERO (Clean Editorial Layout on Pure White - Flush Bottom)
    ========================================================================== */
 
 #admission-hero {
   background-color: #FFFFFF !important;
   background-image: none !important;
-  min-height: clamp(600px, 80vh, 760px);
-  height: auto;
-  padding: 120px 0 60px;
+  min-height: clamp(660px, 86vh, 850px) !important;
+  height: 86vh !important;
+  display: flex !important;
+  align-items: stretch !important;
+  padding-top: clamp(80px, 11vh, 105px) !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  position: relative !important;
 }
 
 #admission-hero .cl-hero-bg-wrap,
@@ -12919,19 +12927,133 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
   display: none !important;
 }
 
+/* Decorative Floating Accents (Matching Reference Mockup) */
+#admission-hero .ar-hero-accents {
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  overflow: hidden !important;
+}
+
+#admission-hero .ar-accent-dot {
+  position: absolute !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+}
+
+/* Top Center Group */
+#admission-hero .ar-dot-gold-1 {
+  width: 6px !important;
+  height: 6px !important;
+  background: #CFCBC2 !important;
+  top: 13.5% !important;
+  left: 54.5% !important;
+}
+
+#admission-hero .ar-dot-navy-1 {
+  width: 5px !important;
+  height: 5px !important;
+  background: #0F172A !important;
+  top: 17% !important;
+  left: 58.5% !important;
+}
+
+#admission-hero .ar-dot-blue-1 {
+  width: 7px !important;
+  height: 7px !important;
+  background: #2563EB !important;
+  top: 18.5% !important;
+  left: 65.5% !important;
+}
+
+/* Bottom Center Group */
+#admission-hero .ar-dot-gold-2 {
+  width: 6px !important;
+  height: 6px !important;
+  background: #C3B490 !important;
+  bottom: 22% !important;
+  left: 54% !important;
+}
+
+#admission-hero .ar-dot-navy-2 {
+  width: 6px !important;
+  height: 6px !important;
+  background: #0F172A !important;
+  bottom: 16% !important;
+  left: 52% !important;
+}
+
+#admission-hero .ar-dot-blue-2 {
+  width: 5px !important;
+  height: 5px !important;
+  background: #94A3B8 !important;
+  bottom: 25% !important;
+  left: 49.5% !important;
+}
+
+/* Right Side Group */
+#admission-hero .ar-dot-navy-3 {
+  width: 5px !important;
+  height: 5px !important;
+  background: #0F172A !important;
+  top: 41.5% !important;
+  right: 3% !important;
+}
+
+#admission-hero .ar-dot-blue-3 {
+  width: 7px !important;
+  height: 7px !important;
+  background: #1E3A8A !important;
+  top: 47% !important;
+  right: 3.8% !important;
+}
+
+#admission-hero .ar-dot-gold-3 {
+  width: 6px !important;
+  height: 6px !important;
+  background: #B6B77B !important;
+  top: 55% !important;
+  right: 5.2% !important;
+}
+
+#admission-hero .ar-mark-angle {
+  position: absolute !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-right: 2px solid #0F172A !important;
+  border-bottom: 2px solid #0F172A !important;
+  top: 69% !important;
+  right: 4.5% !important;
+  transform: rotate(-12deg) !important;
+  opacity: 0.75 !important;
+}
+
 #admission-hero .cl-hero-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(24px, 4vw, 56px);
-  max-width: 1240px;
-  position: relative;
-  z-index: 2;
+  display: grid !important;
+  grid-template-columns: 1.15fr 0.85fr !important;
+  align-items: stretch !important;
+  gap: clamp(24px, 3.5vw, 48px) !important;
+  max-width: 1260px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  height: 100% !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 #admission-hero .cl-hero-text {
-  flex: 1 1 540px;
-  max-width: 620px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-self: center !important;
+  padding-top: 20px !important;
+  padding-bottom: clamp(50px, 8vh, 90px) !important;
+  max-width: 620px !important;
+  text-align: left !important;
 }
 
 /* Eyebrow Label */
@@ -12949,7 +13071,7 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
 /* Main Heading ("Student Admission") */
 #admission-hero .cl-hero-title {
   font-family: var(--font-serif, "Lora", Georgia, serif) !important;
-  font-size: clamp(3.2rem, 8vw, 7.2rem) !important;
+  font-size: clamp(3.2rem, 7.8vw, 6.8rem) !important;
   font-weight: 700 !important;
   line-height: 0.94 !important;
   letter-spacing: -0.03em !important;
@@ -12970,7 +13092,7 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
 /* Description Text */
 #admission-hero .cl-hero-desc {
   color: #475569 !important;
-  font-size: clamp(1rem, 1.2vw, 1.15rem) !important;
+  font-size: clamp(1rem, 1.15vw, 1.14rem) !important;
   line-height: 1.65 !important;
   margin-bottom: 32px !important;
   max-width: 520px !important;
@@ -13021,115 +13143,142 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
 }
 
 /* Right Column: Full-Size Unframed Student Portrait */
-.ar-hero-student-card {
-  flex: 0 1 500px;
-  max-width: 520px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  position: relative;
-  z-index: 5;
+#admission-hero .ar-hero-student-card {
+  align-self: stretch !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  position: relative !important;
+  z-index: 5 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  background: none !important;
 }
 
-.ar-student-arch-frame {
-  position: relative;
-  width: 100%;
-  max-width: 500px;
-  height: auto;
+#admission-hero .ar-student-arch-frame {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
   border-radius: 0 !important;
-  background: transparent !important;
+  background: none !important;
   border: none !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   overflow: visible !important;
-  padding: 0;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-.ar-student-hero-img {
-  position: relative;
-  z-index: 2;
-  display: block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  max-height: 580px;
-  object-fit: contain;
-  object-position: bottom center;
-  filter: drop-shadow(0 16px 36px rgba(15, 23, 42, 0.12));
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+#admission-hero .ar-student-hero-img {
+  display: block !important;
+  height: clamp(520px, 74vh, 740px) !important;
+  width: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+  object-position: bottom center !important;
+  vertical-align: bottom !important;
+  margin-bottom: 0 !important;
+  filter: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.ar-hero-student-card:hover .ar-student-hero-img {
-  transform: translateY(-4px) scale(1.02);
+#admission-hero .ar-hero-student-card:hover .ar-student-hero-img {
+  transform: scale(1.015) !important;
+}
+
+[dir="rtl"] #admission-hero .ar-student-hero-img {
+  transform: scaleX(-1) !important;
+}
+
+[dir="rtl"] #admission-hero .ar-hero-student-card:hover .ar-student-hero-img {
+  transform: scaleX(-1) scale(1.015) !important;
 }
 
 /* Admissions Badge & Static Green Dot */
-.ar-student-badge {
-  position: absolute;
-  bottom: 24px;
-  right: 20px;
-  left: auto;
-  transform: none;
-  z-index: 6;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 20px;
-  background: #0B1324;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 9999px;
-  box-shadow: 0 10px 28px rgba(11, 19, 36, 0.35);
-  white-space: nowrap;
+#admission-hero .ar-student-badge {
+  position: absolute !important;
+  bottom: 24px !important;
+  right: 20px !important;
+  left: auto !important;
+  transform: none !important;
+  z-index: 6 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 9px 20px !important;
+  background: #0B1324 !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 10px 28px rgba(11, 19, 36, 0.35) !important;
+  white-space: nowrap !important;
 }
 
-.ar-badge-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
+[dir="rtl"] #admission-hero .ar-student-badge {
+  right: auto !important;
+  left: 20px !important;
+}
+
+#admission-hero .ar-badge-dot {
+  width: 9px !important;
+  height: 9px !important;
+  border-radius: 50% !important;
   background: #22C55E !important;
   box-shadow: 0 0 6px rgba(34, 197, 94, 0.5) !important;
   animation: none !important;
 }
 
-.ar-badge-dot::before,
-.ar-badge-dot::after {
+#admission-hero .ar-badge-dot::before,
+#admission-hero .ar-badge-dot::after {
   display: none !important;
   animation: none !important;
 }
 
-.ar-badge-text {
-  font-family: var(--font-sans, system-ui, sans-serif);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #FFFFFF;
+#admission-hero .ar-badge-text {
+  font-family: var(--font-sans, system-ui, sans-serif) !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #FFFFFF !important;
 }
 
 /* Responsive */
 @media (max-width: 992px) {
+  #admission-hero .ar-hero-accents {
+    display: none !important;
+  }
+
   #admission-hero {
     min-height: auto !important;
     height: auto !important;
     padding-top: 100px !important;
-    padding-bottom: 40px !important;
+    padding-bottom: 0 !important;
   }
 
   #admission-hero .cl-hero-container {
+    display: flex !important;
     flex-direction: column !important;
     text-align: center !important;
     gap: 32px !important;
+    padding-bottom: 0 !important;
   }
 
   #admission-hero .cl-hero-text {
     max-width: 100% !important;
     text-align: center !important;
     order: 1 !important;
+    padding-bottom: 0 !important;
   }
 
   #admission-hero .cl-hero-desc {
@@ -13148,15 +13297,20 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
     margin: 0 auto !important;
     justify-content: center !important;
     order: 2 !important;
+    padding-bottom: 0 !important;
   }
 
-  .ar-student-hero-img {
-    max-height: 440px !important;
+  #admission-hero .ar-student-hero-img {
+    height: auto !important;
+    max-height: 460px !important;
+    margin-bottom: 0 !important;
+    vertical-align: bottom !important;
   }
 
-  .ar-student-badge {
+  #admission-hero .ar-student-badge {
     bottom: 14px !important;
     right: 50% !important;
+    left: auto !important;
     transform: translateX(50%) !important;
   }
 }
