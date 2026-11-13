@@ -53,54 +53,13 @@
   </noscript>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/page-gateway.css?v=2046">
-  <link rel="stylesheet" href="assets/css/main.css?v=2062">
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=2063">
+  <link rel="stylesheet" href="assets/css/main.css?v=2063">
 
-  <!-- Pre-Paint Gateway Decider -->
-  <script>
-    (function () {
-      try {
-        var doc = document.documentElement;
-        try { localStorage.removeItem('hes-perf-mode'); } catch (e) {}
-        var p = new URLSearchParams(window.location.search);
-        if (p.get('gateway') === 'off') return;
-
-        var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduced) return;
-
-        var seen = false;
-        try { seen = sessionStorage.getItem('hes-gateway-seen') === 'true'; } catch (e) {}
-
-        if (seen) {
-          doc.classList.add('gw-active', 'gw-subsequent');
-        } else {
-          doc.classList.add('gw-active');
-        }
-      } catch (e) {}
-    })();
-  </script>
   <!-- Cloudflare Turnstile Captcha API -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body class="page-contact">
-  <!-- Page Gateway Intro Overlay (Contact Variant) -->
-  <div class="gw-overlay" id="gwOverlay" role="presentation" aria-hidden="true">
-    <div class="gw-stage">
-      <svg class="gw-arch-svg" viewBox="0 0 240 300" fill="none" aria-hidden="true">
-        <line class="gw-baseline" x1="0" y1="280" x2="240" y2="280" />
-        <path class="gw-arch-path" pathLength="1" d="M20 280 V120 A100 100 0 0 1 220 120 V280" />
-        <g class="gw-inner-drawing">
-          <path class="gw-draw-item" style="--gw-stagger:0ms" pathLength="1" d="M 154.4 205.1 v 12.6 a 8.4 8.4 0 0 1 -9.2 8.4 83.1 83.1 0 0 1 -36.2 -12.9 81.9 81.9 0 0 1 -25.2 -25.2 83.1 83.1 0 0 1 -12.9 -36.4 A 8.4 8.4 0 0 1 79.3 142.4 h 12.6 a 8.4 8.4 0 0 1 8.4 7.2 53.9 53.9 0 0 0 2.9 11.8 8.4 8.4 0 0 1 -1.9 8.9 L 96.0 175.6 a 67.2 67.2 0 0 0 25.2 25.2 l 5.3 -5.3 a 8.4 8.4 0 0 1 8.9 -1.9 53.9 53.9 0 0 0 11.8 2.9 A 8.4 8.4 0 0 1 154.4 205.1 z" />
-          <path class="gw-draw-item" style="--gw-stagger:80ms; stroke-opacity: 0.85;" pathLength="1" d="M 120.8 159.2 a 23.1 23.1 0 0 1 21.0 21.0" />
-          <path class="gw-draw-item" style="--gw-stagger:160ms; stroke-opacity: 0.55;" pathLength="1" d="M 120.8 142.4 a 39.9 39.9 0 0 1 37.8 37.8" />
-          <path class="gw-draw-item" style="--gw-stagger:240ms; stroke-opacity: 0.25;" pathLength="1" d="M 120.8 125.6 a 56.7 56.7 0 0 1 54.6 54.6" />
-        </g>
-      </svg>
-      <span class="gw-label">CONTACT</span>
-    </div>
-    <button type="button" class="gw-skip" id="gwSkip" aria-label="Skip intro">Skip</button>
-  </div>
-
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
   <!-- Navbar -->
@@ -533,9 +492,9 @@
   </div>
 
   <script src="assets/js/siteContent.js?v=2046"></script>
-  <script src="assets/js/page-gateway.js?v=2046"></script>
+  <script src="assets/js/page-gateway.js?v=2063"></script>
   <script src="assets/js/toast.js?v=2046"></script>
   <script src="assets/js/analytics.js?v=2046" defer></script>
-  <script src="assets/js/app.js?v=2046"></script>
+  <script src="assets/js/app.js?v=2063"></script>
 </body>
 </html>

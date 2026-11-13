@@ -2493,30 +2493,10 @@ function initCampusLife() {
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  // 1. Hero Text & Visual Staggered Reveal across all pages
+  // 1. Hero Text & Visual Reveal - immediately visible in final static state
   const fadeElements = document.querySelectorAll(".cl-fade-elem");
   if (fadeElements.length) {
-    let hasTriggered = false;
-    const trigger = () => {
-      if (hasTriggered) return;
-      hasTriggered = true;
-      if (reducedMotion.matches) {
-        fadeElements.forEach(el => el.classList.add("is-visible"));
-      } else {
-        fadeElements.forEach((el, idx) => {
-          window.setTimeout(() => {
-            el.classList.add("is-visible");
-          }, idx * 45);
-        });
-      }
-    };
-
-    if (window.isGatewayDone || !document.documentElement.classList.contains("gw-active")) {
-      trigger();
-    } else {
-      document.addEventListener("gateway:done", trigger, { once: true });
-      window.setTimeout(trigger, 1100);
-    }
+    fadeElements.forEach(el => el.classList.add("is-visible"));
   }
 
 

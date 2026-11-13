@@ -23,39 +23,21 @@
 }
 
 /* --------------------------------------------------------------------------
-   1. OVERLAY CONTAINER (Hidden by default; shown only when .gw-active on html)
+   1. OVERLAY CONTAINER (Disabled - initial splash/loading removed)
    -------------------------------------------------------------------------- */
-/* Prevent background page scrolling or bouncing while gateway intro is active */
+.gw-overlay,
+.gw-active .gw-overlay {
+  display: none !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
 html.gw-active,
 html.gw-active body {
-  overflow: hidden !important;
-  overscroll-behavior: none !important;
-  touch-action: none;
-}
-
-.gw-overlay {
-  display: none;
-}
-
-.gw-active .gw-overlay {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 99999; /* Above navbar and page content */
-  background-color: var(--navy, #14213D);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  pointer-events: auto;
-  opacity: 1;
-  will-change: opacity;
-  touch-action: none;
+  overflow: visible !important;
+  overscroll-behavior: auto !important;
+  touch-action: auto !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -432,27 +414,25 @@ html.gw-active body {
 }
 
 /* --------------------------------------------------------------------------
-   7. CONSISTENCY RULES: HERO ENTRANCE STAGGER
+   7. CONSISTENCY RULES: HERO ENTRANCE (Immediate static state)
    -------------------------------------------------------------------------- */
 .hero-stagger-item {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 280ms var(--ease),
-              transform 280ms var(--ease);
-  will-change: opacity, transform;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 .hero-stagger-active .hero-stagger-item,
-.hero-stagger-active .cl-fade-elem {
+.hero-stagger-active .cl-fade-elem,
+.cl-fade-elem {
   opacity: 1 !important;
-  transform: translateY(0) !important;
+  transform: none !important;
+  transition: none !important;
 }
 
-.hero-stagger-active .hero-stagger-item:nth-child(1) { transition-delay: calc(0 * var(--stagger, 45ms)); }
-.hero-stagger-active .hero-stagger-item:nth-child(2) { transition-delay: calc(1 * var(--stagger, 45ms)); }
-.hero-stagger-active .hero-stagger-item:nth-child(3) { transition-delay: calc(2 * var(--stagger, 45ms)); }
-.hero-stagger-active .hero-stagger-item:nth-child(4) { transition-delay: calc(3 * var(--stagger, 45ms)); }
-.hero-stagger-active .hero-stagger-item:nth-child(n+5) { transition-delay: calc(4 * var(--stagger, 45ms)); }
+.hero-stagger-active .hero-stagger-item:nth-child(n) {
+  transition-delay: 0s !important;
+}
 
 /* --------------------------------------------------------------------------
    8. SIBLING CARDS STAGGER (capped at 5 items, max 180ms delay)

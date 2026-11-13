@@ -57,51 +57,11 @@
   <link rel="preload" as="image" href="assets/images/cl/IMG_9602.webp" type="image/webp">
   <link rel="preload" as="image" href="assets/images/principal-muhammad-ali-hamdani.webp" type="image/webp">
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/page-gateway.css?v=2046">
-  <link rel="stylesheet" href="assets/css/main.css?v=2062">
-
-  <!-- Pre-Paint Gateway Decider -->
-  <script>
-    (function () {
-      try {
-        var doc = document.documentElement;
-        try { localStorage.removeItem('hes-perf-mode'); } catch (e) {}
-        var p = new URLSearchParams(window.location.search);
-        if (p.get('gateway') === 'off') return;
-
-        var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduced) return;
-
-        var seen = false;
-        try { seen = sessionStorage.getItem('hes-gateway-seen') === 'true'; } catch (e) {}
-
-        if (seen) {
-          doc.classList.add('gw-active', 'gw-subsequent');
-        } else {
-          doc.classList.add('gw-active');
-        }
-      } catch (e) {}
-    })();
-  </script>
+  <link rel="stylesheet" href="assets/css/page-gateway.css?v=2063">
+  <link rel="stylesheet" href="assets/css/main.css?v=2063">
 </head>
 
 <body class="page-about">
-  <!-- Page Gateway Intro Overlay (About Variant) -->
-  <div class="gw-overlay" id="gwOverlay" role="presentation" aria-hidden="true">
-    <div class="gw-stage">
-      <svg class="gw-arch-svg" viewBox="0 0 240 300" fill="none" aria-hidden="true">
-        <line class="gw-baseline" x1="0" y1="280" x2="240" y2="280" />
-        <path class="gw-arch-path" pathLength="1" d="M20 280 V120 A100 100 0 0 1 220 120 V280" />
-        <g class="gw-inner-drawing">
-          <path class="gw-draw-item" style="--gw-stagger:0ms" pathLength="1" d="M120 176 C102 162 76 160 56 168 V226 C76 218 102 220 120 234 Z" />
-          <path class="gw-draw-item" style="--gw-stagger:80ms" pathLength="1" d="M120 176 C138 162 164 160 184 168 V226 C164 218 138 220 120 234 Z" />
-        </g>
-      </svg>
-      <span class="gw-label">ABOUT US</span>
-    </div>
-    <button type="button" class="gw-skip" id="gwSkip" aria-label="Skip intro">Skip</button>
-  </div>
-
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
   <!-- Navbar -->
@@ -839,10 +799,10 @@
   </div>
 
   <script src="assets/js/siteContent.js?v=2046"></script>
-  <script src="assets/js/page-gateway.js?v=2046"></script>
+  <script src="assets/js/page-gateway.js?v=2063"></script>
   <script src="assets/js/toast.js?v=2046"></script>
   <script src="assets/js/analytics.js?v=2046" defer></script>
-  <script src="assets/js/app.js?v=2046"></script>
+  <script src="assets/js/app.js?v=2063"></script>
 </body>
 
 </html>

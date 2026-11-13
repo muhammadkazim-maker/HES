@@ -1658,7 +1658,9 @@ body.drawer-open {
   border: 1.5px solid #C9A24B;
   box-shadow: 0 4px 18px rgba(11, 19, 36, 0.22);
   margin-bottom: 24px;
-  animation: fadeIn 1s ease both;
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
   max-width: min(92%, 520px);
   box-sizing: border-box;
 }
@@ -9916,16 +9918,16 @@ html:not(.js) .bd-noscript-stack {
   }
 }
 
-/* Hero entrance fade up */
+/* Hero entrance - immediate static rendering */
 .cl-fade-elem {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 .cl-fade-elem.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Section 2: Statement and Facts */
@@ -13275,4 +13277,42 @@ html[data-theme="dark"] .footer-skyline .skyline-fill,
   .ar-badge-dot {
     animation: none !important;
   }
+}
+
+/* ==========================================================================
+   IMMEDIATE STATIC HERO & NAVBAR RENDERING (No Mount/Entrance Animations)
+   Ensures header & hero content render immediately at full opacity with no shift
+   ========================================================================== */
+.navbar,
+.navbar-inner,
+.brand-logo,
+.nav-links,
+.header-actions,
+.hero,
+.hero-content,
+.hero-logo-wrap,
+.hero-title,
+.hero-subtitle,
+.hero-actions,
+.hero-ayah,
+.cl-hero,
+.cl-hero-container,
+.cl-hero-text,
+.cl-hero-visual,
+.cl-fade-elem,
+.hero-stagger-item,
+#admission-hero,
+#admission-hero .cl-hero-container,
+#admission-hero .cl-hero-text,
+#admission-hero .ar-hero-student-card,
+#admission-hero .ar-student-hero-img,
+#admission-hero .ar-student-badge {
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+.hero-stagger-item,
+.cl-fade-elem {
+  transform: none !important;
+  transition: none !important;
 }
