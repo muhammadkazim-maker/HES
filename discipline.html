@@ -14,13 +14,13 @@
   <link rel="apple-touch-icon" href="assets/images/logo.png">
   <link rel="icon" type="image/png" href="assets/images/logo.png">
 
-  <!-- Google Fonts: Inter & Urdu Nastaliq / Amiri -->
+  <!-- Google Fonts: Plus Jakarta Sans (Ultra-Smooth), Outfit, DM Sans, Inter & Urdu Nastaliq -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Outfit:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/discipline.css?v=multi2">
+  <link rel="stylesheet" href="assets/css/discipline.css?v=smooth2">
 </head>
 <body>
 
@@ -62,8 +62,13 @@
           <span id="header-member-badge" class="role-badge role-badge-admin">Admin</span>
         </div>
 
+        <!-- Smooth Font Quick Switcher -->
+        <button id="font-toggle-btn" class="icon-btn" title="Toggle Smooth Font (Plus Jakarta Sans / Outfit / DM Sans)">
+          <span style="font-weight: 700; font-size: 0.92rem; line-height: 1;">Aa</span>
+        </button>
+
         <!-- Settings Modal Trigger -->
-        <button id="settings-btn" class="icon-btn" title="Firebase, Backup & Exports">
+        <button id="settings-btn" class="icon-btn" title="Firebase, Font, Backup & Exports">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         </button>
 
@@ -676,6 +681,30 @@
             <input type="text" id="fb-auth-domain" placeholder="Firebase authDomain (optional)">
             <button type="submit" class="btn btn-primary btn-sm">Save & Connect Cloud Firebase</button>
           </form>
+        </div>
+
+        <!-- Typography & Text Smoothness Settings -->
+        <div style="margin-bottom: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #8B5CF6; margin-bottom: 0.35rem;">✨ Typography & Text Smoothness (ٹیکسٹ اسمتھنس اور فونٹ)</h4>
+          <p class="form-helper" style="margin-bottom: 0.75rem;">Choose an ultra-smooth, velvety font to eliminate sharpness and reduce eye strain:</p>
+          
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div>
+              <label for="font-family-select" style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">Font Family</label>
+              <select id="font-family-select" style="width: 100%; padding: 0.55rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-primary); font-size: 0.9rem;">
+                <option value="plus-jakarta">✨ Plus Jakarta Sans (Ultra-Smooth & Modern — Recommended)</option>
+                <option value="outfit">🌸 Outfit (Curved, Soft & Friendly)</option>
+                <option value="dm-sans">📐 DM Sans (Clean, Geometric & Balanced)</option>
+                <option value="inter">🎯 Inter (Standard Crisp)</option>
+                <option value="system">💻 System Default Font</option>
+              </select>
+            </div>
+            
+            <label style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); cursor: pointer;">
+              <input type="checkbox" id="font-smoothing-toggle" checked style="width: 18px; height: 18px; accent-color: var(--brand-primary);">
+              <span>Enhanced Antialiasing & Subpixel Grayscale Smoothing</span>
+            </label>
+          </div>
         </div>
 
         <!-- Excel / CSV Export -->

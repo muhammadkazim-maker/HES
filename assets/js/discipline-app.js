@@ -863,6 +863,7 @@
 
       this.initTheme();
       this.initAuthUI();
+      this.initFontSettings();
       this.bindEvents();
       this.renderAll();
 
@@ -897,6 +898,85 @@
         icon.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
       } else {
         icon.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+      }
+    }
+
+    initFontSettings() {
+      const savedFont = localStorage.getItem('hes_font_preference') || 'plus-jakarta';
+      const smoothingEnabled = localStorage.getItem('hes_font_smoothing') !== 'false';
+      this.applyFont(savedFont, false);
+      this.applySmoothing(smoothingEnabled);
+
+      const fontSelect = document.getElementById('font-family-select');
+      if (fontSelect) {
+        fontSelect.value = savedFont;
+        fontSelect.addEventListener('change', (e) => {
+          this.applyFont(e.target.value, true);
+        });
+      }
+
+      const smoothingToggle = document.getElementById('font-smoothing-toggle');
+      if (smoothingToggle) {
+        smoothingToggle.checked = smoothingEnabled;
+        smoothingToggle.addEventListener('change', (e) => {
+          this.applySmoothing(e.target.checked);
+        });
+      }
+
+      document.getElementById('font-toggle-btn')?.addEventListener('click', () => {
+        this.cycleFont();
+      });
+    }
+
+    cycleFont() {
+      const fonts = ['plus-jakarta', 'outfit', 'dm-sans', 'inter', 'system'];
+      const fontLabels = {
+        'plus-jakarta': '✨ Plus Jakarta Sans (Ultra-Smooth)',
+        'outfit': '🌸 Outfit (Soft Curves)',
+        'dm-sans': '📐 DM Sans (Clean & Rounded)',
+        'inter': '🎯 Inter (Standard Crisp)',
+        'system': '💻 System Native Font'
+      };
+      const current = localStorage.getItem('hes_font_preference') || 'plus-jakarta';
+      const currentIndex = fonts.indexOf(current);
+      const nextFont = fonts[(currentIndex + 1) % fonts.length];
+      this.applyFont(nextFont, true);
+      const select = document.getElementById('font-family-select');
+      if (select) select.value = nextFont;
+    }
+
+    applyFont(fontKey, notify = false) {
+      const validFonts = ['plus-jakarta', 'outfit', 'dm-sans', 'inter', 'system'];
+      const targetFont = validFonts.includes(fontKey) ? fontKey : 'plus-jakarta';
+      validFonts.forEach(f => {
+        document.documentElement.classList.remove(`font-${f}`);
+        document.body.classList.remove(`font-${f}`);
+      });
+      document.documentElement.classList.add(`font-${targetFont}`);
+      document.body.classList.add(`font-${targetFont}`);
+      localStorage.setItem('hes_font_preference', targetFont);
+
+      const fontNames = {
+        'plus-jakarta': 'Plus Jakarta Sans (Ultra-Smooth)',
+        'outfit': 'Outfit (Soft Curved)',
+        'dm-sans': 'DM Sans (Clean & Rounded)',
+        'inter': 'Inter (Crisp)',
+        'system': 'System Native'
+      };
+      if (notify) {
+        showToast(`Font switched to ${fontNames[targetFont]}`, 'success');
+      }
+    }
+
+    applySmoothing(enabled) {
+      if (enabled) {
+        document.documentElement.classList.remove('no-smoothing');
+        document.body.classList.remove('no-smoothing');
+        localStorage.setItem('hes_font_smoothing', 'true');
+      } else {
+        document.documentElement.classList.add('no-smoothing');
+        document.body.classList.add('no-smoothing');
+        localStorage.setItem('hes_font_smoothing', 'false');
       }
     }
 
