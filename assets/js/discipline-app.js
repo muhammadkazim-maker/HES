@@ -231,7 +231,7 @@
 
     // 1. Water / Plumbing / Washroom / Tap
     if (text.includes('washroom') || text.includes('water') || text.includes('tap') || text.includes('leakage') || text.includes('plumbing') || text.includes('sanitary') || text.includes('toilet') || text.includes('pipe')) {
-      return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><path d="M4 12h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H9"></path><path d="M9 4v4"></path><path d="M14 12v3a2 2 0 0 1-2 2H9"></path><path d="M12 21a1.5 1.5 0 0 1-1.5-1.5c0-.8 1.5-2.5 1.5-2.5s1.5 1.7 1.5 2.5a1.5 1.5 0 0 1-1.5 1.5z" fill="#FFFFFF"></path></svg>`;
+      return `<svg width="28" height="28" viewBox="0 0 24 24" fill="#FFFFFF"><rect x="2" y="8" width="2" height="6" rx="1"/><rect x="7" y="2" width="6" height="2" rx="1"/><rect x="9.2" y="3.5" width="1.6" height="4"/><path d="M4 8.8C4 8.36 4.36 8 4.8 8H13C15.2 8 17 9.8 17 12V14.5C17 14.78 16.78 15 16.5 15H14.5C14.22 15 14 14.78 14 14.5V12C14 11.45 13.55 11 13 11H4.8C4.36 11 4 10.64 4 10.2V8.8Z"/><rect x="13.5" y="14" width="4" height="1.5" rx="0.5"/><path d="M15.5 17.5C15.5 17.5 13.8 19.4 13.8 20.5C13.8 21.4 14.6 22.2 15.5 22.2C16.4 22.2 17.2 21.4 17.2 20.5C17.2 19.4 15.5 17.5 15.5 17.5Z"/></svg>`;
     }
 
     // 2. Projector / Lab / Computer / IT / Screen / Laptop
@@ -2651,7 +2651,7 @@
   // Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./discipline-sw.js?v=v7replica')
+      navigator.serviceWorker.register('./discipline-sw.js?v=v8replica')
         .catch(err => console.log('SW registration error:', err));
     });
   }
