@@ -53,35 +53,27 @@
     issues: [
       {
         id: 'iss-1',
-        title: 'Morning assembly late arrivals by 9th and 10th grade students',
-        description: 'Over 25 students consistently arrive after 8:00 AM, missing the morning national anthem and discipline briefing.',
-        category: 'Punctuality',
+        title: 'Test Issue - Library AC not working',
+        description: 'The library air conditioner in the reading hall stopped functioning.',
+        category: 'Facilities',
         priority: 'High',
-        status: 'unsolved',
-        creatorId: 'usr-member-1',
-        creatorName: 'Mr. Tariq Mehmood',
-        creatorRole: 'Member',
-        createdAt: '2026-11-19T08:15:00.000Z',
-        solvedAt: null,
-        solvedById: null,
-        solvedByName: null,
-        solvedByRole: null,
+        status: 'solved',
+        creatorId: 'usr-admin-1',
+        creatorName: 'Principal Muhammad Ali Hamdani',
+        creatorRole: 'Admin',
+        createdAt: new Date().toISOString(),
+        solvedAt: new Date().toISOString(),
+        solvedById: 'usr-admin-1',
+        solvedByName: 'Principal Muhammad Ali Hamdani',
+        solvedByRole: 'Admin',
         efforts: [
           {
             id: 'eff-1',
-            memberId: 'usr-member-1',
-            memberName: 'Mr. Tariq Mehmood',
-            memberRole: 'Member',
-            text: 'Stationed senior student prefects at main gate with gate register to record exact arrival times.',
-            timestamp: '2026-11-19T09:00:00.000Z'
-          },
-          {
-            id: 'eff-2',
             memberId: 'usr-admin-1',
             memberName: 'Principal Muhammad Ali Hamdani',
             memberRole: 'Admin',
-            text: 'Sent automated SMS broadcast to all parents regarding gate closure at 8:05 AM strictly.',
-            timestamp: '2026-11-20T10:30:00.000Z'
+            text: 'HVAC technician inspected the indoor unit and replaced the faulty run capacitor. AC running cold now.',
+            timestamp: new Date().toISOString()
           }
         ]
       },
@@ -95,7 +87,33 @@
         creatorId: 'usr-member-2',
         creatorName: 'Ms. Sadia Parveen',
         creatorRole: 'Member',
-        createdAt: '2026-11-20T09:45:00.000Z',
+        createdAt: new Date(Date.now() - 86400000).toISOString(),
+        solvedAt: null,
+        solvedById: null,
+        solvedByName: null,
+        solvedByRole: null,
+        efforts: [
+          {
+            id: 'eff-2',
+            memberId: 'usr-member-2',
+            memberName: 'Ms. Sadia Parveen',
+            memberRole: 'Member',
+            text: 'Notified custodial supervisor and inspected the floor personally. Maintenance vendor called.',
+            timestamp: new Date(Date.now() - 82800000).toISOString()
+          }
+        ]
+      },
+      {
+        id: 'iss-3',
+        title: 'Morning assembly late arrivals by 9th and 10th grade students',
+        description: 'Over 25 students consistently arrive after 8:00 AM, missing the morning national anthem and discipline briefing.',
+        category: 'Punctuality',
+        priority: 'High',
+        status: 'unsolved',
+        creatorId: 'usr-member-1',
+        creatorName: 'Mr. Tariq Mehmood',
+        creatorRole: 'Member',
+        createdAt: new Date(Date.now() - 172800000).toISOString(),
         solvedAt: null,
         solvedById: null,
         solvedByName: null,
@@ -103,16 +121,24 @@
         efforts: [
           {
             id: 'eff-3',
-            memberId: 'usr-member-2',
-            memberName: 'Ms. Sadia Parveen',
+            memberId: 'usr-member-1',
+            memberName: 'Mr. Tariq Mehmood',
             memberRole: 'Member',
-            text: 'Notified custodial supervisor and inspected the floor personally. Maintenance vendor called.',
-            timestamp: '2026-11-20T10:00:00.000Z'
+            text: 'Stationed senior student prefects at main gate with gate register to record exact arrival times.',
+            timestamp: new Date(Date.now() - 169200000).toISOString()
+          },
+          {
+            id: 'eff-4',
+            memberId: 'usr-admin-1',
+            memberName: 'Principal Muhammad Ali Hamdani',
+            memberRole: 'Admin',
+            text: 'Sent automated SMS broadcast to all parents regarding gate closure at 8:05 AM strictly.',
+            timestamp: new Date(Date.now() - 150000000).toISOString()
           }
         ]
       },
       {
-        id: 'iss-3',
+        id: 'iss-4',
         title: 'Physics & Computer Lab digital projector bulb replacement',
         description: 'Lab projector lamp burned out during morning class lecture. Replacement bulb needed.',
         category: 'Academics & IT',
@@ -121,53 +147,27 @@
         creatorId: 'usr-admin-1',
         creatorName: 'Principal Muhammad Ali Hamdani',
         creatorRole: 'Admin',
-        createdAt: '2026-11-17T11:00:00.000Z',
-        solvedAt: '2026-11-18T14:30:00.000Z',
+        createdAt: new Date(Date.now() - 345600000).toISOString(),
+        solvedAt: new Date(Date.now() - 259200000).toISOString(),
         solvedById: 'usr-admin-1',
         solvedByName: 'Principal Muhammad Ali Hamdani',
         solvedByRole: 'Admin',
         efforts: [
           {
-            id: 'eff-4',
+            id: 'eff-5',
             memberId: 'usr-member-1',
             memberName: 'Mr. Tariq Mehmood',
             memberRole: 'Member',
             text: 'Tested HDMI cables and confirmed bulb filament failure. Requested procurement approval.',
-            timestamp: '2026-11-17T11:30:00.000Z'
+            timestamp: new Date(Date.now() - 340000000).toISOString()
           },
           {
-            id: 'eff-5',
+            id: 'eff-6',
             memberId: 'usr-admin-1',
             memberName: 'Principal Muhammad Ali Hamdani',
             memberRole: 'Admin',
             text: 'Authorized new Epson projector lamp from school inventory. Technician installed and tested working.',
-            timestamp: '2026-11-18T14:25:00.000Z'
-          }
-        ]
-      },
-      {
-        id: 'iss-4',
-        title: 'Library reference textbooks return and circulation audit',
-        description: 'Several students have overdue chemistry reference books that need to be collected before mid-term exams.',
-        category: 'Library & Academics',
-        priority: 'Low',
-        status: 'unsolved',
-        creatorId: 'usr-member-1',
-        creatorName: 'Mr. Tariq Mehmood',
-        creatorRole: 'Member',
-        createdAt: '2026-11-21T08:30:00.000Z',
-        solvedAt: null,
-        solvedById: null,
-        solvedByName: null,
-        solvedByRole: null,
-        efforts: [
-          {
-            id: 'eff-6',
-            memberId: 'usr-member-1',
-            memberName: 'Mr. Tariq Mehmood',
-            memberRole: 'Member',
-            text: 'Circulated reminder notice to Class 10-A and 10-B class teachers.',
-            timestamp: '2026-11-21T09:15:00.000Z'
+            timestamp: new Date(Date.now() - 260000000).toISOString()
           }
         ]
       }
@@ -224,6 +224,47 @@
     if (diffDays === 1) return 'Yesterday';
     if (diffDays < 7) return `${diffDays}d ago`;
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
+  function getIssueMainIcon(issue) {
+    const text = ((issue.title || '') + ' ' + (issue.description || '') + ' ' + (issue.category || '')).toLowerCase();
+
+    // 1. Water / Plumbing / Washroom / Tap
+    if (text.includes('washroom') || text.includes('water') || text.includes('tap') || text.includes('leakage') || text.includes('plumbing') || text.includes('sanitary') || text.includes('toilet') || text.includes('pipe')) {
+      return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><path d="M4 12h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H9"></path><path d="M9 4v4"></path><path d="M14 12v3a2 2 0 0 1-2 2H9"></path><path d="M12 21a1.5 1.5 0 0 1-1.5-1.5c0-.8 1.5-2.5 1.5-2.5s1.5 1.7 1.5 2.5a1.5 1.5 0 0 1-1.5 1.5z" fill="#FFFFFF"></path></svg>`;
+    }
+
+    // 2. Projector / Lab / Computer / IT / Screen / Laptop
+    if (text.includes('projector') || text.includes('computer') || text.includes('lab') || text.includes('laptop') || text.includes('bulb') || text.includes('digital') || text.includes('physics')) {
+      return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="1" y1="20" x2="23" y2="20"></line></svg>`;
+    }
+
+    // 3. Morning Assembly / Late arrivals / Punctuality / Calendar
+    if (text.includes('assembly') || text.includes('late') || text.includes('morning') || text.includes('punctual') || text.includes('arrival') || text.includes('anthem') || text.includes('time') || text.includes('clock') || text.includes('calendar')) {
+      return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><rect x="7" y="14" width="3" height="3" fill="#FFFFFF"></rect><rect x="14" y="14" width="3" height="3" fill="#FFFFFF"></rect></svg>`;
+    }
+
+    // 4. Library / Air Conditioner / Reading / Book
+    if (text.includes('library') || text.includes('air conditioner') || text.includes('reading') || text.includes('textbook') || /\bac\b/i.test(text)) {
+      return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`;
+    }
+
+    // Default Fallback
+    return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><path d="M9 18h6M10 22h4M12 2v1M12 2a7 7 0 0 0-7 7c0 3 2 5.5 4 6.5V18h6v-2.5c2-1 4-3.5 4-6.5a7 7 0 0 0-7-7z"></path></svg>`;
+  }
+
+  function getCategoryIcon(cat) {
+    const c = (cat || '').toLowerCase();
+    if (c.includes('hygiene') || c.includes('water')) {
+      return `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>`;
+    }
+    if (c.includes('punctual') || c.includes('time')) {
+      return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`;
+    }
+    if (c.includes('academic') || c.includes('it') || c.includes('computer')) {
+      return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`;
+    }
+    return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="18"></line><line x1="15" y1="22" x2="15" y2="18"></line><line x1="9" y1="6" x2="9.01" y2="6"></line><line x1="15" y1="6" x2="15.01" y2="6"></line><line x1="9" y1="10" x2="9.01" y2="10"></line><line x1="15" y1="10" x2="15.01" y2="10"></line></svg>`;
   }
 
   // --- IndexedDB Async Engine ---
@@ -310,6 +351,10 @@
         if (stored) {
           const parsed = JSON.parse(stored);
           if (parsed && Array.isArray(parsed.students) && Array.isArray(parsed.issues)) {
+            const hasLibraryAC = parsed.issues.some(i => i.title && i.title.includes('Library AC'));
+            if (!hasLibraryAC) {
+              parsed.issues = JSON.parse(JSON.stringify(INITIAL_SEED.issues));
+            }
             return parsed;
           }
         }
@@ -323,6 +368,11 @@
       try {
         const idbData = await idbStorage.get('tracker_payload');
         if (idbData && Array.isArray(idbData.students)) {
+          const hasLibraryAC = Array.isArray(idbData.issues) && idbData.issues.some(i => i.title && i.title.includes('Library AC'));
+          if (!hasLibraryAC) {
+            idbData.issues = JSON.parse(JSON.stringify(INITIAL_SEED.issues));
+            idbStorage.set('tracker_payload', idbData);
+          }
           this.data = idbData;
           this.rebuildIndices();
           if (window.appController) {
@@ -1757,7 +1807,10 @@
       if (countUnsolvedEl) countUnsolvedEl.textContent = unsolvedCount;
       if (countSolvedEl) countSolvedEl.textContent = solvedCount;
 
-      if (subtitleEl) {
+      const countTextEl = document.getElementById('issues-header-count-text');
+      if (countTextEl) {
+        countTextEl.textContent = `${unsolvedCount} unsolved of ${allCount} total`;
+      } else if (subtitleEl) {
         subtitleEl.textContent = `${unsolvedCount} unsolved of ${allCount} total`;
       }
 
@@ -1833,54 +1886,57 @@
           ? (reporterParts[0][0] + reporterParts[reporterParts.length - 1][0]).toUpperCase()
           : reporterName.slice(0, 2).toUpperCase();
 
+        const mainIconSvg = getIssueMainIcon(iss);
+        const categoryIconSvg = getCategoryIcon(iss.category);
+
         return `
-          <div class="issue-card ${isSolved ? 'issue-card-solved solved-card' : 'issue-card-unsolved unsolved-card'}" onclick="window.appController.openIssueDetail('${iss.id}')">
-            <!-- 1. Header Strip: Status badge + Priority pill on left, Category tag on right -->
-            <div class="issue-card-header-strip">
-              <div class="card-header-left">
-                <span class="issue-status-badge">
+          <div class="issue-card ${isSolved ? 'issue-card-solved' : 'issue-card-unsolved'}" onclick="window.appController.openIssueDetail('${iss.id}')">
+            <!-- 1. Top Badges Row -->
+            <div class="card-badges-row">
+              <div class="card-badges-left">
+                <span class="card-status-badge">
                   ${isSolved ? `
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     <span>Solved</span>
                   ` : `
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                     <span>Unsolved</span>
                   `}
                 </span>
-                <span class="issue-priority-pill priority-${priorityLower}" title="${priority} Priority">
-                  <span class="priority-bars-indicator">
-                    <span class="pbar"></span>
-                    <span class="pbar"></span>
-                    <span class="pbar"></span>
-                  </span>
-                  <span>${priority}</span>
+                <span class="card-priority-pill priority-pill-${priorityLower}">
+                  ${priority === 'High' ? '!!! High' : (priority === 'Medium' ? '!! Medium' : '! Low')}
                 </span>
               </div>
-              <div class="card-header-right">
-                <span class="issue-category-tag">${escapeHtml(iss.category || 'General')}</span>
+              <div class="card-badges-right">
+                <span class="card-category-pill">
+                  ${categoryIconSvg}
+                  <span>${escapeHtml(iss.category || 'General')}</span>
+                </span>
               </div>
             </div>
 
-            <!-- 2. Body: Bold white title (max 2 lines) + white 90% desc (max 2 lines) -->
-            <div class="issue-card-body">
-              <h4 class="issue-title-text urdu-text" dir="auto">${escapeHtml(iss.title)}</h4>
-              <p class="issue-desc-text urdu-text" dir="auto">${escapeHtml(iss.description)}</p>
+            <!-- 2. Middle Content Row: Icon Box + Title & Description -->
+            <div class="card-content-row">
+              <div class="card-icon-box">
+                ${mainIconSvg}
+              </div>
+              <div class="card-text-col">
+                <h4 class="card-title-text urdu-text" dir="auto">${escapeHtml(iss.title)}</h4>
+                <p class="card-desc-text urdu-text" dir="auto">${escapeHtml(iss.description)}</p>
+              </div>
             </div>
 
-            <!-- 3. Thin Divider Line -->
-            <div class="issue-card-divider"></div>
-
-            <!-- 4. Footer: Avatar + Reporter + relative date on left, Efforts pill on right -->
-            <div class="issue-card-footer">
-              <div class="reporter-info-wrap">
-                <div class="reporter-avatar" title="${escapeHtml(reporterName)}">${initials}</div>
-                <div class="reporter-meta">
-                  <span class="reporter-name">Reported by <strong>${escapeHtml(reporterName)}</strong></span>
-                  <span class="reporter-time">${getRelativeDate(iss.createdAt)}</span>
+            <!-- 3. Bottom Footer Row -->
+            <div class="card-footer-row">
+              <div class="card-reporter-wrap">
+                <div class="card-reporter-avatar">${initials}</div>
+                <div class="card-reporter-info">
+                  <span class="card-reporter-name">Reported by <strong>${escapeHtml(reporterName)}</strong></span>
+                  <span class="card-reporter-date">${getRelativeDate(iss.createdAt)}</span>
                 </div>
               </div>
-              <div class="issue-efforts-pill" title="${effortCount} staff contribution${effortCount === 1 ? '' : 's'}">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              <div class="card-effort-pill">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                 <span>${effortCount} Effort${effortCount === 1 ? '' : 's'}</span>
               </div>
             </div>
@@ -2595,7 +2651,7 @@
   // Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./discipline-sw.js?v=v6issues')
+      navigator.serviceWorker.register('./discipline-sw.js?v=v7replica')
         .catch(err => console.log('SW registration error:', err));
     });
   }

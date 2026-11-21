@@ -4,14 +4,14 @@
  * for navigation to ensure live updates sync seamlessly.
  */
 
-const CACHE_NAME = 'hes-discipline-v6-issues';
+const CACHE_NAME = 'hes-discipline-v7-replica';
 const ASSETS_TO_CACHE = [
   './discipline.html',
   './discipline-manifest.json',
-  './assets/css/discipline.css?v=v6issues',
-  './assets/js/firebase-config.js?v=v6issues',
-  './assets/js/discipline-auth.js?v=v6issues',
-  './assets/js/discipline-app.js?v=v6issues',
+  './assets/css/discipline.css?v=v7replica',
+  './assets/js/firebase-config.js?v=v7replica',
+  './assets/js/discipline-auth.js?v=v7replica',
+  './assets/js/discipline-app.js?v=v7replica',
   './assets/images/logo.png',
   './assets/images/hadi-education-logo.jpg'
 ];
