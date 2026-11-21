@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="School Discipline Tracker - Collaborative real-time student discipline and institute issues resolution hub.">
+  <meta name="theme-color" content="#14213D">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>School Discipline Tracker | Hadi Education System</title>
+
+  <!-- PWA Manifest & Icons -->
+  <link rel="manifest" href="discipline-manifest.json">
+  <link rel="apple-touch-icon" href="assets/images/logo.png">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Google Fonts: Inter & Urdu Nastaliq / Amiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/discipline.css?v=multi2">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Live Sync Status Bar
+       ========================================================================== -->
+  <div class="sync-status-bar">
+    <div class="sync-status-indicator">
+      <span class="status-dot"></span>
+      <span id="sync-mode-text">Live Shared Real-Time Mode (Multi-Device)</span>
+    </div>
+    <div style="display: flex; gap: 0.6rem; align-items: center;">
+      <span style="color: var(--text-muted);">Real-time Sync Active</span>
+      <button class="btn btn-secondary btn-sm" onclick="openModal('settings-modal')" style="padding: 2px 7px; font-size: 0.72rem; min-height: 24px;">Firebase Setup</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       App Header with Institute Branding & Active Member Profile Chip
+       ========================================================================== -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="index.html" class="header-brand" title="Return to Main Portal">
+        <img src="assets/images/logo.png" alt="HES Logo" class="header-logo" onerror="this.src='assets/images/hadi-education-logo.jpg'">
+        <div class="brand-text">
+          <h1>
+            <span>Hadi Education System</span>
+            <span class="badge">Discipline & Issues</span>
+          </h1>
+          <p>Collaborative Staff Portal & Behavioral Tracking</p>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <!-- Active Member Chip (Click to switch user or sign out) -->
+        <div id="header-member-chip" class="member-chip" title="Click to view staff profiles or switch user">
+          <div id="header-member-avatar" class="member-avatar admin-avatar">PA</div>
+          <span id="header-member-name" class="member-name-text">Principal Hamdani</span>
+          <span id="header-member-badge" class="role-badge role-badge-admin">Admin</span>
+        </div>
+
+        <!-- Settings Modal Trigger -->
+        <button id="settings-btn" class="icon-btn" title="Firebase, Backup & Exports">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+
+        <!-- Light / Dark Mode Toggle -->
+        <button id="theme-toggle-btn" class="icon-btn" title="Toggle Light / Dark Mode">
+          <span id="theme-toggle-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Main Dashboard
+       ========================================================================== -->
+  <main class="main-wrapper">
+
+    <!-- Global Top Search (Students and Issues) -->
+    <section class="search-section">
+      <div class="search-box-wrapper">
+        <svg class="search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="global-search-input" class="global-search-input" placeholder="Search any student, class, roll number or institute issue..." autocomplete="off">
+        <button id="search-clear-btn" class="search-clear-btn" title="Clear Search">&times;</button>
+        <div id="search-results-dropdown" class="search-results-dropdown"></div>
+      </div>
+    </section>
+
+    <!-- Three Large Colorful Center Boxes -->
+    <section class="action-cards-grid">
+      <!-- 1. ADD VIOLATION -->
+      <div class="action-card card-violation" id="card-add-violation">
+        <div class="card-top">
+          <div class="card-icon-wrapper">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </div>
+          <span class="card-badge">Staff Log</span>
+        </div>
+        <div class="card-bottom">
+          <h2 class="card-title">ADD VIOLATION</h2>
+          <p class="card-desc">Record infractions with 5 severity tiers. Saves automatically with your name and current timestamp.</p>
+        </div>
+        <div class="card-watermark">⚠️</div>
+      </div>
+
+      <!-- 2. ISSUES (Replaces Observation, with live Badges: X Unsolved / Y Solved) -->
+      <div class="action-card card-issues" id="card-issues">
+        <div class="card-top">
+          <div class="card-icon-wrapper">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <div class="card-badge-wrap">
+            <span class="card-badge">Collaborative</span>
+            <span id="issues-card-live-badge" class="issues-live-badge">2 Unsolved / 1 Solved</span>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <h2 class="card-title">ISSUES</h2>
+          <p class="card-desc">Raise institute problems, coordinate staff efforts collaboratively, and track resolutions live.</p>
+        </div>
+        <div class="card-watermark">💡</div>
+      </div>
+
+      <!-- 3. RECORDS -->
+      <div class="action-card card-records" id="card-records">
+        <div class="card-top">
+          <div class="card-icon-wrapper">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <span class="card-badge">Master Sheet</span>
+        </div>
+        <div class="card-bottom">
+          <h2 class="card-title">RECORDS</h2>
+          <p class="card-desc">Master student roster, weighted severity progress meters, and printable disciplinary dossiers.</p>
+        </div>
+        <div class="card-watermark">📁</div>
+      </div>
+    </section>
+
+    <!-- Quick Stats Section -->
+    <section class="stats-section">
+      <div class="section-header">
+        <h3 class="section-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+          <span>Live Institute Overview</span>
+        </h3>
+        <button class="btn btn-secondary btn-sm" onclick="window.appController.openRecordsModal()">View All Records &rarr;</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-icon-wrap stat-icon-students">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-number" id="stat-total-students">0</div>
+            <div class="stat-label">Total Students</div>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-icon-wrap stat-icon-violations">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-number" id="stat-total-violations">0</div>
+            <div class="stat-label">All Violations</div>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-icon-wrap stat-icon-week">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-number" id="stat-week-violations">0</div>
+            <div class="stat-label">Violations This Week</div>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-icon-wrap stat-icon-unsolved">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-number" id="stat-unsolved-issues" style="color: #EF4444;">0</div>
+            <div class="stat-label">Unsolved Issues</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top 5 Students Leaderboard -->
+      <div class="leaderboard-card">
+        <div class="leaderboard-header">
+          <h3>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span>Top 5 Students Requiring Disciplinary Attention</span>
+          </h3>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">Ranked by frequency and weighted severity</span>
+        </div>
+        <div class="leaderboard-list" id="top-5-leaderboard-list"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       Bottom Navigation Bar (Mobile Experience)
+       ========================================================================== -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+      <button id="nav-home" class="bottom-nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span>Home</span>
+      </button>
+      <button id="nav-violation" class="bottom-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+        <span>Violation</span>
+      </button>
+      <button id="nav-issues" class="bottom-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <span>Issues</span>
+      </button>
+      <button id="nav-records" class="bottom-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <span>Records</span>
+      </button>
+      <button id="nav-staff" class="bottom-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Staff</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Floating Action Button (FAB) for "+ Add Issue" -->
+  <button id="fab-add-issue" class="fab-add-issue" title="Add New Issue">
+    <span>+</span>
+  </button>
+
+  <!-- ==========================================================================
+       MODAL 1: ADD VIOLATION
+       ========================================================================== -->
+  <div id="add-violation-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: #EF4444;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+          <span>Record Student Misbehavior</span>
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('add-violation-modal')">&times;</button>
+      </div>
+      <form id="add-violation-form">
+        <div class="modal-body">
+          <div style="background: var(--bg-surface-alt); padding: 0.5rem 0.85rem; border-radius: var(--radius-md); margin-bottom: 1rem; font-size: 0.82rem; font-weight: 600; color: var(--brand-primary);" id="v-member-author-chip">
+            Logging as: Principal Hamdani (Admin)
+          </div>
+
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+              <label for="v-student-select" class="form-label" style="margin: 0;">Student Name *</label>
+              <button type="button" id="v-inline-add-student" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.78rem;">
+                + Add New Student
+              </button>
+            </div>
+            <select id="v-student-select" required>
+              <option value="">-- Choose or Search Student --</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="v-class-select" class="form-label">Class / Section (select) *</label>
+            <select id="v-class-select" required>
+              <option value="">-- Select Class / Section --</option>
+              <option value="10th-A">10th-A</option>
+              <option value="10th-B">10th-B</option>
+              <option value="9th-A">9th-A</option>
+              <option value="9th-B">9th-B</option>
+              <option value="8th-Rose">8th-Rose</option>
+              <option value="7th-Lily">7th-Lily</option>
+              <option value="Custom">+ Custom Class...</option>
+            </select>
+            <input type="text" id="v-class-custom" placeholder="Type custom class name..." style="display: none; margin-top: 0.5rem;">
+          </div>
+
+          <!-- Automated Date & Time (Never asked from user) -->
+          <div class="form-group">
+            <label class="form-label">Automatic System Date & Time</label>
+            <div id="v-auto-date-badge" class="auto-date-badge"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="violation-details-input" class="form-label">Violation Details *</label>
+            <textarea id="violation-details-input" rows="3" dir="auto" placeholder="Describe the incident (English or اردو میں تفصیل لکھیں)..." required></textarea>
+            
+            <div class="quick-tags">
+              <span class="form-helper" style="display: block; width: 100%; margin-bottom: 2px;">Tap quick tag:</span>
+              <button type="button" class="tag-btn" data-tag="Late Arrival">Late Arrival</button>
+              <button type="button" class="tag-btn" data-tag="Uniform Violation">Uniform Violation</button>
+              <button type="button" class="tag-btn" data-tag="Disruptive Behavior">Disruptive Behavior</button>
+              <button type="button" class="tag-btn" data-tag="Fighting / Bullying">Fighting / Bullying</button>
+              <button type="button" class="tag-btn" data-tag="Mobile Phone in Class">Mobile Phone</button>
+              <button type="button" class="tag-btn" data-tag="Incomplete Homework">Incomplete Homework</button>
+              <button type="button" class="tag-btn" data-tag="Disrespect to Teacher">Disrespect</button>
+            </div>
+          </div>
+
+          <!-- Exactly 5 Severity Buttons -->
+          <div class="form-group">
+            <label class="form-label">Severity Level (Select One) *</label>
+            <div class="severity-selector">
+              <button type="button" class="sev-btn btn-sev-low" data-sev="Low">
+                <span>Low</span>
+                <span class="sev-points">+5 pts</span>
+              </button>
+              <button type="button" class="sev-btn btn-sev-medium active" data-sev="Medium">
+                <span>Medium</span>
+                <span class="sev-points">+12 pts</span>
+              </button>
+              <button type="button" class="sev-btn btn-sev-high" data-sev="High">
+                <span>High</span>
+                <span class="sev-points">+25 pts</span>
+              </button>
+              <button type="button" class="sev-btn btn-sev-extreme" data-sev="Extreme">
+                <span>Extreme</span>
+                <span class="sev-points">+45 pts</span>
+              </button>
+              <button type="button" class="sev-btn btn-sev-ultra" data-sev="Ultra">
+                <span>Ultra</span>
+                <span class="sev-points">+75 pts</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('add-violation-modal')">Cancel</button>
+          <button type="submit" class="btn btn-danger">Save Violation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: ISSUES HUB (Replaces Observations)
+       ========================================================================== -->
+  <div id="issues-modal" class="modal-overlay">
+    <div class="modal-container modal-wide">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: #0284C7;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <span>Institute Issues & Collaborative Resolution Hub</span>
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('issues-modal')">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Issues Toolbar with Filter Tabs -->
+        <div class="issue-toolbar">
+          <div class="issue-filter-tabs">
+            <button class="tab-pill active" data-status="all">
+              <span>All Issues</span>
+              <span id="issue-count-all" class="count-badge">0</span>
+            </button>
+            <button class="tab-pill" data-status="unsolved">
+              <span>🔴 Unsolved</span>
+              <span id="issue-count-unsolved" class="count-badge">0</span>
+            </button>
+            <button class="tab-pill" data-status="solved">
+              <span>🟢 Solved</span>
+              <span id="issue-count-solved" class="count-badge">0</span>
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <select id="issue-priority-filter" style="max-width: 150px; padding: 0.45rem;">
+              <option value="all">All Priorities</option>
+              <option value="Urgent">Urgent</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+            <select id="issue-sort-select" style="max-width: 160px; padding: 0.45rem;">
+              <option value="newest">Sort: Newest First</option>
+              <option value="efforts">Sort: Most Efforts</option>
+              <option value="priority">Sort: Highest Priority</option>
+            </select>
+            <button id="open-add-issue-btn" class="btn btn-primary btn-sm">
+              <span>+ Add Issue</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Issues Cards Grid -->
+        <div id="issues-list-container" class="issues-grid"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('issues-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2B: ADD ISSUE
+       ========================================================================== -->
+  <div id="add-issue-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: #0284C7;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <span>Define New Institute Issue</span>
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('add-issue-modal')">&times;</button>
+      </div>
+      <form id="add-issue-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="new-issue-title" class="form-label">Issue Title / Problem Statement *</label>
+            <input type="text" id="new-issue-title" dir="auto" placeholder="e.g. Washrooms are dirty, Morning late arrival, Projector broken..." required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div class="form-group">
+              <label for="new-issue-priority" class="form-label">Priority Level *</label>
+              <select id="new-issue-priority" required>
+                <option value="Medium">Medium Priority</option>
+                <option value="High">High Priority</option>
+                <option value="Urgent">Urgent Priority</option>
+                <option value="Low">Low Priority</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="new-issue-category" class="form-label">Category</label>
+              <input type="text" id="new-issue-category" placeholder="e.g. Discipline, Hygiene, Facilities">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="new-issue-desc" class="form-label">Detailed Description / Context *</label>
+            <textarea id="new-issue-desc" rows="3" dir="auto" placeholder="Provide background details on what is happening and what needs resolution (Supports English or اردو)..." required></textarea>
+          </div>
+
+          <div class="auto-date-badge" style="font-size: 0.8rem; width: 100%;">
+            Creator: Current Member | Timestamp: Automatic System Detection
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('add-issue-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Issue Card</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2C: ISSUE DETAIL & COLLABORATIVE EFFORTS
+       ========================================================================== -->
+  <div id="issue-detail-modal" class="modal-overlay">
+    <div class="modal-container modal-wide">
+      <div class="modal-header">
+        <h3 id="detail-issue-title" class="modal-title urdu-text" dir="auto">Issue Detail</h3>
+        <button class="modal-close-btn" onclick="closeModal('issue-detail-modal')">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Hero Details & Solved Callout -->
+        <div id="detail-issue-banner" class="issue-hero-banner"></div>
+
+        <!-- Solve / Reopen Actions (Visible to Creator or Admin) -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div id="detail-solve-btn-container"></div>
+        </div>
+
+        <!-- EFFORTS SECTION -->
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            <span>Staff Efforts & Collaboration Timeline</span>
+          </h4>
+          <p class="form-helper" style="margin-bottom: 1rem;">Any staff member can add their action or contribution towards solving this problem.</p>
+
+          <!-- Add Effort Input Box -->
+          <form id="add-effort-form" style="margin-bottom: 1.5rem; background: var(--bg-surface-alt); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <label class="form-label" style="font-size: 0.85rem;">Log Your Effort / Contribution:</label>
+            <textarea id="new-effort-text" rows="2" dir="auto" placeholder="Describe the action you took (e.g. Talked with sweepers, inspected water line, held class meeting... or اردو میں لکھیں)" required></textarea>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+              <span style="font-size: 0.74rem; color: var(--text-muted);">Attributed with your staff name & live timestamp</span>
+              <button type="submit" class="btn btn-primary btn-sm">+ Add Effort</button>
+            </div>
+          </form>
+
+          <!-- Timeline of Efforts -->
+          <div id="detail-efforts-list" class="efforts-timeline"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('issue-detail-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 3: RECORDS (Master Sheet Table)
+       ========================================================================== -->
+  <div id="records-modal" class="modal-overlay">
+    <div class="modal-container modal-wide">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: #059669;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          <span>Master Discipline Sheet</span>
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('records-modal')">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="table-toolbar">
+          <div class="table-toolbar-left">
+            <input type="text" id="records-table-search" placeholder="Filter student or roll..." style="max-width: 220px;">
+            <select id="records-class-filter" style="max-width: 150px;">
+              <option value="all">All Classes</option>
+            </select>
+            <select id="records-sort-select" style="max-width: 190px;">
+              <option value="violations-desc">Most Violations First</option>
+              <option value="violations-asc">Least Violations First</option>
+              <option value="severity-desc">Highest Severity</option>
+              <option value="name-asc">Name (A-Z)</option>
+              <option value="class-asc">Class</option>
+            </select>
+          </div>
+          <div class="table-toolbar-right">
+            <button id="export-records-csv-btn" class="btn btn-secondary btn-sm">Export CSV</button>
+            <button class="btn btn-primary btn-sm" onclick="openModal('add-student-modal')">+ Add Student</button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Student Name & Roll</th>
+                <th>Class</th>
+                <th>Total Violations</th>
+                <th>Last Violation</th>
+                <th style="min-width: 140px;">Severity Meter</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="master-records-table-body"></tbody>
+          </table>
+        </div>
+        <div class="pagination-bar" id="master-records-pagination"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('records-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 4: STUDENT FULL PROFILE & PRINTABLE REPORT
+       ========================================================================== -->
+  <div id="student-profile-modal" class="modal-overlay">
+    <div class="modal-container modal-wide">
+      <div class="modal-header">
+        <h3 class="modal-title">Student Disciplinary Dossier</h3>
+        <button class="modal-close-btn" onclick="closeModal('student-profile-modal')">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="profile-hero">
+          <div class="profile-identity">
+            <div id="profile-avatar" class="profile-avatar-large">MH</div>
+            <div class="profile-names">
+              <h2 id="profile-name">Student Full Name</h2>
+              <div class="profile-meta-chips">
+                <span id="profile-class-chip" class="profile-chip">Class: 10th-A</span>
+                <span id="profile-roll-chip" class="profile-chip">Roll: 1001</span>
+                <span id="profile-phone-chip" class="profile-chip">Parent: 0300-1234567</span>
+              </div>
+            </div>
+          </div>
+          <div class="profile-meter-box" id="profile-meter-placeholder"></div>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <button id="profile-add-violation-btn" class="btn btn-danger btn-sm">Add Violation</button>
+          <button id="profile-edit-std-btn" class="btn btn-secondary btn-sm">Edit Student</button>
+          <button id="profile-delete-std-btn" class="btn btn-danger btn-sm" style="background: rgba(239, 68, 68, 0.12); color: #DC2626; border: 1px solid rgba(239, 68, 68, 0.3);">Delete Student (Admin)</button>
+          <button id="print-profile-btn" class="btn btn-primary btn-sm">Print Dossier (PDF)</button>
+        </div>
+
+        <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; color: #EF4444;">Recorded Violations History</h4>
+        <div id="profile-violations-list"></div>
+
+        <div id="printable-student-report" class="printable-report" style="display: none;"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('student-profile-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 5: STAFF MEMBERS & ROLE SWITCHER
+       ========================================================================== -->
+  <div id="staff-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Staff Members & Roles</h3>
+        <button class="modal-close-btn" onclick="closeModal('staff-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="form-helper" style="margin-bottom: 0.75rem;">Switch active account or sign in with another staff credentials:</p>
+        <div id="staff-members-list" class="staff-list"></div>
+
+        <!-- Login Form -->
+        <div style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">Sign In with Credentials</h4>
+          <form id="staff-login-form" style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <input type="text" id="staff-login-username" placeholder="Username (e.g. admin, tariq, sadia)" required>
+            <input type="password" id="staff-login-password" placeholder="Password (e.g. admin123, teacher123)" required>
+            <button type="submit" class="btn btn-primary btn-sm">Sign In</button>
+          </form>
+        </div>
+
+        <!-- Add New Member Form (Admin only) -->
+        <div style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">Register New Staff Member</h4>
+          <form id="staff-register-form" style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <input type="text" id="new-member-name" placeholder="Full Name (e.g. Mr. Bilal Ahmed)" required>
+            <input type="text" id="new-member-username" placeholder="Username (unique identifier)" required>
+            <input type="password" id="new-member-password" placeholder="Account Password" required>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+              <select id="new-member-role">
+                <option value="Member">Role: Member</option>
+                <option value="Admin">Role: Admin</option>
+              </select>
+              <input type="text" id="new-member-designation" placeholder="Designation">
+            </div>
+            <button type="submit" class="btn btn-secondary btn-sm">+ Register Member</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('staff-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 6: SETTINGS, FIREBASE & DATA EXPORTS
+       ========================================================================== -->
+  <div id="settings-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Settings & Data Sharing</h3>
+        <button class="modal-close-btn" onclick="closeModal('settings-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Firebase Setup -->
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #2563EB; margin-bottom: 0.35rem;">🔥 Firebase Live Cloud Synchronization</h4>
+          <p class="form-helper" style="margin-bottom: 0.75rem;">To share live real-time updates across staff devices outside the local network, connect your free Firebase project:</p>
+          <form id="firebase-config-form" style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <input type="text" id="fb-api-key" placeholder="Firebase apiKey">
+            <input type="text" id="fb-project-id" placeholder="Firebase projectId">
+            <input type="text" id="fb-auth-domain" placeholder="Firebase authDomain (optional)">
+            <button type="submit" class="btn btn-primary btn-sm">Save & Connect Cloud Firebase</button>
+          </form>
+        </div>
+
+        <!-- Excel / CSV Export -->
+        <div style="margin-bottom: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">📊 Excel & CSV Reports</h4>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button id="export-violations-csv-btn" class="btn btn-secondary btn-sm">Export Violations</button>
+            <button id="export-issues-csv-btn" class="btn btn-secondary btn-sm">Export Issues & Efforts</button>
+          </div>
+        </div>
+
+        <!-- Import Students -->
+        <div style="margin-bottom: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">📥 Import Students from CSV</h4>
+          <input type="file" id="import-students-csv-input" accept=".csv" style="padding: 0.45rem;">
+        </div>
+
+        <!-- Backup & Restore -->
+        <div style="margin-bottom: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">💾 JSON Backup & Restore</h4>
+          <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+            <button id="backup-json-btn" class="btn btn-primary btn-sm">Download Full Backup</button>
+            <label class="btn btn-secondary btn-sm" style="cursor: pointer; margin: 0;">
+              <span>Restore Backup</span>
+              <input type="file" id="restore-json-input" accept=".json" style="display: none;">
+            </label>
+          </div>
+        </div>
+
+        <!-- Reset Demo Data -->
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #EF4444; margin-bottom: 0.35rem;">⚠️ Reset Demo Data</h4>
+          <button id="reset-demo-data-btn" class="btn btn-danger btn-sm">Reset to Demo Data</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('settings-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 7: ADD NEW STUDENT
+       ========================================================================== -->
+  <div id="add-student-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New Student Profile</h3>
+        <button class="modal-close-btn" onclick="closeModal('add-student-modal')">&times;</button>
+      </div>
+      <form id="add-student-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="new-std-name" class="form-label">Full Name *</label>
+            <input type="text" id="new-std-name" placeholder="e.g. Abdullah Khan" required>
+          </div>
+          <div class="form-group">
+            <label for="new-std-class" class="form-label">Class & Section *</label>
+            <input type="text" id="new-std-class" placeholder="e.g. 10th-A, 9th-B, 8th-Rose" required>
+          </div>
+          <div class="form-group">
+            <label for="new-std-roll" class="form-label">Roll Number</label>
+            <input type="text" id="new-std-roll" placeholder="e.g. 1042">
+          </div>
+          <div class="form-group">
+            <label for="new-std-phone" class="form-label">Guardian Contact Number</label>
+            <input type="tel" id="new-std-phone" placeholder="e.g. 0300-1234567">
+          </div>
+          <div class="form-group">
+            <label for="new-std-notes" class="form-label">Notes</label>
+            <textarea id="new-std-notes" rows="2" dir="auto" placeholder="Optional notes..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('add-student-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 8: EDIT STUDENT
+       ========================================================================== -->
+  <div id="edit-student-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Student Profile</h3>
+        <button class="modal-close-btn" onclick="closeModal('edit-student-modal')">&times;</button>
+      </div>
+      <form id="edit-student-form">
+        <input type="hidden" id="edit-std-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="edit-std-name" class="form-label">Full Name *</label>
+            <input type="text" id="edit-std-name" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-std-class" class="form-label">Class & Section *</label>
+            <input type="text" id="edit-std-class" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-std-roll" class="form-label">Roll Number</label>
+            <input type="text" id="edit-std-roll">
+          </div>
+          <div class="form-group">
+            <label for="edit-std-phone" class="form-label">Guardian Contact</label>
+            <input type="tel" id="edit-std-phone">
+          </div>
+          <div class="form-group">
+            <label for="edit-std-notes" class="form-label">Notes</label>
+            <textarea id="edit-std-notes" rows="2" dir="auto"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('edit-student-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 9: CUSTOM CONFIRMATION POPUP
+       ========================================================================== -->
+  <div id="confirm-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 id="confirm-modal-title" class="modal-title" style="color: #EF4444;">Confirm Action</h3>
+        <button class="modal-close-btn" onclick="closeModal('confirm-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-modal-message" style="font-size: 0.95rem; line-height: 1.5;">Are you sure?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('confirm-modal')">Cancel</button>
+        <button type="button" id="confirm-modal-action-btn" class="btn btn-danger">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts: Firebase Config, Auth System & Collaborative Application -->
+  <script src="assets/js/firebase-config.js?v=multi3"></script>
+  <script src="assets/js/discipline-auth.js?v=multi3"></script>
+  <script src="assets/js/discipline-app.js?v=multi3"></script>
+</body>
+</html>
