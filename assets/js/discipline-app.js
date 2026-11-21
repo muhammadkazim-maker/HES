@@ -56,7 +56,7 @@
         title: 'Morning assembly late arrivals by 9th and 10th grade students',
         description: 'Over 25 students consistently arrive after 8:00 AM, missing the morning national anthem and discipline briefing.',
         category: 'Punctuality',
-        priority: 'Urgent',
+        priority: 'High',
         status: 'unsolved',
         creatorId: 'usr-member-1',
         creatorName: 'Mr. Tariq Mehmood',
@@ -142,6 +142,32 @@
             memberRole: 'Admin',
             text: 'Authorized new Epson projector lamp from school inventory. Technician installed and tested working.',
             timestamp: '2026-11-18T14:25:00.000Z'
+          }
+        ]
+      },
+      {
+        id: 'iss-4',
+        title: 'Library reference textbooks return and circulation audit',
+        description: 'Several students have overdue chemistry reference books that need to be collected before mid-term exams.',
+        category: 'Library & Academics',
+        priority: 'Low',
+        status: 'unsolved',
+        creatorId: 'usr-member-1',
+        creatorName: 'Mr. Tariq Mehmood',
+        creatorRole: 'Member',
+        createdAt: '2026-11-21T08:30:00.000Z',
+        solvedAt: null,
+        solvedById: null,
+        solvedByName: null,
+        solvedByRole: null,
+        efforts: [
+          {
+            id: 'eff-6',
+            memberId: 'usr-member-1',
+            memberName: 'Mr. Tariq Mehmood',
+            memberRole: 'Member',
+            text: 'Circulated reminder notice to Class 10-A and 10-B class teachers.',
+            timestamp: '2026-11-21T09:15:00.000Z'
           }
         ]
       }
@@ -562,20 +588,34 @@
 
     // --- Collaborative Issues & Efforts API ---
     getIssues() {
-      return (this.data.issues || []).slice().sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1));
+      const rawIssues = (this.data.issues || []);
+      const normalized = rawIssues.map(iss => {
+        if (iss.priority === 'Urgent') iss.priority = 'High';
+        if (!['High', 'Medium', 'Low'].includes(iss.priority)) iss.priority = 'Medium';
+        return iss;
+      });
+      return normalized.slice().sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1));
     }
 
     getIssueById(id) {
-      return (this.data.issues || []).find(iss => iss.id === id);
+      const iss = (this.data.issues || []).find(i => i.id === id);
+      if (iss) {
+        if (iss.priority === 'Urgent') iss.priority = 'High';
+        if (!['High', 'Medium', 'Low'].includes(iss.priority)) iss.priority = 'Medium';
+      }
+      return iss;
     }
 
     addIssue({ title, description, priority = 'Medium', category = 'General' }) {
       const currentUser = window.authManager.getCurrentUser();
+      let cleanPriority = priority === 'Urgent' ? 'High' : priority;
+      if (!['High', 'Medium', 'Low'].includes(cleanPriority)) cleanPriority = 'Medium';
+
       const newIssue = {
         id: 'iss-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
         title: title.trim(),
         description: description.trim(),
-        priority,
+        priority: cleanPriority,
         category: category.trim() || 'General',
         status: 'unsolved',
         creatorId: currentUser.id,
@@ -1179,12 +1219,12 @@
         debouncedTableSearch(e.target.value.toLowerCase().trim());
       });
 
-      // Issues Hub Filter Tabs
-      document.querySelectorAll('.issue-filter-tabs .tab-pill').forEach(pill => {
-        pill.addEventListener('click', () => {
-          document.querySelectorAll('.issue-filter-tabs .tab-pill').forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-          this.issueStatusFilter = pill.getAttribute('data-status');
+      // Issues Hub Filter Buttons (Separate Fully-Colored Buttons)
+      document.querySelectorAll('.issue-filter-buttons .issue-filter-btn, .issue-filter-tabs .tab-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.issue-filter-buttons .issue-filter-btn, .issue-filter-tabs .tab-pill').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          this.issueStatusFilter = btn.getAttribute('data-status');
           this.renderIssuesHub();
         });
       });
@@ -1724,7 +1764,7 @@
       } else if (this.issueSortBy === 'efforts') {
         filtered.sort((a, b) => (b.efforts?.length || 0) - (a.efforts?.length || 0));
       } else if (this.issueSortBy === 'priority') {
-        const pMap = { Urgent: 4, High: 3, Medium: 2, Low: 1 };
+        const pMap = { High: 3, Medium: 2, Low: 1, Urgent: 3 };
         filtered.sort((a, b) => (pMap[b.priority] || 0) - (pMap[a.priority] || 0));
       }
 
@@ -1743,26 +1783,43 @@
       listEl.innerHTML = filtered.map(iss => {
         const effortCount = iss.efforts?.length || 0;
         const isSolved = iss.status === 'solved';
+        
+        // Normalize priority to 3 levels: High, Medium, Low
+        let priority = iss.priority || 'Medium';
+        if (priority === 'Urgent') priority = 'High';
+        if (!['High', 'Medium', 'Low'].includes(priority)) priority = 'Medium';
+        const priorityLower = priority.toLowerCase();
+
+        // Fully-colored box theme class:
+        // Solved -> issue-box-solved (Emerald Green)
+        // High -> issue-box-high (Crimson Red)
+        // Medium -> issue-box-medium (Warm Amber)
+        // Low -> issue-box-low (Ocean Blue)
+        const themeClass = isSolved ? 'issue-box-solved' : `issue-box-${priorityLower}`;
+        const watermarkIcon = isSolved ? '✓' : (priority === 'High' ? '⚠️' : (priority === 'Medium' ? '⚡' : '💡'));
+
         return `
-          <div class="issue-card ${isSolved ? 'solved-card' : 'unsolved-card'}" onclick="window.appController.openIssueDetail('${iss.id}')">
-            <div>
+          <div class="issue-card ${themeClass} ${isSolved ? 'solved-card' : 'unsolved-card'}" onclick="window.appController.openIssueDetail('${iss.id}')">
+            <div class="card-watermark-icon">${watermarkIcon}</div>
+            <div style="position: relative; z-index: 2;">
               <div class="issue-card-header">
-                <span class="badge-status ${isSolved ? 'badge-solved' : 'badge-unsolved'}">
+                <span class="badge-status">
                   ${isSolved ? '🟢 Solved' : '🔴 Unsolved'}
                 </span>
-                <span class="badge-priority priority-${iss.priority.toLowerCase()}">${iss.priority} Priority</span>
+                <span class="badge-priority">${priority} Priority</span>
+                <span class="badge-category">${escapeHtml(iss.category || 'General')}</span>
               </div>
               <h3 class="issue-card-title urdu-text" dir="auto">${escapeHtml(iss.title)}</h3>
               <p class="issue-card-desc urdu-text" dir="auto">${escapeHtml(iss.description)}</p>
             </div>
-            <div>
+            <div style="position: relative; z-index: 2;">
               <div class="issue-card-footer">
                 <div>
-                  <span>Reported by <strong>${escapeHtml(iss.creatorName)}</strong></span>
-                  <div style="font-size: 0.72rem; color: var(--text-muted);">${getRelativeDate(iss.createdAt)}</div>
+                  <div class="reporter-name">Reported by <strong>${escapeHtml(iss.creatorName)}</strong></div>
+                  <div class="reporter-time">${getRelativeDate(iss.createdAt)}</div>
                 </div>
                 <div class="effort-counter-tag">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                   <span>${effortCount} Effort${effortCount === 1 ? '' : 's'}</span>
                 </div>
               </div>
@@ -2478,7 +2535,7 @@
   // Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./discipline-sw.js?v=multi3')
+      navigator.serviceWorker.register('./discipline-sw.js?v=v5issues')
         .catch(err => console.log('SW registration error:', err));
     });
   }
