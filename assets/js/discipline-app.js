@@ -897,6 +897,7 @@
       this.issueStatusFilter = 'all'; // 'all' | 'unsolved' | 'solved'
       this.issuePriorityFilter = 'all';
       this.issueSortBy = 'newest';
+      this.issueSearchTerm = '';
       this.activeIssueId = null;
 
       this.currentProfileStudentId = null;
@@ -1219,12 +1220,22 @@
         debouncedTableSearch(e.target.value.toLowerCase().trim());
       });
 
-      // Issues Hub Filter Buttons (Separate Fully-Colored Buttons)
-      document.querySelectorAll('.issue-filter-buttons .issue-filter-btn, .issue-filter-tabs .tab-pill').forEach(btn => {
+      // Issues Hub: Search Input with 300ms Debounce
+      const debouncedIssueSearch = debounce((val) => {
+        this.issueSearchTerm = val;
+        this.renderIssuesHub();
+      }, 300);
+
+      document.getElementById('issue-search-input')?.addEventListener('input', (e) => {
+        debouncedIssueSearch(e.target.value.trim());
+      });
+
+      // Issues Hub: Separate Fully-Colored Filter Buttons
+      document.querySelectorAll('.issue-filter-buttons .issue-filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          document.querySelectorAll('.issue-filter-buttons .issue-filter-btn, .issue-filter-tabs .tab-pill').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.issue-filter-buttons .issue-filter-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          this.issueStatusFilter = btn.getAttribute('data-status');
+          this.issueStatusFilter = btn.getAttribute('data-status') || 'all';
           this.renderIssuesHub();
         });
       });
@@ -1240,6 +1251,7 @@
       });
 
       document.getElementById('open-add-issue-btn')?.addEventListener('click', () => this.openAddIssueModal());
+      document.getElementById('fab-add-issue')?.addEventListener('click', () => this.openAddIssueModal());
 
       // Profile Actions
       document.getElementById('print-profile-btn')?.addEventListener('click', () => window.print());
@@ -1734,6 +1746,7 @@
       const countAllEl = document.getElementById('issue-count-all');
       const countUnsolvedEl = document.getElementById('issue-count-unsolved');
       const countSolvedEl = document.getElementById('issue-count-solved');
+      const subtitleEl = document.getElementById('issues-header-subtitle');
 
       const issues = store.getIssues();
       const allCount = issues.length;
@@ -1744,6 +1757,10 @@
       if (countUnsolvedEl) countUnsolvedEl.textContent = unsolvedCount;
       if (countSolvedEl) countSolvedEl.textContent = solvedCount;
 
+      if (subtitleEl) {
+        subtitleEl.textContent = `${unsolvedCount} unsolved of ${allCount} total`;
+      }
+
       let filtered = issues;
 
       // Status filter
@@ -1753,9 +1770,24 @@
         filtered = filtered.filter(i => i.status === 'solved');
       }
 
-      // Priority filter
+      // Priority filter (Low, Medium, High only; migrate Urgent -> High)
       if (this.issuePriorityFilter !== 'all') {
-        filtered = filtered.filter(i => i.priority === this.issuePriorityFilter);
+        filtered = filtered.filter(i => {
+          let p = i.priority || 'Medium';
+          if (p === 'Urgent') p = 'High';
+          return p === this.issuePriorityFilter;
+        });
+      }
+
+      // Search filter (title, description, category, creatorName)
+      if (this.issueSearchTerm) {
+        const q = this.issueSearchTerm.toLowerCase();
+        filtered = filtered.filter(i => 
+          (i.title && i.title.toLowerCase().includes(q)) ||
+          (i.description && i.description.toLowerCase().includes(q)) ||
+          (i.creatorName && i.creatorName.toLowerCase().includes(q)) ||
+          (i.category && i.category.toLowerCase().includes(q))
+        );
       }
 
       // Sorting
@@ -1772,9 +1804,13 @@
 
       if (filtered.length === 0) {
         listEl.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 0.5rem; opacity: 0.5;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-            <p>No issues found in this view. Use the "+ Add Issue" button to report a problem.</p>
+          <div class="issues-empty-state">
+            <div class="empty-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <h4 class="empty-title">No issues found</h4>
+            <p class="empty-desc">No issues match the selected filter or search criteria.</p>
+            <button type="button" class="btn btn-primary btn-sm" onclick="window.appController.openAddIssueModal()">+ Add New Issue</button>
           </div>
         `;
         return;
@@ -1784,44 +1820,68 @@
         const effortCount = iss.efforts?.length || 0;
         const isSolved = iss.status === 'solved';
         
-        // Normalize priority to 3 levels: High, Medium, Low
+        // Normalize priority to 3 levels: High, Medium, Low (Urgent becomes High)
         let priority = iss.priority || 'Medium';
         if (priority === 'Urgent') priority = 'High';
         if (!['High', 'Medium', 'Low'].includes(priority)) priority = 'Medium';
         const priorityLower = priority.toLowerCase();
 
-        // Fully-colored box theme class:
-        // Solved -> issue-box-solved (Emerald Green)
-        // High -> issue-box-high (Crimson Red)
-        // Medium -> issue-box-medium (Warm Amber)
-        // Low -> issue-box-low (Ocean Blue)
-        const themeClass = isSolved ? 'issue-box-solved' : `issue-box-${priorityLower}`;
-        const watermarkIcon = isSolved ? '✓' : (priority === 'High' ? '⚠️' : (priority === 'Medium' ? '⚡' : '💡'));
+        // Calculate reporter initials
+        const reporterName = iss.creatorName || 'Staff Member';
+        const reporterParts = reporterName.trim().split(/\s+/);
+        const initials = reporterParts.length >= 2 
+          ? (reporterParts[0][0] + reporterParts[reporterParts.length - 1][0]).toUpperCase()
+          : reporterName.slice(0, 2).toUpperCase();
 
         return `
-          <div class="issue-card ${themeClass} ${isSolved ? 'solved-card' : 'unsolved-card'}" onclick="window.appController.openIssueDetail('${iss.id}')">
-            <div class="card-watermark-icon">${watermarkIcon}</div>
-            <div style="position: relative; z-index: 2;">
-              <div class="issue-card-header">
-                <span class="badge-status">
-                  ${isSolved ? '🟢 Solved' : '🔴 Unsolved'}
+          <div class="issue-card ${isSolved ? 'issue-card-solved solved-card' : 'issue-card-unsolved unsolved-card'}" onclick="window.appController.openIssueDetail('${iss.id}')">
+            <!-- 1. Header Strip: Status badge + Priority pill on left, Category tag on right -->
+            <div class="issue-card-header-strip">
+              <div class="card-header-left">
+                <span class="issue-status-badge">
+                  ${isSolved ? `
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <span>Solved</span>
+                  ` : `
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <span>Unsolved</span>
+                  `}
                 </span>
-                <span class="badge-priority">${priority} Priority</span>
-                <span class="badge-category">${escapeHtml(iss.category || 'General')}</span>
+                <span class="issue-priority-pill priority-${priorityLower}" title="${priority} Priority">
+                  <span class="priority-bars-indicator">
+                    <span class="pbar"></span>
+                    <span class="pbar"></span>
+                    <span class="pbar"></span>
+                  </span>
+                  <span>${priority}</span>
+                </span>
               </div>
-              <h3 class="issue-card-title urdu-text" dir="auto">${escapeHtml(iss.title)}</h3>
-              <p class="issue-card-desc urdu-text" dir="auto">${escapeHtml(iss.description)}</p>
+              <div class="card-header-right">
+                <span class="issue-category-tag">${escapeHtml(iss.category || 'General')}</span>
+              </div>
             </div>
-            <div style="position: relative; z-index: 2;">
-              <div class="issue-card-footer">
-                <div>
-                  <div class="reporter-name">Reported by <strong>${escapeHtml(iss.creatorName)}</strong></div>
-                  <div class="reporter-time">${getRelativeDate(iss.createdAt)}</div>
+
+            <!-- 2. Body: Bold white title (max 2 lines) + white 90% desc (max 2 lines) -->
+            <div class="issue-card-body">
+              <h4 class="issue-title-text urdu-text" dir="auto">${escapeHtml(iss.title)}</h4>
+              <p class="issue-desc-text urdu-text" dir="auto">${escapeHtml(iss.description)}</p>
+            </div>
+
+            <!-- 3. Thin Divider Line -->
+            <div class="issue-card-divider"></div>
+
+            <!-- 4. Footer: Avatar + Reporter + relative date on left, Efforts pill on right -->
+            <div class="issue-card-footer">
+              <div class="reporter-info-wrap">
+                <div class="reporter-avatar" title="${escapeHtml(reporterName)}">${initials}</div>
+                <div class="reporter-meta">
+                  <span class="reporter-name">Reported by <strong>${escapeHtml(reporterName)}</strong></span>
+                  <span class="reporter-time">${getRelativeDate(iss.createdAt)}</span>
                 </div>
-                <div class="effort-counter-tag">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                  <span>${effortCount} Effort${effortCount === 1 ? '' : 's'}</span>
-                </div>
+              </div>
+              <div class="issue-efforts-pill" title="${effortCount} staff contribution${effortCount === 1 ? '' : 's'}">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <span>${effortCount} Effort${effortCount === 1 ? '' : 's'}</span>
               </div>
             </div>
           </div>
@@ -2535,7 +2595,7 @@
   // Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./discipline-sw.js?v=v5issues')
+      navigator.serviceWorker.register('./discipline-sw.js?v=v6issues')
         .catch(err => console.log('SW registration error:', err));
     });
   }
