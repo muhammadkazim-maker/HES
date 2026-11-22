@@ -2570,6 +2570,49 @@ body.modal-open {
     bottom: -10px !important;
   }
 
+  /* Leaderboard Top 5 Students on Mobile: Beautiful 2-row layout */
+  .leader-item {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.65rem !important;
+    padding: 0.85rem !important;
+  }
+  .leader-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.65rem !important;
+    width: 100% !important;
+  }
+  .leader-details {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+  .leader-details .student-title {
+    font-size: 0.95rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .leader-details .student-sub {
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .leader-right {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+    padding-top: 0.35rem !important;
+    border-top: 1px dashed var(--border-color) !important;
+  }
+  .severity-meter-container {
+    flex: 1 !important;
+    min-width: 90px !important;
+  }
+
   /* 3. Quick Stats: 2-column Grid */
   .stats-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -2682,18 +2725,23 @@ body.modal-open {
   }
 
   /* 7. Issues Hub on Mobile */
-  .issues-hub-dialog .issues-hub-header {
+  .issues-hub-header {
     padding: 0.85rem 1rem !important;
   }
-  .issues-hub-dialog .issues-title {
-    font-size: 1.15rem !important;
+  .issues-title {
+    font-size: 1.05rem !important;
+    white-space: nowrap !important;
   }
-  .issues-hub-dialog .issues-subtitle {
+  .issues-title span {
+    white-space: nowrap !important;
+  }
+  .issues-subtitle {
     font-size: 0.78rem !important;
   }
-  .issues-hub-dialog .issues-circle-close-btn {
+  .issues-circle-close-btn {
     width: 38px !important;
     height: 38px !important;
+    flex-shrink: 0 !important;
   }
   .issues-hub-body {
     padding: 1rem 0.85rem !important;
@@ -2796,6 +2844,12 @@ body.modal-open {
   .card-status-badge, .card-priority-pill, .card-category-pill {
     font-size: 0.72rem !important;
     padding: 3px 8px !important;
+    white-space: nowrap !important;
+  }
+  .card-category-pill {
+    max-width: 140px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
   .card-content-row {
     gap: 10px !important;
