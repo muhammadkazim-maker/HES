@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/discipline.css?v=v13replica">
+  <link rel="stylesheet" href="assets/css/discipline.css?v=v14mobile">
 
   <style>
     /* Standalone Issues Hub Page Styling */
@@ -158,6 +158,11 @@
     </div>
   </div>
 
+  <!-- Mobile Floating Action Button (FAB) for "+ Add Issue" -->
+  <button id="fab-add-issue" class="fab-add-issue" title="Add New Issue" aria-label="Add New Issue">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+  </button>
+
   <!-- Add Issue Modal -->
   <div id="add-issue-modal" class="modal-overlay">
     <div class="modal-container">
@@ -256,9 +261,9 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
   <!-- Core App Scripts -->
-  <script src="assets/js/firebase-config.js?v=v13replica"></script>
-  <script src="assets/js/discipline-auth.js?v=v13replica"></script>
-  <script src="assets/js/discipline-app.js?v=v13replica"></script>
+  <script src="assets/js/firebase-config.js?v=v14mobile"></script>
+  <script src="assets/js/discipline-auth.js?v=v14mobile"></script>
+  <script src="assets/js/discipline-app.js?v=v14mobile"></script>
 
   <script>
     // Ensure issues list renders immediately on standalone page load

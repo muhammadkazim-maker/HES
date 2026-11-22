@@ -2368,90 +2368,477 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ==========================================================================
-   Mobile-First Media Queries
+   MOBILE-FIRST MEDIA QUERIES & RESPONSIVE FOUNDATION (360px - 768px)
    ========================================================================== */
-@media (max-width: 900px) {
-  .action-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
 
+/* Universal text wrapping & safe-area handling */
+body, h1, h2, h3, h4, h5, h6, p, span, div, a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+@media (max-width: 1024px) {
   .issues-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Prevent iOS / Android auto-zoom on input focus */
+  input, select, textarea, .form-control, .global-search-input, .issue-search-box {
+    font-size: 16px !important;
   }
 
-  .severity-selector {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0.3rem;
+  /* Table Horizontal Scroll with Sticky First Column */
+  .table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: relative !important;
+  }
+  .data-table th:first-child,
+  .data-table td:first-child {
+    position: sticky !important;
+    left: 0 !important;
+    z-index: 2 !important;
+    background-color: var(--bg-surface) !important;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.08) !important;
+  }
+  .data-table th:first-child {
+    background-color: var(--bg-surface-alt) !important;
+    z-index: 3 !important;
   }
 
-  .sev-btn {
-    padding: 0.6rem 0.2rem;
-    font-size: 0.76rem;
-  }
-
-  .sev-btn .sev-points {
-    display: none;
+  /* 1 Column on Mobile for Issues Grid */
+  .issues-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
   }
 }
 
 @media (max-width: 650px) {
   body {
-    padding-bottom: 4.5rem; /* Space for bottom nav */
-  }
-
-  .bottom-nav {
-    display: block;
-  }
-
-  .fab-add-issue {
-    display: flex;
-  }
-
-  .app-header {
-    padding: 0.75rem 1rem;
-  }
-
-  .brand-text h1 {
-    font-size: 1rem;
-  }
-
-  .brand-text p {
-    display: none;
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)) !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
   }
 
   .main-wrapper {
-    padding: 1rem 0.75rem 5rem 0.75rem;
+    padding: 0.85rem 0.75rem calc(5.5rem + env(safe-area-inset-bottom, 0px)) 0.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
+  /* 1. Header: Compact & Clean */
+  .app-header {
+    padding: 0.65rem 0.85rem !important;
+    padding-top: max(0.65rem, env(safe-area-inset-top, 0px)) !important;
+  }
+  .app-header-inner {
+    gap: 0.5rem !important;
+  }
+  .school-logo {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .brand-text h1 {
+    font-size: 0.95rem !important;
+    line-height: 1.2 !important;
+  }
+  .brand-text p {
+    display: none !important;
+  }
+  .header-actions {
+    gap: 0.35rem !important;
+  }
+  .icon-btn {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 1rem !important;
+  }
+  .member-chip {
+    padding: 4px 8px !important;
+    font-size: 0.78rem !important;
+    gap: 5px !important;
+  }
+  .member-avatar {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 0.75rem !important;
+  }
+  .member-name-text {
+    max-width: 70px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* 2. Three Main Boxes: Full-width, Tidy Stack */
+  .action-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+    margin-bottom: 1.75rem !important;
+  }
+  .action-card {
+    padding: 1.25rem 1.15rem !important;
+    min-height: 100px !important;
+    border-radius: var(--radius-lg) !important;
+  }
+  .card-bottom .card-title {
+    font-size: 1.15rem !important;
+  }
+  .card-bottom .card-desc {
+    font-size: 0.82rem !important;
+  }
+  .card-watermark {
+    font-size: 3.5rem !important;
+    right: -5px !important;
+    bottom: -10px !important;
+  }
+
+  /* 3. Quick Stats: 2-column Grid */
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
   }
-
   .stat-box {
-    padding: 0.85rem;
+    padding: 0.75rem !important;
+    gap: 0.65rem !important;
+  }
+  .stat-icon-wrap {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .stat-info .stat-number {
+    font-size: 1.25rem !important;
+  }
+  .stat-info .stat-label {
+    font-size: 0.75rem !important;
   }
 
-  .stat-info .stat-number {
-    font-size: 1.3rem;
+  /* 4. Bottom Navigation Bar */
+  .bottom-nav {
+    display: block !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: var(--bg-surface) !important;
+    border-top: 1px solid var(--border-color) !important;
+    padding: 4px 6px !important;
+    padding-bottom: max(4px, env(safe-area-inset-bottom, 0px)) !important;
+    z-index: 80 !important;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.06) !important;
+  }
+  .bottom-nav-inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+  }
+  .bottom-nav-item {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 48px !important;
+    min-width: 44px !important;
+    padding: 4px 2px !important;
+    font-size: 0.68rem !important;
+    gap: 2px !important;
+  }
+
+  /* 5. Floating Action Button (FAB) */
+  .fab-add-issue {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: fixed !important;
+    bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px)) !important;
+    right: 1rem !important;
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 9999px !important;
+    background: #0D5CE5 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 18px rgba(13, 92, 229, 0.45) !important;
+    z-index: 85 !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+  .fab-add-issue:active {
+    transform: scale(0.92) !important;
+  }
+
+  /* 6. Modals as Bottom Sheets */
+  .modal-overlay {
+    padding: 0 !important;
+    align-items: flex-end !important;
+    background: rgba(15, 23, 42, 0.75) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .modal-container,
+  .modal-container.modal-wide,
+  .issues-hub-dialog {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 90dvh !important;
+    max-height: 90vh !important;
+    border-radius: 22px 22px 0 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-top: 1px solid var(--border-color) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    background: var(--bg-surface) !important;
+  }
+  .modal-header {
+    flex-shrink: 0 !important;
+    padding: 0.85rem 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  .modal-body {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 1rem 0.85rem !important;
+  }
+  .modal-footer {
+    flex-shrink: 0 !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 10 !important;
+    padding: 0.75rem 1rem !important;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px)) !important;
+    background: var(--bg-surface-alt) !important;
+    border-top: 1px solid var(--border-color) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 0.5rem !important;
+  }
+
+  /* 7. Issues Hub on Mobile */
+  .issues-hub-dialog .issues-hub-header {
+    padding: 0.85rem 1rem !important;
+  }
+  .issues-hub-dialog .issues-title {
+    font-size: 1.15rem !important;
+  }
+  .issues-hub-dialog .issues-subtitle {
+    font-size: 0.78rem !important;
+  }
+  .issues-hub-dialog .issues-circle-close-btn {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .issues-hub-body {
+    padding: 1rem 0.85rem !important;
+  }
+
+  /* Top 3 Filter Buttons stay in ONE Row */
+  .issue-filter-buttons {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.35rem !important;
+    margin-bottom: 1rem !important;
+    width: 100% !important;
+  }
+  .issue-filter-btn {
+    padding: 0.5rem 0.25rem !important;
+    font-size: 0.8rem !important;
+    min-height: 44px !important;
+    border-radius: 9999px !important;
+    gap: 0.25rem !important;
+    white-space: nowrap !important;
+  }
+  .issue-filter-btn .filter-svg-icon {
+    width: 14px !important;
+    height: 14px !important;
+    flex-shrink: 0 !important;
+  }
+  .issue-filter-btn .btn-text-full {
+    display: none !important;
+  }
+  .issue-filter-btn .btn-text-short {
+    display: inline !important;
+  }
+  .issue-filter-btn .count-badge {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.72rem !important;
+    margin-left: 2px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Toolbar: Search on row 1, Dropdowns on row 2 */
+  .issue-action-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .issue-search-wrap {
+    width: 100% !important;
+  }
+  .issue-search-box {
+    height: 44px !important;
+    font-size: 16px !important;
+    border-radius: 9999px !important;
+  }
+  .issue-dropdowns-group {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+  }
+  .issue-toolbar-select {
+    height: 44px !important;
+    font-size: 16px !important;
+    border-radius: 9999px !important;
+    width: 100% !important;
+  }
+  .issue-add-btn {
+    display: none !important; /* Replaced by FAB on mobile */
+  }
+
+  /* Issue Cards */
+  .issues-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding-bottom: 75px !important;
+  }
+  .issue-card {
+    border-radius: 18px !important;
+    padding: 14px 14px !important;
+    min-height: 195px !important;
+  }
+  .card-badges-row {
+    margin-bottom: 10px !important;
+    gap: 6px !important;
+  }
+  .card-status-badge, .card-priority-pill, .card-category-pill {
+    font-size: 0.72rem !important;
+    padding: 3px 8px !important;
+  }
+  .card-content-row {
+    gap: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  .card-icon-box {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 14px !important;
+  }
+  .card-icon-box svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .card-title-text {
+    font-size: 0.98rem !important;
+    line-height: 1.3 !important;
+  }
+  .card-desc-text {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
+  .card-footer-row {
+    padding-top: 10px !important;
+  }
+  .card-reporter-avatar {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 0.75rem !important;
+  }
+  .card-reporter-name {
+    font-size: 0.76rem !important;
+  }
+  .card-reporter-date {
+    font-size: 0.7rem !important;
+  }
+  .card-effort-pill {
+    padding: 4px 10px !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Footer Wave Banner */
+  .issues-hub-footer {
+    height: 54px !important;
+    padding: 0 1rem !important;
+  }
+  .issues-tagline-text, .issues-footer-text {
+    font-size: 0.75rem !important;
+  }
+  .issues-pill-close-btn {
+    padding: 6px 14px !important;
+    font-size: 0.8rem !important;
+    min-height: 38px !important;
+  }
+
+  /* Severity Selector Buttons in Add Violation Modal */
+  .severity-selector {
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 0.25rem !important;
+  }
+  .sev-btn {
+    padding: 0.55rem 0.15rem !important;
+    font-size: 0.72rem !important;
+    min-height: 44px !important;
+    border-radius: 8px !important;
+  }
+
+  /* Student Profile */
+  .profile-hero {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.85rem !important;
+    padding: 1rem !important;
+  }
+  .profile-identity {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.65rem !important;
+  }
+  .profile-meta-chips {
+    justify-content: center !important;
+    gap: 0.35rem !important;
+  }
+  .profile-chip {
+    font-size: 0.72rem !important;
+    padding: 3px 8px !important;
   }
 
   .toast-container {
-    bottom: 5rem;
-    right: 1rem;
-    left: 1rem;
-    max-width: 100%;
+    bottom: calc(5rem + env(safe-area-inset-bottom, 0px)) !important;
+    right: 1rem !important;
+    left: 1rem !important;
+    max-width: 100% !important;
   }
+}
 
-  .member-name-text {
-    max-width: 80px;
+/* Standalone Issues Hub Page Responsive Wrapper */
+@media (max-width: 650px) {
+  .standalone-issues-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  .standalone-issues-card {
+    border-radius: 0 !important;
+    border: none !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
   }
 }
 

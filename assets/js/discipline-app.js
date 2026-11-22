@@ -921,6 +921,7 @@
     const modal = document.getElementById(modalId);
     if (modal) {
       modal.classList.add('active');
+      document.body.classList.add('modal-open');
       document.body.style.overflow = 'hidden';
     }
   }
@@ -929,7 +930,11 @@
     const modal = document.getElementById(modalId);
     if (modal) {
       modal.classList.remove('active');
-      document.body.style.overflow = '';
+      const anyActive = document.querySelector('.modal-overlay.active');
+      if (!anyActive) {
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+      }
     }
   }
 
@@ -1496,9 +1501,32 @@
       window.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal-overlay')) {
           e.target.classList.remove('active');
-          document.body.style.overflow = '';
+          const anyActive = document.querySelector('.modal-overlay.active');
+          if (!anyActive) {
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+          }
         }
       }, { passive: true });
+
+      // Close modal on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const activeModal = document.querySelector('.modal-overlay.active');
+          if (activeModal) {
+            closeModal(activeModal.id);
+          }
+        }
+      });
+
+      // Keyboard scrollIntoView on mobile input focus
+      document.addEventListener('focusin', (e) => {
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
+          setTimeout(() => {
+            e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 250);
+        }
+      });
     }
 
     setActiveBottomNav(navId) {
@@ -2681,7 +2709,7 @@
   // Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./discipline-sw.js?v=v13replica')
+      navigator.serviceWorker.register('./discipline-sw.js?v=v14mobile')
         .catch(err => console.log('SW registration error:', err));
     });
   }

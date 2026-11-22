@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="School Discipline Tracker - Collaborative real-time student discipline and institute issues resolution hub.">
   <meta name="theme-color" content="#14213D">
   <meta name="mobile-web-app-capable" content="yes">
@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Outfit:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/discipline.css?v=v13replica">
+  <link rel="stylesheet" href="assets/css/discipline.css?v=v14mobile">
 </head>
 <body>
 
@@ -244,8 +244,8 @@
   </nav>
 
   <!-- Mobile Floating Action Button (FAB) for "+ Add Issue" -->
-  <button id="fab-add-issue" class="fab-add-issue" title="Add New Issue">
-    <span>+</span>
+  <button id="fab-add-issue" class="fab-add-issue" title="Add New Issue" aria-label="Add New Issue">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
   </button>
 
   <!-- ==========================================================================
@@ -891,8 +891,8 @@
   <div id="toast-container" class="toast-container"></div>
 
   <!-- Scripts: Firebase Config, Auth System & Collaborative Application -->
-  <script src="assets/js/firebase-config.js?v=v13replica"></script>
-  <script src="assets/js/discipline-auth.js?v=v13replica"></script>
-  <script src="assets/js/discipline-app.js?v=v13replica"></script>
+  <script src="assets/js/firebase-config.js?v=v14mobile"></script>
+  <script src="assets/js/discipline-auth.js?v=v14mobile"></script>
+  <script src="assets/js/discipline-app.js?v=v14mobile"></script>
 </body>
 </html>
