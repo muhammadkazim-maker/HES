@@ -9,10 +9,10 @@ const ASSETS_TO_CACHE = [
   './discipline.html',
   './issues.html',
   './discipline-manifest.json',
-  './assets/css/discipline.css?v=v14mobile',
-  './assets/js/firebase-config.js?v=v14mobile',
-  './assets/js/discipline-auth.js?v=v14mobile',
-  './assets/js/discipline-app.js?v=v14mobile',
+  './assets/css/discipline.css?v=v15mobilefix',
+  './assets/js/firebase-config.js?v=v15mobilefix',
+  './assets/js/discipline-auth.js?v=v15mobilefix',
+  './assets/js/discipline-app.js?v=v15mobilefix',
   './assets/images/logo.png',
   './assets/images/hadi-education-logo.jpg'
 ];

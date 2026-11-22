@@ -2709,7 +2709,7 @@
   // Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./discipline-sw.js?v=v14mobile')
+      navigator.serviceWorker.register('./discipline-sw.js?v=v15mobilefix')
         .catch(err => console.log('SW registration error:', err));
     });
   }

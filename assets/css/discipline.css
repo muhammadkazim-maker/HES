@@ -2371,9 +2371,16 @@ input:focus, select:focus, textarea:focus {
    MOBILE-FIRST MEDIA QUERIES & RESPONSIVE FOUNDATION (360px - 768px)
    ========================================================================== */
 
-/* Universal text wrapping & safe-area handling */
-body, h1, h2, h3, h4, h5, h6, p, span, div, a {
-  overflow-wrap: anywhere;
+/* Controlled text-wrapping for user-generated content */
+.data-table td,
+.issue-card,
+.card-desc-text,
+.card-title-text,
+.timeline-note,
+.efforts-timeline,
+.profile-meta-chips,
+.violation-details-box {
+  overflow-wrap: break-word;
   word-break: break-word;
 }
 
@@ -2434,48 +2441,109 @@ body.modal-open {
     max-width: 100% !important;
   }
 
-  /* 1. Header: Compact & Clean */
+  /* 1. Header & Live Sync Bar: Compact, Sleek & Single-line */
+  .sync-status-bar {
+    padding: 3px 8px !important;
+    font-size: 0.72rem !important;
+    flex-wrap: nowrap !important;
+    gap: 0.35rem !important;
+  }
+  .sync-status-indicator {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 0.72rem !important;
+  }
+  .sync-status-bar > div > span:not(#sync-mode-text) {
+    display: none !important;
+  }
   .app-header {
-    padding: 0.65rem 0.85rem !important;
-    padding-top: max(0.65rem, env(safe-area-inset-top, 0px)) !important;
+    padding: 0.55rem 0.85rem !important;
+    padding-top: max(0.55rem, env(safe-area-inset-top, 0px)) !important;
+    width: 100% !important;
   }
-  .app-header-inner {
+  .header-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
     gap: 0.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
   }
-  .school-logo {
-    width: 36px !important;
-    height: 36px !important;
+  .header-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
+    text-decoration: none !important;
+  }
+  .header-logo {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 8px !important;
+    flex-shrink: 0 !important;
+  }
+  .brand-text {
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+    overflow: hidden !important;
   }
   .brand-text h1 {
     font-size: 0.95rem !important;
     line-height: 1.2 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+  }
+  .brand-text h1 span:first-child {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-weight: 700 !important;
+  }
+  .brand-text .brand-tag,
+  .brand-text .badge {
+    display: none !important; /* Hide secondary tag on mobile to prevent overflow */
   }
   .brand-text p {
     display: none !important;
   }
   .header-actions {
-    gap: 0.35rem !important;
-  }
-  .icon-btn {
-    width: 38px !important;
-    height: 38px !important;
-    font-size: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    flex-shrink: 0 !important;
   }
   .member-chip {
-    padding: 4px 8px !important;
-    font-size: 0.78rem !important;
-    gap: 5px !important;
+    padding: 3px 6px 3px 4px !important;
+    font-size: 0.74rem !important;
+    gap: 4px !important;
+    flex-shrink: 0 !important;
+    border-radius: 9999px !important;
   }
   .member-avatar {
     width: 26px !important;
     height: 26px !important;
-    font-size: 0.75rem !important;
+    font-size: 0.72rem !important;
   }
   .member-name-text {
-    max-width: 70px !important;
+    max-width: 60px !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+  }
+  .header-actions .icon-btn {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.95rem !important;
+    flex-shrink: 0 !important;
+    border-radius: 8px !important;
   }
 
   /* 2. Three Main Boxes: Full-width, Tidy Stack */
@@ -2555,26 +2623,9 @@ body.modal-open {
     gap: 2px !important;
   }
 
-  /* 5. Floating Action Button (FAB) */
+  /* 5. Floating Action Button (Clean inline buttons preferred on mobile) */
   .fab-add-issue {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: fixed !important;
-    bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px)) !important;
-    right: 1rem !important;
-    width: 56px !important;
-    height: 56px !important;
-    border-radius: 9999px !important;
-    background: #0D5CE5 !important;
-    color: #FFFFFF !important;
-    box-shadow: 0 4px 18px rgba(13, 92, 229, 0.45) !important;
-    z-index: 85 !important;
-    border: none !important;
-    cursor: pointer !important;
-  }
-  .fab-add-issue:active {
-    transform: scale(0.92) !important;
+    display: none !important;
   }
 
   /* 6. Modals as Bottom Sheets */
@@ -2710,7 +2761,20 @@ body.modal-open {
     width: 100% !important;
   }
   .issue-add-btn {
-    display: none !important; /* Replaced by FAB on mobile */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-height: 44px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    border-radius: 9999px !important;
+    gap: 0.4rem !important;
+    background: #0D5CE5 !important;
+    color: #FFFFFF !important;
+  }
+  .fab-add-issue {
+    display: none !important;
   }
 
   /* Issue Cards */
