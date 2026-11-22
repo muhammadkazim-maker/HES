@@ -229,28 +229,51 @@
   function getIssueMainIcon(issue) {
     const text = ((issue.title || '') + ' ' + (issue.description || '') + ' ' + (issue.category || '')).toLowerCase();
 
-    // 1. Water / Plumbing / Washroom / Tap
+    // 1. Water / Plumbing / Washroom / Tap (Card 2)
     if (text.includes('washroom') || text.includes('water') || text.includes('tap') || text.includes('leakage') || text.includes('plumbing') || text.includes('sanitary') || text.includes('toilet') || text.includes('pipe')) {
-      return `<svg width="28" height="28" viewBox="0 0 24 24" fill="#FFFFFF"><rect x="2" y="8" width="2" height="6" rx="1"/><rect x="7" y="2" width="6" height="2" rx="1"/><rect x="9.2" y="3.5" width="1.6" height="4"/><path d="M4 8.8C4 8.36 4.36 8 4.8 8H13C15.2 8 17 9.8 17 12V14.5C17 14.78 16.78 15 16.5 15H14.5C14.22 15 14 14.78 14 14.5V12C14 11.45 13.55 11 13 11H4.8C4.36 11 4 10.64 4 10.2V8.8Z"/><rect x="13.5" y="14" width="4" height="1.5" rx="0.5"/><path d="M15.5 17.5C15.5 17.5 13.8 19.4 13.8 20.5C13.8 21.4 14.6 22.2 15.5 22.2C16.4 22.2 17.2 21.4 17.2 20.5C17.2 19.4 15.5 17.5 15.5 17.5Z"/></svg>`;
+      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="#FFFFFF">
+        <rect x="2" y="11" width="3" height="8" rx="1.5"/>
+        <rect x="9" y="3" width="9" height="3" rx="1.5"/>
+        <rect x="12" y="5" width="3" height="6"/>
+        <path d="M5 12C5 11.45 5.45 11 6 11H17C19.76 11 22 13.24 22 16V19H18V16C18 15.45 17.55 15 17 15H6C5.45 15 5 14.55 5 14V12Z"/>
+        <rect x="17" y="18" width="5.5" height="2" rx="0.8"/>
+        <path d="M19.75 22.5C19.75 22.5 17.5 25 17.5 26.5C17.5 27.88 18.5 29 19.75 29C21 29 22 27.88 22 26.5C22 25 19.75 22.5 19.75 22.5Z"/>
+      </svg>`;
     }
 
-    // 2. Projector / Lab / Computer / IT / Screen / Laptop
+    // 2. Projector / Lab / Computer / IT / Screen / Laptop (Card 4)
     if (text.includes('projector') || text.includes('computer') || text.includes('lab') || text.includes('laptop') || text.includes('bulb') || text.includes('digital') || text.includes('physics')) {
-      return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="1" y1="20" x2="23" y2="20"></line></svg>`;
+      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="#FFFFFF">
+        <path d="M6 6C4.9 6 4 6.9 4 8V19C4 20.1 4.9 21 6 21H26C27.1 21 28 20.1 28 19V8C28 6.9 27.1 6 26 6H6ZM7 9H25V18H7V9Z"/>
+        <path d="M2 22C2 21.45 2.45 21 3 21H29C29.55 21 30 21.45 30 22L28.5 25C28.3 25.55 27.7 26 27.1 26H4.9C4.3 26 3.7 25.55 3.5 25L2 22Z"/>
+      </svg>`;
     }
 
-    // 3. Morning Assembly / Late arrivals / Punctuality / Calendar
+    // 3. Morning Assembly / Late arrivals / Punctuality / Calendar (Card 3)
     if (text.includes('assembly') || text.includes('late') || text.includes('morning') || text.includes('punctual') || text.includes('arrival') || text.includes('anthem') || text.includes('time') || text.includes('clock') || text.includes('calendar')) {
-      return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><rect x="7" y="14" width="3" height="3" fill="#FFFFFF"></rect><rect x="14" y="14" width="3" height="3" fill="#FFFFFF"></rect></svg>`;
+      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="#FFFFFF">
+        <rect x="8" y="3" width="3" height="5" rx="1.5"/>
+        <rect x="21" y="3" width="3" height="5" rx="1.5"/>
+        <path d="M5 6C4 6 3 7 3 8V26C3 27.1 3.9 28 5 28H27C28.1 28 29 27.1 29 26V8C29 7 28 6 27 6H25V8C25 8.55 24.55 9 24 9C23.45 9 23 8.55 23 8V6H9V8C9 8.55 8.55 9 8 9C7.45 9 7 8.55 7 8V6H5ZM6 12H26V25H6V12Z"/>
+        <rect x="9" y="14.5" width="3.5" height="3.5" rx="0.8"/>
+        <rect x="14.2" y="14.5" width="3.5" height="3.5" rx="0.8"/>
+        <rect x="19.5" y="14.5" width="3.5" height="3.5" rx="0.8"/>
+        <rect x="9" y="19.5" width="3.5" height="3.5" rx="0.8"/>
+        <rect x="14.2" y="19.5" width="3.5" height="3.5" rx="0.8"/>
+        <rect x="19.5" y="19.5" width="3.5" height="3.5" rx="0.8"/>
+      </svg>`;
     }
 
-    // 4. Library / Air Conditioner / Reading / Book
+    // 4. Library / Air Conditioner / Reading / Book (Card 1)
     if (text.includes('library') || text.includes('air conditioner') || text.includes('reading') || text.includes('textbook') || /\bac\b/i.test(text)) {
-      return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`;
+      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="#FFFFFF">
+        <path d="M4 6.5C4 5.4 4.9 4.5 6 4.5H13C14.4 4.5 15.5 5.6 15.5 7V24C15.5 24.8 14.8 25.5 14 25.5H6C4.9 25.5 4 24.6 4 23.5V6.5Z"/>
+        <path d="M28 6.5C28 5.4 27.1 4.5 26 4.5H19C17.6 4.5 16.5 5.6 16.5 7V24C16.5 24.8 17.2 25.5 18 25.5H26C27.1 25.5 28 24.6 28 23.5V6.5Z"/>
+      </svg>`;
     }
 
-    // Default Fallback
-    return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><path d="M9 18h6M10 22h4M12 2v1M12 2a7 7 0 0 0-7 7c0 3 2 5.5 4 6.5V18h6v-2.5c2-1 4-3.5 4-6.5a7 7 0 0 0-7-7z"></path></svg>`;
+    // Fallback
+    return `<svg width="34" height="34" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>`;
   }
 
   function getCategoryIcon(cat) {
@@ -262,7 +285,7 @@
       return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`;
     }
     if (c.includes('academic') || c.includes('it') || c.includes('computer')) {
-      return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`;
+      return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`;
     }
     return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="18"></line><line x1="15" y1="22" x2="15" y2="18"></line><line x1="9" y1="6" x2="9.01" y2="6"></line><line x1="15" y1="6" x2="15.01" y2="6"></line><line x1="9" y1="10" x2="9.01" y2="10"></line><line x1="15" y1="10" x2="15.01" y2="10"></line></svg>`;
   }
@@ -957,6 +980,12 @@
       this.initFontSettings();
       this.bindEvents();
       this.renderAll();
+
+      // Auto-open Issues Hub if requested via hash or query param
+      const urlParams = new URLSearchParams(window.location.search);
+      if (window.location.hash === '#issues' || urlParams.get('tab') === 'issues' || urlParams.get('view') === 'issues' || urlParams.get('open') === 'issues') {
+        setTimeout(() => this.openIssuesHub(), 120);
+      }
 
       // Listen to auth changes
       window.authManager.subscribe(() => {
@@ -1920,9 +1949,10 @@
               <div class="card-icon-box">
                 ${mainIconSvg}
               </div>
+              <div class="card-icon-divider"></div>
               <div class="card-text-col">
-                <h4 class="card-title-text urdu-text" dir="auto">${escapeHtml(iss.title)}</h4>
-                <p class="card-desc-text urdu-text" dir="auto">${escapeHtml(iss.description)}</p>
+                <h4 class="card-title-text" dir="auto">${escapeHtml(iss.title)}</h4>
+                <p class="card-desc-text" dir="auto">${escapeHtml(iss.description)}</p>
               </div>
             </div>
 
@@ -2651,7 +2681,7 @@
   // Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./discipline-sw.js?v=v8replica')
+      navigator.serviceWorker.register('./discipline-sw.js?v=v9replica')
         .catch(err => console.log('SW registration error:', err));
     });
   }

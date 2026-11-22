@@ -1381,6 +1381,14 @@ input:focus, select:focus, textarea:focus {
   font-weight: 700 !important;
 }
 
+.issue-card-solved .card-status-badge {
+  background: rgba(0, 70, 20, 0.45) !important;
+}
+
+.issue-card-unsolved .card-status-badge {
+  background: rgba(100, 0, 0, 0.45) !important;
+}
+
 .card-priority-pill {
   display: inline-flex !important;
   align-items: center !important;
@@ -1428,16 +1436,24 @@ input:focus, select:focus, textarea:focus {
 }
 
 .card-icon-box {
-  width: 56px !important;
-  height: 56px !important;
+  width: 58px !important;
+  height: 58px !important;
   border-radius: 16px !important;
   background: rgba(255, 255, 255, 0.18) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
+}
+
+.card-icon-divider {
+  width: 1px !important;
+  height: 52px !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  flex-shrink: 0 !important;
+  margin: 3px 2px 0 2px !important;
 }
 
 .card-text-col {
@@ -1445,6 +1461,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .card-title-text {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 1.08rem !important;
   font-weight: 800 !important;
   color: #FFFFFF !important;
@@ -1458,6 +1475,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .card-desc-text {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 0.86rem !important;
   color: rgba(255, 255, 255, 0.92) !important;
   line-height: 1.45 !important;
@@ -1475,7 +1493,8 @@ input:focus, select:focus, textarea:focus {
   justify-content: space-between !important;
   gap: 8px !important;
   margin-top: auto !important;
-  padding-top: 4px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .card-reporter-wrap {
@@ -1488,15 +1507,25 @@ input:focus, select:focus, textarea:focus {
   width: 34px !important;
   height: 34px !important;
   border-radius: 50% !important;
-  background: rgba(0, 0, 0, 0.24) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
   color: #FFFFFF !important;
   font-weight: 800 !important;
   font-size: 0.82rem !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
+}
+
+.issue-card-solved .card-reporter-avatar {
+  background: #00C853 !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.issue-card-unsolved .card-reporter-avatar {
+  background: #FF2A2A !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
 }
 
 .card-reporter-info {
@@ -1560,6 +1589,7 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 2px 6px rgba(2, 132, 199, 0.35) !important;
 }
 
+.issues-tagline-text,
 .issues-footer-text {
   font-size: 0.95rem !important;
   font-weight: 700 !important;
