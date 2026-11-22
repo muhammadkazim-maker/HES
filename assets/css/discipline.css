@@ -2487,11 +2487,12 @@ body.modal-open {
   }
   .brand-text {
     min-width: 0 !important;
-    flex-shrink: 1 !important;
+    flex: 1 1 auto !important;
     overflow: hidden !important;
   }
   .brand-text h1 {
-    font-size: 0.95rem !important;
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;
     line-height: 1.2 !important;
     margin: 0 !important;
     white-space: nowrap !important;
@@ -2509,7 +2510,7 @@ body.modal-open {
   }
   .brand-text .brand-tag,
   .brand-text .badge {
-    display: none !important; /* Hide secondary tag on mobile to prevent overflow */
+    display: none !important; /* Hide secondary tag on mobile to give full room to institute name */
   }
   .brand-text p {
     display: none !important;
@@ -2517,13 +2518,13 @@ body.modal-open {
   .header-actions {
     display: flex !important;
     align-items: center !important;
-    gap: 0.3rem !important;
+    gap: 0.25rem !important;
     flex-shrink: 0 !important;
   }
   .member-chip {
-    padding: 3px 6px 3px 4px !important;
-    font-size: 0.74rem !important;
-    gap: 4px !important;
+    padding: 2px 6px 2px 2px !important;
+    font-size: 0.72rem !important;
+    gap: 3px !important;
     flex-shrink: 0 !important;
     border-radius: 9999px !important;
   }
@@ -2533,17 +2534,17 @@ body.modal-open {
     font-size: 0.72rem !important;
   }
   .member-name-text {
-    max-width: 60px !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+    display: none !important; /* On mobile, avatar + role badge is shown to preserve school name space */
   }
   .header-actions .icon-btn {
-    width: 34px !important;
-    height: 34px !important;
-    font-size: 0.95rem !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.9rem !important;
     flex-shrink: 0 !important;
     border-radius: 8px !important;
+  }
+  .header-actions button[onclick*="openFontSettingsModal"] {
+    display: none !important; /* Font settings available inside settings modal */
   }
 
   /* 2. Three Main Boxes: Full-width, Tidy Stack */
