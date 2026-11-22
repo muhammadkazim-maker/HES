@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Outfit:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/discipline.css?v=v11priority">
+  <link rel="stylesheet" href="assets/css/discipline.css?v=v13replica">
 </head>
 <body>
 
@@ -422,23 +422,15 @@
             <div class="select-pill-wrap">
               <select id="issue-sort-select" class="issue-toolbar-select" aria-label="Sort issues">
                 <option value="newest">Newest</option>
-                <option value="priority">Priority (High first)</option>
                 <option value="efforts">Most efforts</option>
+                <option value="priority">Highest priority</option>
               </select>
             </div>
           </div>
           <button id="open-add-issue-btn" class="issue-add-btn" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>+ Add Issue</span>
+            <span>Add Issue</span>
           </button>
-        </div>
-
-        <!-- Priority Color Legend -->
-        <div class="issues-priority-legend" aria-label="Priority color legend">
-          <span class="legend-item"><span class="legend-dot dot-high"></span>High</span>
-          <span class="legend-item"><span class="legend-dot dot-medium"></span>Medium</span>
-          <span class="legend-item"><span class="legend-dot dot-low"></span>Low</span>
-          <span class="legend-item"><span class="legend-dot dot-solved"></span>Solved</span>
         </div>
 
         <!-- 4. Issues Cards 2x2 Grid -->
@@ -899,8 +891,8 @@
   <div id="toast-container" class="toast-container"></div>
 
   <!-- Scripts: Firebase Config, Auth System & Collaborative Application -->
-  <script src="assets/js/firebase-config.js?v=v11priority"></script>
-  <script src="assets/js/discipline-auth.js?v=v11priority"></script>
-  <script src="assets/js/discipline-app.js?v=v11priority"></script>
+  <script src="assets/js/firebase-config.js?v=v13replica"></script>
+  <script src="assets/js/discipline-auth.js?v=v13replica"></script>
+  <script src="assets/js/discipline-app.js?v=v13replica"></script>
 </body>
 </html>

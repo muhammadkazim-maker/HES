@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/discipline.css?v=v11priority">
+  <link rel="stylesheet" href="assets/css/discipline.css?v=v13replica">
 
   <style>
     /* Standalone Issues Hub Page Styling */
@@ -126,23 +126,15 @@
             <div class="select-pill-wrap">
               <select id="issue-sort-select" class="issue-toolbar-select" aria-label="Sort issues">
                 <option value="newest">Newest</option>
-                <option value="priority">Priority (High first)</option>
                 <option value="efforts">Most efforts</option>
+                <option value="priority">Highest priority</option>
               </select>
             </div>
           </div>
           <button id="open-add-issue-btn" class="issue-add-btn" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>+ Add Issue</span>
+            <span>Add Issue</span>
           </button>
-        </div>
-
-        <!-- Priority Color Legend -->
-        <div class="issues-priority-legend" aria-label="Priority color legend">
-          <span class="legend-item"><span class="legend-dot dot-high"></span>High</span>
-          <span class="legend-item"><span class="legend-dot dot-medium"></span>Medium</span>
-          <span class="legend-item"><span class="legend-dot dot-low"></span>Low</span>
-          <span class="legend-item"><span class="legend-dot dot-solved"></span>Solved</span>
         </div>
 
         <!-- 2x2 Grid for Issue Cards -->
@@ -216,10 +208,45 @@
   <div id="issue-detail-modal" class="modal-overlay">
     <div class="modal-container modal-wide">
       <div class="modal-header">
-        <h3 class="modal-title" id="detail-issue-title">Issue Details</h3>
+        <h3 id="detail-issue-title" class="modal-title urdu-text" dir="auto">Issue Detail</h3>
         <button class="modal-close-btn" onclick="closeModal('issue-detail-modal')" aria-label="Close">&times;</button>
       </div>
-      <div class="modal-body" id="issue-detail-content"></div>
+
+      <div class="modal-body">
+        <!-- Hero Details & Solved Callout -->
+        <div id="detail-issue-banner" class="issue-hero-banner"></div>
+
+        <!-- Solve / Reopen Actions (Visible to Creator or Admin) -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div id="detail-solve-btn-container"></div>
+        </div>
+
+        <!-- EFFORTS SECTION -->
+        <div style="border-top: 1px solid var(--border-color, #E2E8F0); padding-top: 1.25rem;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary, #0F172A); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            <span>Staff Efforts & Collaboration Timeline</span>
+          </h4>
+          <p class="form-helper" style="margin-bottom: 1rem; color: #64748B; font-size: 0.85rem;">Any staff member can add their action or contribution towards solving this problem.</p>
+
+          <!-- Add Effort Input Box -->
+          <form id="add-effort-form" style="margin-bottom: 1.5rem; background: var(--bg-surface-alt, #F8FAFC); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color, #E2E8F0);">
+            <label class="form-label" style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 6px;">Log Your Effort / Contribution:</label>
+            <textarea id="new-effort-text" rows="2" dir="auto" placeholder="Describe the action you took (e.g. Talked with sweepers, inspected water line, held class meeting... or اردو میں لکھیں)" required style="width: 100%; border: 1px solid #CBD5E1; border-radius: 8px; padding: 8px; font-family: inherit; font-size: 0.88rem;"></textarea>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+              <span style="font-size: 0.74rem; color: #64748B;">Attributed with your staff name & live timestamp</span>
+              <button type="submit" class="btn btn-primary btn-sm">+ Add Effort</button>
+            </div>
+          </form>
+
+          <!-- Timeline of Efforts -->
+          <div id="detail-efforts-list" class="efforts-timeline"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('issue-detail-modal')">Close</button>
+      </div>
     </div>
   </div>
 
@@ -229,9 +256,9 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
   <!-- Core App Scripts -->
-  <script src="assets/js/firebase-config.js?v=v11priority"></script>
-  <script src="assets/js/discipline-auth.js?v=v11priority"></script>
-  <script src="assets/js/discipline-app.js?v=v11priority"></script>
+  <script src="assets/js/firebase-config.js?v=v13replica"></script>
+  <script src="assets/js/discipline-auth.js?v=v13replica"></script>
+  <script src="assets/js/discipline-app.js?v=v13replica"></script>
 
   <script>
     // Ensure issues list renders immediately on standalone page load
