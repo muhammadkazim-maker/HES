@@ -43,6 +43,23 @@
   --prio-high: #F59E0B;
   --prio-urgent: #EF4444;
 
+  /* Issue Card Priority Color System Tokens */
+  --issue-high: #DC2626;
+  --issue-high-border: #991B1B;
+  --issue-high-text: #FFFFFF;
+
+  --issue-medium: #EA580C;
+  --issue-medium-border: #9A3412;
+  --issue-medium-text: #FFFFFF;
+
+  --issue-low: #FACC15;
+  --issue-low-border: #A16207;
+  --issue-low-text: #1F2937;
+
+  --issue-solved: #16A34A;
+  --issue-solved-border: #166534;
+  --issue-solved-text: #FFFFFF;
+
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
@@ -1320,20 +1337,87 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
-/* Card Styling: Vibrant Emerald Green & Vibrant Ruby Red */
+/* Priority Color Legend */
+.issues-priority-legend {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.25rem !important;
+  padding: 0.5rem 0.25rem 0.75rem 0.25rem !important;
+  margin-bottom: 0.5rem !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+}
+
+.issues-priority-legend::-webkit-scrollbar {
+  display: none !important;
+}
+
+.legend-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: var(--text-secondary, #64748B) !important;
+  flex-shrink: 0 !important;
+  user-select: none !important;
+}
+
+.legend-dot {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+}
+
+.legend-dot.dot-high {
+  background-color: var(--issue-high, #DC2626) !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.25) !important;
+}
+
+.legend-dot.dot-medium {
+  background-color: var(--issue-medium, #EA580C) !important;
+  box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.25) !important;
+}
+
+.legend-dot.dot-low {
+  background-color: var(--issue-low, #FACC15) !important;
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.35) !important;
+}
+
+.legend-dot.dot-solved {
+  background-color: var(--issue-solved, #16A34A) !important;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.25) !important;
+}
+
+/* Card Styling: Solid Priority & Resolution Colors with 6px Darker Left Border */
 .issue-card {
   border-radius: 20px !important;
   padding: 16px 18px 16px 18px !important;
-  color: #FFFFFF !important;
   border: none !important;
+  border-left: 6px solid transparent !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
   min-height: 205px !important;
   cursor: pointer !important;
-  transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+  transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease, transform 0.18s ease, box-shadow 0.18s ease !important;
   user-select: none !important;
   position: relative !important;
+  overflow: hidden !important;
+
+  /* Default CSS Variable Fallbacks */
+  --card-fg: #FFFFFF;
+  --card-fg-muted: rgba(255, 255, 255, 0.92);
+  --card-fg-dim: rgba(255, 255, 255, 0.80);
+  --card-pill-bg: rgba(255, 255, 255, 0.20);
+  --card-pill-border: rgba(255, 255, 255, 0.28);
+  --card-divider: rgba(255, 255, 255, 0.25);
+  --card-icon-box-bg: rgba(255, 255, 255, 0.20);
+  --card-icon-box-border: rgba(255, 255, 255, 0.32);
 }
 
 .issue-card:hover {
@@ -1344,14 +1428,68 @@ input:focus, select:focus, textarea:focus {
   transform: scale(0.985) !important;
 }
 
-.issue-card.issue-card-solved {
-  background: linear-gradient(135deg, #00A63E 0%, #007D2E 100%) !important;
-  box-shadow: 0 8px 22px rgba(0, 125, 46, 0.28) !important;
+/* 1. Unsolved + High Priority: Solid Red (#DC2626), 6px Left Border (#991B1B), White Text */
+.issue-card.issue-card-high {
+  background-color: var(--issue-high, #DC2626) !important;
+  border-left-color: var(--issue-high-border, #991B1B) !important;
+  color: var(--issue-high-text, #FFFFFF) !important;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.25) !important;
+  --card-fg: var(--issue-high-text, #FFFFFF);
+  --card-fg-muted: rgba(255, 255, 255, 0.92);
+  --card-fg-dim: rgba(255, 255, 255, 0.80);
+  --card-pill-bg: rgba(255, 255, 255, 0.20);
+  --card-pill-border: rgba(255, 255, 255, 0.28);
+  --card-divider: rgba(255, 255, 255, 0.25);
+  --card-icon-box-bg: rgba(255, 255, 255, 0.20);
+  --card-icon-box-border: rgba(255, 255, 255, 0.32);
 }
 
-.issue-card.issue-card-unsolved {
-  background: linear-gradient(135deg, #E01A1A 0%, #B80000 100%) !important;
-  box-shadow: 0 8px 22px rgba(184, 0, 0, 0.28) !important;
+/* 2. Unsolved + Medium Priority: Solid Orange (#EA580C), 6px Left Border (#9A3412), White Text */
+.issue-card.issue-card-medium {
+  background-color: var(--issue-medium, #EA580C) !important;
+  border-left-color: var(--issue-medium-border, #9A3412) !important;
+  color: var(--issue-medium-text, #FFFFFF) !important;
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.25) !important;
+  --card-fg: var(--issue-medium-text, #FFFFFF);
+  --card-fg-muted: rgba(255, 255, 255, 0.92);
+  --card-fg-dim: rgba(255, 255, 255, 0.80);
+  --card-pill-bg: rgba(255, 255, 255, 0.20);
+  --card-pill-border: rgba(255, 255, 255, 0.28);
+  --card-divider: rgba(255, 255, 255, 0.25);
+  --card-icon-box-bg: rgba(255, 255, 255, 0.20);
+  --card-icon-box-border: rgba(255, 255, 255, 0.32);
+}
+
+/* 3. Unsolved + Low Priority: Solid Yellow (#FACC15), 6px Left Border (#A16207), DARK Text (#1F2937) */
+.issue-card.issue-card-low {
+  background-color: var(--issue-low, #FACC15) !important;
+  border-left-color: var(--issue-low-border, #A16207) !important;
+  color: var(--issue-low-text, #1F2937) !important;
+  box-shadow: 0 8px 24px rgba(250, 204, 21, 0.25) !important;
+  --card-fg: var(--issue-low-text, #1F2937);
+  --card-fg-muted: rgba(31, 41, 55, 0.88);
+  --card-fg-dim: rgba(31, 41, 55, 0.75);
+  --card-pill-bg: rgba(31, 41, 55, 0.12);
+  --card-pill-border: rgba(31, 41, 55, 0.20);
+  --card-divider: rgba(31, 41, 55, 0.15);
+  --card-icon-box-bg: rgba(31, 41, 55, 0.10);
+  --card-icon-box-border: rgba(31, 41, 55, 0.18);
+}
+
+/* 4. Solved (Any Priority): Solid Green (#16A34A), 6px Left Border (#166534), White Text */
+.issue-card.issue-card-solved {
+  background-color: var(--issue-solved, #16A34A) !important;
+  border-left-color: var(--issue-solved-border, #166534) !important;
+  color: var(--issue-solved-text, #FFFFFF) !important;
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.25) !important;
+  --card-fg: var(--issue-solved-text, #FFFFFF);
+  --card-fg-muted: rgba(255, 255, 255, 0.92);
+  --card-fg-dim: rgba(255, 255, 255, 0.80);
+  --card-pill-bg: rgba(255, 255, 255, 0.20);
+  --card-pill-border: rgba(255, 255, 255, 0.28);
+  --card-divider: rgba(255, 255, 255, 0.25);
+  --card-icon-box-bg: rgba(255, 255, 255, 0.20);
+  --card-icon-box-border: rgba(255, 255, 255, 0.32);
 }
 
 /* Top Badges Row */
@@ -1369,65 +1507,29 @@ input:focus, select:focus, textarea:focus {
   gap: 8px !important;
 }
 
-.card-status-badge {
+.card-status-badge,
+.card-priority-pill,
+.card-category-pill,
+.card-effort-pill {
   display: inline-flex !important;
   align-items: center !important;
   gap: 5px !important;
-  background: rgba(0, 0, 0, 0.28) !important;
-  color: #FFFFFF !important;
+  background: var(--card-pill-bg) !important;
+  color: var(--card-fg) !important;
+  border: 1px solid var(--card-pill-border) !important;
   padding: 4px 12px !important;
   border-radius: 9999px !important;
   font-size: 0.78rem !important;
   font-weight: 700 !important;
-}
-
-.issue-card-solved .card-status-badge {
-  background: rgba(0, 70, 20, 0.45) !important;
-}
-
-.issue-card-unsolved .card-status-badge {
-  background: rgba(100, 0, 0, 0.45) !important;
+  letter-spacing: 0.2px !important;
+  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease !important;
 }
 
 .card-priority-pill {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 3px !important;
-  padding: 4px 12px !important;
-  border-radius: 9999px !important;
-  font-size: 0.78rem !important;
   font-weight: 800 !important;
-  letter-spacing: 0.3px !important;
 }
 
-.priority-pill-high {
-  background: #FDE047 !important;
-  color: #B91C1C !important;
-}
-
-.priority-pill-medium {
-  background: #FEF08A !important;
-  color: #B45309 !important;
-}
-
-.priority-pill-low {
-  background: #E0F2FE !important;
-  color: #0369A1 !important;
-}
-
-.card-category-pill {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  background: rgba(0, 0, 0, 0.32) !important;
-  color: #FFFFFF !important;
-  padding: 4px 12px !important;
-  border-radius: 9999px !important;
-  font-size: 0.78rem !important;
-  font-weight: 600 !important;
-}
-
-/* Middle Content Row: Icon Box + Title & Description */
+/* Middle Content Row: Icon Box + Divider + Title & Description */
 .card-content-row {
   display: flex !important;
   align-items: flex-start !important;
@@ -1439,21 +1541,29 @@ input:focus, select:focus, textarea:focus {
   width: 58px !important;
   height: 58px !important;
   border-radius: 16px !important;
-  background: rgba(255, 255, 255, 0.18) !important;
-  border: 1px solid rgba(255, 255, 255, 0.28) !important;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
+  background: var(--card-icon-box-bg) !important;
+  border: 1px solid var(--card-icon-box-border) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
+  transition: background-color 250ms ease, border-color 250ms ease !important;
+}
+
+.card-icon-box svg {
+  fill: var(--card-fg) !important;
+  color: var(--card-fg) !important;
+  transition: fill 250ms ease, color 250ms ease !important;
 }
 
 .card-icon-divider {
   width: 1px !important;
   height: 52px !important;
-  background: rgba(255, 255, 255, 0.25) !important;
+  background: var(--card-divider) !important;
   flex-shrink: 0 !important;
   margin: 3px 2px 0 2px !important;
+  transition: background-color 250ms ease !important;
 }
 
 .card-text-col {
@@ -1464,26 +1574,27 @@ input:focus, select:focus, textarea:focus {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 1.08rem !important;
   font-weight: 800 !important;
-  color: #FFFFFF !important;
+  color: var(--card-fg) !important;
   margin: 0 0 4px 0 !important;
   line-height: 1.32 !important;
   display: -webkit-box !important;
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+  transition: color 250ms ease !important;
 }
 
 .card-desc-text {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 0.86rem !important;
-  color: rgba(255, 255, 255, 0.92) !important;
+  color: var(--card-fg-muted) !important;
   line-height: 1.45 !important;
   margin: 0 !important;
   display: -webkit-box !important;
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
+  transition: color 250ms ease !important;
 }
 
 /* Bottom Footer Row */
@@ -1494,7 +1605,8 @@ input:focus, select:focus, textarea:focus {
   gap: 8px !important;
   margin-top: auto !important;
   padding-top: 12px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-top: 1px solid var(--card-divider) !important;
+  transition: border-color 250ms ease !important;
 }
 
 .card-reporter-wrap {
@@ -1507,25 +1619,16 @@ input:focus, select:focus, textarea:focus {
   width: 34px !important;
   height: 34px !important;
   border-radius: 50% !important;
-  background: rgba(255, 255, 255, 0.25) !important;
-  color: #FFFFFF !important;
+  background: var(--card-pill-bg) !important;
+  color: var(--card-fg) !important;
   font-weight: 800 !important;
   font-size: 0.82rem !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  border: 1.5px solid var(--card-pill-border) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
-}
-
-.issue-card-solved .card-reporter-avatar {
-  background: #00C853 !important;
-  border-color: rgba(255, 255, 255, 0.6) !important;
-}
-
-.issue-card-unsolved .card-reporter-avatar {
-  background: #FF2A2A !important;
-  border-color: rgba(255, 255, 255, 0.6) !important;
+  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease !important;
 }
 
 .card-reporter-info {
@@ -1535,27 +1638,20 @@ input:focus, select:focus, textarea:focus {
 
 .card-reporter-name {
   font-size: 0.82rem !important;
-  color: #FFFFFF !important;
+  color: var(--card-fg-muted) !important;
   line-height: 1.25 !important;
+  transition: color 250ms ease !important;
+}
+
+.card-reporter-name strong {
+  color: var(--card-fg) !important;
+  font-weight: 700 !important;
 }
 
 .card-reporter-date {
   font-size: 0.74rem !important;
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-
-.card-effort-pill {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  background: rgba(0, 0, 0, 0.28) !important;
-  border: 1px solid rgba(255, 255, 255, 0.28) !important;
-  border-radius: 9999px !important;
-  padding: 6px 14px !important;
-  color: #FFFFFF !important;
-  font-weight: 700 !important;
-  font-size: 0.82rem !important;
-  flex-shrink: 0 !important;
+  color: var(--card-fg-dim) !important;
+  transition: color 250ms ease !important;
 }
 
 /* 5. Modal Footer: Smooth Sky Blue Wave Banner */

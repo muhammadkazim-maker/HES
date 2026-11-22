@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/discipline.css?v=v9replica">
+  <link rel="stylesheet" href="assets/css/discipline.css?v=v11priority">
 
   <style>
     /* Standalone Issues Hub Page Styling */
@@ -126,8 +126,8 @@
             <div class="select-pill-wrap">
               <select id="issue-sort-select" class="issue-toolbar-select" aria-label="Sort issues">
                 <option value="newest">Newest</option>
+                <option value="priority">Priority (High first)</option>
                 <option value="efforts">Most efforts</option>
-                <option value="priority">Highest priority</option>
               </select>
             </div>
           </div>
@@ -135,6 +135,14 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             <span>+ Add Issue</span>
           </button>
+        </div>
+
+        <!-- Priority Color Legend -->
+        <div class="issues-priority-legend" aria-label="Priority color legend">
+          <span class="legend-item"><span class="legend-dot dot-high"></span>High</span>
+          <span class="legend-item"><span class="legend-dot dot-medium"></span>Medium</span>
+          <span class="legend-item"><span class="legend-dot dot-low"></span>Low</span>
+          <span class="legend-item"><span class="legend-dot dot-solved"></span>Solved</span>
         </div>
 
         <!-- 2x2 Grid for Issue Cards -->
@@ -221,9 +229,9 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
   <!-- Core App Scripts -->
-  <script src="assets/js/firebase-config.js?v=v9replica"></script>
-  <script src="assets/js/discipline-auth.js?v=v9replica"></script>
-  <script src="assets/js/discipline-app.js?v=v9replica"></script>
+  <script src="assets/js/firebase-config.js?v=v11priority"></script>
+  <script src="assets/js/discipline-auth.js?v=v11priority"></script>
+  <script src="assets/js/discipline-app.js?v=v11priority"></script>
 
   <script>
     // Ensure issues list renders immediately on standalone page load

@@ -53,32 +53,6 @@
     issues: [
       {
         id: 'iss-1',
-        title: 'Test Issue - Library AC not working',
-        description: 'The library air conditioner in the reading hall stopped functioning.',
-        category: 'Facilities',
-        priority: 'High',
-        status: 'solved',
-        creatorId: 'usr-admin-1',
-        creatorName: 'Principal Muhammad Ali Hamdani',
-        creatorRole: 'Admin',
-        createdAt: new Date().toISOString(),
-        solvedAt: new Date().toISOString(),
-        solvedById: 'usr-admin-1',
-        solvedByName: 'Principal Muhammad Ali Hamdani',
-        solvedByRole: 'Admin',
-        efforts: [
-          {
-            id: 'eff-1',
-            memberId: 'usr-admin-1',
-            memberName: 'Principal Muhammad Ali Hamdani',
-            memberRole: 'Admin',
-            text: 'HVAC technician inspected the indoor unit and replaced the faulty run capacitor. AC running cold now.',
-            timestamp: new Date().toISOString()
-          }
-        ]
-      },
-      {
-        id: 'iss-2',
         title: '2nd Floor boys washroom hygiene and water tap leakage',
         description: 'Sanitary conditions need immediate chemical wash and two flush valves require plumbing overhaul before noon.',
         category: 'Hygiene & Facilities',
@@ -94,7 +68,7 @@
         solvedByRole: null,
         efforts: [
           {
-            id: 'eff-2',
+            id: 'eff-1',
             memberId: 'usr-member-2',
             memberName: 'Ms. Sadia Parveen',
             memberRole: 'Member',
@@ -104,11 +78,11 @@
         ]
       },
       {
-        id: 'iss-3',
+        id: 'iss-2',
         title: 'Morning assembly late arrivals by 9th and 10th grade students',
         description: 'Over 25 students consistently arrive after 8:00 AM, missing the morning national anthem and discipline briefing.',
         category: 'Punctuality',
-        priority: 'High',
+        priority: 'Medium',
         status: 'unsolved',
         creatorId: 'usr-member-1',
         creatorName: 'Mr. Tariq Mehmood',
@@ -120,7 +94,7 @@
         solvedByRole: null,
         efforts: [
           {
-            id: 'eff-3',
+            id: 'eff-2',
             memberId: 'usr-member-1',
             memberName: 'Mr. Tariq Mehmood',
             memberRole: 'Member',
@@ -128,7 +102,7 @@
             timestamp: new Date(Date.now() - 169200000).toISOString()
           },
           {
-            id: 'eff-4',
+            id: 'eff-3',
             memberId: 'usr-admin-1',
             memberName: 'Principal Muhammad Ali Hamdani',
             memberRole: 'Admin',
@@ -138,7 +112,59 @@
         ]
       },
       {
+        id: 'iss-3',
+        title: 'Classroom 7B window latch loose and vibrating in windy weather',
+        description: 'Corner window latch needs screw tightening to prevent rattling during quiet study periods.',
+        category: 'Facilities',
+        priority: 'Low',
+        status: 'unsolved',
+        creatorId: 'usr-member-2',
+        creatorName: 'Ms. Sadia Parveen',
+        creatorRole: 'Member',
+        createdAt: new Date(Date.now() - 43200000).toISOString(),
+        solvedAt: null,
+        solvedById: null,
+        solvedByName: null,
+        solvedByRole: null,
+        efforts: [
+          {
+            id: 'eff-4',
+            memberId: 'usr-member-2',
+            memberName: 'Ms. Sadia Parveen',
+            memberRole: 'Member',
+            text: 'Reported to campus carpenter during morning round. Added to repair ticket list.',
+            timestamp: new Date(Date.now() - 40000000).toISOString()
+          }
+        ]
+      },
+      {
         id: 'iss-4',
+        title: 'Test Issue - Library AC not working',
+        description: 'The library air conditioner in the reading hall stopped functioning.',
+        category: 'Facilities',
+        priority: 'High',
+        status: 'solved',
+        creatorId: 'usr-admin-1',
+        creatorName: 'Principal Muhammad Ali Hamdani',
+        creatorRole: 'Admin',
+        createdAt: new Date().toISOString(),
+        solvedAt: new Date().toISOString(),
+        solvedById: 'usr-admin-1',
+        solvedByName: 'Principal Muhammad Ali Hamdani',
+        solvedByRole: 'Admin',
+        efforts: [
+          {
+            id: 'eff-5',
+            memberId: 'usr-admin-1',
+            memberName: 'Principal Muhammad Ali Hamdani',
+            memberRole: 'Admin',
+            text: 'HVAC technician inspected the indoor unit and replaced the faulty run capacitor. AC running cold now.',
+            timestamp: new Date().toISOString()
+          }
+        ]
+      },
+      {
+        id: 'iss-5',
         title: 'Physics & Computer Lab digital projector bulb replacement',
         description: 'Lab projector lamp burned out during morning class lecture. Replacement bulb needed.',
         category: 'Academics & IT',
@@ -154,7 +180,7 @@
         solvedByRole: 'Admin',
         efforts: [
           {
-            id: 'eff-5',
+            id: 'eff-6',
             memberId: 'usr-member-1',
             memberName: 'Mr. Tariq Mehmood',
             memberRole: 'Member',
@@ -162,12 +188,38 @@
             timestamp: new Date(Date.now() - 340000000).toISOString()
           },
           {
-            id: 'eff-6',
+            id: 'eff-7',
             memberId: 'usr-admin-1',
             memberName: 'Principal Muhammad Ali Hamdani',
             memberRole: 'Admin',
             text: 'Authorized new Epson projector lamp from school inventory. Technician installed and tested working.',
             timestamp: new Date(Date.now() - 260000000).toISOString()
+          }
+        ]
+      },
+      {
+        id: 'iss-6',
+        title: 'Playground water cooler paper cup dispenser refilling',
+        description: 'Dispensers refilled with fresh sanitary paper cups and hygiene instructions placed.',
+        category: 'Hygiene & Facilities',
+        priority: 'Low',
+        status: 'solved',
+        creatorId: 'usr-member-1',
+        creatorName: 'Mr. Tariq Mehmood',
+        creatorRole: 'Member',
+        createdAt: new Date(Date.now() - 216000000).toISOString(),
+        solvedAt: new Date(Date.now() - 180000000).toISOString(),
+        solvedById: 'usr-member-1',
+        solvedByName: 'Mr. Tariq Mehmood',
+        solvedByRole: 'Member',
+        efforts: [
+          {
+            id: 'eff-8',
+            memberId: 'usr-member-1',
+            memberName: 'Mr. Tariq Mehmood',
+            memberRole: 'Member',
+            text: 'Purchased 5 sleeves of biodegradable paper cups and filled dispenser.',
+            timestamp: new Date(Date.now() - 190000000).toISOString()
           }
         ]
       }
@@ -231,7 +283,7 @@
 
     // 1. Water / Plumbing / Washroom / Tap (Card 2)
     if (text.includes('washroom') || text.includes('water') || text.includes('tap') || text.includes('leakage') || text.includes('plumbing') || text.includes('sanitary') || text.includes('toilet') || text.includes('pipe')) {
-      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="#FFFFFF">
+      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="currentColor">
         <rect x="2" y="11" width="3" height="8" rx="1.5"/>
         <rect x="9" y="3" width="9" height="3" rx="1.5"/>
         <rect x="12" y="5" width="3" height="6"/>
@@ -243,7 +295,7 @@
 
     // 2. Projector / Lab / Computer / IT / Screen / Laptop (Card 4)
     if (text.includes('projector') || text.includes('computer') || text.includes('lab') || text.includes('laptop') || text.includes('bulb') || text.includes('digital') || text.includes('physics')) {
-      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="#FFFFFF">
+      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="currentColor">
         <path d="M6 6C4.9 6 4 6.9 4 8V19C4 20.1 4.9 21 6 21H26C27.1 21 28 20.1 28 19V8C28 6.9 27.1 6 26 6H6ZM7 9H25V18H7V9Z"/>
         <path d="M2 22C2 21.45 2.45 21 3 21H29C29.55 21 30 21.45 30 22L28.5 25C28.3 25.55 27.7 26 27.1 26H4.9C4.3 26 3.7 25.55 3.5 25L2 22Z"/>
       </svg>`;
@@ -251,7 +303,7 @@
 
     // 3. Morning Assembly / Late arrivals / Punctuality / Calendar (Card 3)
     if (text.includes('assembly') || text.includes('late') || text.includes('morning') || text.includes('punctual') || text.includes('arrival') || text.includes('anthem') || text.includes('time') || text.includes('clock') || text.includes('calendar')) {
-      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="#FFFFFF">
+      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="currentColor">
         <rect x="8" y="3" width="3" height="5" rx="1.5"/>
         <rect x="21" y="3" width="3" height="5" rx="1.5"/>
         <path d="M5 6C4 6 3 7 3 8V26C3 27.1 3.9 28 5 28H27C28.1 28 29 27.1 29 26V8C29 7 28 6 27 6H25V8C25 8.55 24.55 9 24 9C23.45 9 23 8.55 23 8V6H9V8C9 8.55 8.55 9 8 9C7.45 9 7 8.55 7 8V6H5ZM6 12H26V25H6V12Z"/>
@@ -266,14 +318,28 @@
 
     // 4. Library / Air Conditioner / Reading / Book (Card 1)
     if (text.includes('library') || text.includes('air conditioner') || text.includes('reading') || text.includes('textbook') || /\bac\b/i.test(text)) {
-      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="#FFFFFF">
+      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="currentColor">
         <path d="M4 6.5C4 5.4 4.9 4.5 6 4.5H13C14.4 4.5 15.5 5.6 15.5 7V24C15.5 24.8 14.8 25.5 14 25.5H6C4.9 25.5 4 24.6 4 23.5V6.5Z"/>
         <path d="M28 6.5C28 5.4 27.1 4.5 26 4.5H19C17.6 4.5 16.5 5.6 16.5 7V24C16.5 24.8 17.2 25.5 18 25.5H26C27.1 25.5 28 24.6 28 23.5V6.5Z"/>
       </svg>`;
     }
 
+    // 5. Window / Glass / Latch / Repair
+    if (text.includes('window') || text.includes('glass') || text.includes('latch') || text.includes('door') || text.includes('rattle')) {
+      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="currentColor">
+        <path d="M5 5C5 3.9 5.9 3 7 3H25C26.1 3 27 3.9 27 5V27C27 28.1 26.1 29 25 29H7C5.9 29 5 28.1 5 27V5ZM7 5V14H14V5H7ZM16 5V14H25V5H16ZM7 16V27H14V16H7ZM16 16V27H25V16H16Z"/>
+      </svg>`;
+    }
+
+    // 6. Water Cooler / Dispenser / Cups / Hygiene
+    if (text.includes('cooler') || text.includes('cup') || text.includes('dispenser') || text.includes('drink')) {
+      return `<svg width="34" height="34" viewBox="0 0 32 32" fill="currentColor">
+        <path d="M8 4C8 3.45 8.45 3 9 3H23C23.55 3 24 3.45 24 4V16C24 18.2 22.2 20 20 20H12C9.8 20 8 18.2 8 16V4ZM10 5V15C10 16.1 10.9 17 12 17H20C21.1 17 22 16.1 22 15V5H10ZM13 22H19V25H23V27C23 28.1 22.1 29 21 29H11C9.9 29 9 28.1 9 27V25H13V22Z"/>
+      </svg>`;
+    }
+
     // Fallback
-    return `<svg width="34" height="34" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>`;
+    return `<svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>`;
   }
 
   function getCategoryIcon(cat) {
@@ -374,8 +440,8 @@
         if (stored) {
           const parsed = JSON.parse(stored);
           if (parsed && Array.isArray(parsed.students) && Array.isArray(parsed.issues)) {
-            const hasLibraryAC = parsed.issues.some(i => i.title && i.title.includes('Library AC'));
-            if (!hasLibraryAC) {
+            const hasAllCombos = parsed.issues.length >= 6 && parsed.issues.some(i => i.priority === 'Low' && i.status === 'unsolved');
+            if (!hasAllCombos) {
               parsed.issues = JSON.parse(JSON.stringify(INITIAL_SEED.issues));
             }
             return parsed;
@@ -391,8 +457,8 @@
       try {
         const idbData = await idbStorage.get('tracker_payload');
         if (idbData && Array.isArray(idbData.students)) {
-          const hasLibraryAC = Array.isArray(idbData.issues) && idbData.issues.some(i => i.title && i.title.includes('Library AC'));
-          if (!hasLibraryAC) {
+          const hasAllCombos = Array.isArray(idbData.issues) && idbData.issues.length >= 6 && idbData.issues.some(i => i.priority === 'Low' && i.status === 'unsolved');
+          if (!hasAllCombos) {
             idbData.issues = JSON.parse(JSON.stringify(INITIAL_SEED.issues));
             idbStorage.set('tracker_payload', idbData);
           }
@@ -796,6 +862,14 @@
       issue.solvedByRole = null;
 
       this.save(`Issue REOPENED: "${issue.title}"`);
+      return true;
+    }
+
+    changeIssuePriority(issueId, newPriority) {
+      const issue = this.getIssueById(issueId);
+      if (!issue) return false;
+      issue.priority = newPriority;
+      this.save(`Issue priority updated to "${newPriority}": "${issue.title}"`);
       return true;
     }
 
@@ -1918,8 +1992,20 @@
         const mainIconSvg = getIssueMainIcon(iss);
         const categoryIconSvg = getCategoryIcon(iss.category);
 
+        // Determine card color class based on priority and solved status
+        let cardColorClass = '';
+        if (isSolved) {
+          cardColorClass = 'issue-card-solved';
+        } else if (priority === 'High') {
+          cardColorClass = 'issue-card-high issue-card-unsolved';
+        } else if (priority === 'Medium') {
+          cardColorClass = 'issue-card-medium issue-card-unsolved';
+        } else {
+          cardColorClass = 'issue-card-low issue-card-unsolved';
+        }
+
         return `
-          <div class="issue-card ${isSolved ? 'issue-card-solved' : 'issue-card-unsolved'}" onclick="window.appController.openIssueDetail('${iss.id}')">
+          <div class="issue-card ${cardColorClass}" onclick="window.appController.openIssueDetail('${iss.id}')">
             <!-- 1. Top Badges Row -->
             <div class="card-badges-row">
               <div class="card-badges-left">
@@ -2038,9 +2124,16 @@
           ` : ''}
 
           <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
-            <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
               <span class="badge-status ${isSolved ? 'badge-solved' : 'badge-unsolved'}">${isSolved ? '🟢 Solved' : '🔴 Unsolved'}</span>
-              <span class="badge-priority priority-${issue.priority.toLowerCase()}">${issue.priority} Priority</span>
+              <label style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 700;">
+                Priority:
+                <select class="issue-toolbar-select" style="height: 30px; padding: 2px 10px; font-size: 0.78rem; border-radius: 9999px; background: var(--bg-surface); cursor: pointer;" onchange="window.appController.changeIssuePriority('${issue.id}', this.value)" aria-label="Change Priority">
+                  <option value="High" ${issue.priority === 'High' ? 'selected' : ''}>High</option>
+                  <option value="Medium" ${issue.priority === 'Medium' ? 'selected' : ''}>Medium</option>
+                  <option value="Low" ${issue.priority === 'Low' ? 'selected' : ''}>Low</option>
+                </select>
+              </label>
               <span style="font-size: 0.78rem; background: var(--bg-surface); padding: 2px 8px; border-radius: var(--radius-full); border: 1px solid var(--border-color);">${escapeHtml(issue.category)}</span>
             </div>
             <div style="font-size: 0.8rem; color: var(--text-muted);">Created: ${formatDateTime(issue.createdAt)}</div>
@@ -2153,6 +2246,15 @@
           }
         }
       );
+    }
+
+    changeIssuePriority(issueId, newPriority) {
+      store.changeIssuePriority(issueId, newPriority);
+      showToast(`Priority updated to ${newPriority}`, 'success');
+      this.renderIssuesHub();
+      if (this.activeIssueId === issueId) {
+        this.renderIssueDetail(issueId);
+      }
     }
 
     reopenIssueConfirm(issueId) {
@@ -2681,7 +2783,7 @@
   // Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./discipline-sw.js?v=v9replica')
+      navigator.serviceWorker.register('./discipline-sw.js?v=v11priority')
         .catch(err => console.log('SW registration error:', err));
     });
   }
