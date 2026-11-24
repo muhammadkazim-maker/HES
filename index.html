@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/discipline.css?v=v32combosquare">
+  <link rel="stylesheet" href="assets/css/discipline.css?v=v33masterform">
 </head>
 <body>
 
@@ -433,21 +433,21 @@
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
               <label for="violation-details-input" class="vf-field-label">Violation Details *</label>
             </div>
-            <textarea id="violation-details-input" class="form-control vf-textarea-bar" rows="2" dir="auto" placeholder="Describe the violation incident details..." required></textarea>
+            <textarea id="violation-details-input" class="form-control vf-textarea-bar" rows="2" dir="auto" placeholder="Describe the incident details (English or اردو میں تفصیل لکھیں)..." required></textarea>
             
             <div class="quick-tags vf-quick-tags">
-              <span class="form-helper" style="display: block; width: 100%; margin-bottom: 2px; font-weight: 700;">Tap quick infraction tag:</span>
+              <span class="form-helper" style="display: block; width: 100%; margin-bottom: 3px; font-weight: 700; font-size: 0.76rem; color: var(--text-secondary);">Tap quick infraction tag:</span>
               <button type="button" class="tag-btn" data-tag="Late Arrival">Late Arrival</button>
               <button type="button" class="tag-btn" data-tag="Uniform Violation">Uniform Violation</button>
               <button type="button" class="tag-btn" data-tag="Disruptive Behavior">Disruptive Behavior</button>
               <button type="button" class="tag-btn" data-tag="Fighting / Bullying">Fighting / Bullying</button>
-              <button type="button" class="tag-btn" data-tag="Mobile Phone in Class">Mobile Phone</button>
+              <button type="button" class="tag-btn" data-tag="Mobile Phone">Mobile Phone</button>
               <button type="button" class="tag-btn" data-tag="Incomplete Homework">Incomplete Homework</button>
-              <button type="button" class="tag-btn" data-tag="Disrespect to Teacher">Disrespect</button>
+              <button type="button" class="tag-btn" data-tag="Disrespect">Disrespect</button>
             </div>
           </div>
 
-          <!-- Row 5: Severity Levels Section -->
+          <!-- Row 5: Severity Levels Section (Minimal, Elegant, No Icons) -->
           <div class="form-group vf-field-group" style="margin-bottom: 0.25rem;">
             <div class="vf-field-bar">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -455,34 +455,24 @@
             </div>
             <div class="severity-selector vf-severity-selector">
               <button type="button" class="sev-btn btn-sev-low" data-sev="Low" aria-label="Low Severity (5 points)">
-                <span class="sev-icon">🟢</span>
                 <span class="sev-title">Low</span>
                 <span class="sev-points">+5 pts</span>
-                <span class="sev-check">✓</span>
               </button>
               <button type="button" class="sev-btn btn-sev-medium active" data-sev="Medium" aria-label="Medium Severity (12 points)">
-                <span class="sev-icon">🟡</span>
                 <span class="sev-title">Medium</span>
                 <span class="sev-points">+12 pts</span>
-                <span class="sev-check">✓</span>
               </button>
               <button type="button" class="sev-btn btn-sev-high" data-sev="High" aria-label="High Severity (25 points)">
-                <span class="sev-icon">🟠</span>
                 <span class="sev-title">High</span>
                 <span class="sev-points">+25 pts</span>
-                <span class="sev-check">✓</span>
               </button>
               <button type="button" class="sev-btn btn-sev-extreme" data-sev="Extreme" aria-label="Extreme Severity (45 points)">
-                <span class="sev-icon">🔴</span>
                 <span class="sev-title">Extreme</span>
                 <span class="sev-points">+45 pts</span>
-                <span class="sev-check">✓</span>
               </button>
               <button type="button" class="sev-btn btn-sev-ultra" data-sev="Ultra" aria-label="Ultra Severity (75 points)">
-                <span class="sev-icon">🟣</span>
                 <span class="sev-title">Ultra</span>
                 <span class="sev-points">+75 pts</span>
-                <span class="sev-check">✓</span>
               </button>
             </div>
           </div>
@@ -1057,9 +1047,9 @@
   <div id="toast-container" class="toast-container"></div>
 
   <!-- Scripts: Firebase Config, Auth System & Collaborative Application -->
-  <script src="assets/js/firebase-config.js?v=v32combosquare"></script>
-  <script src="assets/js/discipline-auth.js?v=v32combosquare"></script>
-  <script src="assets/js/discipline-app.js?v=v32combosquare"></script>
+  <script src="assets/js/firebase-config.js?v=v33masterform"></script>
+  <script src="assets/js/discipline-auth.js?v=v33masterform"></script>
+  <script src="assets/js/discipline-app.js?v=v33masterform"></script>
 
   <!-- Service Worker Registration for Instant Launch & Offline Mode -->
   <script>

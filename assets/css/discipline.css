@@ -3356,37 +3356,21 @@ img, svg {
 
 /* Centered High-Visibility Watermark of Violation Hazard Sign in Form */
 .violation-form-dialog::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  transform: translate(-50%, -50%);
-  width: 270px;
-  height: 270px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC2626' fill-opacity='0.11' stroke='%23DC2626' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cline x1='12' y1='9' x2='12' y2='13' stroke='%23DC2626' stroke-width='2.4'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17' stroke='%23DC2626' stroke-width='3'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  opacity: 0.16;
-  pointer-events: none;
-  z-index: 0;
+  display: none !important;
 }
 
-[data-theme="dark"] .violation-form-dialog::before {
-  opacity: 0.22;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23EF4444' fill-opacity='0.14' stroke='%23EF4444' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cline x1='12' y1='9' x2='12' y2='13' stroke='%23EF4444' stroke-width='2.4'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17' stroke='%23EF4444' stroke-width='3'/%3E%3C/svg%3E");
-}
-
-/* Explicit In-DOM Form Body Watermark */
+/* Explicit In-DOM Form Body Watermark: Reusing Header Warning Hazard Emblem, Perfectly Centered */
 .vf-form-watermark {
   position: absolute;
   left: 50%;
-  top: 52%;
+  top: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
   height: 250px;
+  max-width: 60%;
+  max-height: 60%;
   color: #DC2626;
-  opacity: 0.14;
+  opacity: 0.12;
   pointer-events: none;
   z-index: 0;
   display: flex;
@@ -3402,7 +3386,7 @@ img, svg {
 
 [data-theme="dark"] .vf-form-watermark {
   color: #EF4444;
-  opacity: 0.20;
+  opacity: 0.18;
 }
 
 /* Curved Rectangular Violation Form Header Bar */
@@ -3425,6 +3409,8 @@ img, svg {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
 }
 
 .vf-header-icon-wrap {
@@ -3444,6 +3430,7 @@ img, svg {
   display: flex;
   flex-direction: column;
   gap: 0.05rem;
+  min-width: 0;
 }
 
 .vf-bar-title {
@@ -3460,27 +3447,42 @@ img, svg {
   color: rgba(255, 255, 255, 0.88);
   font-weight: 600;
   letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Close Button on PC */
 .vf-close-btn {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #FFFFFF;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.15s ease;
+  flex-shrink: 0;
 }
 
 .vf-close-btn:hover {
   background: rgba(255, 255, 255, 0.32);
-  transform: scale(1.05);
+  transform: scale(1.06);
+}
+
+/* Remove cross sign on mobile, keep on PC */
+@media (max-width: 768px) {
+  .violation-form-header-bar .vf-close-btn {
+    display: none !important;
+  }
+  .vf-bar-subtitle {
+    white-space: normal;
+  }
 }
 
 .vf-modal-body {
@@ -3529,7 +3531,7 @@ img, svg {
   margin-bottom: 0.1rem;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 640px) {
   .vf-row-2col {
     display: flex;
     flex-direction: column;
@@ -3858,34 +3860,232 @@ img, svg {
 }
 
 .vf-quick-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
   margin-top: 0.35rem;
 }
 
-/* Enhanced Severity Selector */
+.vf-quick-tags .tag-btn {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.vf-quick-tags .tag-btn:hover {
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.3);
+  color: #DC2626;
+  transform: translateY(-1px);
+}
+
+.vf-quick-tags .tag-btn:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Clean, Minimal & Professional 5-Severity Selector (No icons, No checkmarks)
+   ========================================================================== */
 .vf-severity-selector {
-  gap: 0.4rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.45rem;
+  width: 100%;
+  margin-top: 0.35rem;
 }
 
 .vf-severity-selector .sev-btn {
-  border-radius: 10px;
-  padding: 0.45rem 0.15rem;
-  min-height: 48px;
-  border-width: 2px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.18rem !important;
+  padding: 0.55rem 0.25rem !important;
+  min-height: 52px !important;
+  border-radius: 9px !important;
+  border: 1.5px solid transparent !important;
+  cursor: pointer !important;
+  transition: all 0.16s ease !important;
+  text-align: center !important;
+  position: relative !important;
+  box-shadow: none !important;
 }
 
-.vf-severity-selector .sev-icon {
-  font-size: 0.82rem;
-  line-height: 1;
+.vf-severity-selector .sev-icon,
+.vf-severity-selector .sev-check {
+  display: none !important;
 }
 
 .vf-severity-selector .sev-title {
-  font-size: 0.78rem;
-  font-weight: 800;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
 }
 
-.vf-severity-selector .sev-btn.active {
-  box-shadow: 0 0 0 2px var(--bg-surface), 0 0 0 4px currentColor, 0 6px 14px rgba(0, 0, 0, 0.22);
-  transform: translateY(-2px);
+.vf-severity-selector .sev-points {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  opacity: 0.88 !important;
+  line-height: 1.2 !important;
+}
+
+/* 1. Low: Soft Green */
+.vf-severity-selector .btn-sev-low {
+  background: #ECFDF5 !important;
+  border-color: #A7F3D0 !important;
+  color: #065F46 !important;
+}
+.vf-severity-selector .btn-sev-low:hover {
+  background: #D1FAE5 !important;
+  border-color: #6EE7B7 !important;
+}
+.vf-severity-selector .btn-sev-low.active {
+  background: #D1FAE5 !important;
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.35) !important;
+  font-weight: 800 !important;
+}
+
+/* 2. Medium: Soft Yellow/Golden */
+.vf-severity-selector .btn-sev-medium {
+  background: #FEFCE8 !important;
+  border-color: #FDE68A !important;
+  color: #854D0E !important;
+}
+.vf-severity-selector .btn-sev-medium:hover {
+  background: #FEF9C3 !important;
+  border-color: #FCD34D !important;
+}
+.vf-severity-selector .btn-sev-medium.active {
+  background: #FEF9C3 !important;
+  border-color: #D97706 !important;
+  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.35) !important;
+  font-weight: 800 !important;
+}
+
+/* 3. High: Soft Orange */
+.vf-severity-selector .btn-sev-high {
+  background: #FFF7ED !important;
+  border-color: #FED7AA !important;
+  color: #9A3412 !important;
+}
+.vf-severity-selector .btn-sev-high:hover {
+  background: #FFEDD5 !important;
+  border-color: #FDBA74 !important;
+}
+.vf-severity-selector .btn-sev-high.active {
+  background: #FFEDD5 !important;
+  border-color: #EA580C !important;
+  box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.35) !important;
+  font-weight: 800 !important;
+}
+
+/* 4. Extreme: Soft Red/Pink */
+.vf-severity-selector .btn-sev-extreme {
+  background: #FEF2F2 !important;
+  border-color: #FECACA !important;
+  color: #991B1B !important;
+}
+.vf-severity-selector .btn-sev-extreme:hover {
+  background: #FEE2E2 !important;
+  border-color: #FCA5A5 !important;
+}
+.vf-severity-selector .btn-sev-extreme.active {
+  background: #FEE2E2 !important;
+  border-color: #DC2626 !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.35) !important;
+  font-weight: 800 !important;
+}
+
+/* 5. Ultra: Deep Crimson or Sophisticated Purple */
+.vf-severity-selector .btn-sev-ultra {
+  background: #581C87 !important;
+  border-color: #7E22CE !important;
+  color: #FFFFFF !important;
+}
+.vf-severity-selector .btn-sev-ultra:hover {
+  background: #6B21A8 !important;
+  border-color: #9333EA !important;
+}
+.vf-severity-selector .btn-sev-ultra.active {
+  background: #4A044E !important;
+  border-color: #A21CAF !important;
+  box-shadow: 0 0 0 2px rgba(162, 28, 175, 0.45) !important;
+  font-weight: 800 !important;
+}
+
+/* Dark theme overrides for severity cards */
+[data-theme="dark"] .vf-severity-selector .btn-sev-low {
+  background: rgba(6, 95, 70, 0.25) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  color: #6EE7B7 !important;
+}
+[data-theme="dark"] .vf-severity-selector .btn-sev-low.active {
+  background: rgba(6, 95, 70, 0.45) !important;
+  border-color: #10B981 !important;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.35) !important;
+}
+
+[data-theme="dark"] .vf-severity-selector .btn-sev-medium {
+  background: rgba(133, 77, 14, 0.25) !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  color: #FCD34D !important;
+}
+[data-theme="dark"] .vf-severity-selector .btn-sev-medium.active {
+  background: rgba(133, 77, 14, 0.45) !important;
+  border-color: #F59E0B !important;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.35) !important;
+}
+
+[data-theme="dark"] .vf-severity-selector .btn-sev-high {
+  background: rgba(154, 52, 18, 0.25) !important;
+  border-color: rgba(249, 115, 22, 0.35) !important;
+  color: #FDBA74 !important;
+}
+[data-theme="dark"] .vf-severity-selector .btn-sev-high.active {
+  background: rgba(154, 52, 18, 0.45) !important;
+  border-color: #F97316 !important;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.35) !important;
+}
+
+[data-theme="dark"] .vf-severity-selector .btn-sev-extreme {
+  background: rgba(153, 27, 27, 0.25) !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+  color: #FCA5A5 !important;
+}
+[data-theme="dark"] .vf-severity-selector .btn-sev-extreme.active {
+  background: rgba(153, 27, 27, 0.45) !important;
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.35) !important;
+}
+
+[data-theme="dark"] .vf-severity-selector .btn-sev-ultra {
+  background: rgba(88, 28, 135, 0.4) !important;
+  border-color: rgba(168, 85, 247, 0.4) !important;
+  color: #E9D5FF !important;
+}
+[data-theme="dark"] .vf-severity-selector .btn-sev-ultra.active {
+  background: rgba(88, 28, 135, 0.7) !important;
+  border-color: #C084FC !important;
+  box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.4) !important;
+}
+
+/* Mobile: Responsive 2-column grid, with Ultra spanning full width */
+@media (max-width: 580px) {
+  .vf-severity-selector {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.45rem !important;
+  }
+  .vf-severity-selector .btn-sev-ultra {
+    grid-column: span 2 !important;
+  }
 }
 
 /* Dynamic Colored Violation Level Box */
@@ -4075,4 +4275,20 @@ img, svg {
   background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%) !important;
   box-shadow: 0 6px 18px rgba(220, 38, 38, 0.45);
   transform: translateY(-1px);
+}
+
+@media (max-width: 580px) {
+  .vf-modal-footer {
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+  }
+  .vf-cancel-btn {
+    flex: 1;
+    min-height: 42px;
+  }
+  .vf-submit-btn {
+    flex: 2;
+    min-height: 42px;
+    justify-content: center;
+  }
 }
