@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/discipline.css?v=v30smoothwatermark">
+  <link rel="stylesheet" href="assets/css/discipline.css?v=v31combobox">
 </head>
 <body>
 
@@ -370,39 +370,35 @@
 
           <!-- Row 2: Class Section (dropdown or manual type) & Parent Phone Number (Optional) -->
           <div class="vf-row-2col">
-            <!-- Class Section (Dropdown with Manual Type Option) -->
+            <!-- Class Section (Unified Dropdown & Manual Typing Combobox) -->
             <div class="form-group vf-field-group">
-              <div class="vf-field-bar" style="display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center; gap: 0.4rem;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
-                  <label for="v-class-select" class="vf-field-label">Class <span class="vf-optional-label">(Optional)</span></label>
-                </div>
-                <button type="button" id="v-class-mode-toggle" class="vf-mode-toggle-btn" title="Toggle between dropdown and manual typing">
-                  <span id="v-class-toggle-text">✏️ Type Manually</span>
+              <div class="vf-field-bar">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+                <label for="v-class-select" class="vf-field-label">Class <span class="vf-optional-label">(Optional)</span></label>
+              </div>
+              <div class="vf-combobox-wrap" id="v-class-combobox-wrap">
+                <input type="text" id="v-class-select" class="form-control vf-combobox-input" placeholder="Select or type class..." autocomplete="off">
+                <button type="button" id="v-class-dropdown-trigger" class="vf-combobox-arrow-btn" aria-label="Open classes dropdown" tabindex="-1">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
                 </button>
-              </div>
-              <div class="vf-input-wrap" id="v-class-dropdown-wrap">
-                <select id="v-class-select" class="form-control vf-select-bar">
-                  <option value="">-- Select Class --</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="pre9">pre9</option>
-                  <option value="pre9(Arts)">pre9(Arts)</option>
-                  <option value="9A">9A</option>
-                  <option value="9B">9B</option>
-                  <option value="9(Arts)">9(Arts)</option>
-                  <option value="10">10</option>
-                  <option value="10(arts)">10(arts)</option>
-                  <option value="11">11</option>
-                  <option value="11(arts)">11(arts)</option>
-                  <option value="12">12</option>
-                  <option value="12(arts)">12(arts)</option>
-                  <option value="__manual__">✏️ Other (Type Manually)...</option>
-                </select>
-              </div>
-              <div class="vf-input-wrap" id="v-class-manual-wrap" style="display: none;">
-                <input type="text" id="v-class-manual-input" class="form-control vf-input-bar" placeholder="Type class name (e.g. 10, 9A, 8)...">
+                <div id="v-class-dropdown-menu" class="vf-combobox-menu">
+                  <div class="vf-combobox-item" data-value="6">6</div>
+                  <div class="vf-combobox-item" data-value="7">7</div>
+                  <div class="vf-combobox-item" data-value="8">8</div>
+                  <div class="vf-combobox-item" data-value="pre9">pre9</div>
+                  <div class="vf-combobox-item" data-value="pre9(Arts)">pre9(Arts)</div>
+                  <div class="vf-combobox-item" data-value="9A">9A</div>
+                  <div class="vf-combobox-item" data-value="9B">9B</div>
+                  <div class="vf-combobox-item" data-value="9(Arts)">9(Arts)</div>
+                  <div class="vf-combobox-item" data-value="10">10</div>
+                  <div class="vf-combobox-item" data-value="10(arts)">10(arts)</div>
+                  <div class="vf-combobox-item" data-value="11">11</div>
+                  <div class="vf-combobox-item" data-value="11(arts)">11(arts)</div>
+                  <div class="vf-combobox-item" data-value="12">12</div>
+                  <div class="vf-combobox-item" data-value="12(arts)">12(arts)</div>
+                </div>
               </div>
             </div>
 
@@ -1059,9 +1055,9 @@
   <div id="toast-container" class="toast-container"></div>
 
   <!-- Scripts: Firebase Config, Auth System & Collaborative Application -->
-  <script src="assets/js/firebase-config.js?v=v30smoothwatermark"></script>
-  <script src="assets/js/discipline-auth.js?v=v30smoothwatermark"></script>
-  <script src="assets/js/discipline-app.js?v=v30smoothwatermark"></script>
+  <script src="assets/js/firebase-config.js?v=v31combobox"></script>
+  <script src="assets/js/discipline-auth.js?v=v31combobox"></script>
+  <script src="assets/js/discipline-app.js?v=v31combobox"></script>
 
   <!-- Service Worker Registration for Instant Launch & Offline Mode -->
   <script>

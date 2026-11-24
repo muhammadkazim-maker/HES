@@ -1095,27 +1095,79 @@
         this.handleStudentNameInput(e.target.value);
       });
 
-      const vClassSelect = document.getElementById('v-class-select');
-      const vClassManual = document.getElementById('v-class-manual-input');
-      const vClassToggle = document.getElementById('v-class-mode-toggle');
+      // 6. Unified Combobox (Dropdown + Manual Typing) for Class
+      const vClassInput = document.getElementById('v-class-select');
+      const vClassTrigger = document.getElementById('v-class-dropdown-trigger');
+      const vClassMenu = document.getElementById('v-class-dropdown-menu');
 
-      vClassToggle?.addEventListener('click', (e) => {
-        e.preventDefault();
-        const manualWrap = document.getElementById('v-class-manual-wrap');
-        const isCurrentlyManual = manualWrap && manualWrap.style.display !== 'none';
-        this.setClassMode(!isCurrentlyManual);
-      });
+      const openClassDropdown = () => {
+        if (!vClassMenu) return;
+        vClassMenu.querySelectorAll('.vf-combobox-item').forEach(it => it.style.display = 'flex');
+        vClassMenu.classList.add('open');
+        vClassTrigger?.classList.add('open');
+      };
 
-      vClassSelect?.addEventListener('change', (e) => {
-        if (e.target.value === '__manual__') {
-          this.setClassMode(true);
+      const closeClassDropdown = () => {
+        if (!vClassMenu) return;
+        vClassMenu.classList.remove('open');
+        vClassTrigger?.classList.remove('open');
+      };
+
+      const toggleClassDropdown = (e) => {
+        e?.stopPropagation();
+        if (vClassMenu?.classList.contains('open')) {
+          closeClassDropdown();
         } else {
-          this.handleClassSelectChange(e.target.value);
+          openClassDropdown();
         }
+      };
+
+      vClassTrigger?.addEventListener('click', toggleClassDropdown);
+
+      // Clicking or focusing input opens dropdown
+      vClassInput?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openClassDropdown();
       });
 
-      vClassManual?.addEventListener('input', (e) => {
+      // Filter options as user types, but allow typing any custom class freely
+      vClassInput?.addEventListener('input', (e) => {
+        const query = (e.target.value || '').trim().toLowerCase();
+        if (vClassMenu) {
+          vClassMenu.classList.add('open');
+          vClassTrigger?.classList.add('open');
+          const items = vClassMenu.querySelectorAll('.vf-combobox-item');
+          items.forEach(item => {
+            const val = (item.getAttribute('data-value') || '').toLowerCase();
+            const text = item.textContent.toLowerCase();
+            if (!query || val.includes(query) || text.includes(query)) {
+              item.style.display = 'flex';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        }
         this.handleClassSelectChange(e.target.value);
+      });
+
+      // Click option in dropdown
+      vClassMenu?.querySelectorAll('.vf-combobox-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const val = item.getAttribute('data-value');
+          if (vClassInput) {
+            vClassInput.value = val;
+          }
+          closeClassDropdown();
+          this.handleClassSelectChange(val);
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#v-class-combobox-wrap')) {
+          closeClassDropdown();
+        }
       });
 
       const vStudentSelect = document.getElementById('v-student-select');
@@ -1662,70 +1714,21 @@
       }
     }
 
-    setClassMode(manual, initialValue) {
-      const dropdownWrap = document.getElementById('v-class-dropdown-wrap');
-      const manualWrap = document.getElementById('v-class-manual-wrap');
-      const toggleText = document.getElementById('v-class-toggle-text');
-      const vClassSelect = document.getElementById('v-class-select');
-      const vClassManual = document.getElementById('v-class-manual-input');
-
-      if (manual) {
-        if (dropdownWrap) dropdownWrap.style.display = 'none';
-        if (manualWrap) manualWrap.style.display = 'block';
-        if (toggleText) toggleText.textContent = '📋 Dropdown List';
-        if (vClassManual) {
-          if (initialValue !== undefined) vClassManual.value = initialValue;
-          vClassManual.focus();
-        }
-      } else {
-        if (manualWrap) manualWrap.style.display = 'none';
-        if (dropdownWrap) dropdownWrap.style.display = 'block';
-        if (toggleText) toggleText.textContent = '✏️ Type Manually';
-        if (vClassSelect) {
-          if (initialValue !== undefined) vClassSelect.value = initialValue;
-          if (vClassSelect.value === '__manual__') vClassSelect.value = '';
-        }
-      }
-    }
-
     setClassValue(val) {
-      const vClassSelect = document.getElementById('v-class-select');
-      const vClassManual = document.getElementById('v-class-manual-input');
-      if (!val) {
-        if (vClassSelect) vClassSelect.value = '';
-        if (vClassManual) vClassManual.value = '';
-        this.setClassMode(false);
-        return;
+      const vClassInput = document.getElementById('v-class-select');
+      if (vClassInput) {
+        vClassInput.value = val || '';
       }
-      let found = false;
-      if (vClassSelect) {
-        for (let i = 0; i < vClassSelect.options.length; i++) {
-          if (vClassSelect.options[i].value === val) {
-            found = true;
-            break;
-          }
-        }
-      }
-      if (found) {
-        vClassSelect.value = val;
-        this.setClassMode(false, val);
-      } else {
-        if (vClassManual) vClassManual.value = val;
-        this.setClassMode(true, val);
+      const vClassMenu = document.getElementById('v-class-dropdown-menu');
+      if (vClassMenu) {
+        vClassMenu.classList.remove('open');
+        document.getElementById('v-class-dropdown-trigger')?.classList.remove('open');
       }
     }
 
     getSelectedClass() {
-      const manualWrap = document.getElementById('v-class-manual-wrap');
-      const isManual = manualWrap && manualWrap.style.display !== 'none';
-      if (isManual) {
-        const vClassManual = document.getElementById('v-class-manual-input');
-        return vClassManual ? vClassManual.value.trim() : '';
-      } else {
-        const vClassSelect = document.getElementById('v-class-select');
-        if (!vClassSelect || vClassSelect.value === '__manual__') return '';
-        return vClassSelect.value.trim();
-      }
+      const vClassInput = document.getElementById('v-class-select');
+      return vClassInput ? vClassInput.value.trim() : '';
     }
 
     handleClassSelectChange(cls) {
