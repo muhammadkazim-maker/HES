@@ -3586,6 +3586,48 @@ img, svg {
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
+.vf-select-bar {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23DC2626' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px;
+  padding-right: 2.2rem;
+  cursor: pointer;
+}
+
+.vf-mode-toggle-btn {
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.28);
+  color: #DC2626;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.4;
+  margin-left: auto;
+}
+
+.vf-mode-toggle-btn:hover {
+  background: #DC2626;
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .vf-mode-toggle-btn {
+  background: rgba(239, 68, 68, 0.16);
+  border-color: rgba(239, 68, 68, 0.38);
+  color: #F87171;
+}
+
+[data-theme="dark"] .vf-mode-toggle-btn:hover {
+  background: #EF4444;
+  color: #FFFFFF;
+}
+
 .vf-input-bar:focus,
 .vf-select-bar:focus,
 .vf-textarea-bar:focus {

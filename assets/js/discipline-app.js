@@ -1096,7 +1096,25 @@
       });
 
       const vClassSelect = document.getElementById('v-class-select');
+      const vClassManual = document.getElementById('v-class-manual-input');
+      const vClassToggle = document.getElementById('v-class-mode-toggle');
+
+      vClassToggle?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const manualWrap = document.getElementById('v-class-manual-wrap');
+        const isCurrentlyManual = manualWrap && manualWrap.style.display !== 'none';
+        this.setClassMode(!isCurrentlyManual);
+      });
+
       vClassSelect?.addEventListener('change', (e) => {
+        if (e.target.value === '__manual__') {
+          this.setClassMode(true);
+        } else {
+          this.handleClassSelectChange(e.target.value);
+        }
+      });
+
+      vClassManual?.addEventListener('input', (e) => {
         this.handleClassSelectChange(e.target.value);
       });
 
@@ -1110,8 +1128,7 @@
           if (fatherInput) fatherInput.value = student.fatherName || '';
           const phoneInput = document.getElementById('v-parent-phone');
           if (phoneInput) phoneInput.value = student.guardianPhone || '';
-          const classSelect = document.getElementById('v-class-select');
-          if (classSelect) classSelect.value = student.classSection;
+          this.setClassValue(student.classSection || '');
           const stdId = document.getElementById('v-student-id');
           if (stdId) stdId.value = student.id;
           this.updateAutoDateTime();
@@ -1624,7 +1641,6 @@
       if (match) {
         const fatherInput = document.getElementById('v-father-name');
         const phoneInput = document.getElementById('v-parent-phone');
-        const classSelect = document.getElementById('v-class-select');
         const studentIdInput = document.getElementById('v-student-id');
         const vStudentSelect = document.getElementById('v-student-select');
 
@@ -1638,11 +1654,77 @@
           phoneInput.value = match.guardianPhone;
           this.flashAutoFill(phoneInput, 'vf-phone-auto-tag');
         }
-        if (classSelect && match.classSection) {
-          classSelect.value = match.classSection;
-          this.flashAutoFill(classSelect, 'vf-class-auto-tag');
+        if (match.classSection) {
+          this.setClassValue(match.classSection);
+          this.flashAutoFill(document.getElementById('v-class-select'), 'vf-class-auto-tag');
         }
         this.updateAutoDateTime();
+      }
+    }
+
+    setClassMode(manual, initialValue) {
+      const dropdownWrap = document.getElementById('v-class-dropdown-wrap');
+      const manualWrap = document.getElementById('v-class-manual-wrap');
+      const toggleText = document.getElementById('v-class-toggle-text');
+      const vClassSelect = document.getElementById('v-class-select');
+      const vClassManual = document.getElementById('v-class-manual-input');
+
+      if (manual) {
+        if (dropdownWrap) dropdownWrap.style.display = 'none';
+        if (manualWrap) manualWrap.style.display = 'block';
+        if (toggleText) toggleText.textContent = '📋 Dropdown List';
+        if (vClassManual) {
+          if (initialValue !== undefined) vClassManual.value = initialValue;
+          vClassManual.focus();
+        }
+      } else {
+        if (manualWrap) manualWrap.style.display = 'none';
+        if (dropdownWrap) dropdownWrap.style.display = 'block';
+        if (toggleText) toggleText.textContent = '✏️ Type Manually';
+        if (vClassSelect) {
+          if (initialValue !== undefined) vClassSelect.value = initialValue;
+          if (vClassSelect.value === '__manual__') vClassSelect.value = '';
+        }
+      }
+    }
+
+    setClassValue(val) {
+      const vClassSelect = document.getElementById('v-class-select');
+      const vClassManual = document.getElementById('v-class-manual-input');
+      if (!val) {
+        if (vClassSelect) vClassSelect.value = '';
+        if (vClassManual) vClassManual.value = '';
+        this.setClassMode(false);
+        return;
+      }
+      let found = false;
+      if (vClassSelect) {
+        for (let i = 0; i < vClassSelect.options.length; i++) {
+          if (vClassSelect.options[i].value === val) {
+            found = true;
+            break;
+          }
+        }
+      }
+      if (found) {
+        vClassSelect.value = val;
+        this.setClassMode(false, val);
+      } else {
+        if (vClassManual) vClassManual.value = val;
+        this.setClassMode(true, val);
+      }
+    }
+
+    getSelectedClass() {
+      const manualWrap = document.getElementById('v-class-manual-wrap');
+      const isManual = manualWrap && manualWrap.style.display !== 'none';
+      if (isManual) {
+        const vClassManual = document.getElementById('v-class-manual-input');
+        return vClassManual ? vClassManual.value.trim() : '';
+      } else {
+        const vClassSelect = document.getElementById('v-class-select');
+        if (!vClassSelect || vClassSelect.value === '__manual__') return '';
+        return vClassSelect.value.trim();
       }
     }
 
@@ -1708,7 +1790,6 @@
       const studentNameInput = document.getElementById('v-student-name');
       const fatherNameInput = document.getElementById('v-father-name');
       const parentPhoneInput = document.getElementById('v-parent-phone');
-      const classSelect = document.getElementById('v-class-select');
       const studentIdInput = document.getElementById('v-student-id');
       const detailsInput = document.getElementById('violation-details-input');
 
@@ -1718,7 +1799,7 @@
           if (studentNameInput) studentNameInput.value = student.name;
           if (fatherNameInput) fatherNameInput.value = student.fatherName || '';
           if (parentPhoneInput) parentPhoneInput.value = student.guardianPhone || '';
-          if (classSelect) classSelect.value = student.classSection || '';
+          this.setClassValue(student.classSection || '');
           if (studentIdInput) studentIdInput.value = student.id;
           const sel = document.getElementById('v-student-select');
           if (sel) sel.value = student.id;
@@ -1727,7 +1808,7 @@
         if (studentNameInput) studentNameInput.value = '';
         if (fatherNameInput) fatherNameInput.value = '';
         if (parentPhoneInput) parentPhoneInput.value = '';
-        if (classSelect) classSelect.value = '';
+        this.setClassValue('');
         if (studentIdInput) studentIdInput.value = '';
         if (detailsInput) detailsInput.value = '';
       }
@@ -1740,14 +1821,13 @@
       e.preventDefault();
       const studentNameInput = document.getElementById('v-student-name');
       const fatherNameInput = document.getElementById('v-father-name');
-      const classSelect = document.getElementById('v-class-select');
       const parentPhoneInput = document.getElementById('v-parent-phone');
       const detailsInput = document.getElementById('violation-details-input');
       const studentIdInput = document.getElementById('v-student-id');
 
       const studentName = studentNameInput ? studentNameInput.value.trim() : '';
       const fatherName = fatherNameInput ? fatherNameInput.value.trim() : '';
-      const classSection = classSelect ? classSelect.value.trim() : '';
+      const classSection = this.getSelectedClass();
       const parentPhone = parentPhoneInput ? parentPhoneInput.value.trim() : '';
       const details = detailsInput ? detailsInput.value.trim() : '';
 
@@ -2315,8 +2395,7 @@
         if (sFatherInput) sFatherInput.value = newStudent.fatherName || '';
         const sPhoneInput = document.getElementById('v-parent-phone');
         if (sPhoneInput) sPhoneInput.value = newStudent.guardianPhone || '';
-        const cls = document.getElementById('v-class-select');
-        if (cls) cls.value = newStudent.classSection;
+        this.setClassValue(newStudent.classSection || '');
         const stdId = document.getElementById('v-student-id');
         if (stdId) stdId.value = newStudent.id;
         const sel = document.getElementById('v-student-select');
