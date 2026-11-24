@@ -3,7 +3,7 @@
  * High-performance Stale-While-Revalidate caching for 0ms instant launch & offline resilience.
  */
 
-const CACHE_NAME = 'discipline-tracker-v10-classfix';
+const CACHE_NAME = 'discipline-tracker-v11-supersmooth';
 const ASSETS_TO_CACHE = [
   './index.html',
   './discipline.html',
@@ -66,7 +66,7 @@ self.addEventListener('fetch', (event) => {
 
   // Stale-While-Revalidate: Instant response from cache + background refresh for assets
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
+    caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
       const fetchPromise = fetch(event.request)
         .then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200 && event.request.method === 'GET') {
@@ -77,7 +77,7 @@ self.addEventListener('fetch', (event) => {
         })
         .catch(() => null);
 
-      return cachedResponse || fetchPromise.then(res => res || caches.match('./index.html'));
+      return cachedResponse || fetchPromise.then(res => res || caches.match('./index.html', { ignoreSearch: true }));
     })
   );
 });

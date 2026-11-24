@@ -246,7 +246,6 @@ body {
 
 body.modal-open {
   overflow: hidden !important;
-  touch-action: none;
 }
 
 input, button, select, textarea {
@@ -3300,13 +3299,14 @@ img, svg {
   }
 }
 
-/* Ensure #add-violation-modal is ALWAYS centered on both PC and mobile */
+/* Ensure #add-violation-modal is ALWAYS centered on both PC and mobile, with zero-lag overlay */
 #add-violation-modal.modal-overlay {
   align-items: center !important;
   justify-content: center !important;
-  padding: 12px !important;
-  backdrop-filter: blur(10px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(160%) !important;
+  padding: 10px !important;
+  background: rgba(15, 23, 42, 0.78) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 #add-violation-modal .violation-form-dialog {
@@ -3320,8 +3320,12 @@ img, svg {
   overflow: hidden !important;
   margin: auto !important;
   position: relative !important;
-  animation: modalPopSpring 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15) !important;
-  box-shadow: 0 25px 60px -10px rgba(220, 38, 38, 0.38), 0 0 0 1px rgba(220, 38, 38, 0.22) !important;
+  animation: modalPopSpring 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.15) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32), 0 0 0 1px rgba(220, 38, 38, 0.25) !important;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 #add-violation-modal #add-violation-form {
@@ -3330,6 +3334,7 @@ img, svg {
   flex: 1 1 auto !important;
   min-height: 0 !important;
   overflow: hidden !important;
+  position: relative;
 }
 
 .violation-form-dialog {
@@ -3337,7 +3342,7 @@ img, svg {
   max-height: calc(100dvh - 24px);
   background: linear-gradient(180deg, #FFF9F9 0%, #FFFFFF 100%);
   border: 2px solid rgba(220, 38, 38, 0.4);
-  box-shadow: 0 20px 50px -10px rgba(220, 38, 38, 0.25), 0 0 1px rgba(220, 38, 38, 0.5);
+  box-shadow: 0 14px 40px -10px rgba(220, 38, 38, 0.22), 0 0 1px rgba(220, 38, 38, 0.5);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -3346,27 +3351,58 @@ img, svg {
 [data-theme="dark"] .violation-form-dialog {
   background: linear-gradient(180deg, #1C0F12 0%, #111827 100%);
   border: 2px solid rgba(239, 68, 68, 0.5);
-  box-shadow: 0 20px 50px -10px rgba(220, 38, 38, 0.35);
+  box-shadow: 0 14px 40px -10px rgba(220, 38, 38, 0.35);
 }
 
-/* Watermark background badge for violation modal */
+/* Centered High-Visibility Watermark of Violation Hazard Sign in Form */
 .violation-form-dialog::before {
   content: '';
   position: absolute;
-  right: -20px;
-  bottom: 60px;
-  width: 220px;
-  height: 220px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23DC2626' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cline x1='12' y1='9' x2='12' y2='13'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E");
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  width: 270px;
+  height: 270px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC2626' fill-opacity='0.11' stroke='%23DC2626' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cline x1='12' y1='9' x2='12' y2='13' stroke='%23DC2626' stroke-width='2.4'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17' stroke='%23DC2626' stroke-width='3'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
-  opacity: 0.045;
+  opacity: 0.16;
   pointer-events: none;
   z-index: 0;
 }
 
 [data-theme="dark"] .violation-form-dialog::before {
-  opacity: 0.06;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23EF4444' fill-opacity='0.14' stroke='%23EF4444' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cline x1='12' y1='9' x2='12' y2='13' stroke='%23EF4444' stroke-width='2.4'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17' stroke='%23EF4444' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+/* Explicit In-DOM Form Body Watermark */
+.vf-form-watermark {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  color: #DC2626;
+  opacity: 0.14;
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.vf-form-watermark svg {
+  width: 100%;
+  height: 100%;
+}
+
+[data-theme="dark"] .vf-form-watermark {
+  color: #EF4444;
+  opacity: 0.20;
 }
 
 /* Curved Rectangular Violation Form Header Bar */
@@ -3454,8 +3490,10 @@ img, svg {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  overscroll-behavior-y: contain !important;
+  will-change: scroll-position;
 }
 
 .vf-modal-body::-webkit-scrollbar {
@@ -3581,9 +3619,17 @@ img, svg {
   font-size: 0.86rem;
   font-weight: 600;
   border: 1.5px solid var(--border-color);
-  background: var(--bg-surface);
+  background: rgba(255, 255, 255, 0.90);
   color: var(--text-primary);
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="dark"] .vf-input-bar,
+[data-theme="dark"] .vf-select-bar,
+[data-theme="dark"] .vf-textarea-bar {
+  background: rgba(17, 24, 39, 0.90);
 }
 
 .vf-select-bar {

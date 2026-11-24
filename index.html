@@ -14,13 +14,13 @@
   <link rel="apple-touch-icon" href="assets/images/logo.png">
   <link rel="icon" type="image/jpeg" href="assets/images/hadi-education-logo.jpg">
 
-  <!-- Inter Font (Clean, Crisp Typography) & Noto Nastaliq Urdu -->
+  <!-- Inter Font (Clean, Crisp Typography) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/discipline.css?v=v29classfixed">
+  <link rel="stylesheet" href="assets/css/discipline.css?v=v30smoothwatermark">
 </head>
 <body>
 
@@ -327,6 +327,15 @@
 
       <form id="add-violation-form">
         <div class="modal-body vf-modal-body">
+          <!-- Prominent Violation Hazard Mark Watermark in Form Body -->
+          <div class="vf-form-watermark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" fill="currentColor" fill-opacity="0.10"/>
+              <line x1="12" y1="9" x2="12" y2="13" stroke-width="2.4"/>
+              <line x1="12" y1="17" x2="12.01" y2="17" stroke-width="3"/>
+            </svg>
+          </div>
+
           <!-- Hidden Student Select for internal backwards compatibility -->
           <select id="v-student-select" style="display: none;" tabindex="-1" aria-hidden="true">
             <option value="">-- Choose or Search Student --</option>
@@ -1050,9 +1059,9 @@
   <div id="toast-container" class="toast-container"></div>
 
   <!-- Scripts: Firebase Config, Auth System & Collaborative Application -->
-  <script src="assets/js/firebase-config.js?v=v29classfixed"></script>
-  <script src="assets/js/discipline-auth.js?v=v29classfixed"></script>
-  <script src="assets/js/discipline-app.js?v=v29classfixed"></script>
+  <script src="assets/js/firebase-config.js?v=v30smoothwatermark"></script>
+  <script src="assets/js/discipline-auth.js?v=v30smoothwatermark"></script>
+  <script src="assets/js/discipline-app.js?v=v30smoothwatermark"></script>
 
   <!-- Service Worker Registration for Instant Launch & Offline Mode -->
   <script>
