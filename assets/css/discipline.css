@@ -3285,9 +3285,56 @@ img, svg {
 /* ==========================================================================
    DEDICATED VIOLATION FORM REDESIGN STYLES
    ========================================================================== */
+@keyframes modalPopSpring {
+  0% {
+    opacity: 0;
+    transform: scale(0.86) translateY(-14px);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.018) translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Ensure #add-violation-modal is ALWAYS centered on both PC and mobile */
+#add-violation-modal.modal-overlay {
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px !important;
+  backdrop-filter: blur(10px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(160%) !important;
+}
+
+#add-violation-modal .violation-form-dialog {
+  width: 95% !important;
+  max-width: 580px !important;
+  max-height: calc(100dvh - 24px) !important;
+  height: auto !important;
+  border-radius: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  margin: auto !important;
+  position: relative !important;
+  animation: modalPopSpring 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15) !important;
+  box-shadow: 0 25px 60px -10px rgba(220, 38, 38, 0.38), 0 0 0 1px rgba(220, 38, 38, 0.22) !important;
+}
+
+#add-violation-modal #add-violation-form {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
 .violation-form-dialog {
-  max-width: 650px;
-  max-height: 90vh;
+  max-width: 580px;
+  max-height: calc(100dvh - 24px);
   background: linear-gradient(180deg, #FFF9F9 0%, #FFFFFF 100%);
   border: 2px solid rgba(220, 38, 38, 0.4);
   box-shadow: 0 20px 50px -10px rgba(220, 38, 38, 0.25), 0 0 1px rgba(220, 38, 38, 0.5);
@@ -3404,8 +3451,36 @@ img, svg {
   padding: 0.75rem 1rem 0.85rem 1rem;
   position: relative;
   z-index: 1;
-  flex: 1;
-  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.vf-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vf-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.vf-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(220, 38, 38, 0.25);
+  border-radius: 9999px;
+}
+
+.vf-modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(220, 38, 38, 0.45);
+}
+
+.vf-optional-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  opacity: 0.82;
+  margin-left: 4px;
 }
 
 /* 2-Column Responsive Layout */

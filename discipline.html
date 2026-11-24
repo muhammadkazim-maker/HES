@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/discipline.css?v=v25violationform">
+  <link rel="stylesheet" href="assets/css/discipline.css?v=v28scroll">
 </head>
 <body>
 
@@ -311,7 +311,7 @@
       <div class="violation-form-header-bar">
         <div class="vf-header-content">
           <div class="vf-header-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
               <line x1="12" y1="9" x2="12" y2="13"/>
               <line x1="12" y1="17" x2="12.01" y2="17"/>
@@ -344,62 +344,58 @@
               <div class="vf-input-wrap">
                 <input type="text" id="v-student-name" list="students-datalist" class="form-control vf-input-bar" placeholder="Search or type student name..." autocomplete="off" required>
                 <datalist id="students-datalist"></datalist>
-                <button type="button" id="v-inline-add-student" class="vf-inline-badge-btn" title="Add new student to registry">
-                  + Add New
-                </button>
               </div>
             </div>
 
-            <!-- Father Name Section (In front of student name) -->
+            <!-- Father Name Section (Optional) -->
             <div class="form-group vf-field-group">
               <div class="vf-field-bar">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                <label for="v-father-name" class="vf-field-label">Father Name *</label>
-                <span class="vf-auto-tag" id="vf-father-auto-tag">Auto Fill</span>
+                <label for="v-father-name" class="vf-field-label">Father Name <span class="vf-optional-label">(Optional)</span></label>
               </div>
               <div class="vf-input-wrap">
-                <input type="text" id="v-father-name" class="form-control vf-input-bar" placeholder="Father name..." required>
+                <input type="text" id="v-father-name" class="form-control vf-input-bar" placeholder="Father name (optional)...">
               </div>
             </div>
           </div>
 
-          <!-- Row 2: Class Section (dropdown) & Parent Phone Number -->
+          <!-- Row 2: Class Section (dropdown or manual type) & Parent Phone Number (Optional) -->
           <div class="vf-row-2col">
-            <!-- Class Dropdown Section -->
+            <!-- Class Section (Select or Type Manually) -->
             <div class="form-group vf-field-group">
               <div class="vf-field-bar">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
-                <label for="v-class-select" class="vf-field-label">Class *</label>
-                <span class="vf-auto-tag" id="vf-class-auto-tag">Auto Select</span>
+                <label for="v-class-select" class="vf-field-label">Class <span class="vf-optional-label">(Optional)</span></label>
               </div>
-              <select id="v-class-select" class="form-control vf-select-bar" required>
-                <option value="">-- Select Class --</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="pre9">pre9</option>
-                <option value="pre9(Arts)">pre9(Arts)</option>
-                <option value="9A">9A</option>
-                <option value="9B">9B</option>
-                <option value="9(Arts)">9(Arts)</option>
-                <option value="10">10</option>
-                <option value="10(arts)">10(arts)</option>
-                <option value="11">11</option>
-                <option value="11(arts)">11(arts)</option>
-                <option value="12">12</option>
-                <option value="12(arts)">12(arts)</option>
-              </select>
+              <div class="vf-input-wrap">
+                <input type="text" id="v-class-select" list="classes-datalist" class="form-control vf-input-bar" placeholder="Select or type class (e.g. 10, 9A, 8)...">
+                <datalist id="classes-datalist">
+                  <option value="6"></option>
+                  <option value="7"></option>
+                  <option value="8"></option>
+                  <option value="pre9"></option>
+                  <option value="pre9(Arts)"></option>
+                  <option value="9A"></option>
+                  <option value="9B"></option>
+                  <option value="9(Arts)"></option>
+                  <option value="10"></option>
+                  <option value="10(arts)"></option>
+                  <option value="11"></option>
+                  <option value="11(arts)"></option>
+                  <option value="12"></option>
+                  <option value="12(arts)"></option>
+                </datalist>
+              </div>
             </div>
 
-            <!-- Parent Phone Number Section -->
+            <!-- Parent Phone Number Section (Optional) -->
             <div class="form-group vf-field-group">
               <div class="vf-field-bar">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <label for="v-parent-phone" class="vf-field-label">Parent Phone Num *</label>
-                <span class="vf-auto-tag" id="vf-phone-auto-tag">Auto Fill</span>
+                <label for="v-parent-phone" class="vf-field-label">Parent Phone Num <span class="vf-optional-label">(Optional)</span></label>
               </div>
               <div class="vf-input-wrap">
-                <input type="tel" id="v-parent-phone" class="form-control vf-input-bar" placeholder="Parent contact number..." required>
+                <input type="tel" id="v-parent-phone" class="form-control vf-input-bar" placeholder="Parent contact number (optional)...">
               </div>
             </div>
           </div>
@@ -409,7 +405,6 @@
             <div class="vf-field-bar">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               <label for="v-date-time" class="vf-field-label">Incident Date &amp; Time (Automatic)</label>
-              <span class="vf-auto-live-badge">⚡ Live Timestamp</span>
             </div>
             <div class="vf-input-wrap">
               <input type="text" id="v-date-time" class="form-control vf-input-bar vf-date-input" readonly placeholder="Automatic system timestamp...">
@@ -422,7 +417,7 @@
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
               <label for="violation-details-input" class="vf-field-label">Violation Details *</label>
             </div>
-            <textarea id="violation-details-input" class="form-control vf-textarea-bar" rows="2" dir="auto" placeholder="Describe the incident (English or اردو میں تفصیل لکھیں)..." required></textarea>
+            <textarea id="violation-details-input" class="form-control vf-textarea-bar" rows="2" dir="auto" placeholder="Describe the violation incident details..." required></textarea>
             
             <div class="quick-tags vf-quick-tags">
               <span class="form-helper" style="display: block; width: 100%; margin-bottom: 2px; font-weight: 700;">Tap quick infraction tag:</span>
@@ -436,8 +431,8 @@
             </div>
           </div>
 
-          <!-- Row 5: Severity Levels Section & Dynamic Colored Box -->
-          <div class="form-group vf-field-group">
+          <!-- Row 5: Severity Levels Section -->
+          <div class="form-group vf-field-group" style="margin-bottom: 0.25rem;">
             <div class="vf-field-bar">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               <label class="vf-field-label">Disciplinary Violation Level (Select One) *</label>
@@ -473,27 +468,6 @@
                 <span class="sev-points">+75 pts</span>
                 <span class="sev-check">✓</span>
               </button>
-            </div>
-
-            <!-- Dynamic Colored Violation Level Box -->
-            <div id="v-level-preview-box" class="violation-level-card card-level-medium">
-              <div class="v-level-card-header">
-                <div class="v-level-title-group">
-                  <span class="v-level-dot" id="v-level-dot"></span>
-                  <div>
-                    <h4 id="v-level-title" class="v-level-name">Medium Infraction</h4>
-                    <span id="v-level-points" class="v-level-points-pill">+12 Discipline Demerit Points</span>
-                  </div>
-                </div>
-                <span id="v-level-tier" class="v-tier-pill">Tier 2 · Standard Incident</span>
-              </div>
-              <p id="v-level-desc" class="v-level-description">
-                Moderate classroom disruption or repeated uniform non-compliance. Formal warning logged into student file.
-              </p>
-              <div class="v-level-action-row">
-                <span class="v-action-label">Administrative Action:</span>
-                <span id="v-level-action" class="v-action-text">Parent SMS notification &amp; Disciplinary warning logged.</span>
-              </div>
             </div>
           </div>
         </div>
@@ -1067,9 +1041,9 @@
   <div id="toast-container" class="toast-container"></div>
 
   <!-- Scripts: Firebase Config, Auth System & Collaborative Application -->
-  <script src="assets/js/firebase-config.js?v=v25violationform"></script>
-  <script src="assets/js/discipline-auth.js?v=v25violationform"></script>
-  <script src="assets/js/discipline-app.js?v=v25violationform"></script>
+  <script src="assets/js/firebase-config.js?v=v28scroll"></script>
+  <script src="assets/js/discipline-auth.js?v=v28scroll"></script>
+  <script src="assets/js/discipline-app.js?v=v28scroll"></script>
 
   <!-- Service Worker Registration for Instant Launch & Offline Mode -->
   <script>

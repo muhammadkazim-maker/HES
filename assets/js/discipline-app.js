@@ -1747,18 +1747,13 @@
 
       const studentName = studentNameInput ? studentNameInput.value.trim() : '';
       const fatherName = fatherNameInput ? fatherNameInput.value.trim() : '';
-      const classSection = classSelect ? classSelect.value : '';
+      const classSection = classSelect ? classSelect.value.trim() : '';
       const parentPhone = parentPhoneInput ? parentPhoneInput.value.trim() : '';
       const details = detailsInput ? detailsInput.value.trim() : '';
 
       if (!studentName) {
         showToast('Please enter student name', 'error');
         if (studentNameInput) studentNameInput.focus();
-        return;
-      }
-      if (!classSection) {
-        showToast('Please select class', 'error');
-        if (classSelect) classSelect.focus();
         return;
       }
       if (!details) {
@@ -1791,8 +1786,8 @@
           student = store.addStudent({
             name: studentName,
             fatherName: fatherName || 'Not Specified',
-            classSection: classSection,
-            guardianPhone: parentPhone || '0300-0000000',
+            classSection: classSection || 'General',
+            guardianPhone: parentPhone || 'N/A',
             notes: 'Created via Disciplinary Violation Form'
           });
           studentId = student.id;
@@ -1800,7 +1795,7 @@
 
         const v = store.addViolation({
           studentId,
-          classSection,
+          classSection: classSection || (student && student.classSection) || 'General',
           severity: this.selectedSeverity || 'Medium',
           details
         });
