@@ -3,7 +3,7 @@
  * High-performance Stale-While-Revalidate caching for 0ms instant launch & offline resilience.
  */
 
-const CACHE_NAME = 'discipline-tracker-v12-combobox';
+const CACHE_NAME = 'discipline-tracker-v13-combosquare';
 const ASSETS_TO_CACHE = [
   './index.html',
   './discipline.html',

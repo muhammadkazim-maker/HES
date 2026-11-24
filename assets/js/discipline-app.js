@@ -1124,18 +1124,10 @@
 
       vClassTrigger?.addEventListener('click', toggleClassDropdown);
 
-      // Clicking or focusing input opens dropdown
-      vClassInput?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openClassDropdown();
-      });
-
-      // Filter options as user types, but allow typing any custom class freely
+      // Typing in rectangular bar allows typing any custom class freely
       vClassInput?.addEventListener('input', (e) => {
         const query = (e.target.value || '').trim().toLowerCase();
-        if (vClassMenu) {
-          vClassMenu.classList.add('open');
-          vClassTrigger?.classList.add('open');
+        if (vClassMenu && vClassMenu.classList.contains('open')) {
           const items = vClassMenu.querySelectorAll('.vf-combobox-item');
           items.forEach(item => {
             const val = (item.getAttribute('data-value') || '').toLowerCase();
