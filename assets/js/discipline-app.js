@@ -1095,46 +1095,72 @@
         this.handleStudentNameInput(e.target.value);
       });
 
-      // 6. Interactive Class Selection (Dropdown & Manual Typing toggle)
-      const vClassSelectBox = document.getElementById('v-class-select-box');
-      const vClassSelect = document.getElementById('v-class-select');
-      const vClassManualInput = document.getElementById('v-class-manual-input');
-      const btnToggleManualClass = document.getElementById('btn-toggle-manual-class');
+      // 6. Interactive Class Combobox (Direct typing in bar + Square dropdown button at end)
+      const vClassInput = document.getElementById('v-class-select');
+      const vClassTrigger = document.getElementById('v-class-dropdown-trigger');
+      const vClassMenu = document.getElementById('v-class-dropdown-menu');
 
-      btnToggleManualClass?.addEventListener('click', () => {
-        const isManual = vClassManualInput && vClassManualInput.style.display !== 'none';
-        if (isManual) {
-          // Switch back to dropdown
-          if (vClassManualInput) vClassManualInput.style.display = 'none';
-          if (vClassSelectBox) vClassSelectBox.style.display = 'block';
-          if (btnToggleManualClass) {
-            btnToggleManualClass.innerHTML = '<span class="vf-pill-icon">✏️</span> Type Manually';
-          }
-          if (vClassSelect && vClassManualInput?.value) {
-            vClassSelect.value = vClassManualInput.value;
-          }
+      const openClassDropdown = () => {
+        if (!vClassMenu) return;
+        vClassMenu.querySelectorAll('.vf-combobox-item').forEach(it => it.style.display = 'flex');
+        vClassMenu.classList.add('open');
+        vClassTrigger?.classList.add('open');
+      };
+
+      const closeClassDropdown = () => {
+        if (!vClassMenu) return;
+        vClassMenu.classList.remove('open');
+        vClassTrigger?.classList.remove('open');
+      };
+
+      const toggleClassDropdown = (e) => {
+        e?.stopPropagation();
+        if (vClassMenu?.classList.contains('open')) {
+          closeClassDropdown();
         } else {
-          // Switch to manual input
-          if (vClassSelectBox) vClassSelectBox.style.display = 'none';
-          if (vClassManualInput) {
-            vClassManualInput.style.display = 'block';
-            if (vClassSelect?.value) vClassManualInput.value = vClassSelect.value;
-            vClassManualInput.focus();
-          }
-          if (btnToggleManualClass) {
-            btnToggleManualClass.innerHTML = '<span class="vf-pill-icon">📋</span> Select from List';
-          }
+          openClassDropdown();
         }
-      });
+      };
 
-      vClassSelect?.addEventListener('change', (e) => {
-        if (vClassManualInput) vClassManualInput.value = e.target.value;
+      vClassTrigger?.addEventListener('click', toggleClassDropdown);
+
+      // Typing directly in the rectangular bar allows any manual class
+      vClassInput?.addEventListener('input', (e) => {
+        const query = (e.target.value || '').trim().toLowerCase();
+        if (vClassMenu && vClassMenu.classList.contains('open')) {
+          const items = vClassMenu.querySelectorAll('.vf-combobox-item');
+          items.forEach(item => {
+            const val = (item.getAttribute('data-value') || '').toLowerCase();
+            const text = item.textContent.toLowerCase();
+            if (!query || val.includes(query) || text.includes(query)) {
+              item.style.display = 'flex';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        }
         this.handleClassSelectChange(e.target.value);
       });
 
-      vClassManualInput?.addEventListener('input', (e) => {
-        if (vClassSelect) vClassSelect.value = e.target.value;
-        this.handleClassSelectChange(e.target.value);
+      // Selecting an item from the dropdown
+      vClassMenu?.querySelectorAll('.vf-combobox-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const val = item.getAttribute('data-value');
+          if (vClassInput) {
+            vClassInput.value = val;
+            vClassInput.focus();
+          }
+          closeClassDropdown();
+          this.handleClassSelectChange(val);
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#v-class-combobox-wrap')) {
+          closeClassDropdown();
+        }
       });
 
       const vStudentSelect = document.getElementById('v-student-select');
@@ -1682,23 +1708,20 @@
     }
 
     setClassValue(val) {
-      const vClassSelect = document.getElementById('v-class-select');
-      const vClassManualInput = document.getElementById('v-class-manual-input');
-      if (vClassSelect) {
-        vClassSelect.value = val || '';
+      const vClassInput = document.getElementById('v-class-select');
+      if (vClassInput) {
+        vClassInput.value = val || '';
       }
-      if (vClassManualInput) {
-        vClassManualInput.value = val || '';
+      const vClassMenu = document.getElementById('v-class-dropdown-menu');
+      if (vClassMenu) {
+        vClassMenu.classList.remove('open');
+        document.getElementById('v-class-dropdown-trigger')?.classList.remove('open');
       }
     }
 
     getSelectedClass() {
-      const vClassManualInput = document.getElementById('v-class-manual-input');
-      const vClassSelect = document.getElementById('v-class-select');
-      if (vClassManualInput && vClassManualInput.style.display !== 'none' && vClassManualInput.value.trim()) {
-        return vClassManualInput.value.trim();
-      }
-      return vClassSelect ? vClassSelect.value.trim() : '';
+      const vClassInput = document.getElementById('v-class-select');
+      return vClassInput ? vClassInput.value.trim() : '';
     }
 
     handleClassSelectChange(cls) {
